@@ -1,53 +1,52 @@
 """
 Generators for Neo4j Cypher scripts, JSON graph exports, Plotly 3D graphs,
 and interactive WebGL 3D visualizations.
+
+Step 1 Focus:
+- 16 Dispersed, unclustered vocabulary nodes.
+- Identifying colors, topic labels, and causal spoilers REMOVED from the visual layer.
+- Latent topic metadata retained solely in properties for future clustering steps.
 """
 
 import json
 from pathlib import Path
 from typing import Dict, Any, Optional
 
-from .data import TOPICS, STRIKE_NODES
+from .data import TOPICS, STRIKE_NODES, UNIFORM_NODE_COLOR
 
 
 def generate_cypher_script() -> str:
-    """Generate Cypher commands to populate Neo4j with the 16 dispersed word nodes."""
+    """Generate Cypher commands to populate Neo4j with the 16 uniform, dispersed word nodes."""
     lines = [
         "// ====================================================================",
         "// 1920s Chinese Labor Strike Causal Knowledge Graph (Step 1)",
-        "// Visual Representation: 16 Dispersed Words from 1920s Newspaper Press",
-        "// Causal Target Structure: (A: Economic) -> (C: Strike) <- (B: Union)",
-        "//                          (C: Strike) -> (D: Paralysis)",
+        "// Visual Representation: 16 Dispersed, Unclustered Vocabulary Nodes",
+        "// (Identifying cluster colors & groupings removed for Step 1 baseline)",
         "// ====================================================================",
         "",
         "// 1. Schema Constraints & Indexes",
         "CREATE CONSTRAINT word_id_unique IF NOT EXISTS",
         "FOR (w:StrikeWord) REQUIRE w.id IS UNIQUE;",
         "",
-        "CREATE INDEX word_topic_idx IF NOT EXISTS",
-        "FOR (w:StrikeWord) REQUIRE w.topic_id;",
-        "",
         "// 2. Clear existing demonstration nodes",
         "MATCH (w:StrikeWord) DETACH DELETE w;",
         "",
-        "// 3. Create 16 Dispersed Nodes (Pre-clustered)",
+        "// 3. Create 16 Dispersed Nodes with uniform label :StrikeWord:Word",
     ]
 
     for node in STRIKE_NODES:
-        causal_role = TOPICS[node["topic_id"]]["causal_role"]
         cypher_node = (
-            f"CREATE (:{node['topic_id']}_Group:StrikeWord:Word {{\n"
+            f"CREATE (:StrikeWord:Word {{\n"
             f'    id: "{node["id"]}",\n'
             f'    word: "{node["word"]}",\n'
             f'    chinese: "{node["chinese"]}",\n'
-            f'    topic_id: "{node["topic_id"]}",\n'
-            f'    topic_name: "{node["topic_name"]}",\n'
-            f'    causal_role: "{causal_role}",\n'
             f'    historical_source: "{node["historical_source"]}",\n'
             f'    context: "{node["context"]}",\n'
             f'    x: {node["x"]}, y: {node["y"]}, z: {node["z"]},\n'
             f"    step: 1,\n"
-            f'    status: "dispersed_unclustered"\n'
+            f'    status: "dispersed_unclustered",\n'
+            f'    latent_topic_id: "{node["latent_topic_id"]}",\n'
+            f'    latent_topic_name: "{node["latent_topic_name"]}"\n'
             f"}});"
         )
         lines.append(cypher_node)
@@ -59,8 +58,7 @@ def generate_cypher_script() -> str:
         "// ====================================================================",
         "MATCH (w:StrikeWord)",
         "RETURN w.id AS id, w.word AS word, w.chinese AS chinese,",
-        "       w.topic_id AS topic_id, w.topic_name AS topic_name,",
-        "       w.x AS x, w.y AS y, w.z AS z, w.causal_role AS causal_role;",
+        "       w.x AS x, w.y AS y, w.z AS z, w.historical_source AS source;",
         "",
     ])
     return "\n".join(lines)
@@ -72,70 +70,61 @@ def generate_json_export() -> Dict[str, Any]:
         "metadata": {
             "title": "1920s Chinese Strike Causal Knowledge Graph",
             "step": 1,
-            "description": "Visual representation of 16 dispersed words from 1920s newspaper press before clustering.",
+            "description": "16 dispersed words from 1920s newspaper press before clustering.",
             "total_nodes": len(STRIKE_NODES),
             "total_edges": 0,
-            "causal_blueprint": {
-                "chain": ["Topic A -> Topic C", "Topic B -> Topic C", "Topic C -> Topic D"],
-                "topics": TOPICS,
-            },
+            "clustering_mode": "unclustered_dispersed",
         },
-        "topics": TOPICS,
         "nodes": STRIKE_NODES,
         "edges": [],
     }
 
 
 def generate_plotly_3d_html() -> str:
-    """Generate a self-contained, interactive Plotly 3D scatter graph HTML."""
+    """Generate a self-contained Plotly 3D scatter graph with uniform styling (no cluster spoilers)."""
     import plotly.graph_objects as go
 
     fig = go.Figure()
 
-    # Add traces for each topic so they can be toggled via legend
-    for topic_id, topic_info in TOPICS.items():
-        topic_nodes = [n for n in STRIKE_NODES if n["topic_id"] == topic_id]
-        xs = [n["x"] for n in topic_nodes]
-        ys = [n["y"] for n in topic_nodes]
-        zs = [n["z"] for n in topic_nodes]
-        labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in topic_nodes]
-        hover_texts = [
-            f"<b>{n['word']}</b> ({n['chinese']})<br>"
-            f"<b>Future Topic:</b> {n['topic_name']}<br>"
-            f"<b>Causal Role:</b> {topic_info['causal_role']}<br>"
-            f"<b>Source:</b> {n['historical_source']}<br>"
-            f"<b>Context:</b> {n['context']}<br>"
-            f"<b>Coordinates:</b> ({n['x']}, {n['y']}, {n['z']})"
-            for n in topic_nodes
-        ]
+    xs = [n["x"] for n in STRIKE_NODES]
+    ys = [n["y"] for n in STRIKE_NODES]
+    zs = [n["z"] for n in STRIKE_NODES]
+    labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in STRIKE_NODES]
+    hover_texts = [
+        f"<b>{n['word']}</b> ({n['chinese']})<br>"
+        f"<b>Historical Source:</b> {n['historical_source']}<br>"
+        f"<b>Archival Context:</b> {n['context']}<br>"
+        f"<b>3D Coordinates:</b> ({n['x']}, {n['y']}, {n['z']})"
+        for n in STRIKE_NODES
+    ]
 
-        fig.add_trace(
-            go.Scatter3d(
-                x=xs,
-                y=ys,
-                z=zs,
-                mode="markers+text",
-                name=f"{topic_info['name']} ({topic_info['causal_role']})",
-                text=labels,
-                textposition="top center",
-                textfont=dict(size=11, color="#F0F4F8"),
-                hoverinfo="text",
-                hovertext=hover_texts,
-                marker=dict(
-                    size=9,
-                    color=topic_info["color"],
-                    opacity=0.9,
-                    line=dict(color="#FFFFFF", width=1.5),
-                    symbol="circle",
-                ),
-            )
+    fig.add_trace(
+        go.Scatter3d(
+            x=xs,
+            y=ys,
+            z=zs,
+            mode="markers+text",
+            name="1920s Press Vocabulary (Dispersed Nodes)",
+            text=labels,
+            textposition="top center",
+            textfont=dict(size=11, color="#F0F4F8"),
+            hoverinfo="text",
+            hovertext=hover_texts,
+            marker=dict(
+                size=8,
+                color=UNIFORM_NODE_COLOR,
+                opacity=0.95,
+                line=dict(color="#FFFFFF", width=1.5),
+                symbol="circle",
+            ),
         )
+    )
 
     fig.update_layout(
         title=dict(
             text=(
-                "<b>1920s Chinese Newspaper Labor Strike: Causal Knowledge Graph</b><br>"
-                "<sup>Step 1: 16 Dispersed Vocabulary Nodes (Latent Causal Blueprint: A & B → C → D)</sup>"
+                "<b>1920s Chinese Newspaper Labor Strike: Knowledge Graph</b><br>"
+                "<sup>Step 1: 16 Dispersed Vocabulary Nodes (Raw Unclustered Baseline)</sup>"
             ),
             font=dict(size=18, color="#FFFFFF"),
             x=0.5,
@@ -145,7 +134,6 @@ def generate_plotly_3d_html() -> str:
         paper_bgcolor="#0E131F",
         plot_bgcolor="#0E131F",
         legend=dict(
-            title=dict(text="<b>Latent Topic Clusters (Causal Blueprint)</b>", font=dict(color="#FFFFFF")),
             font=dict(color="#E0E6ED", size=11),
             bgcolor="rgba(20, 27, 45, 0.8)",
             bordercolor="rgba(255, 255, 255, 0.2)",
@@ -190,7 +178,7 @@ def generate_plotly_3d_html() -> str:
 
 
 def generate_threejs_viewer_html() -> str:
-    """Generate a rich, interactive 3D WebGL viewer using Three.js and 3d-force-graph."""
+    """Generate a rich, interactive 3D WebGL viewer with uniform appearance (no cluster hints)."""
     graph_json = json.dumps(generate_json_export())
 
     html_content = f"""<!DOCTYPE html>
@@ -198,7 +186,7 @@ def generate_threejs_viewer_html() -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Causal Graph - 1920s Chinese Strike Press</title>
+    <title>3D Causal Graph - Step 1: Dispersed Words</title>
     <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
     <script src="https://unpkg.com/three-spritetext@1.8.2/dist/three-spritetext.min.js"></script>
     <script src="https://unpkg.com/3d-force-graph@1.73.3/dist/3d-force-graph.min.js"></script>
@@ -234,11 +222,11 @@ def generate_threejs_viewer_html() -> str:
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 12px;
             padding: 20px 24px;
-            max-width: 420px;
+            max-width: 400px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }}
         .hud-title {{
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: #F9FAFB;
             margin-bottom: 6px;
@@ -248,7 +236,7 @@ def generate_threejs_viewer_html() -> str:
         }}
         .badge {{
             display: inline-block;
-            background: #2563EB;
+            background: #0284C7;
             color: #EFF6FF;
             font-size: 11px;
             font-weight: 600;
@@ -263,57 +251,20 @@ def generate_threejs_viewer_html() -> str:
             line-height: 1.5;
             margin-bottom: 16px;
         }}
-        .causal-blueprint {{
-            background: rgba(31, 41, 55, 0.8);
+        .status-box {{
+            background: rgba(31, 41, 55, 0.7);
             border-radius: 8px;
-            padding: 12px 14px;
+            padding: 10px 12px;
             margin-bottom: 16px;
-            border-left: 3px solid #3B82F6;
-        }}
-        .blueprint-title {{
-            font-size: 12px;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #93C5FD;
-            margin-bottom: 6px;
-        }}
-        .blueprint-formula {{
-            font-family: "SF Mono", Consolas, monospace;
-            font-size: 13px;
-            color: #E5E7EB;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }}
-        .blueprint-step {{
-            color: #10B981;
-            font-weight: 600;
-        }}
-        .topic-legend {{
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-            margin-bottom: 16px;
-        }}
-        .topic-pill {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            border-left: 3px solid #38BDF8;
             font-size: 12px;
             color: #D1D5DB;
-        }}
-        .topic-color-dot {{
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            box-shadow: 0 0 8px currentColor;
+            line-height: 1.4;
         }}
         .controls-group {{
             display: flex;
             gap: 8px;
-            margin-top: 12px;
+            margin-top: 10px;
         }}
         .btn {{
             flex: 1;
@@ -332,8 +283,8 @@ def generate_threejs_viewer_html() -> str:
             border-color: #6B7280;
         }}
         .btn.active {{
-            background: #2563EB;
-            border-color: #3B82F6;
+            background: #0284C7;
+            border-color: #38BDF8;
             color: #FFFFFF;
         }}
         #node-details {{
@@ -357,8 +308,9 @@ def generate_threejs_viewer_html() -> str:
         }}
         #node-details .chinese {{
             font-size: 14px;
-            color: #9CA3AF;
+            color: #38BDF8;
             margin-bottom: 12px;
+            font-weight: 600;
         }}
         #node-details .meta-row {{
             font-size: 12px;
@@ -376,28 +328,19 @@ def generate_threejs_viewer_html() -> str:
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Causal KG</span>
+            <span>China Strike Knowledge Graph</span>
             <span class="badge">Step 1</span>
         </div>
         <div class="hud-desc">
-            16 disconnected words extracted from 1920s newspaper press (e.g. <i>The China Mail</i>, Hong Kong MMIS).
+            16 dispersed vocabulary terms extracted from 1920s newspaper press (<i>The China Mail</i>, Hong Kong MMIS).
         </div>
 
-        <div class="causal-blueprint">
-            <div class="blueprint-title">Latent Causal Blueprint</div>
-            <div class="blueprint-formula">
-                <div>(A) Economic Grievances ➔ (C) General Strike</div>
-                <div>(B) Union Mobilization ➔ (C) General Strike</div>
-                <div>(C) General Strike ➔ (D) Harbor Paralysis</div>
-                <div class="blueprint-step">Current Step: 16 Disconnected Words</div>
-            </div>
+        <div class="status-box">
+            <strong>State:</strong> Dispersed, unclustered terms in 3D coordinate space. Cluster groupings and causal connections will be modeled in subsequent steps.
         </div>
-
-        <div class="topic-legend" id="legend-container"></div>
 
         <div class="controls-group">
-            <button class="btn active" id="btn-toggle-colors" onclick="toggleColorMode()">Color by Topic</button>
-            <button class="btn" id="btn-toggle-labels" onclick="toggleLabels()">Toggle Labels</button>
+            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Toggle Labels</button>
             <button class="btn" onclick="resetCamera()">Reset View</button>
         </div>
     </div>
@@ -405,29 +348,15 @@ def generate_threejs_viewer_html() -> str:
     <div id="node-details">
         <h3 id="det-word">Word</h3>
         <div class="chinese" id="det-chinese">中文</div>
-        <div class="meta-row"><strong>Topic Cluster:</strong> <span id="det-topic"></span></div>
-        <div class="meta-row"><strong>Causal Role:</strong> <span id="det-role"></span></div>
         <div class="meta-row"><strong>Historical Source:</strong> <span id="det-source"></span></div>
-        <div class="meta-row"><strong>Context:</strong> <span id="det-context"></span></div>
+        <div class="meta-row"><strong>Archival Context:</strong> <span id="det-context"></span></div>
         <div class="meta-row"><strong>3D Coordinates:</strong> <span id="det-coords"></span></div>
     </div>
 
     <script>
         const graphData = {graph_json};
-        let colorMode = 'topic'; // 'topic' or 'uniform'
         let showLabels = true;
-
-        // Render legend
-        const legendContainer = document.getElementById('legend-container');
-        Object.entries(graphData.topics).forEach(([id, t]) => {{
-            const row = document.createElement('div');
-            row.className = 'topic-pill';
-            row.innerHTML = `
-                <div class="topic-color-dot" style="background-color: ${{t.color}}; color: ${{t.color}};"></div>
-                <span><strong>Topic ${{id}}:</strong> ${{t.name}}</span>
-            `;
-            legendContainer.appendChild(row);
-        }});
+        const uniformColor = '{UNIFORM_NODE_COLOR}';
 
         // Format nodes for 3d-force-graph
         const gData = {{
@@ -435,15 +364,12 @@ def generate_threejs_viewer_html() -> str:
                 id: n.id,
                 name: n.word,
                 chinese: n.chinese,
-                topic_id: n.topic_id,
-                topic_name: n.topic_name,
                 historical_source: n.historical_source,
                 context: n.context,
                 fx: n.x,
                 fy: n.y,
                 fz: n.z,
-                color: graphData.topics[n.topic_id].color,
-                causal_role: graphData.topics[n.topic_id].causal_role
+                color: uniformColor
             }})),
             links: []
         }};
@@ -453,16 +379,16 @@ def generate_threejs_viewer_html() -> str:
             .backgroundColor('#030712')
             .showNavInfo(false)
             .nodeRelSize(7)
-            .nodeColor(node => colorMode === 'topic' ? node.color : '#60A5FA')
+            .nodeColor(node => uniformColor)
             .nodeThreeObject(node => {{
                 const group = new THREE.Group();
 
-                // Glowing Sphere
+                // Uniform Glowing Sphere
                 const sphereGeometry = new THREE.SphereGeometry(3.5, 24, 24);
                 const sphereMaterial = new THREE.MeshLambertMaterial({{
-                    color: colorMode === 'topic' ? node.color : '#60A5FA',
+                    color: uniformColor,
                     transparent: true,
-                    opacity: 0.9
+                    opacity: 0.95
                 }});
                 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
                 group.add(sphere);
@@ -491,12 +417,10 @@ def generate_threejs_viewer_html() -> str:
                     2000
                 );
 
-                // Show details card
+                // Show details card without revealing clusters
                 document.getElementById('node-details').style.display = 'block';
                 document.getElementById('det-word').innerText = node.name;
                 document.getElementById('det-chinese').innerText = node.chinese;
-                document.getElementById('det-topic').innerText = `${{node.topic_id}}: ${{node.topic_name}}`;
-                document.getElementById('det-role').innerText = node.causal_role;
                 document.getElementById('det-source').innerText = node.historical_source;
                 document.getElementById('det-context').innerText = node.context;
                 document.getElementById('det-coords').innerText = `(${{node.fx}}, ${{node.fy}}, ${{node.fz}})`;
@@ -507,20 +431,6 @@ def generate_threejs_viewer_html() -> str:
 
         // Adjust camera
         Graph.cameraPosition({{ x: 180, y: 140, z: 200 }});
-
-        function toggleColorMode() {{
-            colorMode = colorMode === 'topic' ? 'uniform' : 'topic';
-            const btn = document.getElementById('btn-toggle-colors');
-            if (colorMode === 'topic') {{
-                btn.classList.add('active');
-                btn.innerText = 'Color by Topic';
-            }} else {{
-                btn.classList.remove('active');
-                btn.innerText = 'Uniform Color';
-            }}
-            Graph.nodeColor(Graph.nodeColor());
-            Graph.refresh();
-        }}
 
         function toggleLabels() {{
             showLabels = !showLabels;
@@ -550,7 +460,6 @@ def export_all_formats(output_dir: Optional[Path] = None) -> Dict[str, Path]:
     - graph_3d_viewer.html
     """
     if output_dir is None:
-        # Default to agent-sandbox/artifacts
         output_dir = Path(__file__).resolve().parents[3] / "artifacts"
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -586,7 +495,7 @@ def connect_and_upload_neo4j(
     password: str = "password",
 ) -> Dict[str, Any]:
     """
-    Connect to a running Neo4j instance and upload the 16 nodes.
+    Connect to a running Neo4j instance and upload the 16 uniform nodes.
     Returns dictionary with execution results.
     """
     try:
@@ -606,31 +515,25 @@ def connect_and_upload_neo4j(
                 "FOR (w:StrikeWord) REQUIRE w.id IS UNIQUE"
             )
 
-            # Insert nodes in batch
+            # Insert nodes in batch with uniform label :StrikeWord:Word
             query = """
             UNWIND $batch AS item
             CREATE (w:StrikeWord:Word {
                 id: item.id,
                 word: item.word,
                 chinese: item.chinese,
-                topic_id: item.topic_id,
-                topic_name: item.topic_name,
-                causal_role: item.causal_role,
                 historical_source: item.historical_source,
                 context: item.context,
                 x: item.x,
                 y: item.y,
                 z: item.z,
                 step: 1,
-                status: 'dispersed_unclustered'
+                status: 'dispersed_unclustered',
+                latent_topic_id: item.latent_topic_id,
+                latent_topic_name: item.latent_topic_name
             })
             """
-            batch = []
-            for n in STRIKE_NODES:
-                item = dict(n)
-                item["causal_role"] = TOPICS[n["topic_id"]]["causal_role"]
-                batch.append(item)
-
+            batch = [dict(n) for n in STRIKE_NODES]
             session.run(query, batch=batch)
 
             # Count created nodes
@@ -640,7 +543,7 @@ def connect_and_upload_neo4j(
         driver.close()
         return {
             "status": "success",
-            "message": f"Successfully connected to Neo4j and created {total} nodes.",
+            "message": f"Successfully connected to Neo4j and created {total} uniform nodes.",
             "total_nodes": total,
             "uri": uri,
         }
