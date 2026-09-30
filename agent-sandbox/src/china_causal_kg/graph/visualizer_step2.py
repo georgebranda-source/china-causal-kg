@@ -20,10 +20,10 @@ def generate_step2_cypher_script() -> str:
     nodes = get_step2_nodes()
     lines = [
         "// ====================================================================",
-        "// 1920s Chinese Labor Strike Causal Knowledge Graph (Step 2)",
+        "// Weather & Commuting Disruption: Causal Knowledge Graph (Step 2)",
         "// Thematic Topic Clustering: 16 Nodes Grouped into 4 Visible Topics",
-        "// Topic Structure: (A: Economic) -> (C: Strike) <- (B: Union)",
-        "//                  (C: Strike) -> (D: Paralysis)",
+        "// Topic Structure: (A: Heavy Rain) ──➔ (C: Traffic) ── (B: High Winds)",
+        "//                  (C: Traffic) ──➔ (D: Delays)",
         "// ====================================================================",
         "",
         "// 1. Schema Constraints & Indexes",
@@ -106,15 +106,15 @@ def generate_step2_json_export() -> Dict[str, Any]:
     links = get_step2_intra_links()
     return {
         "metadata": {
-            "title": "1920s Chinese Strike Causal Knowledge Graph",
+            "title": "Weather & Commuting Disruption: Causal Knowledge Graph",
             "step": 2,
             "step_title": "Thematic Topic Clustering",
-            "description": "16 vocabulary terms clustered into 4 topics (A, B, C, D) with overall cluster labels.",
+            "description": "16 everyday words clustered into 4 topics (A, B, C, D) with overall cluster labels.",
             "total_nodes": len(nodes),
             "total_clusters": len(TOPICS),
             "total_intra_links": len(links),
             "theme": "light_white_background",
-            "causal_flow": "(A: Economic) & (B: Union) -> (C: Strike) -> (D: Paralysis)",
+            "causal_flow": "(A: Heavy Rain) & (B: High Winds) -> (C: Traffic Gridlock) -> (D: Daily Delays)",
         },
         "topics": TOPICS,
         "nodes": nodes,
@@ -168,13 +168,12 @@ def generate_step2_plotly_2d_html() -> str:
         t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
         xs = [n["x"] for n in t_nodes]
         ys = [n["y"] for n in t_nodes]
-        labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in t_nodes]
+        labels = [f"<b>{n['word']}</b>" for n in t_nodes]
         hover_texts = [
-            f"<b>{n['word']}</b> ({n['chinese']})<br>"
+            f"<b>{n['word']}</b><br>"
             f"<b>Topic:</b> {t['name']}<br>"
             f"<b>Causal Role:</b> {t['causal_role']}<br>"
-            f"<b>Historical Source:</b> {n['historical_source']}<br>"
-            f"<b>Archival Context:</b> {n['context']}<br>"
+            f"<b>Context:</b> {n['context']}<br>"
             f"<b>Coordinates:</b> ({n['x']}, {n['y']})"
             for n in t_nodes
         ]
@@ -208,7 +207,7 @@ def generate_step2_plotly_2d_html() -> str:
         fig.add_annotation(
             x=c["x"],
             y=badge_y,
-            text=f"<b>{t['short_label']}</b><br><span style='font-size:10px; color:{t['color']}'>{t['chinese_name']} • {t['causal_role']}</span>",
+            text=f"<b>{t['short_label']}</b><br><span style='font-size:10px; color:{t['color']}'>{t['causal_role']}</span>",
             showarrow=False,
             font=dict(size=12, color="#0F172A"),
             bgcolor="rgba(255, 255, 255, 0.95)",
@@ -221,7 +220,7 @@ def generate_step2_plotly_2d_html() -> str:
     fig.update_layout(
         title=dict(
             text=(
-                "<b>1920s Chinese Newspaper Labor Strike: Knowledge Graph (2D)</b><br>"
+                "<b>Weather & Commuting Disruption: Causal Knowledge Graph (2D)</b><br>"
                 "<sup>Step 2: Thematic Topic Clusters (A, B → C → D Causal Blueprint)</sup>"
             ),
             font=dict(size=18, color="#0F172A"),
@@ -550,7 +549,7 @@ def generate_step2_d3_2d_viewer_html() -> str:
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Knowledge Graph</span>
+            <span>Causal Knowledge Graph</span>
             <span class="badge" id="hud-badge">Step 2 • Clustered</span>
         </div>
         <div class="hud-desc">
@@ -562,9 +561,9 @@ def generate_step2_d3_2d_viewer_html() -> str:
 
         <div class="causal-blueprint">
             <div style="font-weight: 700; margin-bottom: 4px; color: #0F172A;">Causal Blueprint Architecture:</div>
-            <div class="blueprint-row"><span>(A) Economic Grievances</span> <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(B) Union Mobilization</span>  <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(C) General Strike</span>      <span>➔</span> <span>(D) Paralysis</span></div>
+            <div class="blueprint-row"><span>Topic A (Heavy Rain)</span> <span>➔</span> <span>Topic C (Traffic)</span></div>
+            <div class="blueprint-row"><span>Topic B (High Winds)</span> <span>➔</span> <span>Topic C (Traffic)</span></div>
+            <div class="blueprint-row"><span>Topic C (Traffic)</span> <span>➔</span> <span>Topic D (Delays)</span></div>
         </div>
 
         <div class="cluster-pill-list" id="cluster-pills"></div>
@@ -981,13 +980,12 @@ def generate_step2_plotly_3d_html() -> str:
         xs = [n["x"] for n in t_nodes]
         ys = [n["y"] for n in t_nodes]
         zs = [n["z"] for n in t_nodes]
-        labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in t_nodes]
+        labels = [f"<b>{n['word']}</b>" for n in t_nodes]
         hover_texts = [
-            f"<b>{n['word']}</b> ({n['chinese']})<br>"
+            f"<b>{n['word']}</b><br>"
             f"<b>Topic:</b> {t['name']}<br>"
             f"<b>Causal Role:</b> {t['causal_role']}<br>"
-            f"<b>Historical Source:</b> {n['historical_source']}<br>"
-            f"<b>Archival Context:</b> {n['context']}<br>"
+            f"<b>Context:</b> {n['context']}<br>"
             f"<b>Coordinates:</b> ({n['x']}, {n['y']}, {n['z']})"
             for n in t_nodes
         ]
@@ -1034,7 +1032,7 @@ def generate_step2_plotly_3d_html() -> str:
     fig.update_layout(
         title=dict(
             text=(
-                "<b>1920s Chinese Newspaper Labor Strike: Knowledge Graph (3D)</b><br>"
+                "<b>Weather & Commuting Disruption: Causal Knowledge Graph (3D)</b><br>"
                 "<sup>Step 2: Thematic Topic Clusters (A, B → C → D Causal Blueprint)</sup>"
             ),
             font=dict(size=18, color="#0F172A"),
@@ -1273,7 +1271,7 @@ def generate_step2_threejs_viewer_html() -> str:
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Knowledge Graph</span>
+            <span>Causal Knowledge Graph</span>
             <span class="badge" id="hud-badge-3d">Step 2 • 3D Clustered</span>
         </div>
         <div class="hud-desc">
@@ -1285,9 +1283,9 @@ def generate_step2_threejs_viewer_html() -> str:
 
         <div class="causal-blueprint">
             <div style="font-weight: 700; margin-bottom: 4px; color: #0F172A;">Causal Blueprint Architecture:</div>
-            <div class="blueprint-row"><span>(A) Economic Grievances</span> <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(B) Union Mobilization</span>  <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(C) General Strike</span>      <span>➔</span> <span>(D) Paralysis</span></div>
+            <div class="blueprint-row"><span>Topic A (Heavy Rain)</span> <span>➔</span> <span>Topic C (Traffic)</span></div>
+            <div class="blueprint-row"><span>Topic B (High Winds)</span> <span>➔</span> <span>Topic C (Traffic)</span></div>
+            <div class="blueprint-row"><span>Topic C (Traffic)</span> <span>➔</span> <span>Topic D (Delays)</span></div>
         </div>
 
         <div class="cluster-pill-list" id="cluster-pills"></div>

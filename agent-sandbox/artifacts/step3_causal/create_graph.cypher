@@ -1,8 +1,9 @@
 // ====================================================================
-// 1920s Chinese Labor Strike Causal Knowledge Graph (Step 3)
+// Weather & Commuting Disruption: Causal Knowledge Graph (Step 3)
 // Full Causal Induction: Directed Relationships Between Topic Clusters
-// Causal Flow Architecture: (A: Economic) ──➔ (C: Strike) ── (B: Union)
-//                           (C: Strike)   ──➔ (D: Harbor Paralysis)
+// Causal Flow Architecture: (A: Heavy Rain) ──➔ (C: Traffic Gridlock) ── (B: High Winds)
+//                           (C: Traffic Gridlock) ──➔ (D: Daily Delays)
+// Note: No labels on edges for clean visual representation
 // ====================================================================
 
 // 1. Schema Constraints & Indexes
@@ -20,23 +21,23 @@ MATCH (c:TopicCluster) DETACH DELETE c;
 CREATE (:TopicCluster {
     id: "Topic_A",
     topic_id: "A",
-    name: "Economic Grievances & Inflation",
-    short_label: "Topic A: Economic Grievances",
-    chinese_name: "生活成本與工資削減",
-    causal_role: "Pre-condition / Cause (A -> C)",
-    description: "Post-WWI economic depression, soaring rice prices, currency volatility, and unlivable laborer wages.",
-    color: "#E11D48",
+    name: "Heavy Rain",
+    short_label: "Topic A: Heavy Rain",
+    chinese_name: "暴雨積水",
+    causal_role: "Cause (A ➔ C)",
+    description: "Severe downpours, flash floods, and waterlogged roadway surfaces.",
+    color: "#0284C7",
     centroid_x: -64.0, centroid_y: 49.5, centroid_z: 24.5,
     step: 3
 });
 CREATE (:TopicCluster {
     id: "Topic_B",
     topic_id: "B",
-    name: "Labor Organizing & Solidarity",
-    short_label: "Topic B: Labor Organizing",
-    chinese_name: "工會組織與工人動員",
-    causal_role: "Catalyst / Cause (B -> C)",
-    description: "Establishment of labor syndicates, strike committees, boycott manifestos, and picket enforcement.",
+    name: "High Winds",
+    short_label: "Topic B: High Winds",
+    chinese_name: "強風斷枝",
+    causal_role: "Cause (B ➔ C)",
+    description: "Gale gusts, fallen trees, and flying debris obstructing travel corridors.",
     color: "#0D9488",
     centroid_x: -60.5, centroid_y: -47.0, centroid_z: -23.5,
     step: 3
@@ -44,23 +45,23 @@ CREATE (:TopicCluster {
 CREATE (:TopicCluster {
     id: "Topic_C",
     topic_id: "C",
-    name: "Strike Action & Work Stoppage",
-    short_label: "Topic C: General Strike Action",
-    chinese_name: "全港大罷工行動",
-    causal_role: "Central Strike Event (A, B -> C -> D)",
-    description: "Mass walkouts, dock shutdowns, street demonstrations, and systemic withdrawal of maritime and municipal labor.",
-    color: "#2563EB",
+    name: "Traffic Gridlock",
+    short_label: "Topic C: Traffic Gridlock",
+    chinese_name: "交通癱瘓",
+    causal_role: "Central Event (A, B ➔ C ➔ D)",
+    description: "Road closures, standstill traffic jams, and immobilized highway lanes.",
+    color: "#EA580C",
     centroid_x: 6.5, centroid_y: 1.5, centroid_z: 0.0,
     step: 3
 });
 CREATE (:TopicCluster {
     id: "Topic_D",
     topic_id: "D",
-    name: "Harbor Paralysis & Colonial Impact",
-    short_label: "Topic D: Harbor & Market Paralysis",
-    chinese_name: "港口癱瘓與殖民談判",
-    causal_role: "Consequence (C -> D)",
-    description: "Harbor standstill, 150+ stranded steamships, commercial food shortages, and imperial legislative negotiations.",
+    name: "Daily Delays",
+    short_label: "Topic D: Daily Delays",
+    chinese_name: "日程延誤",
+    causal_role: "Consequence (C ➔ D)",
+    description: "Late work arrivals, missed flights, school delays, and cancelled meetings.",
     color: "#7C3AED",
     centroid_x: 75.5, centroid_y: 3.0, centroid_z: 21.0,
     step: 3
@@ -69,15 +70,15 @@ CREATE (:TopicCluster {
 // 4. Create 16 Vocabulary Nodes with Initial Coordinates and BELONGS_TO links
 CREATE (w_node_1:Topic_A:StrikeWord:Word {
     id: "node_1",
-    word: "Wage Depression",
-    chinese: "工資削滅",
+    word: "Torrential Downpour",
+    chinese: "暴雨傾盆",
     topic_id: "A",
-    topic_name: "Economic Grievances & Inflation",
-    cluster_label: "Topic A: Economic Grievances",
-    causal_role: "Pre-condition / Cause (A -> C)",
-    historical_source: "The China Mail (1921-1922)",
-    context: "Stagnant daily laborer wages amidst sharp post-war currency fluctuations.",
-    color: "#E11D48",
+    topic_name: "Heavy Rain",
+    cluster_label: "Topic A: Heavy Rain",
+    causal_role: "Cause (A ➔ C)",
+    historical_source: "City Weather Bureau Report",
+    context: "Extreme rainfall overwhelming municipal storm drains within minutes.",
+    color: "#0284C7",
     x: -82.0, y: 58.0, z: 28.0,
     step: 3,
     status: "causally_linked"
@@ -87,15 +88,15 @@ MATCH (c:TopicCluster {topic_id: "A"})
 CREATE (w_node_1)-[:BELONGS_TO {topic_id: "A"}]->(c);
 CREATE (w_node_2:Topic_A:StrikeWord:Word {
     id: "node_2",
-    word: "Rice Inflation",
-    chinese: "米價暴漲",
+    word: "Flash Floods",
+    chinese: "突發積水",
     topic_id: "A",
-    topic_name: "Economic Grievances & Inflation",
-    cluster_label: "Topic A: Economic Grievances",
-    causal_role: "Pre-condition / Cause (A -> C)",
-    historical_source: "Hong Kong MMIS Gazette (1922)",
-    context: "Skyrocketing price of staple rice threatening subsistence of dock families.",
-    color: "#E11D48",
+    topic_name: "Heavy Rain",
+    cluster_label: "Topic A: Heavy Rain",
+    causal_role: "Cause (A ➔ C)",
+    historical_source: "Emergency Alert Notification",
+    context: "Rapidly rising water levels submerging roads and highway underpasses.",
+    color: "#0284C7",
     x: -54.0, y: 68.0, z: 22.0,
     step: 3,
     status: "causally_linked"
@@ -105,15 +106,15 @@ MATCH (c:TopicCluster {topic_id: "A"})
 CREATE (w_node_2)-[:BELONGS_TO {topic_id: "A"}]->(c);
 CREATE (w_node_3:Topic_A:StrikeWord:Word {
     id: "node_3",
-    word: "Ten-Hour Shift",
-    chinese: "每日十時工制",
+    word: "Heavy Rain",
+    chinese: "強降雨",
     topic_id: "A",
-    topic_name: "Economic Grievances & Inflation",
-    cluster_label: "Topic A: Economic Grievances",
-    causal_role: "Pre-condition / Cause (A -> C)",
-    historical_source: "North-China Herald (1923)",
-    context: "Exhausting operational hours demanded from maritime and transport coolies.",
-    color: "#E11D48",
+    topic_name: "Heavy Rain",
+    cluster_label: "Topic A: Heavy Rain",
+    causal_role: "Cause (A ➔ C)",
+    historical_source: "Morning Commute Advisory",
+    context: "Prolonged rainfall severely reducing vehicle braking distance and visibility.",
+    color: "#0284C7",
     x: -74.0, y: 32.0, z: 14.0,
     step: 3,
     status: "causally_linked"
@@ -123,15 +124,15 @@ MATCH (c:TopicCluster {topic_id: "A"})
 CREATE (w_node_3)-[:BELONGS_TO {topic_id: "A"}]->(c);
 CREATE (w_node_4:Topic_A:StrikeWord:Word {
     id: "node_4",
-    word: "Living Cost Spiral",
-    chinese: "生活昂貴",
+    word: "Flooded Streets",
+    chinese: "街道淹水",
     topic_id: "A",
-    topic_name: "Economic Grievances & Inflation",
-    cluster_label: "Topic A: Economic Grievances",
-    causal_role: "Pre-condition / Cause (A -> C)",
-    historical_source: "The China Mail (1922)",
-    context: "General cost-of-living index surges driving desperate economic petitions.",
-    color: "#E11D48",
+    topic_name: "Heavy Rain",
+    cluster_label: "Topic A: Heavy Rain",
+    causal_role: "Cause (A ➔ C)",
+    historical_source: "Municipal Traffic Camera Feed",
+    context: "Deep standing water covering main lanes and preventing vehicle passage.",
+    color: "#0284C7",
     x: -46.0, y: 40.0, z: 34.0,
     step: 3,
     status: "causally_linked"
@@ -141,14 +142,14 @@ MATCH (c:TopicCluster {topic_id: "A"})
 CREATE (w_node_4)-[:BELONGS_TO {topic_id: "A"}]->(c);
 CREATE (w_node_5:Topic_B:StrikeWord:Word {
     id: "node_5",
-    word: "Seamen's Union",
-    chinese: "中華海員工會",
+    word: "High Winds",
+    chinese: "狂風大作",
     topic_id: "B",
-    topic_name: "Labor Organizing & Solidarity",
-    cluster_label: "Topic B: Labor Organizing",
-    causal_role: "Catalyst / Cause (B -> C)",
-    historical_source: "The China Mail (1922)",
-    context: "The central maritime guild led by Su Zhaozheng organizing across Hong Kong and Canton.",
+    topic_name: "High Winds",
+    cluster_label: "Topic B: High Winds",
+    causal_role: "Cause (B ➔ C)",
+    historical_source: "Gale Warning Advisory",
+    context: "Severe gale-force gusts buffeting bridges and exposed commuter corridors.",
     color: "#0D9488",
     x: -78.0, y: -36.0, z: -16.0,
     step: 3,
@@ -159,14 +160,14 @@ MATCH (c:TopicCluster {topic_id: "B"})
 CREATE (w_node_5)-[:BELONGS_TO {topic_id: "B"}]->(c);
 CREATE (w_node_6:Topic_B:StrikeWord:Word {
     id: "node_6",
-    word: "Strike Committee",
-    chinese: "罷工委員會",
+    word: "Fallen Trees",
+    chinese: "樹木倒塌",
     topic_id: "B",
-    topic_name: "Labor Organizing & Solidarity",
-    cluster_label: "Topic B: Labor Organizing",
-    causal_role: "Catalyst / Cause (B -> C)",
-    historical_source: "Canton Gazette (1925)",
-    context: "Executive coordinating council managing strike logistics, food rations, and strategy.",
+    topic_name: "High Winds",
+    cluster_label: "Topic B: High Winds",
+    causal_role: "Cause (B ➔ C)",
+    historical_source: "Public Works Service Log",
+    context: "Uprooted trees falling directly across arterial travel avenues.",
     color: "#0D9488",
     x: -48.0, y: -28.0, z: -26.0,
     step: 3,
@@ -177,14 +178,14 @@ MATCH (c:TopicCluster {topic_id: "B"})
 CREATE (w_node_6)-[:BELONGS_TO {topic_id: "B"}]->(c);
 CREATE (w_node_7:Topic_B:StrikeWord:Word {
     id: "node_7",
-    word: "Picket Corps",
-    chinese: "工人糾察隊",
+    word: "Broken Branches",
+    chinese: "路面斷枝",
     topic_id: "B",
-    topic_name: "Labor Organizing & Solidarity",
-    cluster_label: "Topic B: Labor Organizing",
-    causal_role: "Catalyst / Cause (B -> C)",
-    historical_source: "The China Mail (1925)",
-    context: "Organized worker patrols enforcing the anti-colonial shipping embargo.",
+    topic_name: "High Winds",
+    cluster_label: "Topic B: High Winds",
+    causal_role: "Cause (B ➔ C)",
+    historical_source: "Road Maintenance Dispatch",
+    context: "Heavy branches littering intersections and blocking transit pathways.",
     color: "#0D9488",
     x: -72.0, y: -66.0, z: -34.0,
     step: 3,
@@ -195,14 +196,14 @@ MATCH (c:TopicCluster {topic_id: "B"})
 CREATE (w_node_7)-[:BELONGS_TO {topic_id: "B"}]->(c);
 CREATE (w_node_8:Topic_B:StrikeWord:Word {
     id: "node_8",
-    word: "Boycott Manifesto",
-    chinese: "抵制宣傳宣言",
+    word: "Flying Debris",
+    chinese: "飛散雜物",
     topic_id: "B",
-    topic_name: "Labor Organizing & Solidarity",
-    cluster_label: "Topic B: Labor Organizing",
-    causal_role: "Catalyst / Cause (B -> C)",
-    historical_source: "Shanghai Municipal Archives (1925)",
-    context: "Leaflets distributed across treaty ports calling for national anti-imperial unity.",
+    topic_name: "High Winds",
+    cluster_label: "Topic B: High Winds",
+    causal_role: "Cause (B ➔ C)",
+    historical_source: "Highway Patrol Incident Record",
+    context: "Loose signs and materials blown across multilane traffic lanes.",
     color: "#0D9488",
     x: -44.0, y: -58.0, z: -18.0,
     step: 3,
@@ -213,15 +214,15 @@ MATCH (c:TopicCluster {topic_id: "B"})
 CREATE (w_node_8)-[:BELONGS_TO {topic_id: "B"}]->(c);
 CREATE (w_node_9:Topic_C:StrikeWord:Word {
     id: "node_9",
-    word: "General Strike",
-    chinese: "全港大罷工",
+    word: "Traffic Jam",
+    chinese: "交通堵塞",
     topic_id: "C",
-    topic_name: "Strike Action & Work Stoppage",
-    cluster_label: "Topic C: General Strike Action",
-    causal_role: "Central Strike Event (A, B -> C -> D)",
-    historical_source: "The China Mail (1922)",
-    context: "Complete stoppage of maritime and municipal work paralyzing the colony.",
-    color: "#2563EB",
+    topic_name: "Traffic Gridlock",
+    cluster_label: "Topic C: Traffic Gridlock",
+    causal_role: "Central Event (A, B ➔ C ➔ D)",
+    historical_source: "Metro Transit Broadcast",
+    context: "Miles of bumper-to-bumper standstill traffic during rush hour.",
+    color: "#EA580C",
     x: -12.0, y: 16.0, z: 12.0,
     step: 3,
     status: "causally_linked"
@@ -231,15 +232,15 @@ MATCH (c:TopicCluster {topic_id: "C"})
 CREATE (w_node_9)-[:BELONGS_TO {topic_id: "C"}]->(c);
 CREATE (w_node_10:Topic_C:StrikeWord:Word {
     id: "node_10",
-    word: "Dockworker Walkout",
-    chinese: "碼頭工人全體離工",
+    word: "Road Closures",
+    chinese: "道路封閉",
     topic_id: "C",
-    topic_name: "Strike Action & Work Stoppage",
-    cluster_label: "Topic C: General Strike Action",
-    causal_role: "Central Strike Event (A, B -> C -> D)",
-    historical_source: "The China Mail (1922)",
-    context: "Stevedores and cargo loaders abandoning British ships in Victoria Harbour.",
-    color: "#2563EB",
+    topic_name: "Traffic Gridlock",
+    cluster_label: "Topic C: Traffic Gridlock",
+    causal_role: "Central Event (A, B ➔ C ➔ D)",
+    historical_source: "Department of Transportation",
+    context: "Police barricades closing blocked avenues and detouring vehicles.",
+    color: "#EA580C",
     x: 22.0, y: 20.0, z: -10.0,
     step: 3,
     status: "causally_linked"
@@ -249,15 +250,15 @@ MATCH (c:TopicCluster {topic_id: "C"})
 CREATE (w_node_10)-[:BELONGS_TO {topic_id: "C"}]->(c);
 CREATE (w_node_11:Topic_C:StrikeWord:Word {
     id: "node_11",
-    word: "Work Cessation",
-    chinese: "停工停業",
+    word: "Stalled Cars",
+    chinese: "車輛拋錨",
     topic_id: "C",
-    topic_name: "Strike Action & Work Stoppage",
-    cluster_label: "Topic C: General Strike Action",
-    causal_role: "Central Strike Event (A, B -> C -> D)",
-    historical_source: "Hong Kong MMIS (1925)",
-    context: "Sympathy strikes spreading to domestic servants, tram drivers, and clerks.",
-    color: "#2563EB",
+    topic_name: "Traffic Gridlock",
+    cluster_label: "Topic C: Traffic Gridlock",
+    causal_role: "Central Event (A, B ➔ C ➔ D)",
+    historical_source: "Roadside Assistance Dispatch",
+    context: "Disabled and hydroplaned vehicles stranded in active driving lanes.",
+    color: "#EA580C",
     x: -8.0, y: -18.0, z: -12.0,
     step: 3,
     status: "causally_linked"
@@ -267,15 +268,15 @@ MATCH (c:TopicCluster {topic_id: "C"})
 CREATE (w_node_11)-[:BELONGS_TO {topic_id: "C"}]->(c);
 CREATE (w_node_12:Topic_C:StrikeWord:Word {
     id: "node_12",
-    word: "Mass Demonstration",
-    chinese: "群眾請願示威",
+    word: "Highway Gridlock",
+    chinese: "高速癱瘓",
     topic_id: "C",
-    topic_name: "Strike Action & Work Stoppage",
-    cluster_label: "Topic C: General Strike Action",
-    causal_role: "Central Strike Event (A, B -> C -> D)",
-    historical_source: "The China Mail (1922)",
-    context: "Gatherings of thousands marching through urban centers demanding rights and dignity.",
-    color: "#2563EB",
+    topic_name: "Traffic Gridlock",
+    cluster_label: "Topic C: Traffic Gridlock",
+    causal_role: "Central Event (A, B ➔ C ➔ D)",
+    historical_source: "State Highway Traffic Command",
+    context: "Total operational standstill across primary expressway corridors.",
+    color: "#EA580C",
     x: 24.0, y: -12.0, z: 10.0,
     step: 3,
     status: "causally_linked"
@@ -285,14 +286,14 @@ MATCH (c:TopicCluster {topic_id: "C"})
 CREATE (w_node_12)-[:BELONGS_TO {topic_id: "C"}]->(c);
 CREATE (w_node_13:Topic_D:StrikeWord:Word {
     id: "node_13",
-    word: "Port Paralysis",
-    chinese: "港口海運癱瘓",
+    word: "Late for Work",
+    chinese: "上班遲到",
     topic_id: "D",
-    topic_name: "Harbor Paralysis & Colonial Impact",
-    cluster_label: "Topic D: Harbor & Market Paralysis",
-    causal_role: "Consequence (C -> D)",
-    historical_source: "The China Mail (1922)",
-    context: "Over 150 merchant vessels anchored idle with zero cargo discharge capacity.",
+    topic_name: "Daily Delays",
+    cluster_label: "Topic D: Daily Delays",
+    causal_role: "Consequence (C ➔ D)",
+    historical_source: "Employee Office Notification",
+    context: "Commuters arriving hours late for morning shifts and meetings.",
     color: "#7C3AED",
     x: 58.0, y: 18.0, z: 28.0,
     step: 3,
@@ -303,14 +304,14 @@ MATCH (c:TopicCluster {topic_id: "D"})
 CREATE (w_node_13)-[:BELONGS_TO {topic_id: "D"}]->(c);
 CREATE (w_node_14:Topic_D:StrikeWord:Word {
     id: "node_14",
-    word: "Shipping Deadlock",
-    chinese: "輪船停航停泊",
+    word: "Missed Flights",
+    chinese: "錯過航班",
     topic_id: "D",
-    topic_name: "Harbor Paralysis & Colonial Impact",
-    cluster_label: "Topic D: Harbor & Market Paralysis",
-    causal_role: "Consequence (C -> D)",
-    historical_source: "The China Mail (1925)",
-    context: "Complete standstill of coastal and trans-Pacific commercial steamer traffic.",
+    topic_name: "Daily Delays",
+    cluster_label: "Topic D: Daily Delays",
+    causal_role: "Consequence (C ➔ D)",
+    historical_source: "Airport Terminal Operations",
+    context: "Travelers unable to navigate blocked airport roads prior to gate closure.",
     color: "#7C3AED",
     x: 92.0, y: 22.0, z: 14.0,
     step: 3,
@@ -321,14 +322,14 @@ MATCH (c:TopicCluster {topic_id: "D"})
 CREATE (w_node_14)-[:BELONGS_TO {topic_id: "D"}]->(c);
 CREATE (w_node_15:Topic_D:StrikeWord:Word {
     id: "node_15",
-    word: "Market Interruption",
-    chinese: "市面商業停滯",
+    word: "School Delays",
+    chinese: "學校停課延期",
     topic_id: "D",
-    topic_name: "Harbor Paralysis & Colonial Impact",
-    cluster_label: "Topic D: Harbor & Market Paralysis",
-    causal_role: "Consequence (C -> D)",
-    historical_source: "Hong Kong Chamber of Commerce (1922)",
-    context: "Retail closures, supply shortages, and emergency rationing across Victoria.",
+    topic_name: "Daily Delays",
+    cluster_label: "Topic D: Daily Delays",
+    causal_role: "Consequence (C ➔ D)",
+    historical_source: "District School Board Bulletin",
+    context: "Bus transit suspended and morning bell times delayed for student safety.",
     color: "#7C3AED",
     x: 62.0, y: -18.0, z: 18.0,
     step: 3,
@@ -339,14 +340,14 @@ MATCH (c:TopicCluster {topic_id: "D"})
 CREATE (w_node_15)-[:BELONGS_TO {topic_id: "D"}]->(c);
 CREATE (w_node_16:Topic_D:StrikeWord:Word {
     id: "node_16",
-    word: "Colonial Concessions",
-    chinese: "當局讓步談判",
+    word: "Cancelled Meetings",
+    chinese: "會議取消",
     topic_id: "D",
-    topic_name: "Harbor Paralysis & Colonial Impact",
-    cluster_label: "Topic D: Harbor & Market Paralysis",
-    causal_role: "Consequence (C -> D)",
-    historical_source: "The China Mail (1922)",
-    context: "Colonial government and shipping conglomerates agreeing to wage hikes and union recognition.",
+    topic_name: "Daily Delays",
+    cluster_label: "Topic D: Daily Delays",
+    causal_role: "Consequence (C ➔ D)",
+    historical_source: "Corporate Schedule Updates",
+    context: "Business appointments postponed due to stranded attendees.",
     color: "#7C3AED",
     x: 90.0, y: -10.0, z: 24.0,
     step: 3,
@@ -356,15 +357,13 @@ WITH w_node_16
 MATCH (c:TopicCluster {topic_id: "D"})
 CREATE (w_node_16)-[:BELONGS_TO {topic_id: "D"}]->(c);
 
-// 5. Create Macro Directed Causal Relationships Between Clusters
+// 5. Create Macro Directed Causal Relationships Between Clusters (Clean without edge labels)
 MATCH (src:TopicCluster {topic_id: 'A'}), (tgt:TopicCluster {topic_id: 'C'})
 CREATE (src)-[:CAUSES {
     id: 'causal_A_C',
     causal_type: 'PRECONDITION',
-    label: 'Causes Strike Action (Precondition)',
     relationship: 'A ➔ C',
-    mechanism: "Post-war inflation, staple food price surges, and depressed wages created unbearable economic pressure that compelled laborers to strike.",
-    historical_evidence: "1922 Hong Kong Seamen's petitions demanded a 30-40% wage increase directly citing that rice costs had tripled since 1914.",
+    mechanism: "Torrential downpours and flash floods submerge roads, causing widespread traffic gridlock.",
     weight: 3.0,
     step: 3
 }]->(tgt);
@@ -372,10 +371,8 @@ MATCH (src:TopicCluster {topic_id: 'B'}), (tgt:TopicCluster {topic_id: 'C'})
 CREATE (src)-[:CAUSES {
     id: 'causal_B_C',
     causal_type: 'CATALYST',
-    label: 'Causes Strike Action (Catalyst)',
     relationship: 'B ➔ C',
-    mechanism: "Organized syndicates, executive strike committees, and cross-provincial boycotted shipping networks provided the tactical machinery to mobilize 100,000+ workers.",
-    historical_evidence: "The Chinese Seamen's Union and Canton strike headquarters established disciplined picket patrols and mutual-aid food kitchens enabling indefinite walkouts.",
+    mechanism: "High winds topple trees and scatter debris onto streets, blocking travel corridors.",
     weight: 3.0,
     step: 3
 }]->(tgt);
@@ -383,10 +380,8 @@ MATCH (src:TopicCluster {topic_id: 'C'}), (tgt:TopicCluster {topic_id: 'D'})
 CREATE (src)-[:CAUSES {
     id: 'causal_C_D',
     causal_type: 'CONSEQUENCE',
-    label: 'Causes Port Paralysis (Consequence)',
     relationship: 'C ➔ D',
-    mechanism: "Complete cessation of dock handling, cargo transport, and municipal services paralyzed British maritime trade, resulting in emergency rationing and colonial surrender.",
-    historical_evidence: "The China Mail reported over 150 merchant steamships stranded in Victoria Harbour, commercial life halted, and colonial authorities ultimately agreeing to union recognition and wage increases.",
+    mechanism: "Severe traffic gridlock paralyzes transportation, making people late for work and causing missed appointments.",
     weight: 3.5,
     step: 3
 }]->(tgt);
@@ -394,37 +389,37 @@ CREATE (src)-[:CAUSES {
 // 6. Create Micro Semantic Causal Relationships Between Representative Words
 MATCH (w1:StrikeWord {id: 'node_1'}), (w2:StrikeWord {id: 'node_9'})
 CREATE (w1)-[:LEADS_TO {
-    label: "Wage Depression triggers General Strike",
+    mechanism: "Torrential downpour triggers massive traffic jams",
     type: "MICRO_CAUSAL"
 }]->(w2);
-MATCH (w1:StrikeWord {id: 'node_2'}), (w2:StrikeWord {id: 'node_9'})
+MATCH (w1:StrikeWord {id: 'node_2'}), (w2:StrikeWord {id: 'node_10'})
 CREATE (w1)-[:LEADS_TO {
-    label: "Rice Inflation triggers General Strike",
+    mechanism: "Flash floods force road closures",
     type: "MICRO_CAUSAL"
 }]->(w2);
-MATCH (w1:StrikeWord {id: 'node_5'}), (w2:StrikeWord {id: 'node_10'})
+MATCH (w1:StrikeWord {id: 'node_6'}), (w2:StrikeWord {id: 'node_10'})
 CREATE (w1)-[:LEADS_TO {
-    label: "Seamen's Union organizes Dockworker Walkout",
+    mechanism: "Fallen trees cause road closures",
     type: "MICRO_CAUSAL"
 }]->(w2);
-MATCH (w1:StrikeWord {id: 'node_6'}), (w2:StrikeWord {id: 'node_12'})
+MATCH (w1:StrikeWord {id: 'node_8'}), (w2:StrikeWord {id: 'node_12'})
 CREATE (w1)-[:LEADS_TO {
-    label: "Strike Committee mobilizes Mass Demonstration",
+    mechanism: "Flying debris triggers highway gridlock",
     type: "MICRO_CAUSAL"
 }]->(w2);
 MATCH (w1:StrikeWord {id: 'node_9'}), (w2:StrikeWord {id: 'node_13'})
 CREATE (w1)-[:LEADS_TO {
-    label: "General Strike induces Port Paralysis",
+    mechanism: "Traffic jam causes workers to be late",
     type: "MICRO_CAUSAL"
 }]->(w2);
 MATCH (w1:StrikeWord {id: 'node_10'}), (w2:StrikeWord {id: 'node_14'})
 CREATE (w1)-[:LEADS_TO {
-    label: "Dockworker Walkout results in Shipping Deadlock",
+    mechanism: "Road closures lead to missed flights",
     type: "MICRO_CAUSAL"
 }]->(w2);
-MATCH (w1:StrikeWord {id: 'node_11'}), (w2:StrikeWord {id: 'node_15'})
+MATCH (w1:StrikeWord {id: 'node_12'}), (w2:StrikeWord {id: 'node_16'})
 CREATE (w1)-[:LEADS_TO {
-    label: "Work Cessation leads to Market Interruption",
+    mechanism: "Highway gridlock leads to cancelled meetings",
     type: "MICRO_CAUSAL"
 }]->(w2);
 
@@ -433,10 +428,9 @@ CREATE (w1)-[:LEADS_TO {
 // ====================================================================
 // Query 1: Retrieve Macro Causal Backbone (Clusters & Directed Causal Links)
 MATCH (c1:TopicCluster)-[r:CAUSES]->(c2:TopicCluster)
-RETURN c1, r, c2;
+RETURN c1.name AS Cause, c2.name AS Effect, r.mechanism AS Mechanism;
 
-// Query 2: Retrieve Full Causal Hierarchy (Words, Clusters & Causality)
-MATCH (c1:TopicCluster)-[caus:CAUSES]->(c2:TopicCluster)
-OPTIONAL MATCH (c1)<-[b1:BELONGS_TO]-(w1:StrikeWord)
-OPTIONAL MATCH (c2)<-[b2:BELONGS_TO]-(w2:StrikeWord)
-RETURN c1, caus, c2, b1, w1, b2, w2;
+// Query 2: Retrieve Full Graph (Clusters, Words, and Causal Connections)
+MATCH (c:TopicCluster)<-[:BELONGS_TO]-(w:StrikeWord)
+OPTIONAL MATCH (c)-[r:CAUSES]->(c2:TopicCluster)
+RETURN c, w, r, c2;

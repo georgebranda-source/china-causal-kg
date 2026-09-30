@@ -20,8 +20,8 @@ def generate_cypher_script() -> str:
     """Generate Cypher commands to populate Neo4j with the 16 uniform, dispersed word nodes."""
     lines = [
         "// ====================================================================",
-        "// 1920s Chinese Labor Strike Causal Knowledge Graph (Step 1)",
-        "// Visual Representation: 16 Dispersed, Unclustered Vocabulary Nodes",
+        "// Weather & Commuting Disruption: Causal Knowledge Graph (Step 1)",
+        "// Visual Representation: 16 Dispersed, Unclustered Everyday Words",
         "// (Identifying cluster colors & groupings removed for Step 1 baseline)",
         "// ====================================================================",
         "",
@@ -69,9 +69,9 @@ def generate_json_export() -> Dict[str, Any]:
     """Generate structured JSON representation of the graph."""
     return {
         "metadata": {
-            "title": "1920s Chinese Strike Causal Knowledge Graph",
+            "title": "Weather & Commuting Disruption: Causal Knowledge Graph",
             "step": 1,
-            "description": "16 dispersed words from 1920s newspaper press before clustering.",
+            "description": "16 everyday words positioned across space before clustering.",
             "total_nodes": len(STRIKE_NODES),
             "total_edges": 0,
             "clustering_mode": "unclustered_dispersed",
@@ -91,11 +91,11 @@ def generate_plotly_3d_html() -> str:
     xs = [n["x"] for n in STRIKE_NODES]
     ys = [n["y"] for n in STRIKE_NODES]
     zs = [n["z"] for n in STRIKE_NODES]
-    labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in STRIKE_NODES]
+    labels = [f"<b>{n['word']}</b>" for n in STRIKE_NODES]
     hover_texts = [
-        f"<b>{n['word']}</b> ({n['chinese']})<br>"
-        f"<b>Historical Source:</b> {n['historical_source']}<br>"
-        f"<b>Archival Context:</b> {n['context']}<br>"
+        f"<b>{n['word']}</b><br>"
+        f"<b>Source:</b> {n['historical_source']}<br>"
+        f"<b>Context:</b> {n['context']}<br>"
         f"<b>3D Coordinates:</b> ({n['x']}, {n['y']}, {n['z']})"
         for n in STRIKE_NODES
     ]
@@ -106,7 +106,7 @@ def generate_plotly_3d_html() -> str:
             y=ys,
             z=zs,
             mode="markers+text",
-            name="1920s Press Vocabulary (Dispersed Nodes)",
+            name="Everyday Words (Dispersed Nodes)",
             text=labels,
             textposition="top center",
             textfont=dict(size=11, color="#0F172A"),
@@ -125,8 +125,8 @@ def generate_plotly_3d_html() -> str:
     fig.update_layout(
         title=dict(
             text=(
-                "<b>1920s Chinese Newspaper Labor Strike: Knowledge Graph (3D)</b><br>"
-                "<sup>Step 1: 16 Dispersed Vocabulary Nodes (Raw Unclustered Baseline)</sup>"
+                "<b>Weather & Commuting Disruption: Causal Knowledge Graph (3D)</b><br>"
+                "<sup>Step 1: 16 Dispersed Everyday Words (Raw Unclustered Baseline)</sup>"
             ),
             font=dict(size=18, color="#0F172A"),
             x=0.5,
@@ -187,11 +187,11 @@ def generate_plotly_2d_html() -> str:
 
     xs = [n["x"] for n in STRIKE_NODES]
     ys = [n["y"] for n in STRIKE_NODES]
-    labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in STRIKE_NODES]
+    labels = [f"<b>{n['word']}</b>" for n in STRIKE_NODES]
     hover_texts = [
-        f"<b>{n['word']}</b> ({n['chinese']})<br>"
-        f"<b>Historical Source:</b> {n['historical_source']}<br>"
-        f"<b>Archival Context:</b> {n['context']}<br>"
+        f"<b>{n['word']}</b><br>"
+        f"<b>Source:</b> {n['historical_source']}<br>"
+        f"<b>Context:</b> {n['context']}<br>"
         f"<b>2D Coordinates:</b> ({n['x']}, {n['y']})"
         for n in STRIKE_NODES
     ]
@@ -201,7 +201,7 @@ def generate_plotly_2d_html() -> str:
             x=xs,
             y=ys,
             mode="markers+text",
-            name="1920s Press Vocabulary (Dispersed Nodes)",
+            name="Everyday Words (Dispersed Nodes)",
             text=labels,
             textposition="top center",
             textfont=dict(size=11, color="#0F172A"),
@@ -220,8 +220,8 @@ def generate_plotly_2d_html() -> str:
     fig.update_layout(
         title=dict(
             text=(
-                "<b>1920s Chinese Newspaper Labor Strike: Knowledge Graph (2D)</b><br>"
-                "<sup>Step 1: 16 Dispersed Vocabulary Nodes (Raw Unclustered Baseline)</sup>"
+                "<b>Weather & Commuting Disruption: Causal Knowledge Graph (2D)</b><br>"
+                "<sup>Step 1: 16 Dispersed Everyday Words (Raw Unclustered Baseline)</sup>"
             ),
             font=dict(size=18, color="#0F172A"),
             x=0.5,
@@ -408,15 +408,15 @@ def generate_threejs_viewer_html() -> str:
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Knowledge Graph</span>
+            <span>Causal Knowledge Graph</span>
             <span class="badge">Step 1 • 3D</span>
         </div>
         <div class="hud-desc">
-            16 dispersed vocabulary terms extracted from 1920s newspaper press (<i>The China Mail</i>, Hong Kong MMIS).
+            16 everyday words positioned across 3D space (Weather & Commuting Disruption baseline).
         </div>
 
         <div class="status-box">
-            <strong>State:</strong> Dispersed, unclustered terms in 3D coordinate space. Cluster groupings and causal connections will be modeled in subsequent steps.
+            <strong>State:</strong> Dispersed, unclustered words in 3D coordinate space. Cluster groupings and causal connections will be modeled in subsequent steps.
         </div>
 
         <div class="controls-group">
@@ -744,15 +744,15 @@ def generate_d3_2d_viewer_html() -> str:
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Knowledge Graph</span>
+            <span>Causal Knowledge Graph</span>
             <span class="badge">Step 1 • 2D</span>
         </div>
         <div class="hud-desc">
-            16 dispersed vocabulary terms from 1920s newspaper press (<i>The China Mail</i>, Hong Kong MMIS).
+            16 everyday words positioned across 2D space (Weather & Commuting Disruption baseline).
         </div>
 
         <div class="status-box">
-            <strong>State:</strong> Dispersed, unclustered terms on a 2D plane. Drag nodes to explore, or scroll to zoom. Cluster groupings and causal directed edges will be introduced in subsequent steps.
+            <strong>State:</strong> Dispersed, unclustered words on a 2D plane. Drag nodes to explore, or scroll to zoom. Cluster groupings and causal directed edges will be introduced in subsequent steps.
         </div>
 
         <div class="controls-group">

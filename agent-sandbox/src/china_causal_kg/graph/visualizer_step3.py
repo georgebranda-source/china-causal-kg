@@ -1,16 +1,15 @@
 """
-Generators for Step 3 of the China Strike Causal Knowledge Graph.
+Step 3 Causal Knowledge Graph Visualizers and Exporters.
 
 Step 3 Focus:
-- Direct representation of CAUSALITY between the clusters:
-    * Topic A (Economic Grievances)  ──➔ Topic C (General Strike Action) [Pre-condition]
-    * Topic B (Labor Organizing)    ──➔ Topic C (General Strike Action) [Catalyst]
-    * Topic C (General Strike)      ──➔ Topic D (Harbor & Market Paralysis) [Consequence]
-- Zero node movement: The 16 vocabulary nodes remain at their exact initial coordinates.
-- Prominent directed causal flow vectors with animated particle pulses and mechanism badges.
-- Cross-cluster micro-causal connections linking specific historical grievances to strike actions and port outcomes.
-- Interactive 3-step toggle (Step 1 ➔ Step 2 ➔ Step 3) in viewers with zero node movement.
-- Full white background aesthetic matching project standards.
+- Directed Causal Relationships connecting clusters:
+    * Topic A (Heavy Rain) ──➔ Topic C (Traffic Gridlock)
+    * Topic B (High Winds) ──➔ Topic C (Traffic Gridlock)
+    * Topic C (Traffic Gridlock) ──➔ Topic D (Daily Delays)
+- Zero node movement: the 16 vocabulary nodes remain in their exact initial positions.
+- NO LABELS ON THE EDGES: Clean, elegant directed flow arrows/vectors without text clutter.
+- Pure crisp white background (#FFFFFF) with dark typography (#0F172A).
+- Interactive 3-step mode toggle (1. Dispersed Words -> 2. Clustered Topics -> 3. Causal Graph).
 """
 
 import json
@@ -36,10 +35,11 @@ def generate_step3_cypher_script() -> str:
 
     lines = [
         "// ====================================================================",
-        "// 1920s Chinese Labor Strike Causal Knowledge Graph (Step 3)",
+        "// Weather & Commuting Disruption: Causal Knowledge Graph (Step 3)",
         "// Full Causal Induction: Directed Relationships Between Topic Clusters",
-        "// Causal Flow Architecture: (A: Economic) ──➔ (C: Strike) ── (B: Union)",
-        "//                           (C: Strike)   ──➔ (D: Harbor Paralysis)",
+        "// Causal Flow Architecture: (A: Heavy Rain) ──➔ (C: Traffic Gridlock) ── (B: High Winds)",
+        "//                           (C: Traffic Gridlock) ──➔ (D: Daily Delays)",
+        "// Note: No labels on edges for clean visual representation",
         "// ====================================================================",
         "",
         "// 1. Schema Constraints & Indexes",
@@ -105,7 +105,7 @@ def generate_step3_cypher_script() -> str:
 
     lines.extend([
         "",
-        "// 5. Create Macro Directed Causal Relationships Between Clusters",
+        "// 5. Create Macro Directed Causal Relationships Between Clusters (Clean without edge labels)",
     ])
 
     for edge in causal_edges:
@@ -115,10 +115,8 @@ def generate_step3_cypher_script() -> str:
             f"CREATE (src)-[:CAUSES {{\n"
             f"    id: '{edge['id']}',\n"
             f"    causal_type: '{edge['causal_type']}',\n"
-            f"    label: '{edge['label']}',\n"
             f"    relationship: '{edge['relationship']}',\n"
             f"    mechanism: \"{edge['mechanism']}\",\n"
-            f"    historical_evidence: \"{edge['historical_evidence']}\",\n"
             f"    weight: {edge['weight']},\n"
             f"    step: 3\n"
             f"}}]->(tgt);"
@@ -134,7 +132,7 @@ def generate_step3_cypher_script() -> str:
         word_stmt = (
             f"MATCH (w1:StrikeWord {{id: '{link['source']}'}}), (w2:StrikeWord {{id: '{link['target']}'}})\n"
             f"CREATE (w1)-[:LEADS_TO {{\n"
-            f'    label: "{link["label"]}",\n'
+            f'    mechanism: "{link["mechanism"]}",\n'
             f'    type: "{link["type"]}"\n'
             f"}}]->(w2);"
         )
@@ -147,26 +145,24 @@ def generate_step3_cypher_script() -> str:
         "// ====================================================================",
         "// Query 1: Retrieve Macro Causal Backbone (Clusters & Directed Causal Links)",
         "MATCH (c1:TopicCluster)-[r:CAUSES]->(c2:TopicCluster)",
-        "RETURN c1, r, c2;",
+        "RETURN c1.name AS Cause, c2.name AS Effect, r.mechanism AS Mechanism;",
         "",
-        "// Query 2: Retrieve Full Causal Hierarchy (Words, Clusters & Causality)",
-        "MATCH (c1:TopicCluster)-[caus:CAUSES]->(c2:TopicCluster)",
-        "OPTIONAL MATCH (c1)<-[b1:BELONGS_TO]-(w1:StrikeWord)",
-        "OPTIONAL MATCH (c2)<-[b2:BELONGS_TO]-(w2:StrikeWord)",
-        "RETURN c1, caus, c2, b1, w1, b2, w2;",
-        "",
+        "// Query 2: Retrieve Full Graph (Clusters, Words, and Causal Connections)",
+        "MATCH (c:TopicCluster)<-[:BELONGS_TO]-(w:StrikeWord)",
+        "OPTIONAL MATCH (c)-[r:CAUSES]->(c2:TopicCluster)",
+        "RETURN c, w, r, c2;",
     ])
+
     return "\n".join(lines)
 
 
 def generate_step3_json_export() -> Dict[str, Any]:
-    """Generate structured JSON representation of the Step 3 Causal Graph."""
+    """Generate structured JSON representation of Step 3 Causal Graph."""
     return {
         "metadata": {
-            "title": "1920s Chinese Strike Causal Knowledge Graph",
+            "title": "Weather & Commuting Disruption: Causal Knowledge Graph",
             "step": 3,
-            "stage_name": "Directed Causal Induction",
-            "description": "Full causal knowledge graph showing directed relationships between topic clusters (A, B -> C -> D) over stationary word coordinates.",
+            "description": "Directed causal graph connecting clusters (A, B -> C -> D) over stationary node coordinates with clean unlabeled arrows.",
             "total_nodes": len(get_step3_nodes()),
             "total_topics": len(TOPICS),
             "total_causal_edges": len(CAUSAL_EDGES),
@@ -174,6 +170,7 @@ def generate_step3_json_export() -> Dict[str, Any]:
             "total_micro_causal_links": len(get_word_causal_links()),
             "theme": "pure_white_background",
             "clustering_mode": "stationary_spatial_clusters_with_causality",
+            "edge_labels": "none_clean_arrows",
         },
         "topics": TOPICS,
         "nodes": get_step3_nodes(),
@@ -184,7 +181,7 @@ def generate_step3_json_export() -> Dict[str, Any]:
 
 
 def generate_step3_plotly_2d_html() -> str:
-    """Generate Plotly 2D scatter graph with visible topic clusters and directed causal flow arrows."""
+    """Generate Plotly 2D scatter graph with visible topic clusters and directed causal flow arrows (NO edge labels)."""
     import plotly.graph_objects as go
 
     nodes = get_step3_nodes()
@@ -231,13 +228,12 @@ def generate_step3_plotly_2d_html() -> str:
         t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
         xs = [n["x"] for n in t_nodes]
         ys = [n["y"] for n in t_nodes]
-        labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in t_nodes]
+        labels = [f"<b>{n['word']}</b>" for n in t_nodes]
         hover_texts = [
-            f"<b>{n['word']}</b> ({n['chinese']})<br>"
+            f"<b>{n['word']}</b><br>"
             f"<b>Topic:</b> {t['name']}<br>"
             f"<b>Causal Role:</b> {t['causal_role']}<br>"
-            f"<b>Historical Source:</b> {n['historical_source']}<br>"
-            f"<b>Archival Context:</b> {n['context']}<br>"
+            f"<b>Context:</b> {n['context']}<br>"
             f"<b>Coordinates:</b> ({n['x']}, {n['y']})"
             for n in t_nodes
         ]
@@ -250,11 +246,11 @@ def generate_step3_plotly_2d_html() -> str:
                 name=f"{t['short_label']}",
                 text=labels,
                 textposition="top center",
-                textfont=dict(size=10.5, color="#0F172A"),
+                textfont=dict(size=11, color="#0F172A"),
                 hoverinfo="text",
                 hovertext=hover_texts,
                 marker=dict(
-                    size=14,
+                    size=15,
                     color=t["color"],
                     opacity=0.95,
                     line=dict(color="#FFFFFF", width=2.5),
@@ -263,14 +259,14 @@ def generate_step3_plotly_2d_html() -> str:
             )
         )
 
-    # 4. Add Cluster Centroid Header Badges
+    # 4. Overall Cluster Label Banners Above Each Topic
     for topic_id, t in TOPICS.items():
         c = t["centroid_2d"]
-        badge_y = c["y"] + (26 if c["y"] >= 0 else 26)
+        badge_y = c["y"] + (26 if c["y"] >= 0 else 24)
         fig.add_annotation(
             x=c["x"],
             y=badge_y,
-            text=f"<b>{t['short_label']}</b><br><span style='font-size:10px; color:{t['color']}'>{t['chinese_name']} • {t['causal_role']}</span>",
+            text=f"<b>{t['short_label']}</b><br><span style='font-size:10px; color:{t['color']}'>{t['causal_role']}</span>",
             showarrow=False,
             font=dict(size=11, color="#0F172A"),
             bgcolor="rgba(255, 255, 255, 0.95)",
@@ -280,7 +276,7 @@ def generate_step3_plotly_2d_html() -> str:
             align="center",
         )
 
-    # 5. Prominent Directed Causal Arrows Between Clusters
+    # 5. Prominent Directed Causal Arrows Between Clusters (NO EDGE LABELS)
     for edge in causal_edges:
         src = TOPICS[edge["source"]]["centroid_2d"]
         tgt = TOPICS[edge["target"]]["centroid_2d"]
@@ -295,31 +291,17 @@ def generate_step3_plotly_2d_html() -> str:
             ayref="y",
             showarrow=True,
             arrowhead=2,
-            arrowsize=1.8,
-            arrowwidth=3.5,
+            arrowsize=2.0,
+            arrowwidth=4.0,
             arrowcolor=edge["color"],
-            opacity=0.85,
-        )
-        # Midpoint Mechanism Card
-        mid_x = (src["x"] + tgt["x"]) / 2
-        mid_y = (src["y"] + tgt["y"]) / 2 + (12 if edge["source"] == "A" else (-12 if edge["source"] == "B" else 14))
-        fig.add_annotation(
-            x=mid_x,
-            y=mid_y,
-            text=f"<b>CAUSES [{edge['causal_type']}]</b><br><span style='font-size:9.5px; color:#475569;'>{edge['relationship']}</span>",
-            showarrow=False,
-            font=dict(size=10, color=edge["color"]),
-            bgcolor="rgba(255, 255, 255, 0.96)",
-            bordercolor=edge["color"],
-            borderwidth=1,
-            borderpad=4,
-            align="center",
+            opacity=0.9,
+            text="",  # NO EDGE LABELS
         )
 
     fig.update_layout(
         title=dict(
             text=(
-                "<b>1920s Chinese Strike Causal Knowledge Graph (2D)</b><br>"
+                "<b>Weather & Commuting Disruption: Causal Knowledge Graph (2D)</b><br>"
                 "<sup>Step 3: Directed Causal Graph (A, B ➔ C ➔ D Influence Flow)</sup>"
             ),
             font=dict(size=18, color="#0F172A"),
@@ -339,11 +321,11 @@ def generate_step3_plotly_2d_html() -> str:
             y=0.98,
         ),
         xaxis=dict(
-            title=dict(text="Spatial X (Causal Flow: Preconditions ➔ Strike ➔ Colonial Outcomes)", font=dict(color="#475569")),
+            title=dict(text="Spatial X (Causal Direction ➔)", font=dict(color="#475569")),
             gridcolor="#F1F5F9",
             zerolinecolor="#E2E8F0",
             tickfont=dict(color="#64748B"),
-            range=[-115, 115],
+            range=[-110, 120],
         ),
         yaxis=dict(
             title=dict(text="Spatial Y", font=dict(color="#475569")),
@@ -361,7 +343,7 @@ def generate_step3_plotly_2d_html() -> str:
 
 
 def generate_step3_d3_2d_viewer_html() -> str:
-    """Generate D3.js 2D SVG viewer with animated causal flow vectors, mechanism cards, and 3-step transition."""
+    """Generate D3.js 2D SVG viewer with animated causal flow vectors and 3-step transition (NO edge labels)."""
     graph_json = json.dumps(generate_step3_json_export())
 
     template = """<!DOCTYPE html>
@@ -422,7 +404,7 @@ def generate_step3_d3_2d_viewer_html() -> str:
         }
         .badge {
             display: inline-block;
-            background: #2563EB;
+            background: #0284C7;
             color: #EFF6FF;
             font-size: 11px;
             font-weight: 600;
@@ -452,7 +434,7 @@ def generate_step3_d3_2d_viewer_html() -> str:
             border-radius: 8px;
             padding: 10px 12px;
             margin-bottom: 14px;
-            border-left: 3px solid #2563EB;
+            border-left: 3px solid #0284C7;
             font-size: 12px;
             color: #334155;
             line-height: 1.5;
@@ -503,34 +485,34 @@ def generate_step3_d3_2d_viewer_html() -> str:
         }
         .step-tab {
             flex: 1;
-            padding: 6px 4px;
             text-align: center;
+            padding: 6px 4px;
             font-size: 11px;
             font-weight: 600;
+            color: #64748B;
             border-radius: 6px;
             cursor: pointer;
-            background: none;
-            border: none;
-            color: #64748B;
             transition: all 0.2s;
+            border: none;
+            background: none;
         }
         .step-tab.active {
             background: #FFFFFF;
-            color: #2563EB;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            color: #0F172A;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         .controls-group {
             display: flex;
-            flex-wrap: wrap;
             gap: 6px;
         }
         .btn {
+            flex: 1;
             background: #F1F5F9;
             border: 1px solid #CBD5E1;
             color: #334155;
-            padding: 6px 10px;
+            padding: 7px 10px;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
@@ -539,39 +521,43 @@ def generate_step3_d3_2d_viewer_html() -> str:
             background: #E2E8F0;
         }
         .btn.active {
-            background: #2563EB;
-            border-color: #2563EB;
+            background: #0284C7;
+            border-color: #0284C7;
             color: #FFFFFF;
         }
         #node-details {
             position: absolute;
-            bottom: 24px;
-            right: 24px;
+            bottom: 20px;
+            right: 20px;
             z-index: 10;
             background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(12px);
             border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 20px 24px;
-            max-width: 420px;
+            max-width: 380px;
             display: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
         #node-details h3 {
-            font-size: 18px;
+            font-size: 17px;
             color: #0F172A;
             margin-bottom: 2px;
         }
-        #node-details .chinese {
-            font-size: 14px;
-            margin-bottom: 12px;
+        #node-details .role-badge {
+            display: inline-block;
+            font-size: 11px;
             font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            color: #FFFFFF;
         }
         #node-details .meta-row {
             font-size: 12px;
             color: #475569;
-            margin-bottom: 6px;
-            line-height: 1.4;
+            margin-bottom: 8px;
+            line-height: 1.45;
         }
         #node-details .meta-row strong {
             color: #0F172A;
@@ -590,43 +576,12 @@ def generate_step3_d3_2d_viewer_html() -> str:
             color: #0F172A;
         }
 
-        /* SVG Causal Visual Elements */
-        .causal-vector-path {
-            fill: none;
-            stroke-width: 4px;
-            stroke-linecap: round;
-            opacity: 0.85;
-            transition: stroke-width 0.2s, opacity 0.2s;
-            cursor: pointer;
-        }
-        .causal-vector-path:hover {
-            stroke-width: 6px;
-            opacity: 1;
-        }
-        .causal-flow-pulse {
-            fill: none;
-            stroke: #FFFFFF;
-            stroke-width: 2px;
-            stroke-dasharray: 8, 16;
-            animation: flow-pulse 1.8s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes flow-pulse {
-            to { stroke-dashoffset: -48; }
-        }
-        .causal-badge-group {
-            cursor: pointer;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
-            transition: transform 0.2s;
-        }
-        .causal-badge-group:hover {
-            transform: scale(1.05);
-        }
+        /* SVG Causal & Hull styling */
         .cluster-hull {
             fill-opacity: 0.08;
-            stroke-dasharray: 6, 4;
             stroke-width: 1.8px;
-            transition: fill-opacity 0.2s, stroke-width 0.2s;
+            stroke-dasharray: 6, 4;
+            transition: fill-opacity 0.3s ease, stroke-width 0.3s ease;
             cursor: pointer;
         }
         .cluster-hull:hover {
@@ -635,65 +590,79 @@ def generate_step3_d3_2d_viewer_html() -> str:
         }
         .cluster-badge-group {
             cursor: pointer;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
         }
         .cluster-badge-bg {
-            fill: #FFFFFF;
-            rx: 8px;
-            ry: 8px;
-            stroke-width: 1.5px;
+            fill: rgba(255, 255, 255, 0.96);
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.07));
+            rx: 6px;
+            ry: 6px;
         }
         .cluster-badge-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             text-anchor: middle;
             dominant-baseline: central;
         }
         .cluster-badge-sub {
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: 500;
             text-anchor: middle;
             dominant-baseline: central;
         }
         .intra-link {
-            stroke-opacity: 0.22;
-            stroke-width: 1px;
-            stroke-dasharray: 3, 3;
+            stroke-width: 1.2px;
+            stroke-dasharray: 2, 3;
+            stroke-opacity: 0.35;
+        }
+
+        /* Directed Causal Vectors (NO EDGE LABELS) */
+        .causal-vector-path {
+            fill: none;
+            stroke-width: 4.5px;
+            stroke-linecap: round;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+            transition: stroke-width 0.2s ease;
+        }
+        .causal-vector-path:hover {
+            stroke-width: 6.5px;
+        }
+        .causal-flow-pulse {
+            fill: none;
+            stroke: #FFFFFF;
+            stroke-width: 2.2px;
+            stroke-linecap: round;
+            stroke-dasharray: 12, 18;
+            animation: flowDash 2.4s linear infinite;
             pointer-events: none;
         }
+        @keyframes flowDash {
+            to { stroke-dashoffset: -120; }
+        }
+
+        /* Node styling */
         .node-circle {
             cursor: pointer;
             transition: r 0.2s ease, filter 0.2s ease;
         }
         .node-circle:hover {
-            filter: drop-shadow(0 0 10px currentColor);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
         }
-        .node-halo {
+        .node-label-pill {
             pointer-events: none;
-            animation: pulse-halo 3s infinite ease-in-out;
-        }
-        @keyframes pulse-halo {
-            0% { opacity: 0.15; transform: scale(1); }
-            50% { opacity: 0.35; transform: scale(1.18); }
-            100% { opacity: 0.15; transform: scale(1); }
         }
         .label-bg {
-            fill: rgba(255, 255, 255, 0.95);
-            stroke-width: 1px;
+            fill: rgba(255, 255, 255, 0.96);
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
             rx: 6px;
             ry: 6px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
         }
         .label-text-en {
-            font-size: 11px;
-            font-weight: 700;
             fill: #0F172A;
+            font-size: 11px;
+            font-weight: 600;
             text-anchor: middle;
-        }
-        .label-text-zh {
-            font-size: 10px;
-            text-anchor: middle;
-            font-weight: 500;
+            dominant-baseline: central;
         }
     </style>
 </head>
@@ -702,82 +671,111 @@ def generate_step3_d3_2d_viewer_html() -> str:
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Knowledge Graph</span>
+            <span>Causal Knowledge Graph</span>
             <span class="badge" id="hud-badge">Step 3 • Causal Graph</span>
         </div>
-        <div class="hud-desc" id="hud-desc-text">
-            Directed causal relationships connecting topic clusters (A, B ➔ C ➔ D) overlaid on stationary vocabulary coordinates.
-        </div>
-        <div class="callout-box">
-            💡 <strong>Zero Node Movement:</strong> Nodes remain at their exact initial embedding positions. Toggle tabs below to watch the causal knowledge graph emerge!
+        <div class="hud-desc" id="hud-desc">
+            Directed causal flow vectors (A, B ➔ C ➔ D) linking clusters over stationary node positions.
         </div>
 
+        <div class="callout-box">
+            <strong>Key Visual Principle:</strong> Node coordinates are 100% stationary across all steps. Directed causal arrows show influence without text clutter.
+        </div>
+
+        <!-- 3-Step Mode Toggle -->
         <div class="step-toggle-group">
-            <button class="step-tab" id="tab-step1" onclick="setStepMode(1)">1. Initial</button>
+            <button class="step-tab" id="tab-step1" onclick="setStepMode(1)">1. Dispersed</button>
             <button class="step-tab" id="tab-step2" onclick="setStepMode(2)">2. Clusters</button>
             <button class="step-tab active" id="tab-step3" onclick="setStepMode(3)">3. Causal Graph</button>
         </div>
 
         <div class="causal-blueprint">
-            <div style="font-weight: 700; margin-bottom: 4px; color: #0F172A;">Causal Blueprint Architecture:</div>
-            <div class="blueprint-row"><span>(A) Economic Grievances</span> <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(B) Union Mobilization</span>  <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(C) General Strike</span>      <span>➔</span> <span>(D) Paralysis</span></div>
+            <div style="font-weight: 700; margin-bottom: 6px; color: #0F172A;">Causal DAG Architecture:</div>
+            <div class="blueprint-row">
+                <span style="color: #0284C7; font-weight:700;">Topic A (Heavy Rain)</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #0D9488; font-weight:700;">Topic B (High Winds)</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+                <span>──➔</span>
+                <span style="color: #7C3AED; font-weight:700;">Topic D (Delays)</span>
+            </div>
         </div>
 
-        <div class="cluster-pill-list" id="cluster-pills"></div>
+        <div class="cluster-pill-list">
+            <div class="cluster-pill-item" onclick="focusCluster('A')">
+                <div class="cluster-color-circle" style="background: #0284C7;"></div>
+                <span>A: Heavy Rain</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster('B')">
+                <div class="cluster-color-circle" style="background: #0D9488;"></div>
+                <span>B: High Winds</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster('C')">
+                <div class="cluster-color-circle" style="background: #EA580C;"></div>
+                <span>C: Traffic Gridlock</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster('D')">
+                <div class="cluster-color-circle" style="background: #7C3AED;"></div>
+                <span>D: Daily Delays</span>
+            </div>
+        </div>
 
         <div class="controls-group">
             <button class="btn active" id="btn-toggle-vectors" onclick="toggleVectors()">Causal Vectors</button>
             <button class="btn active" id="btn-toggle-hulls" onclick="toggleHulls()">Boundaries</button>
-            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Labels</button>
-            <button class="btn" onclick="zoomIn()">Zoom (+)</button>
-            <button class="btn" onclick="zoomOut()">Zoom (-)</button>
             <button class="btn" onclick="resetZoom()">Reset View</button>
         </div>
     </div>
 
+    <!-- Node / Edge Inspector -->
     <div id="node-details">
         <button class="close-btn" onclick="closeDetails()">&times;</button>
-        <h3 id="det-word">Title</h3>
-        <div class="chinese" id="det-chinese">Subtitle</div>
-        <div class="meta-row"><strong>Type / Category:</strong> <span id="det-cluster"></span></div>
-        <div class="meta-row"><strong>Causal Mechanism:</strong> <span id="det-role"></span></div>
-        <div class="meta-row"><strong>Historical Evidence:</strong> <span id="det-source"></span></div>
-        <div class="meta-row" id="det-context-row"><strong>Archival Context:</strong> <span id="det-context"></span></div>
-        <div class="meta-row" id="det-coords-row"><strong>2D Coordinates:</strong> <span id="det-coords"></span></div>
+        <h3 id="det-word">Term Name</h3>
+        <span class="role-badge" id="det-role-badge">Topic Cluster</span>
+        <div class="meta-row"><strong>Topic Cluster:</strong> <span id="det-cluster">Cluster</span></div>
+        <div class="meta-row"><strong>Causal Role:</strong> <span id="det-role">Role</span></div>
+        <div class="meta-row" id="det-context-row"><strong>Description:</strong> <span id="det-context">Context</span></div>
+        <div class="meta-row" id="det-coords-row"><strong>Coordinates:</strong> <span id="det-coords">(x, y, z)</span></div>
     </div>
 
     <script>
         const graphData = __GRAPH_JSON__;
         let currentStep = 3;
-        let showLabels = true;
         let showHulls = true;
         let showVectors = true;
         let selectedNodeId = null;
 
-        const svg = d3.select("#svg-canvas");
         const width = window.innerWidth;
         const height = window.innerHeight;
-        svg.attr("width", width).attr("height", height);
 
-        // Populate HUD cluster pills
-        const pillsContainer = document.getElementById("cluster-pills");
+        const svg = d3.select("#svg-canvas")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Arrow marker definitions per topic color (NO TEXT LABELS, just markers)
+        const defs = svg.append("defs");
         Object.entries(graphData.topics).forEach(([id, t]) => {
-            const item = document.createElement("div");
-            item.className = "cluster-pill-item";
-            item.innerHTML = `
-                <div class="cluster-color-circle" style="background:${t.color};"></div>
-                <span style="color:#0F172A;">Topic ${id}</span>
-            `;
-            item.onclick = () => focusCluster(id);
-            pillsContainer.appendChild(item);
+            defs.append("marker")
+                .attr("id", `arrow-${id}`)
+                .attr("viewBox", "0 -5 10 10")
+                .attr("refX", 7)
+                .attr("refY", 0)
+                .attr("markerWidth", 8)
+                .attr("markerHeight", 8)
+                .attr("orient", "auto")
+                .append("path")
+                .attr("d", "M 0,-4.5 L 9,0 L 0,4.5 Z")
+                .attr("fill", t.color);
         });
 
-        // SVG Definitions (Arrowheads, filters, grid)
-        const defs = svg.append("defs");
-
-        // Subtle grid pattern
+        // Background dot grid
         const pattern = defs.append("pattern")
             .attr("id", "grid")
             .attr("width", 40)
@@ -794,58 +792,45 @@ def generate_step3_d3_2d_viewer_html() -> str:
             .attr("height", "100%")
             .attr("fill", "url(#grid)");
 
-        // Arrowhead markers for each causal flow
-        Object.entries(graphData.topics).forEach(([id, t]) => {
-            defs.append("marker")
-                .attr("id", `arrow-${id}`)
-                .attr("viewBox", "0 -6 12 12")
-                .attr("refX", 10)
-                .attr("refY", 0)
-                .attr("markerWidth", 8)
-                .attr("markerHeight", 8)
-                .attr("orient", "auto")
-                .append("path")
-                .attr("d", "M0,-5L10,0L0,5")
-                .attr("fill", t.color);
-        });
-
         const container = svg.append("g").attr("id", "zoom-container");
-        const vectorLayer = container.append("g").attr("id", "vector-layer");
+
+        // Layers for clean rendering order
         const hullLayer = container.append("g").attr("id", "hull-layer");
         const linkLayer = container.append("g").attr("id", "link-layer");
-        const badgeLayer = container.append("g").attr("id", "badge-layer");
-        const causalBadgeLayer = container.append("g").attr("id", "causal-badge-layer");
+        const vectorLayer = container.append("g").attr("id", "vector-layer");
         const nodeLayer = container.append("g").attr("id", "node-layer");
+        const badgeLayer = container.append("g").attr("id", "badge-layer");
 
-        // Scale coordinates
         const scaleFactor = 4.8;
         const nodes = graphData.nodes.map(n => ({
             ...n,
             x: width / 2 + n.x * scaleFactor,
-            y: height / 2 - n.y * scaleFactor
+            y: height / 2 - n.y * scaleFactor,
+            origX: width / 2 + n.x * scaleFactor,
+            origY: height / 2 - n.y * scaleFactor
         }));
 
-        const nodeMap = new Map(nodes.map(n => [n.id, n]));
-
-        // Calculate Clusters
+        // Group nodes by cluster
         const clusters = {};
         Object.entries(graphData.topics).forEach(([id, t]) => {
-            const tNodes = nodes.filter(n => n.topic_id === id);
-            const cx = d3.mean(tNodes, n => n.x);
-            const cy = d3.mean(tNodes, n => n.y);
-            clusters[id] = {
-                id: id,
-                meta: t,
-                nodes: tNodes,
-                cx: cx,
-                cy: cy
-            };
+            const cNodes = nodes.filter(n => n.topic_id === id);
+            const cx = width / 2 + t.centroid_2d.x * scaleFactor;
+            const cy = height / 2 - t.centroid_2d.y * scaleFactor;
+            clusters[id] = { meta: t, id: id, nodes: cNodes, cx: cx, cy: cy };
         });
 
-        // 1. Draw Intra-Cluster Links
+        // Zoom Behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.35, 3.5])
+            .on("zoom", (event) => {
+                container.attr("transform", event.transform);
+            });
+        svg.call(zoom);
+
+        // 1. Draw Intra-cluster subtle connection lines
         graphData.intra_cluster_links.forEach(l => {
-            const src = nodeMap.get(l.source);
-            const tgt = nodeMap.get(l.target);
+            const src = nodes.find(n => n.id === l.source);
+            const tgt = nodes.find(n => n.id === l.target);
             if (src && tgt) {
                 linkLayer.append("line")
                     .attr("class", "intra-link")
@@ -901,29 +886,29 @@ def generate_step3_d3_2d_viewer_html() -> str:
 
             badge.append("rect")
                 .attr("class", "cluster-badge-bg")
-                .attr("x", -135)
-                .attr("y", -24)
-                .attr("width", 270)
-                .attr("height", 48)
+                .attr("x", -120)
+                .attr("y", -22)
+                .attr("width", 240)
+                .attr("height", 44)
                 .attr("stroke", cl.meta.color);
 
             badge.append("text")
                 .attr("class", "cluster-badge-title")
-                .attr("y", -6)
+                .attr("y", -5)
                 .attr("fill", cl.meta.color)
                 .text(cl.meta.short_label);
 
             badge.append("text")
                 .attr("class", "cluster-badge-sub")
-                .attr("y", 12)
+                .attr("y", 11)
                 .attr("fill", "#475569")
-                .text(`${cl.meta.chinese_name} • ${cl.meta.causal_role}`);
+                .text(cl.meta.causal_role);
         });
 
-        // 4. Draw Directed Causal Flow Vectors (Macro Causal Graph: A -> C, B -> C, C -> D)
+        // 4. Draw Directed Causal Flow Vectors (A -> C, B -> C, C -> D)
+        // STRICT REQUIREMENT: NO LABELS ON EDGES.
         function renderCausalVectors() {
             vectorLayer.selectAll("*").remove();
-            causalBadgeLayer.selectAll("*").remove();
             if (!showVectors || currentStep !== 3) return;
 
             graphData.causal_edges.forEach(edge => {
@@ -931,7 +916,6 @@ def generate_step3_d3_2d_viewer_html() -> str:
                 const tCl = clusters[edge.target];
                 if (!sCl || !tCl) return;
 
-                // Adjust endpoints to stop at cluster perimeter
                 const dx = tCl.cx - sCl.cx;
                 const dy = tCl.cy - sCl.cy;
                 const dist = Math.hypot(dx, dy) || 1;
@@ -943,7 +927,6 @@ def generate_step3_d3_2d_viewer_html() -> str:
                 const tx = tCl.cx - (dx / dist) * offsetEnd;
                 const ty = tCl.cy - (dy / dist) * offsetEnd;
 
-                // Slight curve
                 const midX = (sx + tx) / 2;
                 const midY = (sy + ty) / 2 + (edge.source === "A" ? -28 : (edge.source === "B" ? 28 : -18));
 
@@ -957,8 +940,8 @@ def generate_step3_d3_2d_viewer_html() -> str:
                     .attr("stroke-opacity", 0.16)
                     .attr("fill", "none");
 
-                // Main causal vector path with arrowhead
-                const mainPath = vectorLayer.append("path")
+                // Main causal vector path with arrowhead marker
+                vectorLayer.append("path")
                     .attr("class", "causal-vector-path")
                     .attr("d", pathData)
                     .attr("stroke", edge.color)
@@ -968,46 +951,10 @@ def generate_step3_d3_2d_viewer_html() -> str:
                         showCausalDetails(edge);
                     });
 
-                // Animated flow pulse on top
+                // Animated flow pulse
                 vectorLayer.append("path")
                     .attr("class", "causal-flow-pulse")
                     .attr("d", pathData);
-
-                // Causal Mechanism Badge at Midpoint
-                const badge = causalBadgeLayer.append("g")
-                    .attr("class", "causal-badge-group")
-                    .attr("transform", `translate(${midX}, ${midY})`)
-                    .on("click", (event) => {
-                        event.stopPropagation();
-                        showCausalDetails(edge);
-                    });
-
-                badge.append("rect")
-                    .attr("x", -105)
-                    .attr("y", -18)
-                    .attr("width", 210)
-                    .attr("height", 36)
-                    .attr("rx", 18)
-                    .attr("ry", 18)
-                    .attr("fill", "rgba(255, 255, 255, 0.96)")
-                    .attr("stroke", edge.color)
-                    .attr("stroke-width", 1.8);
-
-                badge.append("text")
-                    .attr("y", -3)
-                    .attr("text-anchor", "middle")
-                    .attr("fill", edge.color)
-                    .attr("font-size", "11px")
-                    .attr("font-weight", "800")
-                    .text(`CAUSES [${edge.causal_type}]`);
-
-                badge.append("text")
-                    .attr("y", 11)
-                    .attr("text-anchor", "middle")
-                    .attr("fill", "#475569")
-                    .attr("font-size", "9.5px")
-                    .attr("font-weight", "600")
-                    .text(`${edge.relationship} • Click for Evidence`);
             });
         }
         renderCausalVectors();
@@ -1036,25 +983,13 @@ def generate_step3_d3_2d_viewer_html() -> str:
                 selectNode(d);
             });
 
-        // Pulsing Halo
-        nodeGroups.append("circle")
-            .attr("class", "node-halo")
-            .attr("r", 20)
-            .attr("fill", d => d.color);
-
-        // Core Circle
+        // Core Node Circle
         nodeGroups.append("circle")
             .attr("class", "node-circle")
-            .attr("r", 13)
+            .attr("r", 12)
             .attr("fill", d => d.color)
             .attr("stroke", "#FFFFFF")
             .attr("stroke-width", 2.5);
-
-        // Selection Ring
-        nodeGroups.append("circle")
-            .attr("class", "selected-ring")
-            .attr("r", 19)
-            .attr("display", d => (d.id === selectedNodeId ? "block" : "none"));
 
         // Label Pill
         const labelGroups = nodeGroups.append("g")
@@ -1063,182 +998,146 @@ def generate_step3_d3_2d_viewer_html() -> str:
 
         labelGroups.append("rect")
             .attr("class", "label-bg")
-            .attr("x", -65)
-            .attr("y", -8)
-            .attr("width", 130)
-            .attr("height", 32)
-            .attr("stroke", d => d.color);
+            .attr("x", -70)
+            .attr("y", -11)
+            .attr("width", 140)
+            .attr("height", 24)
+            .attr("stroke", d => d.color)
+            .attr("stroke-width", 1);
 
         labelGroups.append("text")
             .attr("class", "label-text-en")
-            .attr("y", 2)
+            .attr("y", 1)
             .text(d => d.word);
 
-        labelGroups.append("text")
-            .attr("class", "label-text-zh")
-            .attr("y", 16)
-            .attr("fill", d => d.color)
-            .text(d => d.chinese);
+        // Details Panel Functions
+        function selectNode(d) {
+            selectedNodeId = d.id;
+            const det = document.getElementById("node-details");
+            det.style.display = "block";
+            document.getElementById("det-word").innerText = d.word;
+            const badge = document.getElementById("det-role-badge");
+            badge.innerText = currentStep === 1 ? "Dispersed Word" : d.cluster_label;
+            badge.style.background = currentStep === 1 ? "#475569" : d.color;
+            document.getElementById("det-cluster").innerText = currentStep === 1 ? "Latent: " + d.topic_name : d.topic_name;
+            document.getElementById("det-role").innerText = currentStep === 1 ? "Initial baseline" : d.causal_role;
+            document.getElementById("det-context").innerText = d.context;
+            document.getElementById("det-coords").innerText = `(${d.origX.toFixed(1)}, ${d.origY.toFixed(1)})`;
+            document.getElementById("det-context-row").style.display = "block";
+            document.getElementById("det-coords-row").style.display = "block";
+        }
 
-        // Zoom Behavior
-        const zoom = d3.zoom()
-            .scaleExtent([0.3, 3])
-            .on("zoom", (event) => {
-                container.attr("transform", event.transform);
-            });
-        svg.call(zoom);
-        svg.on("click", () => closeDetails());
+        function showCausalDetails(edge) {
+            const det = document.getElementById("node-details");
+            det.style.display = "block";
+            document.getElementById("det-word").innerText = `Causal Influence: ${edge.source_name} ➔ ${edge.target_name}`;
+            const badge = document.getElementById("det-role-badge");
+            badge.innerText = `Causal [${edge.causal_type}]`;
+            badge.style.background = edge.color;
+            document.getElementById("det-cluster").innerText = `${edge.source_name} (Topic ${edge.source}) ➔ ${edge.target_name} (Topic ${edge.target})`;
+            document.getElementById("det-role").innerText = `Directed Influence (${edge.relationship})`;
+            document.getElementById("det-context").innerText = edge.mechanism;
+            document.getElementById("det-coords-row").style.display = "none";
+        }
 
-        // Initial Center & Zoom
-        svg.call(zoom.transform, d3.zoomIdentity.translate(40, -10).scale(0.88));
+        function closeDetails() {
+            document.getElementById("node-details").style.display = "none";
+        }
 
-        // 3-Step Mode Transition Function
+        function focusCluster(topicId) {
+            const cl = clusters[topicId];
+            if (!cl) return;
+            svg.transition().duration(800).call(
+                zoom.transform,
+                d3.zoomIdentity.translate(width / 2 - cl.cx, height / 2 - cl.cy).scale(1.25)
+            );
+        }
+
+        function toggleHulls() {
+            showHulls = !showHulls;
+            document.getElementById("btn-toggle-hulls").classList.toggle("active", showHulls);
+            updateHulls();
+        }
+
+        function toggleVectors() {
+            showVectors = !showVectors;
+            document.getElementById("btn-toggle-vectors").classList.toggle("active", showVectors);
+            renderCausalVectors();
+        }
+
+        function resetZoom() {
+            svg.transition().duration(800).call(
+                zoom.transform,
+                d3.zoomIdentity.translate(0, 0).scale(1)
+            );
+            closeDetails();
+        }
+
+        // 3-Step Interactive Mode Switcher
         function setStepMode(step) {
             currentStep = step;
             document.querySelectorAll(".step-tab").forEach(t => t.classList.remove("active"));
             document.getElementById(`tab-step${step}`).classList.add("active");
 
             const badge = document.getElementById("hud-badge");
-            const desc = document.getElementById("hud-desc-text");
+            const desc = document.getElementById("hud-desc");
 
             if (step === 1) {
-                badge.textContent = "Step 1 • Initial Positions";
-                badge.style.background = "#64748B";
-                desc.textContent = "16 archival vocabulary nodes positioned across embedding space (unclustered baseline).";
+                badge.textContent = "Step 1 • Dispersed Words";
+                badge.style.background = "#475569";
+                desc.textContent = "16 everyday words positioned across 2D space (unclustered baseline).";
 
-                hullLayer.transition().duration(500).style("opacity", 0);
-                badgeLayer.transition().duration(500).style("opacity", 0);
-                linkLayer.transition().duration(500).style("opacity", 0);
-                vectorLayer.transition().duration(500).style("opacity", 0);
-                causalBadgeLayer.transition().duration(500).style("opacity", 0);
+                badgeLayer.style("display", "none");
+                linkLayer.style("display", "none");
+                vectorLayer.style("display", "none");
+                hullLayer.style("display", "none");
 
-                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", "#0284C7");
-                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", "#0284C7");
-                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", "#CBD5E1");
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", "#64748B");
+                nodeGroups.select(".node-circle")
+                    .transition().duration(400)
+                    .attr("fill", "#475569");
+                nodeGroups.select(".label-bg")
+                    .transition().duration(400)
+                    .attr("stroke", "#CBD5E1");
             } else if (step === 2) {
                 badge.textContent = "Step 2 • Thematic Clusters";
                 badge.style.background = "#D97706";
-                desc.textContent = "The 16 nodes are grouped into 4 distinct thematic topics with smooth boundary capsules and cluster headers.";
+                desc.textContent = "16 nodes grouped into 4 distinct thematic topics with boundaries and header labels.";
 
-                hullLayer.transition().duration(500).style("opacity", showHulls ? 1 : 0);
-                badgeLayer.transition().duration(500).style("opacity", 1);
-                linkLayer.transition().duration(500).style("opacity", 1);
-                vectorLayer.transition().duration(500).style("opacity", 0);
-                causalBadgeLayer.transition().duration(500).style("opacity", 0);
+                badgeLayer.style("display", "block");
+                linkLayer.style("display", "block");
+                vectorLayer.style("display", "none");
+                hullLayer.style("display", "block");
+                updateHulls();
 
-                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", d => d.color);
-                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", d => d.color);
-                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", d => d.color);
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", d => d.color);
+                nodeGroups.select(".node-circle")
+                    .transition().duration(400)
+                    .attr("fill", d => d.color);
+                nodeGroups.select(".label-bg")
+                    .transition().duration(400)
+                    .attr("stroke", d => d.color);
             } else if (step === 3) {
                 badge.textContent = "Step 3 • Causal Graph";
-                badge.style.background = "#2563EB";
-                desc.textContent = "Directed causal relationships connecting topic clusters (A, B ➔ C ➔ D) overlaid on stationary vocabulary coordinates.";
+                badge.style.background = "#0284C7";
+                desc.textContent = "Directed causal flow vectors (A, B ➔ C ➔ D) linking clusters without edge text labels.";
 
-                hullLayer.transition().duration(500).style("opacity", showHulls ? 1 : 0);
-                badgeLayer.transition().duration(500).style("opacity", 1);
-                linkLayer.transition().duration(500).style("opacity", 1);
-                vectorLayer.transition().duration(500).style("opacity", showVectors ? 1 : 0);
-                causalBadgeLayer.transition().duration(500).style("opacity", showVectors ? 1 : 0);
+                badgeLayer.style("display", "block");
+                linkLayer.style("display", "block");
+                vectorLayer.style("display", "block");
+                hullLayer.style("display", "block");
+                updateHulls();
+                renderCausalVectors();
 
-                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", d => d.color);
-                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", d => d.color);
-                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", d => d.color);
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", d => d.color);
+                nodeGroups.select(".node-circle")
+                    .transition().duration(400)
+                    .attr("fill", d => d.color);
+                nodeGroups.select(".label-bg")
+                    .transition().duration(400)
+                    .attr("stroke", d => d.color);
             }
         }
 
-        function selectNode(d) {
-            selectedNodeId = d.id;
-            updateSelection();
-
-            document.getElementById("node-details").style.display = "block";
-            document.getElementById("det-word").innerText = d.word;
-            document.getElementById("det-chinese").innerText = d.chinese;
-            document.getElementById("det-chinese").style.color = d.color;
-            document.getElementById("det-cluster").innerText = `${d.cluster_label} (${d.topic_chinese})`;
-            document.getElementById("det-role").innerText = d.causal_role;
-            document.getElementById("det-source").innerText = d.historical_source;
-            document.getElementById("det-context").innerText = d.context;
-            document.getElementById("det-coords").innerText = `(${d.x.toFixed(1)}, ${d.y.toFixed(1)})`;
-            document.getElementById("det-context-row").style.display = "block";
-            document.getElementById("det-coords-row").style.display = "block";
-        }
-
-        function showCausalDetails(edge) {
-            document.getElementById("node-details").style.display = "block";
-            document.getElementById("det-word").innerText = `Causal Link: ${edge.relationship}`;
-            document.getElementById("det-chinese").innerText = edge.label;
-            document.getElementById("det-chinese").style.color = edge.color;
-            document.getElementById("det-cluster").innerText = `${edge.source_name} ➔ ${edge.target_name}`;
-            document.getElementById("det-role").innerText = edge.mechanism;
-            document.getElementById("det-source").innerText = edge.historical_evidence;
-            document.getElementById("det-context-row").style.display = "none";
-            document.getElementById("det-coords-row").style.display = "none";
-        }
-
-        function updateSelection() {
-            container.selectAll(".selected-ring")
-                .attr("display", d => (d.id === selectedNodeId ? "block" : "none"));
-        }
-
-        function focusCluster(topicId) {
-            const cl = clusters[topicId];
-            if (!cl) return;
-            svg.transition().duration(750).call(
-                zoom.transform,
-                d3.zoomIdentity.translate(width / 2 - cl.cx * 1.1, height / 2 - cl.cy * 1.1).scale(1.15)
-            );
-        }
-
-        function closeDetails() {
-            document.getElementById("node-details").style.display = "none";
-            selectedNodeId = null;
-            updateSelection();
-        }
-
-        function toggleLabels() {
-            showLabels = !showLabels;
-            document.getElementById("btn-toggle-labels").classList.toggle("active", showLabels);
-            container.selectAll(".node-label-pill")
-                .attr("display", showLabels ? "block" : "none");
-        }
-
-        function toggleHulls() {
-            showHulls = !showHulls;
-            document.getElementById("btn-toggle-hulls").classList.toggle("active", showHulls);
-            if (currentStep >= 2) {
-                hullLayer.transition().duration(300).style("opacity", showHulls ? 1 : 0);
-            }
-        }
-
-        function toggleVectors() {
-            showVectors = !showVectors;
-            document.getElementById("btn-toggle-vectors").classList.toggle("active", showVectors);
-            if (currentStep === 3) {
-                vectorLayer.transition().duration(300).style("opacity", showVectors ? 1 : 0);
-                causalBadgeLayer.transition().duration(300).style("opacity", showVectors ? 1 : 0);
-            }
-        }
-
-        function zoomIn() {
-            svg.transition().duration(350).call(zoom.scaleBy, 1.3);
-        }
-
-        function zoomOut() {
-            svg.transition().duration(350).call(zoom.scaleBy, 0.7);
-        }
-
-        function resetZoom() {
-            svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(40, -10).scale(0.88));
+        svg.on("click", () => {
             closeDetails();
-        }
-
-        window.addEventListener("resize", () => {
-            const newW = window.innerWidth;
-            const newH = window.innerHeight;
-            svg.attr("width", newW).attr("height", newH);
         });
     </script>
 </body>
@@ -1248,7 +1147,7 @@ def generate_step3_d3_2d_viewer_html() -> str:
 
 
 def generate_step3_plotly_3d_html() -> str:
-    """Generate Plotly 3D scatter graph with visible topic clusters and 3D directed causal vectors."""
+    """Generate Plotly 3D scatter graph with visible topic clusters and 3D directed causal vectors (NO edge labels)."""
     import plotly.graph_objects as go
 
     nodes = get_step3_nodes()
@@ -1277,7 +1176,7 @@ def generate_step3_plotly_3d_html() -> str:
             )
         )
 
-    # 2. Directed Causal Lines in 3D (A -> C, B -> C, C -> D)
+    # 2. Directed Causal Lines in 3D (A -> C, B -> C, C -> D) - NO EDGE LABELS
     for edge in causal_edges:
         s = TOPICS[edge["source"]]["centroid_3d"]
         t = TOPICS[edge["target"]]["centroid_3d"]
@@ -1286,14 +1185,23 @@ def generate_step3_plotly_3d_html() -> str:
                 x=[s["x"], t["x"]],
                 y=[s["y"], t["y"]],
                 z=[s["z"], t["z"]],
-                mode="lines+text",
+                mode="lines",
                 line=dict(color=edge["color"], width=7),
-                text=["", f"<b>CAUSES ({edge['causal_type']})</b>"],
-                textposition="middle center",
-                textfont=dict(size=11, color=edge["color"]),
                 hoverinfo="text",
-                hovertext=f"<b>Causal Relationship:</b> {edge['relationship']}<br><b>Mechanism:</b> {edge['mechanism']}",
-                name=f"Causal: {edge['relationship']}",
+                hovertext=f"<b>Causal Influence:</b> {edge['source_name']} ➔ {edge['target_name']}<br><b>Mechanism:</b> {edge['mechanism']}",
+                name=f"Causal: {edge['source_name']} ➔ {edge['target_name']}",
+            )
+        )
+        # Arrowhead indicator at target
+        fig.add_trace(
+            go.Scatter3d(
+                x=[t["x"]],
+                y=[t["y"]],
+                z=[t["z"]],
+                mode="markers",
+                marker=dict(symbol="diamond", size=8, color=edge["color"]),
+                hoverinfo="skip",
+                showlegend=False,
             )
         )
 
@@ -1303,13 +1211,12 @@ def generate_step3_plotly_3d_html() -> str:
         xs = [n["x"] for n in t_nodes]
         ys = [n["y"] for n in t_nodes]
         zs = [n["z"] for n in t_nodes]
-        labels = [f"<b>{n['word']}</b><br>({n['chinese']})" for n in t_nodes]
+        labels = [f"<b>{n['word']}</b>" for n in t_nodes]
         hover_texts = [
-            f"<b>{n['word']}</b> ({n['chinese']})<br>"
+            f"<b>{n['word']}</b><br>"
             f"<b>Topic:</b> {t['name']}<br>"
             f"<b>Causal Role:</b> {t['causal_role']}<br>"
-            f"<b>Historical Source:</b> {n['historical_source']}<br>"
-            f"<b>Archival Context:</b> {n['context']}<br>"
+            f"<b>Context:</b> {n['context']}<br>"
             f"<b>Coordinates:</b> ({n['x']}, {n['y']}, {n['z']})"
             for n in t_nodes
         ]
@@ -1356,7 +1263,7 @@ def generate_step3_plotly_3d_html() -> str:
     fig.update_layout(
         title=dict(
             text=(
-                "<b>1920s Chinese Strike Causal Knowledge Graph (3D)</b><br>"
+                "<b>Weather & Commuting Disruption: Causal Knowledge Graph (3D)</b><br>"
                 "<sup>Step 3: Directed Causal Induction (A, B ➔ C ➔ D Influence Backbone)</sup>"
             ),
             font=dict(size=18, color="#0F172A"),
@@ -1401,18 +1308,17 @@ def generate_step3_plotly_3d_html() -> str:
                 tickfont=dict(color="#64748B"),
             ),
             camera=dict(
-                eye=dict(x=1.7, y=1.5, z=1.3),
-                up=dict(x=0, y=0, z=1),
+                eye=dict(x=1.65, y=1.4, z=1.55),
             ),
         ),
-        margin=dict(l=0, r=0, b=0, t=80),
+        margin=dict(l=60, r=60, b=60, t=90),
     )
 
     return fig.to_html(include_plotlyjs="cdn", full_html=True)
 
 
 def generate_step3_threejs_viewer_html() -> str:
-    """Generate 3D WebGL viewer with directed causal flow vectors, animated flow particles, and 3-step transition."""
+    """Generate rich 3D WebGL viewer with 3D directed Bezier tubes, cone arrowheads, and 3-step transition (NO edge labels)."""
     graph_json = json.dumps(generate_step3_json_export())
 
     template = """<!DOCTYPE html>
@@ -1470,7 +1376,7 @@ def generate_step3_threejs_viewer_html() -> str:
         }
         .badge {
             display: inline-block;
-            background: #2563EB;
+            background: #0284C7;
             color: #EFF6FF;
             font-size: 11px;
             font-weight: 600;
@@ -1500,7 +1406,7 @@ def generate_step3_threejs_viewer_html() -> str:
             border-radius: 8px;
             padding: 10px 12px;
             margin-bottom: 14px;
-            border-left: 3px solid #2563EB;
+            border-left: 3px solid #0284C7;
             font-size: 12px;
             color: #334155;
             line-height: 1.5;
@@ -1551,34 +1457,34 @@ def generate_step3_threejs_viewer_html() -> str:
         }
         .step-tab {
             flex: 1;
-            padding: 6px 4px;
             text-align: center;
+            padding: 6px 4px;
             font-size: 11px;
             font-weight: 600;
+            color: #64748B;
             border-radius: 6px;
             cursor: pointer;
-            background: none;
-            border: none;
-            color: #64748B;
             transition: all 0.2s;
+            border: none;
+            background: none;
         }
         .step-tab.active {
             background: #FFFFFF;
-            color: #2563EB;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            color: #0F172A;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         .controls-group {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
         .btn {
             flex: 1;
             background: #F1F5F9;
             border: 1px solid #CBD5E1;
             color: #334155;
-            padding: 8px 10px;
+            padding: 7px 10px;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
@@ -1587,39 +1493,43 @@ def generate_step3_threejs_viewer_html() -> str:
             background: #E2E8F0;
         }
         .btn.active {
-            background: #2563EB;
-            border-color: #2563EB;
+            background: #0284C7;
+            border-color: #0284C7;
             color: #FFFFFF;
         }
         #node-details {
             position: absolute;
-            bottom: 24px;
-            right: 24px;
+            bottom: 20px;
+            right: 20px;
             z-index: 10;
             background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(12px);
             border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 20px 24px;
-            max-width: 420px;
+            max-width: 380px;
             display: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
         #node-details h3 {
-            font-size: 18px;
+            font-size: 17px;
             color: #0F172A;
             margin-bottom: 2px;
         }
-        #node-details .chinese {
-            font-size: 14px;
-            margin-bottom: 12px;
+        #node-details .role-badge {
+            display: inline-block;
+            font-size: 11px;
             font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            color: #FFFFFF;
         }
         #node-details .meta-row {
             font-size: 12px;
             color: #475569;
-            margin-bottom: 6px;
-            line-height: 1.4;
+            margin-bottom: 8px;
+            line-height: 1.45;
         }
         #node-details .meta-row strong {
             color: #0F172A;
@@ -1644,158 +1554,177 @@ def generate_step3_threejs_viewer_html() -> str:
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Knowledge Graph</span>
+            <span>Causal Knowledge Graph</span>
             <span class="badge" id="hud-badge-3d">Step 3 • 3D Causal Graph</span>
         </div>
         <div class="hud-desc" id="hud-desc-3d">
-            3D directed causal vectors (A, B ➔ C ➔ D) with animated flow particles connecting clusters over stationary node coordinates.
-        </div>
-        <div class="callout-box">
-            💡 <strong>Zero Node Movement:</strong> Nodes do not shift in 3D space. Toggle tabs below to watch causality emerge!
+            3D directed causal vectors (A, B ➔ C ➔ D) linking clusters without edge text labels.
         </div>
 
+        <div class="callout-box">
+            <strong>Key Visual Principle:</strong> The 16 node 3D coordinates are 100% stationary. Clean 3D tubes and cones show causal direction.
+        </div>
+
+        <!-- 3-Step Mode Toggle -->
         <div class="step-toggle-group">
-            <button class="step-tab" id="tab-3d-step1" onclick="setStepMode3D(1)">1. Initial</button>
+            <button class="step-tab" id="tab-3d-step1" onclick="setStepMode3D(1)">1. Dispersed</button>
             <button class="step-tab" id="tab-3d-step2" onclick="setStepMode3D(2)">2. Clusters</button>
             <button class="step-tab active" id="tab-3d-step3" onclick="setStepMode3D(3)">3. Causal Graph</button>
         </div>
 
         <div class="causal-blueprint">
-            <div style="font-weight: 700; margin-bottom: 4px; color: #0F172A;">Causal Blueprint Architecture:</div>
-            <div class="blueprint-row"><span>(A) Economic Grievances</span> <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(B) Union Mobilization</span>  <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(C) General Strike</span>      <span>➔</span> <span>(D) Paralysis</span></div>
+            <div style="font-weight: 700; margin-bottom: 6px; color: #0F172A;">Causal DAG Architecture:</div>
+            <div class="blueprint-row">
+                <span style="color: #0284C7; font-weight:700;">Topic A (Heavy Rain)</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #0D9488; font-weight:700;">Topic B (High Winds)</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+                <span>──➔</span>
+                <span style="color: #7C3AED; font-weight:700;">Topic D (Delays)</span>
+            </div>
         </div>
 
-        <div class="cluster-pill-list" id="cluster-pills"></div>
+        <div class="cluster-pill-list">
+            <div class="cluster-pill-item" onclick="focusCluster3D('A')">
+                <div class="cluster-color-circle" style="background: #0284C7;"></div>
+                <span>A: Heavy Rain</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster3D('B')">
+                <div class="cluster-color-circle" style="background: #0D9488;"></div>
+                <span>B: High Winds</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster3D('C')">
+                <div class="cluster-color-circle" style="background: #EA580C;"></div>
+                <span>C: Traffic Gridlock</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster3D('D')">
+                <div class="cluster-color-circle" style="background: #7C3AED;"></div>
+                <span>D: Daily Delays</span>
+            </div>
+        </div>
 
         <div class="controls-group">
+            <button class="btn active" id="btn-toggle-vectors" onclick="toggleVectors3D()">Causal Tubes</button>
             <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels3D()">Labels</button>
-            <button class="btn active" id="btn-toggle-vectors" onclick="toggleVectors3D()">Causal Arrows</button>
             <button class="btn" onclick="resetCamera()">Reset View</button>
         </div>
     </div>
 
+    <!-- Details Panel -->
     <div id="node-details">
-        <button class="close-btn" onclick="document.getElementById('node-details').style.display='none';">&times;</button>
-        <h3 id="det-word">Word</h3>
-        <div class="chinese" id="det-chinese">中文</div>
-        <div class="meta-row"><strong>Type / Category:</strong> <span id="det-cluster"></span></div>
-        <div class="meta-row"><strong>Causal Mechanism:</strong> <span id="det-role"></span></div>
-        <div class="meta-row"><strong>Historical Evidence:</strong> <span id="det-source"></span></div>
-        <div class="meta-row" id="det-context-row"><strong>Archival Context:</strong> <span id="det-context"></span></div>
-        <div class="meta-row" id="det-coords-row"><strong>3D Coordinates:</strong> <span id="det-coords"></span></div>
+        <button class="close-btn" onclick="document.getElementById('node-details').style.display='none'">&times;</button>
+        <h3 id="det-word">Term Name</h3>
+        <span class="role-badge" id="det-role-badge">Topic Cluster</span>
+        <div class="meta-row"><strong>Topic Cluster:</strong> <span id="det-cluster">Cluster</span></div>
+        <div class="meta-row"><strong>Causal Role:</strong> <span id="det-role">Role</span></div>
+        <div class="meta-row" id="det-context-row"><strong>Description:</strong> <span id="det-context">Context</span></div>
+        <div class="meta-row" id="det-coords-row"><strong>Coordinates:</strong> <span id="det-coords">(x, y, z)</span></div>
     </div>
 
     <script>
         const graphData = __GRAPH_JSON__;
-        let currentStep3D = 3;
         let showLabels = true;
         let showVectors3D = true;
-        const clusterBillboards = [];
-        const boundaryMeshes = [];
+        let currentStep3D = 3;
+
         const nodeSpheres = [];
+        const boundaryMeshes = [];
         const causalMeshes = [];
+        const clusterBillboards = [];
 
-        // Populate HUD cluster pills
-        const pillsContainer = document.getElementById("cluster-pills");
-        Object.entries(graphData.topics).forEach(([id, t]) => {
-            const item = document.createElement("div");
-            item.className = "cluster-pill-item";
-            item.innerHTML = `
-                <div class="cluster-color-circle" style="background:${t.color};"></div>
-                <span style="color:#0F172A;">Topic ${id}</span>
-            `;
-            item.onclick = () => focusCluster3D(id);
-            pillsContainer.appendChild(item);
-        });
-
-        // 3D Graph Data
-        const nodes3d = graphData.nodes.map(n => ({
-            id: n.id,
-            name: n.word,
-            chinese: n.chinese,
-            topic_id: n.topic_id,
-            topic_name: n.topic_name,
-            cluster_label: n.cluster_label,
-            causal_role: n.causal_role,
-            historical_source: n.historical_source,
-            context: n.context,
-            color: n.color,
-            fx: n.x,
-            fy: n.y,
-            fz: n.z
-        }));
-
-        // Cluster Centroid Billboard pseudo-nodes
-        Object.entries(graphData.topics).forEach(([id, t]) => {
-            nodes3d.push({
-                id: `cluster_badge_${id}`,
-                isClusterBadge: true,
-                topic_id: id,
-                title: t.short_label,
-                subtitle: `${t.chinese_name} • ${t.causal_role}`,
-                color: t.color,
-                fx: t.centroid_3d.x,
-                fy: t.centroid_3d.y + 24,
-                fz: t.centroid_3d.z + 18
-            });
-        });
-
-        const links3d = graphData.intra_cluster_links.map(l => ({
-            source: l.source,
-            target: l.target,
-            color: l.color
-        }));
-
+        // Prepare nodes and links for 3D force graph
         const gData = {
-            nodes: nodes3d,
-            links: links3d
+            nodes: graphData.nodes.map(n => ({
+                id: n.id,
+                name: n.word,
+                topic_id: n.topic_id,
+                cluster_label: n.cluster_label,
+                causal_role: n.causal_role,
+                context: n.context,
+                fx: n.x,
+                fy: n.y,
+                fz: n.z,
+                color: n.color
+            })),
+            links: graphData.intra_cluster_links.map(l => ({
+                source: l.source,
+                target: l.target,
+                color: l.color
+            }))
         };
 
-        const Graph = ForceGraph3D()(document.getElementById('3d-graph'))
-            .graphData(gData)
+        // Add Centroid Cluster Header Billboard Sprites in 3D
+        Object.entries(graphData.topics).forEach(([id, t]) => {
+            const centroidNode = {
+                id: `centroid_${id}`,
+                isClusterBadge: true,
+                topic_id: id,
+                name: t.short_label,
+                causal_role: t.causal_role,
+                color: t.color,
+                fx: t.centroid_3d.x,
+                fy: t.centroid_3d.y + 20,
+                fz: t.centroid_3d.z
+            };
+            gData.nodes.push(centroidNode);
+        });
+
+        const Graph = ForceGraph3D()
+            (document.getElementById('3d-graph'))
             .backgroundColor('#FFFFFF')
             .showNavInfo(false)
-            .nodeRelSize(7)
-            .linkColor(link => link.color)
-            .linkWidth(1.2)
+            .graphData(gData)
+            .nodeRelSize(5)
+            .nodeOpacity(0.95)
             .linkOpacity(0.35)
+            .linkColor(link => link.color || '#CBD5E1')
+            .linkWidth(1.2)
             .nodeThreeObject(node => {
-                if (node.isClusterBadge) {
-                    const badgeSprite = new SpriteText(`${node.title}\\n${node.subtitle}`);
-                    badgeSprite.color = node.color;
-                    badgeSprite.textHeight = 4.2;
-                    badgeSprite.backgroundColor = 'rgba(255, 255, 255, 0.94)';
-                    badgeSprite.borderColor = node.color;
-                    badgeSprite.borderWidth = 1;
-                    badgeSprite.padding = 3;
-                    badgeSprite.borderRadius = 4;
-                    clusterBillboards.push(badgeSprite);
-                    return badgeSprite;
-                }
-
                 const group = new THREE.Group();
 
-                const sphereGeometry = new THREE.SphereGeometry(3.6, 24, 24);
-                const sphereMaterial = new THREE.MeshLambertMaterial({
+                if (node.isClusterBadge) {
+                    const sprite = new SpriteText(node.name);
+                    sprite.color = node.color;
+                    sprite.textHeight = 4.8;
+                    sprite.fontWeight = 'bold';
+                    sprite.backgroundColor = 'rgba(255, 255, 255, 0.96)';
+                    sprite.borderColor = node.color;
+                    sprite.borderWidth = 1.2;
+                    sprite.padding = 3.5;
+                    sprite.borderRadius = 4;
+                    group.add(sprite);
+                    clusterBillboards.push(sprite);
+                    return group;
+                }
+
+                // Core Sphere
+                const geom = new THREE.SphereGeometry(3.6, 24, 24);
+                const mat = new THREE.MeshLambertMaterial({
                     color: node.color,
                     transparent: true,
                     opacity: 0.95
                 });
-                const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+                const sphere = new THREE.Mesh(geom, mat);
                 group.add(sphere);
 
-                let labelSprite = null;
-                labelSprite = new SpriteText(`${node.name}\\n(${node.chinese})`);
+                // Text Billboard Sprite
+                const labelSprite = new SpriteText(node.name);
                 labelSprite.color = '#0F172A';
                 labelSprite.textHeight = 3.2;
-                labelSprite.position.y = 7;
-                labelSprite.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                labelSprite.fontWeight = '600';
+                labelSprite.backgroundColor = 'rgba(255, 255, 255, 0.95)';
                 labelSprite.borderColor = node.color;
-                labelSprite.borderWidth = 0.8;
-                labelSprite.padding = 2;
+                labelSprite.borderWidth = 1.0;
+                labelSprite.padding = 2.5;
                 labelSprite.borderRadius = 3;
+                labelSprite.position.y = 8;
                 group.add(labelSprite);
 
                 nodeSpheres.push({ node, sphere, labelSprite });
@@ -1816,11 +1745,11 @@ def generate_step3_threejs_viewer_html() -> str:
 
                 document.getElementById('node-details').style.display = 'block';
                 document.getElementById('det-word').innerText = node.name;
-                document.getElementById('det-chinese').innerText = node.chinese;
-                document.getElementById('det-chinese').style.color = node.color;
+                const badge = document.getElementById("det-role-badge");
+                badge.innerText = currentStep3D === 1 ? "Dispersed Word" : node.cluster_label;
+                badge.style.background = currentStep3D === 1 ? "#475569" : node.color;
                 document.getElementById('det-cluster').innerText = node.cluster_label;
                 document.getElementById('det-role').innerText = node.causal_role;
-                document.getElementById('det-source').innerText = node.historical_source;
                 document.getElementById('det-context').innerText = node.context;
                 document.getElementById('det-coords').innerText = `(${node.fx}, ${node.fy}, ${node.fz})`;
                 document.getElementById("det-context-row").style.display = "block";
@@ -1847,6 +1776,7 @@ def generate_step3_threejs_viewer_html() -> str:
         });
 
         // Add 3D Directed Causal Flow Vectors (A -> C, B -> C, C -> D)
+        // STRICT REQUIREMENT: NO LABELS ON EDGES.
         graphData.causal_edges.forEach(edge => {
             const s = graphData.topics[edge.source].centroid_3d;
             const t = graphData.topics[edge.target].centroid_3d;
@@ -1863,7 +1793,7 @@ def generate_step3_threejs_viewer_html() -> str:
             const tubeMat = new THREE.MeshLambertMaterial({
                 color: edge.color,
                 transparent: true,
-                opacity: 0.8
+                opacity: 0.82
             });
             const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
             Graph.scene().add(tubeMesh);
@@ -1880,19 +1810,6 @@ def generate_step3_threejs_viewer_html() -> str:
             coneMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
             Graph.scene().add(coneMesh);
             causalMeshes.push(coneMesh);
-
-            // 3D Billboard Sprite on the Causal Path
-            const sprite = new SpriteText(`CAUSES [${edge.causal_type}]\\n${edge.relationship}`);
-            sprite.color = edge.color;
-            sprite.textHeight = 3.6;
-            sprite.backgroundColor = 'rgba(255, 255, 255, 0.94)';
-            sprite.borderColor = edge.color;
-            sprite.borderWidth = 1;
-            sprite.padding = 2.5;
-            sprite.borderRadius = 3;
-            sprite.position.copy(mid.clone().add(new THREE.Vector3(0, 0, 6)));
-            Graph.scene().add(sprite);
-            causalMeshes.push(sprite);
         });
 
         Graph.cameraPosition({ x: 210, y: 170, z: 230 });
@@ -1908,8 +1825,8 @@ def generate_step3_threejs_viewer_html() -> str:
 
             if (step === 1) {
                 badge.textContent = "Step 1 • Initial Positions";
-                badge.style.background = "#64748B";
-                desc.textContent = "16 archival vocabulary nodes positioned across 3D space (unclustered baseline).";
+                badge.style.background = "#475569";
+                desc.textContent = "16 everyday words positioned across 3D space (unclustered baseline).";
 
                 clusterBillboards.forEach(b => b.visible = false);
                 boundaryMeshes.forEach(m => m.visible = false);
@@ -1917,13 +1834,13 @@ def generate_step3_threejs_viewer_html() -> str:
                 Graph.linkOpacity(0);
 
                 nodeSpheres.forEach(item => {
-                    item.sphere.material.color.set("#0284C7");
+                    item.sphere.material.color.set("#475569");
                     if (item.labelSprite) item.labelSprite.borderColor = "#CBD5E1";
                 });
             } else if (step === 2) {
                 badge.textContent = "Step 2 • Thematic Clusters";
                 badge.style.background = "#D97706";
-                desc.textContent = "The 16 nodes are grouped into 4 distinct thematic topics with 3D boundary wireframes and billboards.";
+                desc.textContent = "16 nodes grouped into 4 distinct thematic topics with 3D boundary wireframes and billboards.";
 
                 clusterBillboards.forEach(b => b.visible = true);
                 boundaryMeshes.forEach(m => m.visible = true);
@@ -1936,8 +1853,8 @@ def generate_step3_threejs_viewer_html() -> str:
                 });
             } else if (step === 3) {
                 badge.textContent = "Step 3 • 3D Causal Graph";
-                badge.style.background = "#2563EB";
-                desc.textContent = "3D directed causal vectors (A, B ➔ C ➔ D) connecting clusters over stationary node coordinates.";
+                badge.style.background = "#0284C7";
+                desc.textContent = "3D directed causal vectors (A, B ➔ C ➔ D) linking clusters without edge text labels.";
 
                 clusterBillboards.forEach(b => b.visible = true);
                 boundaryMeshes.forEach(m => m.visible = true);
@@ -1956,7 +1873,7 @@ def generate_step3_threejs_viewer_html() -> str:
             if (!t) return;
             const c = t.centroid_3d;
             Graph.cameraPosition(
-                { x: c.x * 1.5 + 40, y: c.y * 1.5 + 40, z: c.z * 1.5 + 80 },
+                { x: c.x * 2.0, y: c.y * 2.0, z: c.z + 120 },
                 { x: c.x, y: c.y, z: c.z },
                 1800
             );
@@ -2139,7 +2056,7 @@ def connect_and_upload_neo4j_step3(
                     z=node["z"],
                 )
 
-            # Insert Macro Directed Causal Links
+            # Insert Macro Directed Causal Links (without edge labels)
             for edge in CAUSAL_EDGES:
                 session.run(
                     """
@@ -2147,10 +2064,8 @@ def connect_and_upload_neo4j_step3(
                     CREATE (src)-[:CAUSES {
                         id: $id,
                         causal_type: $causal_type,
-                        label: $label,
                         relationship: $relationship,
                         mechanism: $mechanism,
-                        historical_evidence: $historical_evidence,
                         weight: $weight,
                         step: 3
                     }]->(tgt)
@@ -2159,10 +2074,8 @@ def connect_and_upload_neo4j_step3(
                     tgt_id=edge["target"],
                     id=edge["id"],
                     causal_type=edge["causal_type"],
-                    label=edge["label"],
                     relationship=edge["relationship"],
                     mechanism=edge["mechanism"],
-                    historical_evidence=edge["historical_evidence"],
                     weight=edge["weight"],
                 )
 
@@ -2171,11 +2084,11 @@ def connect_and_upload_neo4j_step3(
                 session.run(
                     """
                     MATCH (w1:StrikeWord {id: $src}), (w2:StrikeWord {id: $tgt})
-                    CREATE (w1)-[:LEADS_TO {label: $label, type: $type}]->(w2)
+                    CREATE (w1)-[:LEADS_TO {mechanism: $mechanism, type: $type}]->(w2)
                     """,
                     src=link["source"],
                     tgt=link["target"],
-                    label=link["label"],
+                    mechanism=link["mechanism"],
                     type=link["type"],
                 )
 

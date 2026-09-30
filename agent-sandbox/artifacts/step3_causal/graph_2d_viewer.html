@@ -56,7 +56,7 @@
         }
         .badge {
             display: inline-block;
-            background: #2563EB;
+            background: #0284C7;
             color: #EFF6FF;
             font-size: 11px;
             font-weight: 600;
@@ -86,7 +86,7 @@
             border-radius: 8px;
             padding: 10px 12px;
             margin-bottom: 14px;
-            border-left: 3px solid #2563EB;
+            border-left: 3px solid #0284C7;
             font-size: 12px;
             color: #334155;
             line-height: 1.5;
@@ -137,34 +137,34 @@
         }
         .step-tab {
             flex: 1;
-            padding: 6px 4px;
             text-align: center;
+            padding: 6px 4px;
             font-size: 11px;
             font-weight: 600;
+            color: #64748B;
             border-radius: 6px;
             cursor: pointer;
-            background: none;
-            border: none;
-            color: #64748B;
             transition: all 0.2s;
+            border: none;
+            background: none;
         }
         .step-tab.active {
             background: #FFFFFF;
-            color: #2563EB;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            color: #0F172A;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         .controls-group {
             display: flex;
-            flex-wrap: wrap;
             gap: 6px;
         }
         .btn {
+            flex: 1;
             background: #F1F5F9;
             border: 1px solid #CBD5E1;
             color: #334155;
-            padding: 6px 10px;
+            padding: 7px 10px;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
@@ -173,39 +173,43 @@
             background: #E2E8F0;
         }
         .btn.active {
-            background: #2563EB;
-            border-color: #2563EB;
+            background: #0284C7;
+            border-color: #0284C7;
             color: #FFFFFF;
         }
         #node-details {
             position: absolute;
-            bottom: 24px;
-            right: 24px;
+            bottom: 20px;
+            right: 20px;
             z-index: 10;
             background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(12px);
             border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 20px 24px;
-            max-width: 420px;
+            max-width: 380px;
             display: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
         #node-details h3 {
-            font-size: 18px;
+            font-size: 17px;
             color: #0F172A;
             margin-bottom: 2px;
         }
-        #node-details .chinese {
-            font-size: 14px;
-            margin-bottom: 12px;
+        #node-details .role-badge {
+            display: inline-block;
+            font-size: 11px;
             font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            color: #FFFFFF;
         }
         #node-details .meta-row {
             font-size: 12px;
             color: #475569;
-            margin-bottom: 6px;
-            line-height: 1.4;
+            margin-bottom: 8px;
+            line-height: 1.45;
         }
         #node-details .meta-row strong {
             color: #0F172A;
@@ -224,43 +228,12 @@
             color: #0F172A;
         }
 
-        /* SVG Causal Visual Elements */
-        .causal-vector-path {
-            fill: none;
-            stroke-width: 4px;
-            stroke-linecap: round;
-            opacity: 0.85;
-            transition: stroke-width 0.2s, opacity 0.2s;
-            cursor: pointer;
-        }
-        .causal-vector-path:hover {
-            stroke-width: 6px;
-            opacity: 1;
-        }
-        .causal-flow-pulse {
-            fill: none;
-            stroke: #FFFFFF;
-            stroke-width: 2px;
-            stroke-dasharray: 8, 16;
-            animation: flow-pulse 1.8s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes flow-pulse {
-            to { stroke-dashoffset: -48; }
-        }
-        .causal-badge-group {
-            cursor: pointer;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
-            transition: transform 0.2s;
-        }
-        .causal-badge-group:hover {
-            transform: scale(1.05);
-        }
+        /* SVG Causal & Hull styling */
         .cluster-hull {
             fill-opacity: 0.08;
-            stroke-dasharray: 6, 4;
             stroke-width: 1.8px;
-            transition: fill-opacity 0.2s, stroke-width 0.2s;
+            stroke-dasharray: 6, 4;
+            transition: fill-opacity 0.3s ease, stroke-width 0.3s ease;
             cursor: pointer;
         }
         .cluster-hull:hover {
@@ -269,65 +242,79 @@
         }
         .cluster-badge-group {
             cursor: pointer;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
         }
         .cluster-badge-bg {
-            fill: #FFFFFF;
-            rx: 8px;
-            ry: 8px;
-            stroke-width: 1.5px;
+            fill: rgba(255, 255, 255, 0.96);
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.07));
+            rx: 6px;
+            ry: 6px;
         }
         .cluster-badge-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             text-anchor: middle;
             dominant-baseline: central;
         }
         .cluster-badge-sub {
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: 500;
             text-anchor: middle;
             dominant-baseline: central;
         }
         .intra-link {
-            stroke-opacity: 0.22;
-            stroke-width: 1px;
-            stroke-dasharray: 3, 3;
+            stroke-width: 1.2px;
+            stroke-dasharray: 2, 3;
+            stroke-opacity: 0.35;
+        }
+
+        /* Directed Causal Vectors (NO EDGE LABELS) */
+        .causal-vector-path {
+            fill: none;
+            stroke-width: 4.5px;
+            stroke-linecap: round;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+            transition: stroke-width 0.2s ease;
+        }
+        .causal-vector-path:hover {
+            stroke-width: 6.5px;
+        }
+        .causal-flow-pulse {
+            fill: none;
+            stroke: #FFFFFF;
+            stroke-width: 2.2px;
+            stroke-linecap: round;
+            stroke-dasharray: 12, 18;
+            animation: flowDash 2.4s linear infinite;
             pointer-events: none;
         }
+        @keyframes flowDash {
+            to { stroke-dashoffset: -120; }
+        }
+
+        /* Node styling */
         .node-circle {
             cursor: pointer;
             transition: r 0.2s ease, filter 0.2s ease;
         }
         .node-circle:hover {
-            filter: drop-shadow(0 0 10px currentColor);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
         }
-        .node-halo {
+        .node-label-pill {
             pointer-events: none;
-            animation: pulse-halo 3s infinite ease-in-out;
-        }
-        @keyframes pulse-halo {
-            0% { opacity: 0.15; transform: scale(1); }
-            50% { opacity: 0.35; transform: scale(1.18); }
-            100% { opacity: 0.15; transform: scale(1); }
         }
         .label-bg {
-            fill: rgba(255, 255, 255, 0.95);
-            stroke-width: 1px;
+            fill: rgba(255, 255, 255, 0.96);
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
             rx: 6px;
             ry: 6px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
         }
         .label-text-en {
-            font-size: 11px;
-            font-weight: 700;
             fill: #0F172A;
+            font-size: 11px;
+            font-weight: 600;
             text-anchor: middle;
-        }
-        .label-text-zh {
-            font-size: 10px;
-            text-anchor: middle;
-            font-weight: 500;
+            dominant-baseline: central;
         }
     </style>
 </head>
@@ -336,82 +323,111 @@
 
     <div class="hud-panel">
         <div class="hud-title">
-            <span>China Strike Knowledge Graph</span>
+            <span>Causal Knowledge Graph</span>
             <span class="badge" id="hud-badge">Step 3 • Causal Graph</span>
         </div>
-        <div class="hud-desc" id="hud-desc-text">
-            Directed causal relationships connecting topic clusters (A, B ➔ C ➔ D) overlaid on stationary vocabulary coordinates.
-        </div>
-        <div class="callout-box">
-            💡 <strong>Zero Node Movement:</strong> Nodes remain at their exact initial embedding positions. Toggle tabs below to watch the causal knowledge graph emerge!
+        <div class="hud-desc" id="hud-desc">
+            Directed causal flow vectors (A, B ➔ C ➔ D) linking clusters over stationary node positions.
         </div>
 
+        <div class="callout-box">
+            <strong>Key Visual Principle:</strong> Node coordinates are 100% stationary across all steps. Directed causal arrows show influence without text clutter.
+        </div>
+
+        <!-- 3-Step Mode Toggle -->
         <div class="step-toggle-group">
-            <button class="step-tab" id="tab-step1" onclick="setStepMode(1)">1. Initial</button>
+            <button class="step-tab" id="tab-step1" onclick="setStepMode(1)">1. Dispersed</button>
             <button class="step-tab" id="tab-step2" onclick="setStepMode(2)">2. Clusters</button>
             <button class="step-tab active" id="tab-step3" onclick="setStepMode(3)">3. Causal Graph</button>
         </div>
 
         <div class="causal-blueprint">
-            <div style="font-weight: 700; margin-bottom: 4px; color: #0F172A;">Causal Blueprint Architecture:</div>
-            <div class="blueprint-row"><span>(A) Economic Grievances</span> <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(B) Union Mobilization</span>  <span>➔</span> <span>(C) Strike</span></div>
-            <div class="blueprint-row"><span>(C) General Strike</span>      <span>➔</span> <span>(D) Paralysis</span></div>
+            <div style="font-weight: 700; margin-bottom: 6px; color: #0F172A;">Causal DAG Architecture:</div>
+            <div class="blueprint-row">
+                <span style="color: #0284C7; font-weight:700;">Topic A (Heavy Rain)</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #0D9488; font-weight:700;">Topic B (High Winds)</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+                <span>──➔</span>
+                <span style="color: #7C3AED; font-weight:700;">Topic D (Delays)</span>
+            </div>
         </div>
 
-        <div class="cluster-pill-list" id="cluster-pills"></div>
+        <div class="cluster-pill-list">
+            <div class="cluster-pill-item" onclick="focusCluster('A')">
+                <div class="cluster-color-circle" style="background: #0284C7;"></div>
+                <span>A: Heavy Rain</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster('B')">
+                <div class="cluster-color-circle" style="background: #0D9488;"></div>
+                <span>B: High Winds</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster('C')">
+                <div class="cluster-color-circle" style="background: #EA580C;"></div>
+                <span>C: Traffic Gridlock</span>
+            </div>
+            <div class="cluster-pill-item" onclick="focusCluster('D')">
+                <div class="cluster-color-circle" style="background: #7C3AED;"></div>
+                <span>D: Daily Delays</span>
+            </div>
+        </div>
 
         <div class="controls-group">
             <button class="btn active" id="btn-toggle-vectors" onclick="toggleVectors()">Causal Vectors</button>
             <button class="btn active" id="btn-toggle-hulls" onclick="toggleHulls()">Boundaries</button>
-            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Labels</button>
-            <button class="btn" onclick="zoomIn()">Zoom (+)</button>
-            <button class="btn" onclick="zoomOut()">Zoom (-)</button>
             <button class="btn" onclick="resetZoom()">Reset View</button>
         </div>
     </div>
 
+    <!-- Node / Edge Inspector -->
     <div id="node-details">
         <button class="close-btn" onclick="closeDetails()">&times;</button>
-        <h3 id="det-word">Title</h3>
-        <div class="chinese" id="det-chinese">Subtitle</div>
-        <div class="meta-row"><strong>Type / Category:</strong> <span id="det-cluster"></span></div>
-        <div class="meta-row"><strong>Causal Mechanism:</strong> <span id="det-role"></span></div>
-        <div class="meta-row"><strong>Historical Evidence:</strong> <span id="det-source"></span></div>
-        <div class="meta-row" id="det-context-row"><strong>Archival Context:</strong> <span id="det-context"></span></div>
-        <div class="meta-row" id="det-coords-row"><strong>2D Coordinates:</strong> <span id="det-coords"></span></div>
+        <h3 id="det-word">Term Name</h3>
+        <span class="role-badge" id="det-role-badge">Topic Cluster</span>
+        <div class="meta-row"><strong>Topic Cluster:</strong> <span id="det-cluster">Cluster</span></div>
+        <div class="meta-row"><strong>Causal Role:</strong> <span id="det-role">Role</span></div>
+        <div class="meta-row" id="det-context-row"><strong>Description:</strong> <span id="det-context">Context</span></div>
+        <div class="meta-row" id="det-coords-row"><strong>Coordinates:</strong> <span id="det-coords">(x, y, z)</span></div>
     </div>
 
     <script>
-        const graphData = {"metadata": {"title": "1920s Chinese Strike Causal Knowledge Graph", "step": 3, "stage_name": "Directed Causal Induction", "description": "Full causal knowledge graph showing directed relationships between topic clusters (A, B -> C -> D) over stationary word coordinates.", "total_nodes": 16, "total_topics": 4, "total_causal_edges": 3, "total_intra_links": 24, "total_micro_causal_links": 7, "theme": "pure_white_background", "clustering_mode": "stationary_spatial_clusters_with_causality"}, "topics": {"A": {"id": "A", "name": "Economic Grievances & Inflation", "chinese_name": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "short_label": "Topic A: Economic Grievances", "description": "Post-WWI economic depression, soaring rice prices, currency volatility, and unlivable laborer wages.", "causal_role": "Pre-condition / Cause (A -> C)", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "centroid_2d": {"x": -64.0, "y": 49.5}, "centroid_3d": {"x": -64.0, "y": 49.5, "z": 24.5}}, "B": {"id": "B", "name": "Labor Organizing & Solidarity", "chinese_name": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "short_label": "Topic B: Labor Organizing", "description": "Establishment of labor syndicates, strike committees, boycott manifestos, and picket enforcement.", "causal_role": "Catalyst / Cause (B -> C)", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "centroid_2d": {"x": -60.5, "y": -47.0}, "centroid_3d": {"x": -60.5, "y": -47.0, "z": -23.5}}, "C": {"id": "C", "name": "Strike Action & Work Stoppage", "chinese_name": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "short_label": "Topic C: General Strike Action", "description": "Mass walkouts, dock shutdowns, street demonstrations, and systemic withdrawal of maritime and municipal labor.", "causal_role": "Central Strike Event (A, B -> C -> D)", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "centroid_2d": {"x": 6.5, "y": 1.5}, "centroid_3d": {"x": 6.5, "y": 1.5, "z": 0.0}}, "D": {"id": "D", "name": "Harbor Paralysis & Colonial Impact", "chinese_name": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "short_label": "Topic D: Harbor & Market Paralysis", "description": "Harbor standstill, 150+ stranded steamships, commercial food shortages, and imperial legislative negotiations.", "causal_role": "Consequence (C -> D)", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "centroid_2d": {"x": 75.5, "y": 3.0}, "centroid_3d": {"x": 75.5, "y": 3.0, "z": 21.0}}}, "nodes": [{"id": "node_1", "word": "Wage Depression", "chinese": "\u5de5\u8cc7\u524a\u6ec5", "topic_id": "A", "historical_source": "The China Mail (1921-1922)", "context": "Stagnant daily laborer wages amidst sharp post-war currency fluctuations.", "x": -82.0, "y": 58.0, "z": 28.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 3, "status": "clustered"}, {"id": "node_2", "word": "Rice Inflation", "chinese": "\u7c73\u50f9\u66b4\u6f32", "topic_id": "A", "historical_source": "Hong Kong MMIS Gazette (1922)", "context": "Skyrocketing price of staple rice threatening subsistence of dock families.", "x": -54.0, "y": 68.0, "z": 22.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 3, "status": "clustered"}, {"id": "node_3", "word": "Ten-Hour Shift", "chinese": "\u6bcf\u65e5\u5341\u6642\u5de5\u5236", "topic_id": "A", "historical_source": "North-China Herald (1923)", "context": "Exhausting operational hours demanded from maritime and transport coolies.", "x": -74.0, "y": 32.0, "z": 14.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 3, "status": "clustered"}, {"id": "node_4", "word": "Living Cost Spiral", "chinese": "\u751f\u6d3b\u6602\u8cb4", "topic_id": "A", "historical_source": "The China Mail (1922)", "context": "General cost-of-living index surges driving desperate economic petitions.", "x": -46.0, "y": 40.0, "z": 34.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 3, "status": "clustered"}, {"id": "node_5", "word": "Seamen's Union", "chinese": "\u4e2d\u83ef\u6d77\u54e1\u5de5\u6703", "topic_id": "B", "historical_source": "The China Mail (1922)", "context": "The central maritime guild led by Su Zhaozheng organizing across Hong Kong and Canton.", "x": -78.0, "y": -36.0, "z": -16.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 3, "status": "clustered"}, {"id": "node_6", "word": "Strike Committee", "chinese": "\u7f77\u5de5\u59d4\u54e1\u6703", "topic_id": "B", "historical_source": "Canton Gazette (1925)", "context": "Executive coordinating council managing strike logistics, food rations, and strategy.", "x": -48.0, "y": -28.0, "z": -26.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 3, "status": "clustered"}, {"id": "node_7", "word": "Picket Corps", "chinese": "\u5de5\u4eba\u7cfe\u5bdf\u968a", "topic_id": "B", "historical_source": "The China Mail (1925)", "context": "Organized worker patrols enforcing the anti-colonial shipping embargo.", "x": -72.0, "y": -66.0, "z": -34.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 3, "status": "clustered"}, {"id": "node_8", "word": "Boycott Manifesto", "chinese": "\u62b5\u5236\u5ba3\u50b3\u5ba3\u8a00", "topic_id": "B", "historical_source": "Shanghai Municipal Archives (1925)", "context": "Leaflets distributed across treaty ports calling for national anti-imperial unity.", "x": -44.0, "y": -58.0, "z": -18.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 3, "status": "clustered"}, {"id": "node_9", "word": "General Strike", "chinese": "\u5168\u6e2f\u5927\u7f77\u5de5", "topic_id": "C", "historical_source": "The China Mail (1922)", "context": "Complete stoppage of maritime and municipal work paralyzing the colony.", "x": -12.0, "y": 16.0, "z": 12.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 3, "status": "clustered"}, {"id": "node_10", "word": "Dockworker Walkout", "chinese": "\u78bc\u982d\u5de5\u4eba\u5168\u9ad4\u96e2\u5de5", "topic_id": "C", "historical_source": "The China Mail (1922)", "context": "Stevedores and cargo loaders abandoning British ships in Victoria Harbour.", "x": 22.0, "y": 20.0, "z": -10.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 3, "status": "clustered"}, {"id": "node_11", "word": "Work Cessation", "chinese": "\u505c\u5de5\u505c\u696d", "topic_id": "C", "historical_source": "Hong Kong MMIS (1925)", "context": "Sympathy strikes spreading to domestic servants, tram drivers, and clerks.", "x": -8.0, "y": -18.0, "z": -12.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 3, "status": "clustered"}, {"id": "node_12", "word": "Mass Demonstration", "chinese": "\u7fa4\u773e\u8acb\u9858\u793a\u5a01", "topic_id": "C", "historical_source": "The China Mail (1922)", "context": "Gatherings of thousands marching through urban centers demanding rights and dignity.", "x": 24.0, "y": -12.0, "z": 10.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 3, "status": "clustered"}, {"id": "node_13", "word": "Port Paralysis", "chinese": "\u6e2f\u53e3\u6d77\u904b\u7671\u7613", "topic_id": "D", "historical_source": "The China Mail (1922)", "context": "Over 150 merchant vessels anchored idle with zero cargo discharge capacity.", "x": 58.0, "y": 18.0, "z": 28.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 3, "status": "clustered"}, {"id": "node_14", "word": "Shipping Deadlock", "chinese": "\u8f2a\u8239\u505c\u822a\u505c\u6cca", "topic_id": "D", "historical_source": "The China Mail (1925)", "context": "Complete standstill of coastal and trans-Pacific commercial steamer traffic.", "x": 92.0, "y": 22.0, "z": 14.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 3, "status": "clustered"}, {"id": "node_15", "word": "Market Interruption", "chinese": "\u5e02\u9762\u5546\u696d\u505c\u6eef", "topic_id": "D", "historical_source": "Hong Kong Chamber of Commerce (1922)", "context": "Retail closures, supply shortages, and emergency rationing across Victoria.", "x": 62.0, "y": -18.0, "z": 18.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 3, "status": "clustered"}, {"id": "node_16", "word": "Colonial Concessions", "chinese": "\u7576\u5c40\u8b93\u6b65\u8ac7\u5224", "topic_id": "D", "historical_source": "The China Mail (1922)", "context": "Colonial government and shipping conglomerates agreeing to wage hikes and union recognition.", "x": 90.0, "y": -10.0, "z": 24.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 3, "status": "clustered"}], "intra_cluster_links": [{"source": "node_1", "target": "node_2", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_1", "target": "node_3", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_1", "target": "node_4", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_2", "target": "node_3", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_2", "target": "node_4", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_3", "target": "node_4", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_5", "target": "node_6", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_5", "target": "node_7", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_5", "target": "node_8", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_6", "target": "node_7", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_6", "target": "node_8", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_7", "target": "node_8", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_9", "target": "node_10", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_9", "target": "node_11", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_9", "target": "node_12", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_10", "target": "node_11", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_10", "target": "node_12", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_11", "target": "node_12", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_13", "target": "node_14", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_13", "target": "node_15", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_13", "target": "node_16", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_14", "target": "node_15", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_14", "target": "node_16", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_15", "target": "node_16", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}], "causal_edges": [{"id": "causal_A_C", "source": "A", "target": "C", "source_name": "Economic Grievances & Inflation", "target_name": "Strike Action & Work Stoppage", "type": "CAUSES", "causal_type": "PRECONDITION", "label": "Causes Strike Action (Precondition)", "relationship": "A \u2794 C", "mechanism": "Post-war inflation, staple food price surges, and depressed wages created unbearable economic pressure that compelled laborers to strike.", "historical_evidence": "1922 Hong Kong Seamen's petitions demanded a 30-40% wage increase directly citing that rice costs had tripled since 1914.", "color": "#E11D48", "arrow_color": "#E11D48", "weight": 3.0}, {"id": "causal_B_C", "source": "B", "target": "C", "source_name": "Labor Organizing & Solidarity", "target_name": "Strike Action & Work Stoppage", "type": "CAUSES", "causal_type": "CATALYST", "label": "Causes Strike Action (Catalyst)", "relationship": "B \u2794 C", "mechanism": "Organized syndicates, executive strike committees, and cross-provincial boycotted shipping networks provided the tactical machinery to mobilize 100,000+ workers.", "historical_evidence": "The Chinese Seamen's Union and Canton strike headquarters established disciplined picket patrols and mutual-aid food kitchens enabling indefinite walkouts.", "color": "#0D9488", "arrow_color": "#0D9488", "weight": 3.0}, {"id": "causal_C_D", "source": "C", "target": "D", "source_name": "Strike Action & Work Stoppage", "target_name": "Harbor Paralysis & Colonial Impact", "type": "CAUSES", "causal_type": "CONSEQUENCE", "label": "Causes Port Paralysis (Consequence)", "relationship": "C \u2794 D", "mechanism": "Complete cessation of dock handling, cargo transport, and municipal services paralyzed British maritime trade, resulting in emergency rationing and colonial surrender.", "historical_evidence": "The China Mail reported over 150 merchant steamships stranded in Victoria Harbour, commercial life halted, and colonial authorities ultimately agreeing to union recognition and wage increases.", "color": "#2563EB", "arrow_color": "#7C3AED", "weight": 3.5}], "word_causal_links": [{"source": "node_1", "target": "node_9", "type": "MICRO_CAUSAL", "label": "Wage Depression triggers General Strike"}, {"source": "node_2", "target": "node_9", "type": "MICRO_CAUSAL", "label": "Rice Inflation triggers General Strike"}, {"source": "node_5", "target": "node_10", "type": "MICRO_CAUSAL", "label": "Seamen's Union organizes Dockworker Walkout"}, {"source": "node_6", "target": "node_12", "type": "MICRO_CAUSAL", "label": "Strike Committee mobilizes Mass Demonstration"}, {"source": "node_9", "target": "node_13", "type": "MICRO_CAUSAL", "label": "General Strike induces Port Paralysis"}, {"source": "node_10", "target": "node_14", "type": "MICRO_CAUSAL", "label": "Dockworker Walkout results in Shipping Deadlock"}, {"source": "node_11", "target": "node_15", "type": "MICRO_CAUSAL", "label": "Work Cessation leads to Market Interruption"}]};
+        const graphData = {"metadata": {"title": "Weather & Commuting Disruption: Causal Knowledge Graph", "step": 3, "description": "Directed causal graph connecting clusters (A, B -> C -> D) over stationary node coordinates with clean unlabeled arrows.", "total_nodes": 16, "total_topics": 4, "total_causal_edges": 3, "total_intra_links": 16, "total_micro_causal_links": 7, "theme": "pure_white_background", "clustering_mode": "stationary_spatial_clusters_with_causality", "edge_labels": "none_clean_arrows"}, "topics": {"A": {"id": "A", "name": "Heavy Rain", "chinese_name": "\u66b4\u96e8\u7a4d\u6c34", "short_label": "Topic A: Heavy Rain", "description": "Severe downpours, flash floods, and waterlogged roadway surfaces.", "causal_role": "Cause (A \u2794 C)", "color": "#0284C7", "bg_color": "rgba(2, 132, 199, 0.08)", "border_color": "rgba(2, 132, 199, 0.45)", "centroid_2d": {"x": -64.0, "y": 49.5}, "centroid_3d": {"x": -64.0, "y": 49.5, "z": 24.5}}, "B": {"id": "B", "name": "High Winds", "chinese_name": "\u5f37\u98a8\u65b7\u679d", "short_label": "Topic B: High Winds", "description": "Gale gusts, fallen trees, and flying debris obstructing travel corridors.", "causal_role": "Cause (B \u2794 C)", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.45)", "centroid_2d": {"x": -60.5, "y": -47.0}, "centroid_3d": {"x": -60.5, "y": -47.0, "z": -23.5}}, "C": {"id": "C", "name": "Traffic Gridlock", "chinese_name": "\u4ea4\u901a\u7671\u7613", "short_label": "Topic C: Traffic Gridlock", "description": "Road closures, standstill traffic jams, and immobilized highway lanes.", "causal_role": "Central Event (A, B \u2794 C \u2794 D)", "color": "#EA580C", "bg_color": "rgba(234, 88, 12, 0.08)", "border_color": "rgba(234, 88, 12, 0.45)", "centroid_2d": {"x": 6.5, "y": 1.5}, "centroid_3d": {"x": 6.5, "y": 1.5, "z": 0.0}}, "D": {"id": "D", "name": "Daily Delays", "chinese_name": "\u65e5\u7a0b\u5ef6\u8aa4", "short_label": "Topic D: Daily Delays", "description": "Late work arrivals, missed flights, school delays, and cancelled meetings.", "causal_role": "Consequence (C \u2794 D)", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.45)", "centroid_2d": {"x": 75.5, "y": 3.0}, "centroid_3d": {"x": 75.5, "y": 3.0, "z": 21.0}}}, "nodes": [{"id": "node_1", "word": "Torrential Downpour", "chinese": "\u66b4\u96e8\u50be\u76c6", "topic_id": "A", "historical_source": "City Weather Bureau Report", "context": "Extreme rainfall overwhelming municipal storm drains within minutes.", "x": -82.0, "y": 58.0, "z": 28.0, "color": "#0284C7", "size": 14, "step": 3, "topic_name": "Heavy Rain", "cluster_label": "Topic A: Heavy Rain", "causal_role": "Cause (A \u2794 C)", "border_color": "rgba(2, 132, 199, 0.45)"}, {"id": "node_2", "word": "Flash Floods", "chinese": "\u7a81\u767c\u7a4d\u6c34", "topic_id": "A", "historical_source": "Emergency Alert Notification", "context": "Rapidly rising water levels submerging roads and highway underpasses.", "x": -54.0, "y": 68.0, "z": 22.0, "color": "#0284C7", "size": 14, "step": 3, "topic_name": "Heavy Rain", "cluster_label": "Topic A: Heavy Rain", "causal_role": "Cause (A \u2794 C)", "border_color": "rgba(2, 132, 199, 0.45)"}, {"id": "node_3", "word": "Heavy Rain", "chinese": "\u5f37\u964d\u96e8", "topic_id": "A", "historical_source": "Morning Commute Advisory", "context": "Prolonged rainfall severely reducing vehicle braking distance and visibility.", "x": -74.0, "y": 32.0, "z": 14.0, "color": "#0284C7", "size": 14, "step": 3, "topic_name": "Heavy Rain", "cluster_label": "Topic A: Heavy Rain", "causal_role": "Cause (A \u2794 C)", "border_color": "rgba(2, 132, 199, 0.45)"}, {"id": "node_4", "word": "Flooded Streets", "chinese": "\u8857\u9053\u6df9\u6c34", "topic_id": "A", "historical_source": "Municipal Traffic Camera Feed", "context": "Deep standing water covering main lanes and preventing vehicle passage.", "x": -46.0, "y": 40.0, "z": 34.0, "color": "#0284C7", "size": 14, "step": 3, "topic_name": "Heavy Rain", "cluster_label": "Topic A: Heavy Rain", "causal_role": "Cause (A \u2794 C)", "border_color": "rgba(2, 132, 199, 0.45)"}, {"id": "node_5", "word": "High Winds", "chinese": "\u72c2\u98a8\u5927\u4f5c", "topic_id": "B", "historical_source": "Gale Warning Advisory", "context": "Severe gale-force gusts buffeting bridges and exposed commuter corridors.", "x": -78.0, "y": -36.0, "z": -16.0, "color": "#0D9488", "size": 14, "step": 3, "topic_name": "High Winds", "cluster_label": "Topic B: High Winds", "causal_role": "Cause (B \u2794 C)", "border_color": "rgba(13, 148, 136, 0.45)"}, {"id": "node_6", "word": "Fallen Trees", "chinese": "\u6a39\u6728\u5012\u584c", "topic_id": "B", "historical_source": "Public Works Service Log", "context": "Uprooted trees falling directly across arterial travel avenues.", "x": -48.0, "y": -28.0, "z": -26.0, "color": "#0D9488", "size": 14, "step": 3, "topic_name": "High Winds", "cluster_label": "Topic B: High Winds", "causal_role": "Cause (B \u2794 C)", "border_color": "rgba(13, 148, 136, 0.45)"}, {"id": "node_7", "word": "Broken Branches", "chinese": "\u8def\u9762\u65b7\u679d", "topic_id": "B", "historical_source": "Road Maintenance Dispatch", "context": "Heavy branches littering intersections and blocking transit pathways.", "x": -72.0, "y": -66.0, "z": -34.0, "color": "#0D9488", "size": 14, "step": 3, "topic_name": "High Winds", "cluster_label": "Topic B: High Winds", "causal_role": "Cause (B \u2794 C)", "border_color": "rgba(13, 148, 136, 0.45)"}, {"id": "node_8", "word": "Flying Debris", "chinese": "\u98db\u6563\u96dc\u7269", "topic_id": "B", "historical_source": "Highway Patrol Incident Record", "context": "Loose signs and materials blown across multilane traffic lanes.", "x": -44.0, "y": -58.0, "z": -18.0, "color": "#0D9488", "size": 14, "step": 3, "topic_name": "High Winds", "cluster_label": "Topic B: High Winds", "causal_role": "Cause (B \u2794 C)", "border_color": "rgba(13, 148, 136, 0.45)"}, {"id": "node_9", "word": "Traffic Jam", "chinese": "\u4ea4\u901a\u5835\u585e", "topic_id": "C", "historical_source": "Metro Transit Broadcast", "context": "Miles of bumper-to-bumper standstill traffic during rush hour.", "x": -12.0, "y": 16.0, "z": 12.0, "color": "#EA580C", "size": 14, "step": 3, "topic_name": "Traffic Gridlock", "cluster_label": "Topic C: Traffic Gridlock", "causal_role": "Central Event (A, B \u2794 C \u2794 D)", "border_color": "rgba(234, 88, 12, 0.45)"}, {"id": "node_10", "word": "Road Closures", "chinese": "\u9053\u8def\u5c01\u9589", "topic_id": "C", "historical_source": "Department of Transportation", "context": "Police barricades closing blocked avenues and detouring vehicles.", "x": 22.0, "y": 20.0, "z": -10.0, "color": "#EA580C", "size": 14, "step": 3, "topic_name": "Traffic Gridlock", "cluster_label": "Topic C: Traffic Gridlock", "causal_role": "Central Event (A, B \u2794 C \u2794 D)", "border_color": "rgba(234, 88, 12, 0.45)"}, {"id": "node_11", "word": "Stalled Cars", "chinese": "\u8eca\u8f1b\u62cb\u9328", "topic_id": "C", "historical_source": "Roadside Assistance Dispatch", "context": "Disabled and hydroplaned vehicles stranded in active driving lanes.", "x": -8.0, "y": -18.0, "z": -12.0, "color": "#EA580C", "size": 14, "step": 3, "topic_name": "Traffic Gridlock", "cluster_label": "Topic C: Traffic Gridlock", "causal_role": "Central Event (A, B \u2794 C \u2794 D)", "border_color": "rgba(234, 88, 12, 0.45)"}, {"id": "node_12", "word": "Highway Gridlock", "chinese": "\u9ad8\u901f\u7671\u7613", "topic_id": "C", "historical_source": "State Highway Traffic Command", "context": "Total operational standstill across primary expressway corridors.", "x": 24.0, "y": -12.0, "z": 10.0, "color": "#EA580C", "size": 14, "step": 3, "topic_name": "Traffic Gridlock", "cluster_label": "Topic C: Traffic Gridlock", "causal_role": "Central Event (A, B \u2794 C \u2794 D)", "border_color": "rgba(234, 88, 12, 0.45)"}, {"id": "node_13", "word": "Late for Work", "chinese": "\u4e0a\u73ed\u9072\u5230", "topic_id": "D", "historical_source": "Employee Office Notification", "context": "Commuters arriving hours late for morning shifts and meetings.", "x": 58.0, "y": 18.0, "z": 28.0, "color": "#7C3AED", "size": 14, "step": 3, "topic_name": "Daily Delays", "cluster_label": "Topic D: Daily Delays", "causal_role": "Consequence (C \u2794 D)", "border_color": "rgba(124, 58, 237, 0.45)"}, {"id": "node_14", "word": "Missed Flights", "chinese": "\u932f\u904e\u822a\u73ed", "topic_id": "D", "historical_source": "Airport Terminal Operations", "context": "Travelers unable to navigate blocked airport roads prior to gate closure.", "x": 92.0, "y": 22.0, "z": 14.0, "color": "#7C3AED", "size": 14, "step": 3, "topic_name": "Daily Delays", "cluster_label": "Topic D: Daily Delays", "causal_role": "Consequence (C \u2794 D)", "border_color": "rgba(124, 58, 237, 0.45)"}, {"id": "node_15", "word": "School Delays", "chinese": "\u5b78\u6821\u505c\u8ab2\u5ef6\u671f", "topic_id": "D", "historical_source": "District School Board Bulletin", "context": "Bus transit suspended and morning bell times delayed for student safety.", "x": 62.0, "y": -18.0, "z": 18.0, "color": "#7C3AED", "size": 14, "step": 3, "topic_name": "Daily Delays", "cluster_label": "Topic D: Daily Delays", "causal_role": "Consequence (C \u2794 D)", "border_color": "rgba(124, 58, 237, 0.45)"}, {"id": "node_16", "word": "Cancelled Meetings", "chinese": "\u6703\u8b70\u53d6\u6d88", "topic_id": "D", "historical_source": "Corporate Schedule Updates", "context": "Business appointments postponed due to stranded attendees.", "x": 90.0, "y": -10.0, "z": 24.0, "color": "#7C3AED", "size": 14, "step": 3, "topic_name": "Daily Delays", "cluster_label": "Topic D: Daily Delays", "causal_role": "Consequence (C \u2794 D)", "border_color": "rgba(124, 58, 237, 0.45)"}], "intra_cluster_links": [{"source": "node_1", "target": "node_2", "color": "#0284C7", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_2", "target": "node_3", "color": "#0284C7", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_3", "target": "node_4", "color": "#0284C7", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_4", "target": "node_1", "color": "#0284C7", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_5", "target": "node_6", "color": "#0D9488", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_6", "target": "node_7", "color": "#0D9488", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_7", "target": "node_8", "color": "#0D9488", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_8", "target": "node_5", "color": "#0D9488", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_9", "target": "node_10", "color": "#EA580C", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_10", "target": "node_11", "color": "#EA580C", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_11", "target": "node_12", "color": "#EA580C", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_12", "target": "node_9", "color": "#EA580C", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_13", "target": "node_14", "color": "#7C3AED", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_14", "target": "node_15", "color": "#7C3AED", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_15", "target": "node_16", "color": "#7C3AED", "weight": 1.0, "type": "INTRA_CLUSTER"}, {"source": "node_16", "target": "node_13", "color": "#7C3AED", "weight": 1.0, "type": "INTRA_CLUSTER"}], "causal_edges": [{"id": "causal_A_C", "source": "A", "target": "C", "source_name": "Heavy Rain", "target_name": "Traffic Gridlock", "type": "CAUSES", "causal_type": "PRECONDITION", "relationship": "A \u2794 C", "mechanism": "Torrential downpours and flash floods submerge roads, causing widespread traffic gridlock.", "color": "#0284C7", "arrow_color": "#0284C7", "weight": 3.0}, {"id": "causal_B_C", "source": "B", "target": "C", "source_name": "High Winds", "target_name": "Traffic Gridlock", "type": "CAUSES", "causal_type": "CATALYST", "relationship": "B \u2794 C", "mechanism": "High winds topple trees and scatter debris onto streets, blocking travel corridors.", "color": "#0D9488", "arrow_color": "#0D9488", "weight": 3.0}, {"id": "causal_C_D", "source": "C", "target": "D", "source_name": "Traffic Gridlock", "target_name": "Daily Delays", "type": "CAUSES", "causal_type": "CONSEQUENCE", "relationship": "C \u2794 D", "mechanism": "Severe traffic gridlock paralyzes transportation, making people late for work and causing missed appointments.", "color": "#EA580C", "arrow_color": "#7C3AED", "weight": 3.5}], "word_causal_links": [{"source": "node_1", "target": "node_9", "type": "MICRO_CAUSAL", "mechanism": "Torrential downpour triggers massive traffic jams"}, {"source": "node_2", "target": "node_10", "type": "MICRO_CAUSAL", "mechanism": "Flash floods force road closures"}, {"source": "node_6", "target": "node_10", "type": "MICRO_CAUSAL", "mechanism": "Fallen trees cause road closures"}, {"source": "node_8", "target": "node_12", "type": "MICRO_CAUSAL", "mechanism": "Flying debris triggers highway gridlock"}, {"source": "node_9", "target": "node_13", "type": "MICRO_CAUSAL", "mechanism": "Traffic jam causes workers to be late"}, {"source": "node_10", "target": "node_14", "type": "MICRO_CAUSAL", "mechanism": "Road closures lead to missed flights"}, {"source": "node_12", "target": "node_16", "type": "MICRO_CAUSAL", "mechanism": "Highway gridlock leads to cancelled meetings"}]};
         let currentStep = 3;
-        let showLabels = true;
         let showHulls = true;
         let showVectors = true;
         let selectedNodeId = null;
 
-        const svg = d3.select("#svg-canvas");
         const width = window.innerWidth;
         const height = window.innerHeight;
-        svg.attr("width", width).attr("height", height);
 
-        // Populate HUD cluster pills
-        const pillsContainer = document.getElementById("cluster-pills");
+        const svg = d3.select("#svg-canvas")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Arrow marker definitions per topic color (NO TEXT LABELS, just markers)
+        const defs = svg.append("defs");
         Object.entries(graphData.topics).forEach(([id, t]) => {
-            const item = document.createElement("div");
-            item.className = "cluster-pill-item";
-            item.innerHTML = `
-                <div class="cluster-color-circle" style="background:${t.color};"></div>
-                <span style="color:#0F172A;">Topic ${id}</span>
-            `;
-            item.onclick = () => focusCluster(id);
-            pillsContainer.appendChild(item);
+            defs.append("marker")
+                .attr("id", `arrow-${id}`)
+                .attr("viewBox", "0 -5 10 10")
+                .attr("refX", 7)
+                .attr("refY", 0)
+                .attr("markerWidth", 8)
+                .attr("markerHeight", 8)
+                .attr("orient", "auto")
+                .append("path")
+                .attr("d", "M 0,-4.5 L 9,0 L 0,4.5 Z")
+                .attr("fill", t.color);
         });
 
-        // SVG Definitions (Arrowheads, filters, grid)
-        const defs = svg.append("defs");
-
-        // Subtle grid pattern
+        // Background dot grid
         const pattern = defs.append("pattern")
             .attr("id", "grid")
             .attr("width", 40)
@@ -428,58 +444,45 @@
             .attr("height", "100%")
             .attr("fill", "url(#grid)");
 
-        // Arrowhead markers for each causal flow
-        Object.entries(graphData.topics).forEach(([id, t]) => {
-            defs.append("marker")
-                .attr("id", `arrow-${id}`)
-                .attr("viewBox", "0 -6 12 12")
-                .attr("refX", 10)
-                .attr("refY", 0)
-                .attr("markerWidth", 8)
-                .attr("markerHeight", 8)
-                .attr("orient", "auto")
-                .append("path")
-                .attr("d", "M0,-5L10,0L0,5")
-                .attr("fill", t.color);
-        });
-
         const container = svg.append("g").attr("id", "zoom-container");
-        const vectorLayer = container.append("g").attr("id", "vector-layer");
+
+        // Layers for clean rendering order
         const hullLayer = container.append("g").attr("id", "hull-layer");
         const linkLayer = container.append("g").attr("id", "link-layer");
-        const badgeLayer = container.append("g").attr("id", "badge-layer");
-        const causalBadgeLayer = container.append("g").attr("id", "causal-badge-layer");
+        const vectorLayer = container.append("g").attr("id", "vector-layer");
         const nodeLayer = container.append("g").attr("id", "node-layer");
+        const badgeLayer = container.append("g").attr("id", "badge-layer");
 
-        // Scale coordinates
         const scaleFactor = 4.8;
         const nodes = graphData.nodes.map(n => ({
             ...n,
             x: width / 2 + n.x * scaleFactor,
-            y: height / 2 - n.y * scaleFactor
+            y: height / 2 - n.y * scaleFactor,
+            origX: width / 2 + n.x * scaleFactor,
+            origY: height / 2 - n.y * scaleFactor
         }));
 
-        const nodeMap = new Map(nodes.map(n => [n.id, n]));
-
-        // Calculate Clusters
+        // Group nodes by cluster
         const clusters = {};
         Object.entries(graphData.topics).forEach(([id, t]) => {
-            const tNodes = nodes.filter(n => n.topic_id === id);
-            const cx = d3.mean(tNodes, n => n.x);
-            const cy = d3.mean(tNodes, n => n.y);
-            clusters[id] = {
-                id: id,
-                meta: t,
-                nodes: tNodes,
-                cx: cx,
-                cy: cy
-            };
+            const cNodes = nodes.filter(n => n.topic_id === id);
+            const cx = width / 2 + t.centroid_2d.x * scaleFactor;
+            const cy = height / 2 - t.centroid_2d.y * scaleFactor;
+            clusters[id] = { meta: t, id: id, nodes: cNodes, cx: cx, cy: cy };
         });
 
-        // 1. Draw Intra-Cluster Links
+        // Zoom Behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.35, 3.5])
+            .on("zoom", (event) => {
+                container.attr("transform", event.transform);
+            });
+        svg.call(zoom);
+
+        // 1. Draw Intra-cluster subtle connection lines
         graphData.intra_cluster_links.forEach(l => {
-            const src = nodeMap.get(l.source);
-            const tgt = nodeMap.get(l.target);
+            const src = nodes.find(n => n.id === l.source);
+            const tgt = nodes.find(n => n.id === l.target);
             if (src && tgt) {
                 linkLayer.append("line")
                     .attr("class", "intra-link")
@@ -535,29 +538,29 @@
 
             badge.append("rect")
                 .attr("class", "cluster-badge-bg")
-                .attr("x", -135)
-                .attr("y", -24)
-                .attr("width", 270)
-                .attr("height", 48)
+                .attr("x", -120)
+                .attr("y", -22)
+                .attr("width", 240)
+                .attr("height", 44)
                 .attr("stroke", cl.meta.color);
 
             badge.append("text")
                 .attr("class", "cluster-badge-title")
-                .attr("y", -6)
+                .attr("y", -5)
                 .attr("fill", cl.meta.color)
                 .text(cl.meta.short_label);
 
             badge.append("text")
                 .attr("class", "cluster-badge-sub")
-                .attr("y", 12)
+                .attr("y", 11)
                 .attr("fill", "#475569")
-                .text(`${cl.meta.chinese_name} • ${cl.meta.causal_role}`);
+                .text(cl.meta.causal_role);
         });
 
-        // 4. Draw Directed Causal Flow Vectors (Macro Causal Graph: A -> C, B -> C, C -> D)
+        // 4. Draw Directed Causal Flow Vectors (A -> C, B -> C, C -> D)
+        // STRICT REQUIREMENT: NO LABELS ON EDGES.
         function renderCausalVectors() {
             vectorLayer.selectAll("*").remove();
-            causalBadgeLayer.selectAll("*").remove();
             if (!showVectors || currentStep !== 3) return;
 
             graphData.causal_edges.forEach(edge => {
@@ -565,7 +568,6 @@
                 const tCl = clusters[edge.target];
                 if (!sCl || !tCl) return;
 
-                // Adjust endpoints to stop at cluster perimeter
                 const dx = tCl.cx - sCl.cx;
                 const dy = tCl.cy - sCl.cy;
                 const dist = Math.hypot(dx, dy) || 1;
@@ -577,7 +579,6 @@
                 const tx = tCl.cx - (dx / dist) * offsetEnd;
                 const ty = tCl.cy - (dy / dist) * offsetEnd;
 
-                // Slight curve
                 const midX = (sx + tx) / 2;
                 const midY = (sy + ty) / 2 + (edge.source === "A" ? -28 : (edge.source === "B" ? 28 : -18));
 
@@ -591,8 +592,8 @@
                     .attr("stroke-opacity", 0.16)
                     .attr("fill", "none");
 
-                // Main causal vector path with arrowhead
-                const mainPath = vectorLayer.append("path")
+                // Main causal vector path with arrowhead marker
+                vectorLayer.append("path")
                     .attr("class", "causal-vector-path")
                     .attr("d", pathData)
                     .attr("stroke", edge.color)
@@ -602,46 +603,10 @@
                         showCausalDetails(edge);
                     });
 
-                // Animated flow pulse on top
+                // Animated flow pulse
                 vectorLayer.append("path")
                     .attr("class", "causal-flow-pulse")
                     .attr("d", pathData);
-
-                // Causal Mechanism Badge at Midpoint
-                const badge = causalBadgeLayer.append("g")
-                    .attr("class", "causal-badge-group")
-                    .attr("transform", `translate(${midX}, ${midY})`)
-                    .on("click", (event) => {
-                        event.stopPropagation();
-                        showCausalDetails(edge);
-                    });
-
-                badge.append("rect")
-                    .attr("x", -105)
-                    .attr("y", -18)
-                    .attr("width", 210)
-                    .attr("height", 36)
-                    .attr("rx", 18)
-                    .attr("ry", 18)
-                    .attr("fill", "rgba(255, 255, 255, 0.96)")
-                    .attr("stroke", edge.color)
-                    .attr("stroke-width", 1.8);
-
-                badge.append("text")
-                    .attr("y", -3)
-                    .attr("text-anchor", "middle")
-                    .attr("fill", edge.color)
-                    .attr("font-size", "11px")
-                    .attr("font-weight", "800")
-                    .text(`CAUSES [${edge.causal_type}]`);
-
-                badge.append("text")
-                    .attr("y", 11)
-                    .attr("text-anchor", "middle")
-                    .attr("fill", "#475569")
-                    .attr("font-size", "9.5px")
-                    .attr("font-weight", "600")
-                    .text(`${edge.relationship} • Click for Evidence`);
             });
         }
         renderCausalVectors();
@@ -670,25 +635,13 @@
                 selectNode(d);
             });
 
-        // Pulsing Halo
-        nodeGroups.append("circle")
-            .attr("class", "node-halo")
-            .attr("r", 20)
-            .attr("fill", d => d.color);
-
-        // Core Circle
+        // Core Node Circle
         nodeGroups.append("circle")
             .attr("class", "node-circle")
-            .attr("r", 13)
+            .attr("r", 12)
             .attr("fill", d => d.color)
             .attr("stroke", "#FFFFFF")
             .attr("stroke-width", 2.5);
-
-        // Selection Ring
-        nodeGroups.append("circle")
-            .attr("class", "selected-ring")
-            .attr("r", 19)
-            .attr("display", d => (d.id === selectedNodeId ? "block" : "none"));
 
         // Label Pill
         const labelGroups = nodeGroups.append("g")
@@ -697,182 +650,146 @@
 
         labelGroups.append("rect")
             .attr("class", "label-bg")
-            .attr("x", -65)
-            .attr("y", -8)
-            .attr("width", 130)
-            .attr("height", 32)
-            .attr("stroke", d => d.color);
+            .attr("x", -70)
+            .attr("y", -11)
+            .attr("width", 140)
+            .attr("height", 24)
+            .attr("stroke", d => d.color)
+            .attr("stroke-width", 1);
 
         labelGroups.append("text")
             .attr("class", "label-text-en")
-            .attr("y", 2)
+            .attr("y", 1)
             .text(d => d.word);
 
-        labelGroups.append("text")
-            .attr("class", "label-text-zh")
-            .attr("y", 16)
-            .attr("fill", d => d.color)
-            .text(d => d.chinese);
+        // Details Panel Functions
+        function selectNode(d) {
+            selectedNodeId = d.id;
+            const det = document.getElementById("node-details");
+            det.style.display = "block";
+            document.getElementById("det-word").innerText = d.word;
+            const badge = document.getElementById("det-role-badge");
+            badge.innerText = currentStep === 1 ? "Dispersed Word" : d.cluster_label;
+            badge.style.background = currentStep === 1 ? "#475569" : d.color;
+            document.getElementById("det-cluster").innerText = currentStep === 1 ? "Latent: " + d.topic_name : d.topic_name;
+            document.getElementById("det-role").innerText = currentStep === 1 ? "Initial baseline" : d.causal_role;
+            document.getElementById("det-context").innerText = d.context;
+            document.getElementById("det-coords").innerText = `(${d.origX.toFixed(1)}, ${d.origY.toFixed(1)})`;
+            document.getElementById("det-context-row").style.display = "block";
+            document.getElementById("det-coords-row").style.display = "block";
+        }
 
-        // Zoom Behavior
-        const zoom = d3.zoom()
-            .scaleExtent([0.3, 3])
-            .on("zoom", (event) => {
-                container.attr("transform", event.transform);
-            });
-        svg.call(zoom);
-        svg.on("click", () => closeDetails());
+        function showCausalDetails(edge) {
+            const det = document.getElementById("node-details");
+            det.style.display = "block";
+            document.getElementById("det-word").innerText = `Causal Influence: ${edge.source_name} ➔ ${edge.target_name}`;
+            const badge = document.getElementById("det-role-badge");
+            badge.innerText = `Causal [${edge.causal_type}]`;
+            badge.style.background = edge.color;
+            document.getElementById("det-cluster").innerText = `${edge.source_name} (Topic ${edge.source}) ➔ ${edge.target_name} (Topic ${edge.target})`;
+            document.getElementById("det-role").innerText = `Directed Influence (${edge.relationship})`;
+            document.getElementById("det-context").innerText = edge.mechanism;
+            document.getElementById("det-coords-row").style.display = "none";
+        }
 
-        // Initial Center & Zoom
-        svg.call(zoom.transform, d3.zoomIdentity.translate(40, -10).scale(0.88));
+        function closeDetails() {
+            document.getElementById("node-details").style.display = "none";
+        }
 
-        // 3-Step Mode Transition Function
+        function focusCluster(topicId) {
+            const cl = clusters[topicId];
+            if (!cl) return;
+            svg.transition().duration(800).call(
+                zoom.transform,
+                d3.zoomIdentity.translate(width / 2 - cl.cx, height / 2 - cl.cy).scale(1.25)
+            );
+        }
+
+        function toggleHulls() {
+            showHulls = !showHulls;
+            document.getElementById("btn-toggle-hulls").classList.toggle("active", showHulls);
+            updateHulls();
+        }
+
+        function toggleVectors() {
+            showVectors = !showVectors;
+            document.getElementById("btn-toggle-vectors").classList.toggle("active", showVectors);
+            renderCausalVectors();
+        }
+
+        function resetZoom() {
+            svg.transition().duration(800).call(
+                zoom.transform,
+                d3.zoomIdentity.translate(0, 0).scale(1)
+            );
+            closeDetails();
+        }
+
+        // 3-Step Interactive Mode Switcher
         function setStepMode(step) {
             currentStep = step;
             document.querySelectorAll(".step-tab").forEach(t => t.classList.remove("active"));
             document.getElementById(`tab-step${step}`).classList.add("active");
 
             const badge = document.getElementById("hud-badge");
-            const desc = document.getElementById("hud-desc-text");
+            const desc = document.getElementById("hud-desc");
 
             if (step === 1) {
-                badge.textContent = "Step 1 • Initial Positions";
-                badge.style.background = "#64748B";
-                desc.textContent = "16 archival vocabulary nodes positioned across embedding space (unclustered baseline).";
+                badge.textContent = "Step 1 • Dispersed Words";
+                badge.style.background = "#475569";
+                desc.textContent = "16 everyday words positioned across 2D space (unclustered baseline).";
 
-                hullLayer.transition().duration(500).style("opacity", 0);
-                badgeLayer.transition().duration(500).style("opacity", 0);
-                linkLayer.transition().duration(500).style("opacity", 0);
-                vectorLayer.transition().duration(500).style("opacity", 0);
-                causalBadgeLayer.transition().duration(500).style("opacity", 0);
+                badgeLayer.style("display", "none");
+                linkLayer.style("display", "none");
+                vectorLayer.style("display", "none");
+                hullLayer.style("display", "none");
 
-                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", "#0284C7");
-                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", "#0284C7");
-                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", "#CBD5E1");
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", "#64748B");
+                nodeGroups.select(".node-circle")
+                    .transition().duration(400)
+                    .attr("fill", "#475569");
+                nodeGroups.select(".label-bg")
+                    .transition().duration(400)
+                    .attr("stroke", "#CBD5E1");
             } else if (step === 2) {
                 badge.textContent = "Step 2 • Thematic Clusters";
                 badge.style.background = "#D97706";
-                desc.textContent = "The 16 nodes are grouped into 4 distinct thematic topics with smooth boundary capsules and cluster headers.";
+                desc.textContent = "16 nodes grouped into 4 distinct thematic topics with boundaries and header labels.";
 
-                hullLayer.transition().duration(500).style("opacity", showHulls ? 1 : 0);
-                badgeLayer.transition().duration(500).style("opacity", 1);
-                linkLayer.transition().duration(500).style("opacity", 1);
-                vectorLayer.transition().duration(500).style("opacity", 0);
-                causalBadgeLayer.transition().duration(500).style("opacity", 0);
+                badgeLayer.style("display", "block");
+                linkLayer.style("display", "block");
+                vectorLayer.style("display", "none");
+                hullLayer.style("display", "block");
+                updateHulls();
 
-                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", d => d.color);
-                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", d => d.color);
-                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", d => d.color);
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", d => d.color);
+                nodeGroups.select(".node-circle")
+                    .transition().duration(400)
+                    .attr("fill", d => d.color);
+                nodeGroups.select(".label-bg")
+                    .transition().duration(400)
+                    .attr("stroke", d => d.color);
             } else if (step === 3) {
                 badge.textContent = "Step 3 • Causal Graph";
-                badge.style.background = "#2563EB";
-                desc.textContent = "Directed causal relationships connecting topic clusters (A, B ➔ C ➔ D) overlaid on stationary vocabulary coordinates.";
+                badge.style.background = "#0284C7";
+                desc.textContent = "Directed causal flow vectors (A, B ➔ C ➔ D) linking clusters without edge text labels.";
 
-                hullLayer.transition().duration(500).style("opacity", showHulls ? 1 : 0);
-                badgeLayer.transition().duration(500).style("opacity", 1);
-                linkLayer.transition().duration(500).style("opacity", 1);
-                vectorLayer.transition().duration(500).style("opacity", showVectors ? 1 : 0);
-                causalBadgeLayer.transition().duration(500).style("opacity", showVectors ? 1 : 0);
+                badgeLayer.style("display", "block");
+                linkLayer.style("display", "block");
+                vectorLayer.style("display", "block");
+                hullLayer.style("display", "block");
+                updateHulls();
+                renderCausalVectors();
 
-                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", d => d.color);
-                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", d => d.color);
-                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", d => d.color);
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", d => d.color);
+                nodeGroups.select(".node-circle")
+                    .transition().duration(400)
+                    .attr("fill", d => d.color);
+                nodeGroups.select(".label-bg")
+                    .transition().duration(400)
+                    .attr("stroke", d => d.color);
             }
         }
 
-        function selectNode(d) {
-            selectedNodeId = d.id;
-            updateSelection();
-
-            document.getElementById("node-details").style.display = "block";
-            document.getElementById("det-word").innerText = d.word;
-            document.getElementById("det-chinese").innerText = d.chinese;
-            document.getElementById("det-chinese").style.color = d.color;
-            document.getElementById("det-cluster").innerText = `${d.cluster_label} (${d.topic_chinese})`;
-            document.getElementById("det-role").innerText = d.causal_role;
-            document.getElementById("det-source").innerText = d.historical_source;
-            document.getElementById("det-context").innerText = d.context;
-            document.getElementById("det-coords").innerText = `(${d.x.toFixed(1)}, ${d.y.toFixed(1)})`;
-            document.getElementById("det-context-row").style.display = "block";
-            document.getElementById("det-coords-row").style.display = "block";
-        }
-
-        function showCausalDetails(edge) {
-            document.getElementById("node-details").style.display = "block";
-            document.getElementById("det-word").innerText = `Causal Link: ${edge.relationship}`;
-            document.getElementById("det-chinese").innerText = edge.label;
-            document.getElementById("det-chinese").style.color = edge.color;
-            document.getElementById("det-cluster").innerText = `${edge.source_name} ➔ ${edge.target_name}`;
-            document.getElementById("det-role").innerText = edge.mechanism;
-            document.getElementById("det-source").innerText = edge.historical_evidence;
-            document.getElementById("det-context-row").style.display = "none";
-            document.getElementById("det-coords-row").style.display = "none";
-        }
-
-        function updateSelection() {
-            container.selectAll(".selected-ring")
-                .attr("display", d => (d.id === selectedNodeId ? "block" : "none"));
-        }
-
-        function focusCluster(topicId) {
-            const cl = clusters[topicId];
-            if (!cl) return;
-            svg.transition().duration(750).call(
-                zoom.transform,
-                d3.zoomIdentity.translate(width / 2 - cl.cx * 1.1, height / 2 - cl.cy * 1.1).scale(1.15)
-            );
-        }
-
-        function closeDetails() {
-            document.getElementById("node-details").style.display = "none";
-            selectedNodeId = null;
-            updateSelection();
-        }
-
-        function toggleLabels() {
-            showLabels = !showLabels;
-            document.getElementById("btn-toggle-labels").classList.toggle("active", showLabels);
-            container.selectAll(".node-label-pill")
-                .attr("display", showLabels ? "block" : "none");
-        }
-
-        function toggleHulls() {
-            showHulls = !showHulls;
-            document.getElementById("btn-toggle-hulls").classList.toggle("active", showHulls);
-            if (currentStep >= 2) {
-                hullLayer.transition().duration(300).style("opacity", showHulls ? 1 : 0);
-            }
-        }
-
-        function toggleVectors() {
-            showVectors = !showVectors;
-            document.getElementById("btn-toggle-vectors").classList.toggle("active", showVectors);
-            if (currentStep === 3) {
-                vectorLayer.transition().duration(300).style("opacity", showVectors ? 1 : 0);
-                causalBadgeLayer.transition().duration(300).style("opacity", showVectors ? 1 : 0);
-            }
-        }
-
-        function zoomIn() {
-            svg.transition().duration(350).call(zoom.scaleBy, 1.3);
-        }
-
-        function zoomOut() {
-            svg.transition().duration(350).call(zoom.scaleBy, 0.7);
-        }
-
-        function resetZoom() {
-            svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(40, -10).scale(0.88));
+        svg.on("click", () => {
             closeDetails();
-        }
-
-        window.addEventListener("resize", () => {
-            const newW = window.innerWidth;
-            const newH = window.innerHeight;
-            svg.attr("width", newW).attr("height", newH);
         });
     </script>
 </body>

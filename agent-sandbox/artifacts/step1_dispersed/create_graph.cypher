@@ -1,6 +1,6 @@
 // ====================================================================
-// 1920s Chinese Labor Strike Causal Knowledge Graph (Step 1)
-// Visual Representation: 16 Dispersed, Unclustered Vocabulary Nodes
+// Weather & Commuting Disruption: Causal Knowledge Graph (Step 1)
+// Visual Representation: 16 Dispersed, Unclustered Everyday Words
 // (Identifying cluster colors & groupings removed for Step 1 baseline)
 // ====================================================================
 
@@ -14,195 +14,195 @@ MATCH (w:StrikeWord) DETACH DELETE w;
 // 3. Create 16 Dispersed Nodes with uniform label :StrikeWord:Word
 CREATE (:StrikeWord:Word {
     id: "node_1",
-    word: "Wage Depression",
-    chinese: "工資削滅",
-    historical_source: "The China Mail (1921-1922)",
-    context: "Stagnant daily laborer wages amidst sharp post-war currency fluctuations.",
+    word: "Torrential Downpour",
+    chinese: "暴雨傾盆",
+    historical_source: "City Weather Bureau Report",
+    context: "Extreme rainfall overwhelming municipal storm drains within minutes.",
     x: -82.0, y: 58.0, z: 28.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "A",
-    latent_topic_name: "Economic Grievances & Inflation"
+    latent_topic_name: "Heavy Rain"
 });
 CREATE (:StrikeWord:Word {
     id: "node_2",
-    word: "Rice Inflation",
-    chinese: "米價暴漲",
-    historical_source: "Hong Kong MMIS Gazette (1922)",
-    context: "Skyrocketing price of staple rice threatening subsistence of dock families.",
+    word: "Flash Floods",
+    chinese: "突發積水",
+    historical_source: "Emergency Alert Notification",
+    context: "Rapidly rising water levels submerging roads and highway underpasses.",
     x: -54.0, y: 68.0, z: 22.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "A",
-    latent_topic_name: "Economic Grievances & Inflation"
+    latent_topic_name: "Heavy Rain"
 });
 CREATE (:StrikeWord:Word {
     id: "node_3",
-    word: "Ten-Hour Shift",
-    chinese: "每日十時工制",
-    historical_source: "North-China Herald (1923)",
-    context: "Exhausting operational hours demanded from maritime and transport coolies.",
+    word: "Heavy Rain",
+    chinese: "強降雨",
+    historical_source: "Morning Commute Advisory",
+    context: "Prolonged rainfall severely reducing vehicle braking distance and visibility.",
     x: -74.0, y: 32.0, z: 14.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "A",
-    latent_topic_name: "Economic Grievances & Inflation"
+    latent_topic_name: "Heavy Rain"
 });
 CREATE (:StrikeWord:Word {
     id: "node_4",
-    word: "Living Cost Spiral",
-    chinese: "生活昂貴",
-    historical_source: "The China Mail (1922)",
-    context: "General cost-of-living index surges driving desperate economic petitions.",
+    word: "Flooded Streets",
+    chinese: "街道淹水",
+    historical_source: "Municipal Traffic Camera Feed",
+    context: "Deep standing water covering main lanes and preventing vehicle passage.",
     x: -46.0, y: 40.0, z: 34.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "A",
-    latent_topic_name: "Economic Grievances & Inflation"
+    latent_topic_name: "Heavy Rain"
 });
 CREATE (:StrikeWord:Word {
     id: "node_5",
-    word: "Seamen's Union",
-    chinese: "中華海員工會",
-    historical_source: "The China Mail (1922)",
-    context: "The central maritime guild led by Su Zhaozheng organizing across Hong Kong and Canton.",
+    word: "High Winds",
+    chinese: "狂風大作",
+    historical_source: "Gale Warning Advisory",
+    context: "Severe gale-force gusts buffeting bridges and exposed commuter corridors.",
     x: -78.0, y: -36.0, z: -16.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "B",
-    latent_topic_name: "Labor Organizing & Solidarity"
+    latent_topic_name: "High Winds"
 });
 CREATE (:StrikeWord:Word {
     id: "node_6",
-    word: "Strike Committee",
-    chinese: "罷工委員會",
-    historical_source: "Canton Gazette (1925)",
-    context: "Executive coordinating council managing strike logistics, food rations, and strategy.",
+    word: "Fallen Trees",
+    chinese: "樹木倒塌",
+    historical_source: "Public Works Service Log",
+    context: "Uprooted trees falling directly across arterial travel avenues.",
     x: -48.0, y: -28.0, z: -26.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "B",
-    latent_topic_name: "Labor Organizing & Solidarity"
+    latent_topic_name: "High Winds"
 });
 CREATE (:StrikeWord:Word {
     id: "node_7",
-    word: "Picket Corps",
-    chinese: "工人糾察隊",
-    historical_source: "The China Mail (1925)",
-    context: "Organized worker patrols enforcing the anti-colonial shipping embargo.",
+    word: "Broken Branches",
+    chinese: "路面斷枝",
+    historical_source: "Road Maintenance Dispatch",
+    context: "Heavy branches littering intersections and blocking transit pathways.",
     x: -72.0, y: -66.0, z: -34.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "B",
-    latent_topic_name: "Labor Organizing & Solidarity"
+    latent_topic_name: "High Winds"
 });
 CREATE (:StrikeWord:Word {
     id: "node_8",
-    word: "Boycott Manifesto",
-    chinese: "抵制宣傳宣言",
-    historical_source: "Shanghai Municipal Archives (1925)",
-    context: "Leaflets distributed across treaty ports calling for national anti-imperial unity.",
+    word: "Flying Debris",
+    chinese: "飛散雜物",
+    historical_source: "Highway Patrol Incident Record",
+    context: "Loose signs and materials blown across multilane traffic lanes.",
     x: -44.0, y: -58.0, z: -18.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "B",
-    latent_topic_name: "Labor Organizing & Solidarity"
+    latent_topic_name: "High Winds"
 });
 CREATE (:StrikeWord:Word {
     id: "node_9",
-    word: "General Strike",
-    chinese: "全港大罷工",
-    historical_source: "The China Mail (1922)",
-    context: "Complete stoppage of maritime and municipal work paralyzing the colony.",
+    word: "Traffic Jam",
+    chinese: "交通堵塞",
+    historical_source: "Metro Transit Broadcast",
+    context: "Miles of bumper-to-bumper standstill traffic during rush hour.",
     x: -12.0, y: 16.0, z: 12.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "C",
-    latent_topic_name: "Strike Action & Work Stoppage"
+    latent_topic_name: "Traffic Gridlock"
 });
 CREATE (:StrikeWord:Word {
     id: "node_10",
-    word: "Dockworker Walkout",
-    chinese: "碼頭工人全體離工",
-    historical_source: "The China Mail (1922)",
-    context: "Stevedores and cargo loaders abandoning British ships in Victoria Harbour.",
+    word: "Road Closures",
+    chinese: "道路封閉",
+    historical_source: "Department of Transportation",
+    context: "Police barricades closing blocked avenues and detouring vehicles.",
     x: 22.0, y: 20.0, z: -10.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "C",
-    latent_topic_name: "Strike Action & Work Stoppage"
+    latent_topic_name: "Traffic Gridlock"
 });
 CREATE (:StrikeWord:Word {
     id: "node_11",
-    word: "Work Cessation",
-    chinese: "停工停業",
-    historical_source: "Hong Kong MMIS (1925)",
-    context: "Sympathy strikes spreading to domestic servants, tram drivers, and clerks.",
+    word: "Stalled Cars",
+    chinese: "車輛拋錨",
+    historical_source: "Roadside Assistance Dispatch",
+    context: "Disabled and hydroplaned vehicles stranded in active driving lanes.",
     x: -8.0, y: -18.0, z: -12.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "C",
-    latent_topic_name: "Strike Action & Work Stoppage"
+    latent_topic_name: "Traffic Gridlock"
 });
 CREATE (:StrikeWord:Word {
     id: "node_12",
-    word: "Mass Demonstration",
-    chinese: "群眾請願示威",
-    historical_source: "The China Mail (1922)",
-    context: "Gatherings of thousands marching through urban centers demanding rights and dignity.",
+    word: "Highway Gridlock",
+    chinese: "高速癱瘓",
+    historical_source: "State Highway Traffic Command",
+    context: "Total operational standstill across primary expressway corridors.",
     x: 24.0, y: -12.0, z: 10.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "C",
-    latent_topic_name: "Strike Action & Work Stoppage"
+    latent_topic_name: "Traffic Gridlock"
 });
 CREATE (:StrikeWord:Word {
     id: "node_13",
-    word: "Port Paralysis",
-    chinese: "港口海運癱瘓",
-    historical_source: "The China Mail (1922)",
-    context: "Over 150 merchant vessels anchored idle with zero cargo discharge capacity.",
+    word: "Late for Work",
+    chinese: "上班遲到",
+    historical_source: "Employee Office Notification",
+    context: "Commuters arriving hours late for morning shifts and meetings.",
     x: 58.0, y: 18.0, z: 28.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "D",
-    latent_topic_name: "Harbor Paralysis & Colonial Impact"
+    latent_topic_name: "Daily Delays"
 });
 CREATE (:StrikeWord:Word {
     id: "node_14",
-    word: "Shipping Deadlock",
-    chinese: "輪船停航停泊",
-    historical_source: "The China Mail (1925)",
-    context: "Complete standstill of coastal and trans-Pacific commercial steamer traffic.",
+    word: "Missed Flights",
+    chinese: "錯過航班",
+    historical_source: "Airport Terminal Operations",
+    context: "Travelers unable to navigate blocked airport roads prior to gate closure.",
     x: 92.0, y: 22.0, z: 14.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "D",
-    latent_topic_name: "Harbor Paralysis & Colonial Impact"
+    latent_topic_name: "Daily Delays"
 });
 CREATE (:StrikeWord:Word {
     id: "node_15",
-    word: "Market Interruption",
-    chinese: "市面商業停滯",
-    historical_source: "Hong Kong Chamber of Commerce (1922)",
-    context: "Retail closures, supply shortages, and emergency rationing across Victoria.",
+    word: "School Delays",
+    chinese: "學校停課延期",
+    historical_source: "District School Board Bulletin",
+    context: "Bus transit suspended and morning bell times delayed for student safety.",
     x: 62.0, y: -18.0, z: 18.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "D",
-    latent_topic_name: "Harbor Paralysis & Colonial Impact"
+    latent_topic_name: "Daily Delays"
 });
 CREATE (:StrikeWord:Word {
     id: "node_16",
-    word: "Colonial Concessions",
-    chinese: "當局讓步談判",
-    historical_source: "The China Mail (1922)",
-    context: "Colonial government and shipping conglomerates agreeing to wage hikes and union recognition.",
+    word: "Cancelled Meetings",
+    chinese: "會議取消",
+    historical_source: "Corporate Schedule Updates",
+    context: "Business appointments postponed due to stranded attendees.",
     x: 90.0, y: -10.0, z: 24.0,
     step: 1,
     status: "dispersed_unclustered",
     latent_topic_id: "D",
-    latent_topic_name: "Harbor Paralysis & Colonial Impact"
+    latent_topic_name: "Daily Delays"
 });
 
 // ====================================================================

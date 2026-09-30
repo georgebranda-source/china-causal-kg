@@ -276,25 +276,25 @@ def generate_index_html(output_dir: Path) -> Path:
 <body>
     <div class="container">
         <header>
-            <span class="badge">Hong Kong Press Archives (1920-1925)</span>
-            <h1>1920s Chinese Strike Causal Knowledge Graph</h1>
+            <span class="badge">Demonstration Principle</span>
+            <h1>Causal Knowledge Graph Progression</h1>
             <p class="subtitle">
-                Demonstrating causal knowledge graph induction from archival news text (The China Mail, Canton Gazette, HKPL MMIS).
-                Progressing across three unified stages: Initial Vocabulary Positions ➔ Topic Clustering ➔ Directed Causal Graph.
+                Demonstrating the principle of representing causality via a knowledge graph using an intuitive weather and commuting disruption topic.
+                Progressing across three unified stages: Initial Word Positions ➔ Topic Clustering ➔ Directed Causal Graph.
             </p>
         </header>
 
         <section class="causal-blueprint-card">
-            <h3>Latent Causal Blueprint (A, B ➔ C ➔ D)</h3>
+            <h3>Causal DAG Blueprint (A, B ➔ C ➔ D)</h3>
             <div class="flow-diagram">
-                <div class="flow-node a">Topic A: Economic Grievances</div>
+                <div class="flow-node a" style="background:#E0F2FE; color:#0369A1; border:1px solid #BAE6FD;">Topic A: Heavy Rain</div>
                 <span class="flow-arrow">↘</span>
-                <div class="flow-node c">Topic C: General Strike Action</div>
+                <div class="flow-node c" style="background:#FFEDD5; color:#C2410C; border:1px solid #FED7AA;">Topic C: Traffic Gridlock</div>
                 <span class="flow-arrow">➔</span>
-                <div class="flow-node d">Topic D: Harbor & Colonial Paralysis</div>
+                <div class="flow-node d" style="background:#F3E8FF; color:#7E22CE; border:1px solid #E9D5FF;">Topic D: Daily Delays</div>
             </div>
             <div class="flow-diagram" style="margin-top: 6px;">
-                <div class="flow-node b">Topic B: Labor Organizing</div>
+                <div class="flow-node b" style="background:#CCFBF1; color:#0F766E; border:1px solid #99F6E4;">Topic B: High Winds</div>
                 <span class="flow-arrow">↗</span>
             </div>
         </section>
@@ -305,10 +305,10 @@ def generate_index_html(output_dir: Path) -> Path:
                 <div>
                     <div class="step-header">
                         <span class="step-tag step1">Step 1 • Baseline</span>
-                        <h2>Initial Vocabulary Positions</h2>
+                        <h2>Initial Word Positions</h2>
                     </div>
                     <p>
-                        16 archival terms positioned across embedding coordinates establishing the unclustered baseline. All identifying colors and cluster labels are hidden.
+                        16 everyday words positioned across embedding coordinates establishing the unclustered baseline. All identifying colors and cluster labels are hidden.
                     </p>
                 </div>
                 <div>
@@ -381,10 +381,10 @@ def generate_index_html(output_dir: Path) -> Path:
                 <div>
                     <div class="step-header">
                         <span class="step-tag step3">Step 3 • Final Causal KG</span>
-                        <h2>Directed Causal Induction</h2>
+                        <h2>Directed Causal Graph</h2>
                     </div>
                     <p>
-                        <strong>Complete Causal Knowledge Graph:</strong> Macro directed causal arrows (A, B ➔ C ➔ D), animated flow pulses, mechanism cards, and micro word links over stationary nodes.
+                        <strong>Complete Causal Knowledge Graph:</strong> Macro directed causal arrows (A, B ➔ C ➔ D) without edge text clutter, animated flow pulses, and micro word links over stationary nodes.
                     </p>
                 </div>
                 <div>
@@ -416,39 +416,39 @@ def generate_index_html(output_dir: Path) -> Path:
         </div>
 
         <section class="topics-section">
-            <h3>4 Thematic Topics (16 Press Vocabulary Terms)</h3>
+            <h3>4 Thematic Topics (16 Everyday Vocabulary Words)</h3>
             <div class="topics-grid">
-                <div class="topic-pill" style="border-left: 3px solid #E11D48;">
-                    <div class="topic-pill-header" style="color: #E11D48;">
-                        <span class="topic-indicator" style="background: #E11D48;"></span>
-                        Topic A: Economic Grievances
+                <div class="topic-pill" style="border-left: 3px solid #0284C7;">
+                    <div class="topic-pill-header" style="color: #0284C7;">
+                        <span class="topic-indicator" style="background: #0284C7;"></span>
+                        Topic A: Heavy Rain
                     </div>
-                    <div class="topic-role">Precondition / Cause (A ➔ C)</div>
-                    <div class="topic-words">Wage Depression, Rice Inflation, Ten-Hour Shift, Living Cost Spiral</div>
+                    <div class="topic-role">Cause (A ➔ C)</div>
+                    <div class="topic-words">Torrential Downpour, Flash Floods, Heavy Rain, Flooded Streets</div>
                 </div>
                 <div class="topic-pill" style="border-left: 3px solid #0D9488;">
                     <div class="topic-pill-header" style="color: #0D9488;">
                         <span class="topic-indicator" style="background: #0D9488;"></span>
-                        Topic B: Labor Organizing
+                        Topic B: High Winds
                     </div>
-                    <div class="topic-role">Catalyst / Cause (B ➔ C)</div>
-                    <div class="topic-words">Seamen's Union, Strike Committee, Picket Corps, Boycott Manifesto</div>
+                    <div class="topic-role">Cause (B ➔ C)</div>
+                    <div class="topic-words">High Winds, Fallen Trees, Broken Branches, Flying Debris</div>
                 </div>
-                <div class="topic-pill" style="border-left: 3px solid #2563EB;">
-                    <div class="topic-pill-header" style="color: #2563EB;">
-                        <span class="topic-indicator" style="background: #2563EB;"></span>
-                        Topic C: General Strike Action
+                <div class="topic-pill" style="border-left: 3px solid #EA580C;">
+                    <div class="topic-pill-header" style="color: #EA580C;">
+                        <span class="topic-indicator" style="background: #EA580C;"></span>
+                        Topic C: Traffic Gridlock
                     </div>
                     <div class="topic-role">Central Event (A, B ➔ C ➔ D)</div>
-                    <div class="topic-words">General Strike, Dockworker Walkout, Work Cessation, Mass Demonstration</div>
+                    <div class="topic-words">Traffic Jam, Road Closures, Stalled Cars, Highway Gridlock</div>
                 </div>
                 <div class="topic-pill" style="border-left: 3px solid #7C3AED;">
                     <div class="topic-pill-header" style="color: #7C3AED;">
                         <span class="topic-indicator" style="background: #7C3AED;"></span>
-                        Topic D: Harbor Paralysis
+                        Topic D: Daily Delays
                     </div>
                     <div class="topic-role">Consequence (C ➔ D)</div>
-                    <div class="topic-words">Port Paralysis, Shipping Deadlock, Market Interruption, Colonial Concessions</div>
+                    <div class="topic-words">Late for Work, Missed Flights, School Delays, Cancelled Meetings</div>
                 </div>
             </div>
         </section>
@@ -508,18 +508,18 @@ def main():
     out_base = Path(args.output_dir)
 
     print("=" * 70)
-    print("1920s Chinese Strike Causal Knowledge Graph Generator")
+    print("Weather & Commute Disruption: Causal Knowledge Graph Generator")
     print("=" * 70)
     print(f"[*] Base Output Directory: {out_base.resolve()}")
-    print(f"[*] Total Vocabulary Terms: {len(STRIKE_NODES)}")
+    print(f"[*] Total Vocabulary Words: {len(STRIKE_NODES)}")
     print(f"[*] Thematic Topics:        {len(TOPICS)}")
     print(f"[*] Causal Relationships:   {len(CAUSAL_EDGES)}")
     print(f"[*] Selected Step:          {args.step.upper()}")
     print("-" * 70)
-    print("Causal Blueprint Architecture:")
-    print("  * Topic A (Economic Grievance)  ──➔  Topic C (General Strike)")
-    print("  * Topic B (Labor Organizing)    ──➔  Topic C (General Strike)")
-    print("  * Topic C (General Strike)      ──➔  Topic D (Harbor Paralysis)")
+    print("Causal Blueprint Architecture (Zero Edge Labels):")
+    print("  * Topic A (Heavy Rain)       ──➔  Topic C (Traffic Gridlock)")
+    print("  * Topic B (High Winds)       ──➔  Topic C (Traffic Gridlock)")
+    print("  * Topic C (Traffic Gridlock) ──➔  Topic D (Daily Delays)")
     print("-" * 70)
 
     # 1. Step 1 Generation
