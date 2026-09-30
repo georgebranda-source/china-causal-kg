@@ -9,8 +9,8 @@ Defines:
 
 from typing import List, Dict, Any
 
-# Primary uniform theme color for Step 1 unclustered nodes
-UNIFORM_NODE_COLOR = "#38BDF8"  # Sky blue
+# Primary uniform theme color for Step 1 unclustered nodes (high contrast for white background)
+UNIFORM_NODE_COLOR = "#0284C7"  # Vibrant ocean blue
 
 TOPICS: Dict[str, Dict[str, Any]] = {
     "A": {

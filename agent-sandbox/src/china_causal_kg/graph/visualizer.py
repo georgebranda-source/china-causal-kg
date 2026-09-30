@@ -4,9 +4,9 @@ and interactive WebGL/SVG viewers (3D & 2D).
 
 Step 1 Focus:
 - 16 Dispersed, unclustered vocabulary nodes.
+- Crisp white background aesthetic across all viewers.
 - Identifying colors, topic labels, and causal spoilers REMOVED from the visual layer.
 - Latent topic metadata retained solely in properties for future clustering steps.
-- Both 3D and 2D interactive HTML viewers provided.
 """
 
 import json
@@ -75,6 +75,7 @@ def generate_json_export() -> Dict[str, Any]:
             "total_nodes": len(STRIKE_NODES),
             "total_edges": 0,
             "clustering_mode": "unclustered_dispersed",
+            "theme": "light_white_background",
         },
         "nodes": STRIKE_NODES,
         "edges": [],
@@ -82,7 +83,7 @@ def generate_json_export() -> Dict[str, Any]:
 
 
 def generate_plotly_3d_html() -> str:
-    """Generate a self-contained Plotly 3D scatter graph with uniform styling (no cluster spoilers)."""
+    """Generate a self-contained Plotly 3D scatter graph with white background."""
     import plotly.graph_objects as go
 
     fig = go.Figure()
@@ -108,14 +109,14 @@ def generate_plotly_3d_html() -> str:
             name="1920s Press Vocabulary (Dispersed Nodes)",
             text=labels,
             textposition="top center",
-            textfont=dict(size=11, color="#F0F4F8"),
+            textfont=dict(size=11, color="#0F172A"),
             hoverinfo="text",
             hovertext=hover_texts,
             marker=dict(
-                size=8,
+                size=9,
                 color=UNIFORM_NODE_COLOR,
                 opacity=0.95,
-                line=dict(color="#FFFFFF", width=1.5),
+                line=dict(color="#0369A1", width=1.5),
                 symbol="circle",
             ),
         )
@@ -127,45 +128,45 @@ def generate_plotly_3d_html() -> str:
                 "<b>1920s Chinese Newspaper Labor Strike: Knowledge Graph (3D)</b><br>"
                 "<sup>Step 1: 16 Dispersed Vocabulary Nodes (Raw Unclustered Baseline)</sup>"
             ),
-            font=dict(size=18, color="#FFFFFF"),
+            font=dict(size=18, color="#0F172A"),
             x=0.5,
             xanchor="center",
             y=0.95,
         ),
-        paper_bgcolor="#0E131F",
-        plot_bgcolor="#0E131F",
+        paper_bgcolor="#FFFFFF",
+        plot_bgcolor="#FFFFFF",
         legend=dict(
-            font=dict(color="#E0E6ED", size=11),
-            bgcolor="rgba(20, 27, 45, 0.8)",
-            bordercolor="rgba(255, 255, 255, 0.2)",
+            font=dict(color="#0F172A", size=11),
+            bgcolor="rgba(255, 255, 255, 0.9)",
+            bordercolor="#CBD5E1",
             borderwidth=1,
             x=0.02,
             y=0.95,
         ),
         scene=dict(
             xaxis=dict(
-                title=dict(text="Spatial X", font=dict(color="#9CA3AF")),
-                backgroundcolor="#111827",
-                gridcolor="#1F2937",
+                title=dict(text="Spatial X", font=dict(color="#475569")),
+                backgroundcolor="#F8FAFC",
+                gridcolor="#E2E8F0",
                 showbackground=True,
-                zerolinecolor="#374151",
-                tickfont=dict(color="#9CA3AF"),
+                zerolinecolor="#CBD5E1",
+                tickfont=dict(color="#64748B"),
             ),
             yaxis=dict(
-                title=dict(text="Spatial Y", font=dict(color="#9CA3AF")),
-                backgroundcolor="#111827",
-                gridcolor="#1F2937",
+                title=dict(text="Spatial Y", font=dict(color="#475569")),
+                backgroundcolor="#F8FAFC",
+                gridcolor="#E2E8F0",
                 showbackground=True,
-                zerolinecolor="#374151",
-                tickfont=dict(color="#9CA3AF"),
+                zerolinecolor="#CBD5E1",
+                tickfont=dict(color="#64748B"),
             ),
             zaxis=dict(
-                title=dict(text="Spatial Z", font=dict(color="#9CA3AF")),
-                backgroundcolor="#111827",
-                gridcolor="#1F2937",
+                title=dict(text="Spatial Z", font=dict(color="#475569")),
+                backgroundcolor="#F8FAFC",
+                gridcolor="#E2E8F0",
                 showbackground=True,
-                zerolinecolor="#374151",
-                tickfont=dict(color="#9CA3AF"),
+                zerolinecolor="#CBD5E1",
+                tickfont=dict(color="#64748B"),
             ),
             camera=dict(
                 eye=dict(x=1.6, y=1.6, z=1.2),
@@ -179,7 +180,7 @@ def generate_plotly_3d_html() -> str:
 
 
 def generate_plotly_2d_html() -> str:
-    """Generate a self-contained Plotly 2D scatter graph with uniform styling (no cluster spoilers)."""
+    """Generate a self-contained Plotly 2D scatter graph with white background."""
     import plotly.graph_objects as go
 
     fig = go.Figure()
@@ -203,14 +204,14 @@ def generate_plotly_2d_html() -> str:
             name="1920s Press Vocabulary (Dispersed Nodes)",
             text=labels,
             textposition="top center",
-            textfont=dict(size=11, color="#F0F4F8"),
+            textfont=dict(size=11, color="#0F172A"),
             hoverinfo="text",
             hovertext=hover_texts,
             marker=dict(
                 size=14,
                 color=UNIFORM_NODE_COLOR,
                 opacity=0.95,
-                line=dict(color="#FFFFFF", width=2),
+                line=dict(color="#0369A1", width=2),
                 symbol="circle",
             ),
         )
@@ -222,32 +223,32 @@ def generate_plotly_2d_html() -> str:
                 "<b>1920s Chinese Newspaper Labor Strike: Knowledge Graph (2D)</b><br>"
                 "<sup>Step 1: 16 Dispersed Vocabulary Nodes (Raw Unclustered Baseline)</sup>"
             ),
-            font=dict(size=18, color="#FFFFFF"),
+            font=dict(size=18, color="#0F172A"),
             x=0.5,
             xanchor="center",
             y=0.95,
         ),
-        paper_bgcolor="#0E131F",
-        plot_bgcolor="#0E131F",
+        paper_bgcolor="#FFFFFF",
+        plot_bgcolor="#FFFFFF",
         legend=dict(
-            font=dict(color="#E0E6ED", size=11),
-            bgcolor="rgba(20, 27, 45, 0.8)",
-            bordercolor="rgba(255, 255, 255, 0.2)",
+            font=dict(color="#0F172A", size=11),
+            bgcolor="rgba(255, 255, 255, 0.9)",
+            bordercolor="#CBD5E1",
             borderwidth=1,
             x=0.02,
             y=0.95,
         ),
         xaxis=dict(
-            title=dict(text="Spatial X", font=dict(color="#9CA3AF")),
-            gridcolor="#1F2937",
-            zerolinecolor="#374151",
-            tickfont=dict(color="#9CA3AF"),
+            title=dict(text="Spatial X", font=dict(color="#475569")),
+            gridcolor="#E2E8F0",
+            zerolinecolor="#CBD5E1",
+            tickfont=dict(color="#64748B"),
         ),
         yaxis=dict(
-            title=dict(text="Spatial Y", font=dict(color="#9CA3AF")),
-            gridcolor="#1F2937",
-            zerolinecolor="#374151",
-            tickfont=dict(color="#9CA3AF"),
+            title=dict(text="Spatial Y", font=dict(color="#475569")),
+            gridcolor="#E2E8F0",
+            zerolinecolor="#CBD5E1",
+            tickfont=dict(color="#64748B"),
             scaleanchor="x",
             scaleratio=1,
         ),
@@ -258,7 +259,7 @@ def generate_plotly_2d_html() -> str:
 
 
 def generate_threejs_viewer_html() -> str:
-    """Generate a rich, interactive 3D WebGL viewer with uniform appearance (no cluster hints)."""
+    """Generate a rich 3D WebGL viewer on a crisp white background."""
     graph_json = json.dumps(generate_json_export())
 
     template = """<!DOCTYPE html>
@@ -277,8 +278,8 @@ def generate_threejs_viewer_html() -> str:
             padding: 0;
         }
         body {
-            background: radial-gradient(circle at center, #111827 0%, #030712 100%);
-            color: #F3F4F6;
+            background: #FFFFFF;
+            color: #0F172A;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             overflow: hidden;
             width: 100vw;
@@ -297,18 +298,18 @@ def generate_threejs_viewer_html() -> str:
             top: 20px;
             left: 20px;
             z-index: 10;
-            background: rgba(17, 24, 39, 0.85);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 20px 24px;
             max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
         .hud-title {
             font-size: 17px;
             font-weight: 700;
-            color: #F9FAFB;
+            color: #0F172A;
             margin-bottom: 6px;
             display: flex;
             align-items: center;
@@ -327,18 +328,18 @@ def generate_threejs_viewer_html() -> str:
         }
         .hud-desc {
             font-size: 13px;
-            color: #9CA3AF;
+            color: #64748B;
             line-height: 1.5;
             margin-bottom: 16px;
         }
         .status-box {
-            background: rgba(31, 41, 55, 0.7);
+            background: #F8FAFC;
             border-radius: 8px;
             padding: 10px 12px;
             margin-bottom: 16px;
-            border-left: 3px solid #38BDF8;
+            border-left: 3px solid #0284C7;
             font-size: 12px;
-            color: #D1D5DB;
+            color: #334155;
             line-height: 1.4;
         }
         .controls-group {
@@ -348,9 +349,9 @@ def generate_threejs_viewer_html() -> str:
         }
         .btn {
             flex: 1;
-            background: #374151;
-            border: 1px solid #4B5563;
-            color: #F3F4F6;
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            color: #334155;
             padding: 8px 12px;
             font-size: 12px;
             font-weight: 500;
@@ -359,12 +360,11 @@ def generate_threejs_viewer_html() -> str:
             transition: all 0.2s;
         }
         .btn:hover {
-            background: #4B5563;
-            border-color: #6B7280;
+            background: #E2E8F0;
         }
         .btn.active {
             background: #0284C7;
-            border-color: #38BDF8;
+            border-color: #0284C7;
             color: #FFFFFF;
         }
         #node-details {
@@ -372,34 +372,34 @@ def generate_threejs_viewer_html() -> str:
             bottom: 24px;
             right: 24px;
             z-index: 10;
-            background: rgba(17, 24, 39, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 20px 24px;
             max-width: 360px;
             display: none;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
         #node-details h3 {
             font-size: 18px;
-            color: #F9FAFB;
+            color: #0F172A;
             margin-bottom: 4px;
         }
         #node-details .chinese {
             font-size: 14px;
-            color: #38BDF8;
+            color: #0284C7;
             margin-bottom: 12px;
             font-weight: 600;
         }
         #node-details .meta-row {
             font-size: 12px;
-            color: #D1D5DB;
+            color: #475569;
             margin-bottom: 6px;
             line-height: 1.4;
         }
         #node-details .meta-row strong {
-            color: #93C5FD;
+            color: #0369A1;
         }
     </style>
 </head>
@@ -455,7 +455,7 @@ def generate_threejs_viewer_html() -> str:
 
         const Graph = ForceGraph3D()(document.getElementById('3d-graph'))
             .graphData(gData)
-            .backgroundColor('#030712')
+            .backgroundColor('#FFFFFF')
             .showNavInfo(false)
             .nodeRelSize(7)
             .nodeColor(node => uniformColor)
@@ -473,10 +473,12 @@ def generate_threejs_viewer_html() -> str:
 
                 if (showLabels) {
                     const sprite = new SpriteText(`${node.name}\\n(${node.chinese})`);
-                    sprite.color = '#F3F4F6';
+                    sprite.color = '#0F172A';
                     sprite.textHeight = 3.2;
                     sprite.position.y = 7;
-                    sprite.backgroundColor = 'rgba(15, 23, 42, 0.75)';
+                    sprite.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    sprite.borderColor = '#CBD5E1';
+                    sprite.borderWidth = 0.5;
                     sprite.padding = 2;
                     sprite.borderRadius = 3;
                     group.add(sprite);
@@ -525,7 +527,7 @@ def generate_threejs_viewer_html() -> str:
 
 
 def generate_d3_2d_viewer_html() -> str:
-    """Generate a rich, interactive 2D SVG/D3.js viewer with drag, zoom, pan, and uniform styling."""
+    """Generate a rich 2D SVG/D3.js viewer on a crisp white background."""
     graph_json = json.dumps(generate_json_export())
 
     template = """<!DOCTYPE html>
@@ -542,8 +544,8 @@ def generate_d3_2d_viewer_html() -> str:
             padding: 0;
         }
         body {
-            background: radial-gradient(circle at center, #111827 0%, #030712 100%);
-            color: #F3F4F6;
+            background: #FFFFFF;
+            color: #0F172A;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             overflow: hidden;
             width: 100vw;
@@ -557,6 +559,7 @@ def generate_d3_2d_viewer_html() -> str:
             width: 100%;
             height: 100%;
             cursor: grab;
+            background: #FFFFFF;
         }
         #svg-canvas:active {
             cursor: grabbing;
@@ -566,18 +569,18 @@ def generate_d3_2d_viewer_html() -> str:
             top: 20px;
             left: 20px;
             z-index: 10;
-            background: rgba(17, 24, 39, 0.85);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 20px 24px;
             max-width: 400px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
         .hud-title {
             font-size: 17px;
             font-weight: 700;
-            color: #F9FAFB;
+            color: #0F172A;
             margin-bottom: 6px;
             display: flex;
             align-items: center;
@@ -596,18 +599,18 @@ def generate_d3_2d_viewer_html() -> str:
         }
         .hud-desc {
             font-size: 13px;
-            color: #9CA3AF;
+            color: #64748B;
             line-height: 1.5;
             margin-bottom: 16px;
         }
         .status-box {
-            background: rgba(31, 41, 55, 0.7);
+            background: #F8FAFC;
             border-radius: 8px;
             padding: 10px 12px;
             margin-bottom: 16px;
-            border-left: 3px solid #38BDF8;
+            border-left: 3px solid #0284C7;
             font-size: 12px;
-            color: #D1D5DB;
+            color: #334155;
             line-height: 1.4;
         }
         .controls-group {
@@ -617,9 +620,9 @@ def generate_d3_2d_viewer_html() -> str:
             margin-top: 10px;
         }
         .btn {
-            background: #374151;
-            border: 1px solid #4B5563;
-            color: #F3F4F6;
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            color: #334155;
             padding: 7px 12px;
             font-size: 12px;
             font-weight: 500;
@@ -628,12 +631,11 @@ def generate_d3_2d_viewer_html() -> str:
             transition: all 0.2s;
         }
         .btn:hover {
-            background: #4B5563;
-            border-color: #6B7280;
+            background: #E2E8F0;
         }
         .btn.active {
             background: #0284C7;
-            border-color: #38BDF8;
+            border-color: #0284C7;
             color: #FFFFFF;
         }
         #node-details {
@@ -641,34 +643,34 @@ def generate_d3_2d_viewer_html() -> str:
             bottom: 24px;
             right: 24px;
             z-index: 10;
-            background: rgba(17, 24, 39, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 20px 24px;
             max-width: 360px;
             display: none;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
         #node-details h3 {
             font-size: 18px;
-            color: #F9FAFB;
+            color: #0F172A;
             margin-bottom: 4px;
         }
         #node-details .chinese {
             font-size: 14px;
-            color: #38BDF8;
+            color: #0284C7;
             margin-bottom: 12px;
             font-weight: 600;
         }
         #node-details .meta-row {
             font-size: 12px;
-            color: #D1D5DB;
+            color: #475569;
             margin-bottom: 6px;
             line-height: 1.4;
         }
         #node-details .meta-row strong {
-            color: #93C5FD;
+            color: #0369A1;
         }
         .close-btn {
             position: absolute;
@@ -676,12 +678,12 @@ def generate_d3_2d_viewer_html() -> str:
             right: 12px;
             background: none;
             border: none;
-            color: #9CA3AF;
+            color: #94A3B8;
             font-size: 18px;
             cursor: pointer;
         }
         .close-btn:hover {
-            color: #FFFFFF;
+            color: #0F172A;
         }
         /* SVG Graph Styling */
         .node-circle {
@@ -689,36 +691,37 @@ def generate_d3_2d_viewer_html() -> str:
             transition: r 0.2s ease, filter 0.2s ease;
         }
         .node-circle:hover {
-            filter: drop-shadow(0 0 10px #38BDF8);
+            filter: drop-shadow(0 0 10px #0284C7);
         }
         .node-halo {
             pointer-events: none;
             animation: pulse-halo 3s infinite ease-in-out;
         }
         @keyframes pulse-halo {
-            0% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.15); }
-            100% { opacity: 0.3; transform: scale(1); }
+            0% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(1.18); }
+            100% { opacity: 0.15; transform: scale(1); }
         }
         .node-label-pill {
             pointer-events: none;
         }
         .label-bg {
-            fill: rgba(15, 23, 42, 0.85);
-            stroke: rgba(255, 255, 255, 0.15);
+            fill: rgba(255, 255, 255, 0.95);
+            stroke: #CBD5E1;
             stroke-width: 1px;
-            rx: 5px;
-            ry: 5px;
+            rx: 6px;
+            ry: 6px;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
         }
         .label-text-en {
-            fill: #F3F4F6;
+            fill: #0F172A;
             font-size: 11px;
             font-weight: 600;
             text-anchor: middle;
             dominant-baseline: central;
         }
         .label-text-zh {
-            fill: #38BDF8;
+            fill: #0284C7;
             font-size: 10px;
             font-weight: 500;
             text-anchor: middle;
@@ -726,7 +729,7 @@ def generate_d3_2d_viewer_html() -> str:
         }
         .selected-ring {
             fill: none;
-            stroke: #FBBF24;
+            stroke: #D97706;
             stroke-width: 3px;
             stroke-dasharray: 4, 3;
             animation: rotate-ring 6s linear infinite;
@@ -783,12 +786,12 @@ def generate_d3_2d_viewer_html() -> str:
         // Definitions: gradients and filters
         const defs = svg.append("defs");
 
-        // Glowing gradient for nodes
+        // Vibrant radial gradient for nodes
         const grad = defs.append("radialGradient")
             .attr("id", "node-grad")
             .attr("cx", "35%")
             .attr("cy", "35%");
-        grad.append("stop").attr("offset", "0%").attr("stop-color", "#7DD3FC");
+        grad.append("stop").attr("offset", "0%").attr("stop-color", "#38BDF8");
         grad.append("stop").attr("offset", "100%").attr("stop-color", "#0284C7");
 
         // Background subtle grid pattern
@@ -800,8 +803,8 @@ def generate_d3_2d_viewer_html() -> str:
         pattern.append("circle")
             .attr("cx", 20)
             .attr("cy", 20)
-            .attr("r", 1)
-            .attr("fill", "rgba(255, 255, 255, 0.08)");
+            .attr("r", 1.2)
+            .attr("fill", "rgba(0, 0, 0, 0.06)");
 
         // Background grid rect
         svg.append("rect")
@@ -866,7 +869,7 @@ def generate_d3_2d_viewer_html() -> str:
             .attr("class", "node-circle")
             .attr("r", 12)
             .attr("fill", "url(#node-grad)")
-            .attr("stroke", "#FFFFFF")
+            .attr("stroke", "#0369A1")
             .attr("stroke-width", 2);
 
         // Selection Ring
