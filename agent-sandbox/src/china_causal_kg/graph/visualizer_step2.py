@@ -129,7 +129,25 @@ def generate_step2_plotly_2d_html() -> str:
     nodes = get_step2_nodes()
     fig = go.Figure()
 
-    # 1. Intra-cluster subtle connection lines
+    # 1. Traced cluster boundaries (translucent rounded capsules encircling initial node positions)
+    for topic_id, t in TOPICS.items():
+        t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
+        min_x = min(n["x"] for n in t_nodes) - 12
+        max_x = max(n["x"] for n in t_nodes) + 12
+        min_y = min(n["y"] for n in t_nodes) - 10
+        max_y = max(n["y"] for n in t_nodes) + 10
+        fig.add_shape(
+            type="rect",
+            x0=min_x,
+            y0=min_y,
+            x1=max_x,
+            y1=max_y,
+            line=dict(color=t["color"], width=1.8, dash="dash"),
+            fillcolor=t["bg_color"],
+            layer="below",
+        )
+
+    # 2. Intra-cluster subtle connection lines
     for topic_id, t in TOPICS.items():
         t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
         c = t["centroid_2d"]
@@ -533,10 +551,13 @@ def generate_step2_d3_2d_viewer_html() -> str:
     <div class="hud-panel">
         <div class="hud-title">
             <span>China Strike Knowledge Graph</span>
-            <span class="badge">Step 2 • Clustered</span>
+            <span class="badge" id="hud-badge">Step 2 • Clustered</span>
         </div>
         <div class="hud-desc">
-            16 terms gathered into 4 thematic clusters representing the causal flow from grievances and mobilization to the strike and systemic impact.
+            Nodes maintain their exact initial coordinates. Clusters are identified based on spatial proximity in initial embedding space, delineated by colored boundaries and cluster header labels.
+        </div>
+        <div style="font-size:11px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:7px 10px; margin-bottom:12px; color:#475569; line-height:1.4;">
+            💡 <strong>Zero Node Movement:</strong> Nodes do not shift when clustered. Toggle below to compare initial unclustered baseline vs. traced cluster boundaries.
         </div>
 
         <div class="causal-blueprint">
@@ -549,8 +570,9 @@ def generate_step2_d3_2d_viewer_html() -> str:
         <div class="cluster-pill-list" id="cluster-pills"></div>
 
         <div class="controls-group">
-            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Toggle Labels</button>
-            <button class="btn active" id="btn-toggle-hulls" onclick="toggleHulls()">Toggle Hulls</button>
+            <button class="btn active" id="btn-toggle-mode" onclick="toggleClusterMode()" style="font-weight:700;">Mode: Clusters Revealed</button>
+            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Labels</button>
+            <button class="btn active" id="btn-toggle-hulls" onclick="toggleHulls()">Boundaries</button>
             <button class="btn" onclick="zoomIn()">Zoom (+)</button>
             <button class="btn" onclick="zoomOut()">Zoom (-)</button>
             <button class="btn" onclick="resetZoom()">Reset View</button>
@@ -844,6 +866,44 @@ def generate_step2_d3_2d_viewer_html() -> str:
             updateSelection();
         }
 
+        let clusterMode = true;
+
+        function toggleClusterMode() {
+            clusterMode = !clusterMode;
+            const btn = document.getElementById("btn-toggle-mode");
+            const badge = document.getElementById("hud-badge");
+
+            if (clusterMode) {
+                btn.classList.add("active");
+                btn.textContent = "Mode: Clusters Revealed";
+                badge.textContent = "Step 2 • Clustered";
+                badge.style.background = "#2563EB";
+
+                hullLayer.transition().duration(500).style("opacity", showHulls ? 1 : 0);
+                badgeLayer.transition().duration(500).style("opacity", 1);
+                linkLayer.transition().duration(500).style("opacity", 1);
+
+                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", d => d.color);
+                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", d => d.color);
+                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", d => d.color);
+                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", d => d.color);
+            } else {
+                btn.classList.remove("active");
+                btn.textContent = "Mode: Initial Baseline";
+                badge.textContent = "Step 1 • Initial Positions";
+                badge.style.background = "#64748B";
+
+                hullLayer.transition().duration(500).style("opacity", 0);
+                badgeLayer.transition().duration(500).style("opacity", 0);
+                linkLayer.transition().duration(500).style("opacity", 0);
+
+                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", "#0284C7");
+                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", "#0284C7");
+                labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", "#CBD5E1");
+                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", "#64748B");
+            }
+        }
+
         function toggleLabels() {
             showLabels = !showLabels;
             const btn = document.getElementById("btn-toggle-labels");
@@ -856,7 +916,9 @@ def generate_step2_d3_2d_viewer_html() -> str:
             showHulls = !showHulls;
             const btn = document.getElementById("btn-toggle-hulls");
             btn.classList.toggle("active", showHulls);
-            updateHulls();
+            if (clusterMode) {
+                hullLayer.transition().duration(300).style("opacity", showHulls ? 1 : 0);
+            }
         }
 
         function zoomIn() {
@@ -891,7 +953,29 @@ def generate_step2_plotly_3d_html() -> str:
     nodes = get_step2_nodes()
     fig = go.Figure()
 
-    # Traces per topic
+    # 1. Intra-cluster 3D boundary lines connecting nodes of each cluster
+    for topic_id, t in TOPICS.items():
+        t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
+        lx, ly, lz = [], [], []
+        for i in range(len(t_nodes)):
+            for j in range(i + 1, len(t_nodes)):
+                lx.extend([t_nodes[i]["x"], t_nodes[j]["x"], None])
+                ly.extend([t_nodes[i]["y"], t_nodes[j]["y"], None])
+                lz.extend([t_nodes[i]["z"], t_nodes[j]["z"], None])
+        fig.add_trace(
+            go.Scatter3d(
+                x=lx,
+                y=ly,
+                z=lz,
+                mode="lines",
+                line=dict(color=t["color"], width=2.5, dash="dash"),
+                hoverinfo="none",
+                showlegend=False,
+                opacity=0.45,
+            )
+        )
+
+    # 2. Traces per topic
     for topic_id, t in TOPICS.items():
         t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
         xs = [n["x"] for n in t_nodes]
@@ -1190,10 +1274,13 @@ def generate_step2_threejs_viewer_html() -> str:
     <div class="hud-panel">
         <div class="hud-title">
             <span>China Strike Knowledge Graph</span>
-            <span class="badge">Step 2 • 3D Clustered</span>
+            <span class="badge" id="hud-badge-3d">Step 2 • 3D Clustered</span>
         </div>
         <div class="hud-desc">
-            16 vocabulary terms gathered into 4 distinct thematic clusters in 3D space, with overall topic labels.
+            Nodes maintain their exact initial coordinates in 3D space. Clusters are identified based on spatial proximity in embedding space, delineated by cluster billboards, boundary bubbles, and palettes.
+        </div>
+        <div style="font-size:11px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:7px 10px; margin-bottom:12px; color:#475569; line-height:1.4;">
+            💡 <strong>Zero Node Movement:</strong> Nodes do not shift when clustered. Toggle below to compare initial unclustered baseline vs. traced cluster boundaries.
         </div>
 
         <div class="causal-blueprint">
@@ -1206,7 +1293,8 @@ def generate_step2_threejs_viewer_html() -> str:
         <div class="cluster-pill-list" id="cluster-pills"></div>
 
         <div class="controls-group">
-            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Toggle Labels</button>
+            <button class="btn active" id="btn-toggle-mode-3d" onclick="toggleClusterMode3D()" style="font-weight:700;">Mode: Clusters Revealed</button>
+            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Labels</button>
             <button class="btn" onclick="resetCamera()">Reset View</button>
         </div>
     </div>
@@ -1224,6 +1312,10 @@ def generate_step2_threejs_viewer_html() -> str:
     <script>
         const graphData = __GRAPH_JSON__;
         let showLabels = true;
+        let clusterMode3D = true;
+        const clusterBillboards = [];
+        const boundaryMeshes = [];
+        const nodeSpheres = [];
 
         // Populate HUD cluster pills
         const pillsContainer = document.getElementById("cluster-pills");
@@ -1299,6 +1391,7 @@ def generate_step2_threejs_viewer_html() -> str:
                     badgeSprite.borderWidth = 1;
                     badgeSprite.padding = 3;
                     badgeSprite.borderRadius = 4;
+                    clusterBillboards.push(badgeSprite);
                     return badgeSprite;
                 }
 
@@ -1313,19 +1406,19 @@ def generate_step2_threejs_viewer_html() -> str:
                 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
                 group.add(sphere);
 
-                if (showLabels) {
-                    const sprite = new SpriteText(`${node.name}\\n(${node.chinese})`);
-                    sprite.color = '#0F172A';
-                    sprite.textHeight = 3.2;
-                    sprite.position.y = 7;
-                    sprite.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-                    sprite.borderColor = node.color;
-                    sprite.borderWidth = 0.8;
-                    sprite.padding = 2;
-                    sprite.borderRadius = 3;
-                    group.add(sprite);
-                }
+                let labelSprite = null;
+                labelSprite = new SpriteText(`${node.name}\\n(${node.chinese})`);
+                labelSprite.color = '#0F172A';
+                labelSprite.textHeight = 3.2;
+                labelSprite.position.y = 7;
+                labelSprite.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                labelSprite.borderColor = node.color;
+                labelSprite.borderWidth = 0.8;
+                labelSprite.padding = 2;
+                labelSprite.borderRadius = 3;
+                group.add(labelSprite);
 
+                nodeSpheres.push({ node, sphere, labelSprite });
                 return group;
             })
             .onNodeClick(node => {
@@ -1355,7 +1448,63 @@ def generate_step2_threejs_viewer_html() -> str:
                 document.getElementById('node-details').style.display = 'none';
             });
 
+        // Add 3D wireframe boundary spheres around cluster territories
+        Object.entries(graphData.topics).forEach(([id, t]) => {
+            const geom = new THREE.SphereGeometry(24, 20, 16);
+            const mat = new THREE.MeshBasicMaterial({
+                color: t.color,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.16
+            });
+            const mesh = new THREE.Mesh(geom, mat);
+            mesh.position.set(t.centroid_3d.x, t.centroid_3d.y, t.centroid_3d.z);
+            mesh.name = `boundary_${id}`;
+            Graph.scene().add(mesh);
+            boundaryMeshes.push(mesh);
+        });
+
         Graph.cameraPosition({ x: 210, y: 170, z: 230 });
+
+        function toggleClusterMode3D() {
+            clusterMode3D = !clusterMode3D;
+            const btn = document.getElementById("btn-toggle-mode-3d");
+            const badge = document.getElementById("hud-badge-3d");
+
+            if (clusterMode3D) {
+                btn.classList.add("active");
+                btn.textContent = "Mode: Clusters Revealed";
+                badge.textContent = "Step 2 • 3D Clustered";
+                badge.style.background = "#2563EB";
+
+                clusterBillboards.forEach(b => b.visible = true);
+                boundaryMeshes.forEach(m => m.visible = true);
+                Graph.linkOpacity(0.35);
+
+                nodeSpheres.forEach(item => {
+                    item.sphere.material.color.set(item.node.color);
+                    if (item.labelSprite) {
+                        item.labelSprite.borderColor = item.node.color;
+                    }
+                });
+            } else {
+                btn.classList.remove("active");
+                btn.textContent = "Mode: Initial Baseline";
+                badge.textContent = "Step 1 • Initial Positions";
+                badge.style.background = "#64748B";
+
+                clusterBillboards.forEach(b => b.visible = false);
+                boundaryMeshes.forEach(m => m.visible = false);
+                Graph.linkOpacity(0);
+
+                nodeSpheres.forEach(item => {
+                    item.sphere.material.color.set("#0284C7");
+                    if (item.labelSprite) {
+                        item.labelSprite.borderColor = "#CBD5E1";
+                    }
+                });
+            }
+        }
 
         function focusCluster3D(topicId) {
             const t = graphData.topics[topicId];
@@ -1372,7 +1521,11 @@ def generate_step2_threejs_viewer_html() -> str:
             showLabels = !showLabels;
             const btn = document.getElementById('btn-toggle-labels');
             btn.classList.toggle('active', showLabels);
-            Graph.refresh();
+            nodeSpheres.forEach(item => {
+                if (item.labelSprite) {
+                    item.labelSprite.visible = showLabels;
+                }
+            });
         }
 
         function resetCamera() {

@@ -24,8 +24,8 @@ TOPICS: Dict[str, Dict[str, Any]] = {
         "color": "#E11D48",          # Crimson / Rose
         "bg_color": "rgba(225, 29, 72, 0.08)",
         "border_color": "rgba(225, 29, 72, 0.4)",
-        "centroid_2d": {"x": -64.0, "y": 48.0},
-        "centroid_3d": {"x": -64.0, "y": 48.0, "z": 25.0},
+        "centroid_2d": {"x": -64.0, "y": 49.5},
+        "centroid_3d": {"x": -64.0, "y": 49.5, "z": 24.5},
     },
     "B": {
         "id": "B",
@@ -37,8 +37,8 @@ TOPICS: Dict[str, Dict[str, Any]] = {
         "color": "#0D9488",          # Deep Teal
         "bg_color": "rgba(13, 148, 136, 0.08)",
         "border_color": "rgba(13, 148, 136, 0.4)",
-        "centroid_2d": {"x": -64.0, "y": -48.0},
-        "centroid_3d": {"x": -64.0, "y": -48.0, "z": -25.0},
+        "centroid_2d": {"x": -60.5, "y": -47.0},
+        "centroid_3d": {"x": -60.5, "y": -47.0, "z": -23.5},
     },
     "C": {
         "id": "C",
@@ -50,8 +50,8 @@ TOPICS: Dict[str, Dict[str, Any]] = {
         "color": "#2563EB",          # Royal Blue
         "bg_color": "rgba(37, 99, 235, 0.08)",
         "border_color": "rgba(37, 99, 235, 0.4)",
-        "centroid_2d": {"x": 5.0, "y": 0.0},
-        "centroid_3d": {"x": 5.0, "y": 0.0, "z": 0.0},
+        "centroid_2d": {"x": 6.5, "y": 1.5},
+        "centroid_3d": {"x": 6.5, "y": 1.5, "z": 0.0},
     },
     "D": {
         "id": "D",
@@ -63,8 +63,8 @@ TOPICS: Dict[str, Dict[str, Any]] = {
         "color": "#7C3AED",          # Purple / Violet
         "bg_color": "rgba(124, 58, 237, 0.08)",
         "border_color": "rgba(124, 58, 237, 0.4)",
-        "centroid_2d": {"x": 76.0, "y": 0.0},
-        "centroid_3d": {"x": 76.0, "y": 0.0, "z": 20.0},
+        "centroid_2d": {"x": 75.5, "y": 3.0},
+        "centroid_3d": {"x": 75.5, "y": 3.0, "z": 21.0},
     },
 }
 
@@ -207,78 +207,64 @@ BASE_VOCABULARY: List[Dict[str, Any]] = [
     },
 ]
 
-# Step 1: Coordinates interleaved with Latin-square dispersion
-STEP1_COORDINATES: Dict[str, Dict[str, float]] = {
-    "node_1":  {"x": -81.0, "y":  82.0, "z": -37.7},
-    "node_2":  {"x":  33.0, "y":  19.0, "z": -46.4},
-    "node_3":  {"x": -20.0, "y": -33.0, "z": -57.5},
-    "node_4":  {"x":  67.0, "y": -68.0, "z":  20.9},
-    "node_5":  {"x": -17.0, "y":  70.0, "z":  13.1},
-    "node_6":  {"x":  68.0, "y":  30.0, "z": -27.4},
-    "node_7":  {"x": -83.0, "y": -19.0, "z":  11.4},
-    "node_8":  {"x":  31.0, "y": -83.0, "z":   3.2},
-    "node_9":  {"x":  20.0, "y":  81.0, "z":  33.5},
-    "node_10": {"x": -68.0, "y":  18.0, "z":   3.4},
-    "node_11": {"x":  81.0, "y": -31.0, "z":  12.2},
-    "node_12": {"x": -32.0, "y": -69.0, "z": -47.9},
-    "node_13": {"x":  82.0, "y":  67.0, "z": -36.1},
-    "node_14": {"x": -31.0, "y":  33.0, "z":  21.8},
-    "node_15": {"x":  18.0, "y": -18.0, "z": -38.4},
-    "node_16": {"x": -70.0, "y": -80.0, "z":  51.0},
+# The 16 Node Coordinates (Initial Spatial Layout)
+# Identical for Step 1 (unclustered baseline) and Step 2 (clusters with boundaries).
+# The nodes DO NOT MOVE when clustered; clusters are chosen based on these initial positions.
+INITIAL_NODE_COORDINATES: Dict[str, Dict[str, float]] = {
+    # Region A (Economic Grievances - Top-Left)
+    "node_1":  {"x": -82.0, "y":  58.0, "z":  28.0},  # Wage Depression
+    "node_2":  {"x": -54.0, "y":  68.0, "z":  22.0},  # Rice Inflation
+    "node_3":  {"x": -74.0, "y":  32.0, "z":  14.0},  # Ten-Hour Shift
+    "node_4":  {"x": -46.0, "y":  40.0, "z":  34.0},  # Living Cost Spiral
+
+    # Region B (Labor Organizing - Bottom-Left)
+    "node_5":  {"x": -78.0, "y": -36.0, "z": -16.0},  # Seamen's Union
+    "node_6":  {"x": -48.0, "y": -28.0, "z": -26.0},  # Strike Committee
+    "node_7":  {"x": -72.0, "y": -66.0, "z": -34.0},  # Picket Corps
+    "node_8":  {"x": -44.0, "y": -58.0, "z": -18.0},  # Boycott Manifesto
+
+    # Region C (Strike Action - Center Hub)
+    "node_9":  {"x": -12.0, "y":  16.0, "z":  12.0},  # General Strike
+    "node_10": {"x":  22.0, "y":  20.0, "z": -10.0},  # Dockworker Walkout
+    "node_11": {"x":  -8.0, "y": -18.0, "z": -12.0},  # Work Cessation
+    "node_12": {"x":  24.0, "y": -12.0, "z":  10.0},  # Mass Demonstration
+
+    # Region D (Harbor Paralysis - Right Hub)
+    "node_13": {"x":  58.0, "y":  18.0, "z":  28.0},  # Port Paralysis
+    "node_14": {"x":  92.0, "y":  22.0, "z":  14.0},  # Shipping Deadlock
+    "node_15": {"x":  62.0, "y": -18.0, "z":  18.0},  # Market Interruption
+    "node_16": {"x":  90.0, "y": -10.0, "z":  24.0},  # Colonial Concessions
 }
 
-# Step 2: Coordinates clustered tightly into 4 geographic regions (A: Top-Left, B: Bottom-Left, C: Center, D: Right)
-STEP2_COORDINATES: Dict[str, Dict[str, float]] = {
-    # Cluster A (Top-Left: Centroid (-64, 48))
-    "node_1":  {"x": -78.0, "y":  62.0, "z":  32.0},  # Wage Depression
-    "node_2":  {"x": -50.0, "y":  64.0, "z":  22.0},  # Rice Inflation
-    "node_3":  {"x": -76.0, "y":  34.0, "z":  18.0},  # Ten-Hour Shift
-    "node_4":  {"x": -52.0, "y":  32.0, "z":  28.0},  # Living Cost Spiral
-
-    # Cluster B (Bottom-Left: Centroid (-64, -48))
-    "node_5":  {"x": -78.0, "y": -34.0, "z": -18.0},  # Seamen's Union
-    "node_6":  {"x": -50.0, "y": -32.0, "z": -28.0},  # Strike Committee
-    "node_7":  {"x": -76.0, "y": -62.0, "z": -32.0},  # Picket Corps
-    "node_8":  {"x": -52.0, "y": -64.0, "z": -22.0},  # Boycott Manifesto
-
-    # Cluster C (Center Hub: Centroid (5, 0))
-    "node_9":  {"x":  -8.0, "y":  14.0, "z":  10.0},  # General Strike
-    "node_10": {"x":  20.0, "y":  16.0, "z":  -8.0},  # Dockworker Walkout
-    "node_11": {"x": -10.0, "y": -16.0, "z": -10.0},  # Work Cessation
-    "node_12": {"x":  18.0, "y": -14.0, "z":   8.0},  # Mass Demonstration
-
-    # Cluster D (Right Hub: Centroid (76, 0))
-    "node_13": {"x":  62.0, "y":  14.0, "z":  25.0},  # Port Paralysis
-    "node_14": {"x":  90.0, "y":  16.0, "z":  15.0},  # Shipping Deadlock
-    "node_15": {"x":  64.0, "y": -16.0, "z":  20.0},  # Market Interruption
-    "node_16": {"x":  88.0, "y": -14.0, "z":  22.0},  # Colonial Concessions
-}
+# Aliases ensuring backward compatibility and identical coordinates across steps
+STEP1_COORDINATES = INITIAL_NODE_COORDINATES
+STEP2_COORDINATES = INITIAL_NODE_COORDINATES
 
 
 def get_step1_nodes() -> List[Dict[str, Any]]:
-    """Return nodes for Step 1 (Dispersed, uniform styling)."""
+    """Return nodes for Step 1 (Initial positions, unclustered baseline, uniform styling)."""
     nodes = []
     for item in BASE_VOCABULARY:
         n = dict(item)
-        c = STEP1_COORDINATES[item["id"]]
+        c = INITIAL_NODE_COORDINATES[item["id"]]
         n["x"] = c["x"]
         n["y"] = c["y"]
         n["z"] = c["z"]
         n["latent_topic_id"] = item["topic_id"]
         n["latent_topic_name"] = TOPICS[item["topic_id"]]["name"]
         n["step"] = 1
-        n["status"] = "dispersed_unclustered"
+        n["status"] = "initial_unclustered"
         n["color"] = UNIFORM_NODE_COLOR
         nodes.append(n)
     return nodes
 
 
 def get_step2_nodes() -> List[Dict[str, Any]]:
-    """Return nodes for Step 2 (Clustered by topic, with topic colors & labels)."""
+    """Return nodes for Step 2 (Nodes stay at exact initial positions; recolored by cluster with labels)."""
     nodes = []
     for item in BASE_VOCABULARY:
         n = dict(item)
-        c = STEP2_COORDINATES[item["id"]]
+        c = INITIAL_NODE_COORDINATES[item["id"]]
         t = TOPICS[item["topic_id"]]
         n["x"] = c["x"]
         n["y"] = c["y"]

@@ -26,7 +26,7 @@ CREATE (:TopicCluster {
     causal_role: "Pre-condition / Cause (A -> C)",
     description: "Post-WWI economic depression, soaring rice prices, currency volatility, and unlivable laborer wages.",
     color: "#E11D48",
-    centroid_x: -64.0, centroid_y: 48.0, centroid_z: 25.0,
+    centroid_x: -64.0, centroid_y: 49.5, centroid_z: 24.5,
     step: 2
 });
 CREATE (:TopicCluster {
@@ -38,7 +38,7 @@ CREATE (:TopicCluster {
     causal_role: "Catalyst / Cause (B -> C)",
     description: "Establishment of labor syndicates, strike committees, boycott manifestos, and picket enforcement.",
     color: "#0D9488",
-    centroid_x: -64.0, centroid_y: -48.0, centroid_z: -25.0,
+    centroid_x: -60.5, centroid_y: -47.0, centroid_z: -23.5,
     step: 2
 });
 CREATE (:TopicCluster {
@@ -50,7 +50,7 @@ CREATE (:TopicCluster {
     causal_role: "Central Strike Event (A, B -> C -> D)",
     description: "Mass walkouts, dock shutdowns, street demonstrations, and systemic withdrawal of maritime and municipal labor.",
     color: "#2563EB",
-    centroid_x: 5.0, centroid_y: 0.0, centroid_z: 0.0,
+    centroid_x: 6.5, centroid_y: 1.5, centroid_z: 0.0,
     step: 2
 });
 CREATE (:TopicCluster {
@@ -62,7 +62,7 @@ CREATE (:TopicCluster {
     causal_role: "Consequence (C -> D)",
     description: "Harbor standstill, 150+ stranded steamships, commercial food shortages, and imperial legislative negotiations.",
     color: "#7C3AED",
-    centroid_x: 76.0, centroid_y: 0.0, centroid_z: 20.0,
+    centroid_x: 75.5, centroid_y: 3.0, centroid_z: 21.0,
     step: 2
 });
 
@@ -78,7 +78,7 @@ CREATE (w_node_1:Topic_A:StrikeWord:Word {
     historical_source: "The China Mail (1921-1922)",
     context: "Stagnant daily laborer wages amidst sharp post-war currency fluctuations.",
     color: "#E11D48",
-    x: -78.0, y: 62.0, z: 32.0,
+    x: -82.0, y: 58.0, z: 28.0,
     step: 2,
     status: "clustered"
 })
@@ -96,7 +96,7 @@ CREATE (w_node_2:Topic_A:StrikeWord:Word {
     historical_source: "Hong Kong MMIS Gazette (1922)",
     context: "Skyrocketing price of staple rice threatening subsistence of dock families.",
     color: "#E11D48",
-    x: -50.0, y: 64.0, z: 22.0,
+    x: -54.0, y: 68.0, z: 22.0,
     step: 2,
     status: "clustered"
 })
@@ -114,7 +114,7 @@ CREATE (w_node_3:Topic_A:StrikeWord:Word {
     historical_source: "North-China Herald (1923)",
     context: "Exhausting operational hours demanded from maritime and transport coolies.",
     color: "#E11D48",
-    x: -76.0, y: 34.0, z: 18.0,
+    x: -74.0, y: 32.0, z: 14.0,
     step: 2,
     status: "clustered"
 })
@@ -132,7 +132,7 @@ CREATE (w_node_4:Topic_A:StrikeWord:Word {
     historical_source: "The China Mail (1922)",
     context: "General cost-of-living index surges driving desperate economic petitions.",
     color: "#E11D48",
-    x: -52.0, y: 32.0, z: 28.0,
+    x: -46.0, y: 40.0, z: 34.0,
     step: 2,
     status: "clustered"
 })
@@ -150,7 +150,7 @@ CREATE (w_node_5:Topic_B:StrikeWord:Word {
     historical_source: "The China Mail (1922)",
     context: "The central maritime guild led by Su Zhaozheng organizing across Hong Kong and Canton.",
     color: "#0D9488",
-    x: -78.0, y: -34.0, z: -18.0,
+    x: -78.0, y: -36.0, z: -16.0,
     step: 2,
     status: "clustered"
 })
@@ -168,7 +168,7 @@ CREATE (w_node_6:Topic_B:StrikeWord:Word {
     historical_source: "Canton Gazette (1925)",
     context: "Executive coordinating council managing strike logistics, food rations, and strategy.",
     color: "#0D9488",
-    x: -50.0, y: -32.0, z: -28.0,
+    x: -48.0, y: -28.0, z: -26.0,
     step: 2,
     status: "clustered"
 })
@@ -186,7 +186,7 @@ CREATE (w_node_7:Topic_B:StrikeWord:Word {
     historical_source: "The China Mail (1925)",
     context: "Organized worker patrols enforcing the anti-colonial shipping embargo.",
     color: "#0D9488",
-    x: -76.0, y: -62.0, z: -32.0,
+    x: -72.0, y: -66.0, z: -34.0,
     step: 2,
     status: "clustered"
 })
@@ -204,7 +204,7 @@ CREATE (w_node_8:Topic_B:StrikeWord:Word {
     historical_source: "Shanghai Municipal Archives (1925)",
     context: "Leaflets distributed across treaty ports calling for national anti-imperial unity.",
     color: "#0D9488",
-    x: -52.0, y: -64.0, z: -22.0,
+    x: -44.0, y: -58.0, z: -18.0,
     step: 2,
     status: "clustered"
 })
@@ -222,7 +222,7 @@ CREATE (w_node_9:Topic_C:StrikeWord:Word {
     historical_source: "The China Mail (1922)",
     context: "Complete stoppage of maritime and municipal work paralyzing the colony.",
     color: "#2563EB",
-    x: -8.0, y: 14.0, z: 10.0,
+    x: -12.0, y: 16.0, z: 12.0,
     step: 2,
     status: "clustered"
 })
@@ -240,7 +240,7 @@ CREATE (w_node_10:Topic_C:StrikeWord:Word {
     historical_source: "The China Mail (1922)",
     context: "Stevedores and cargo loaders abandoning British ships in Victoria Harbour.",
     color: "#2563EB",
-    x: 20.0, y: 16.0, z: -8.0,
+    x: 22.0, y: 20.0, z: -10.0,
     step: 2,
     status: "clustered"
 })
@@ -258,7 +258,7 @@ CREATE (w_node_11:Topic_C:StrikeWord:Word {
     historical_source: "Hong Kong MMIS (1925)",
     context: "Sympathy strikes spreading to domestic servants, tram drivers, and clerks.",
     color: "#2563EB",
-    x: -10.0, y: -16.0, z: -10.0,
+    x: -8.0, y: -18.0, z: -12.0,
     step: 2,
     status: "clustered"
 })
@@ -276,7 +276,7 @@ CREATE (w_node_12:Topic_C:StrikeWord:Word {
     historical_source: "The China Mail (1922)",
     context: "Gatherings of thousands marching through urban centers demanding rights and dignity.",
     color: "#2563EB",
-    x: 18.0, y: -14.0, z: 8.0,
+    x: 24.0, y: -12.0, z: 10.0,
     step: 2,
     status: "clustered"
 })
@@ -294,7 +294,7 @@ CREATE (w_node_13:Topic_D:StrikeWord:Word {
     historical_source: "The China Mail (1922)",
     context: "Over 150 merchant vessels anchored idle with zero cargo discharge capacity.",
     color: "#7C3AED",
-    x: 62.0, y: 14.0, z: 25.0,
+    x: 58.0, y: 18.0, z: 28.0,
     step: 2,
     status: "clustered"
 })
@@ -312,7 +312,7 @@ CREATE (w_node_14:Topic_D:StrikeWord:Word {
     historical_source: "The China Mail (1925)",
     context: "Complete standstill of coastal and trans-Pacific commercial steamer traffic.",
     color: "#7C3AED",
-    x: 90.0, y: 16.0, z: 15.0,
+    x: 92.0, y: 22.0, z: 14.0,
     step: 2,
     status: "clustered"
 })
@@ -330,7 +330,7 @@ CREATE (w_node_15:Topic_D:StrikeWord:Word {
     historical_source: "Hong Kong Chamber of Commerce (1922)",
     context: "Retail closures, supply shortages, and emergency rationing across Victoria.",
     color: "#7C3AED",
-    x: 64.0, y: -16.0, z: 20.0,
+    x: 62.0, y: -18.0, z: 18.0,
     step: 2,
     status: "clustered"
 })
@@ -348,7 +348,7 @@ CREATE (w_node_16:Topic_D:StrikeWord:Word {
     historical_source: "The China Mail (1922)",
     context: "Colonial government and shipping conglomerates agreeing to wage hikes and union recognition.",
     color: "#7C3AED",
-    x: 88.0, y: -14.0, z: 22.0,
+    x: 90.0, y: -10.0, z: 24.0,
     step: 2,
     status: "clustered"
 })
