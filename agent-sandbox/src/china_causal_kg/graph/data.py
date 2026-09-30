@@ -302,6 +302,91 @@ def get_step2_intra_links() -> List[Dict[str, Any]]:
     return links
 
 
+# ====================================================================
+# Step 3: Causal Directed Relationships (A, B ➔ C ➔ D)
+# ====================================================================
+CAUSAL_EDGES: List[Dict[str, Any]] = [
+    {
+        "id": "causal_A_C",
+        "source": "A",
+        "target": "C",
+        "source_name": "Economic Grievances & Inflation",
+        "target_name": "Strike Action & Work Stoppage",
+        "type": "CAUSES",
+        "causal_type": "PRECONDITION",
+        "label": "Causes Strike Action (Precondition)",
+        "relationship": "A ➔ C",
+        "mechanism": "Post-war inflation, staple food price surges, and depressed wages created unbearable economic pressure that compelled laborers to strike.",
+        "historical_evidence": "1922 Hong Kong Seamen's petitions demanded a 30-40% wage increase directly citing that rice costs had tripled since 1914.",
+        "color": "#E11D48",
+        "arrow_color": "#E11D48",
+        "weight": 3.0,
+    },
+    {
+        "id": "causal_B_C",
+        "source": "B",
+        "target": "C",
+        "source_name": "Labor Organizing & Solidarity",
+        "target_name": "Strike Action & Work Stoppage",
+        "type": "CAUSES",
+        "causal_type": "CATALYST",
+        "label": "Causes Strike Action (Catalyst)",
+        "relationship": "B ➔ C",
+        "mechanism": "Organized syndicates, executive strike committees, and cross-provincial boycotted shipping networks provided the tactical machinery to mobilize 100,000+ workers.",
+        "historical_evidence": "The Chinese Seamen's Union and Canton strike headquarters established disciplined picket patrols and mutual-aid food kitchens enabling indefinite walkouts.",
+        "color": "#0D9488",
+        "arrow_color": "#0D9488",
+        "weight": 3.0,
+    },
+    {
+        "id": "causal_C_D",
+        "source": "C",
+        "target": "D",
+        "source_name": "Strike Action & Work Stoppage",
+        "target_name": "Harbor Paralysis & Colonial Impact",
+        "type": "CAUSES",
+        "causal_type": "CONSEQUENCE",
+        "label": "Causes Port Paralysis (Consequence)",
+        "relationship": "C ➔ D",
+        "mechanism": "Complete cessation of dock handling, cargo transport, and municipal services paralyzed British maritime trade, resulting in emergency rationing and colonial surrender.",
+        "historical_evidence": "The China Mail reported over 150 merchant steamships stranded in Victoria Harbour, commercial life halted, and colonial authorities ultimately agreeing to union recognition and wage increases.",
+        "color": "#2563EB",
+        "arrow_color": "#7C3AED",
+        "weight": 3.5,
+    },
+]
+
+# Micro causal semantic chains connecting specific representative words
+WORD_CAUSAL_LINKS: List[Dict[str, Any]] = [
+    {"source": "node_1", "target": "node_9", "type": "MICRO_CAUSAL", "label": "Wage Depression triggers General Strike"},
+    {"source": "node_2", "target": "node_9", "type": "MICRO_CAUSAL", "label": "Rice Inflation triggers General Strike"},
+    {"source": "node_5", "target": "node_10", "type": "MICRO_CAUSAL", "label": "Seamen's Union organizes Dockworker Walkout"},
+    {"source": "node_6", "target": "node_12", "type": "MICRO_CAUSAL", "label": "Strike Committee mobilizes Mass Demonstration"},
+    {"source": "node_9", "target": "node_13", "type": "MICRO_CAUSAL", "label": "General Strike induces Port Paralysis"},
+    {"source": "node_10", "target": "node_14", "type": "MICRO_CAUSAL", "label": "Dockworker Walkout results in Shipping Deadlock"},
+    {"source": "node_11", "target": "node_15", "type": "MICRO_CAUSAL", "label": "Work Cessation leads to Market Interruption"},
+]
+
+
+def get_step3_nodes() -> List[Dict[str, Any]]:
+    """Return nodes for Step 3 (Identical coordinates, marked for step 3)."""
+    nodes = get_step2_nodes()
+    for n in nodes:
+        n["step"] = 3
+    return nodes
+
+
+def get_causal_edges() -> List[Dict[str, Any]]:
+    """Return the macro directed causal edges between clusters."""
+    return copy.deepcopy(CAUSAL_EDGES)
+
+
+def get_word_causal_links() -> List[Dict[str, Any]]:
+    """Return the micro directed causal links between words."""
+    return copy.deepcopy(WORD_CAUSAL_LINKS)
+
+
 # Backward-compatible alias for Step 1
 STRIKE_NODES = get_step1_nodes()
 get_nodes_as_dict = get_step1_nodes
+

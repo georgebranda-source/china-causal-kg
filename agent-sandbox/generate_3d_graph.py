@@ -3,10 +3,12 @@
 Convenience CLI runner for generating the 1920s Chinese Strike Causal Knowledge Graph.
 
 Supports:
-- Step 1: 16 Dispersed, unclustered vocabulary nodes (Latin-square dispersed baseline)
+- Step 1: 16 Initial vocabulary nodes (unclustered baseline)
   Output: agent-sandbox/artifacts/step1_dispersed/
-- Step 2: 16 Nodes visibly clustered into 4 Thematic Topics (A, B, C, D) with boundary bubbles & labels
+- Step 2: 16 Nodes visibly clustered into 4 Thematic Topics (A, B, C, D) with boundary capsules & labels
   Output: agent-sandbox/artifacts/step2_clustered/
+- Step 3: Directed Causal Induction (Macro & Micro Causal Relationships: A, B ➔ C ➔ D)
+  Output: agent-sandbox/artifacts/step3_causal/
 - Unified Navigation Index:
   Output: agent-sandbox/artifacts/index.html
 """
@@ -26,15 +28,18 @@ sys.path.insert(0, str(src_dir))
 from china_causal_kg.graph.data import (
     TOPICS,
     STRIKE_NODES,
+    CAUSAL_EDGES,
     get_step1_nodes,
     get_step2_nodes,
+    get_step3_nodes,
 )
 from china_causal_kg.graph.visualizer import export_all_formats, connect_and_upload_neo4j
 from china_causal_kg.graph.visualizer_step2 import export_step2_formats, connect_and_upload_neo4j_step2
+from china_causal_kg.graph.visualizer_step3 import export_step3_formats, connect_and_upload_neo4j_step3
 
 
 def generate_index_html(output_dir: Path) -> Path:
-    """Generate a clean unified HTML index linking Step 1 and Step 2 graph deliverables."""
+    """Generate a clean unified HTML index linking Step 1, Step 2, and Step 3 graph deliverables."""
     index_file = output_dir / "index.html"
     html_content = """<!DOCTYPE html>
 <html lang="en">
@@ -56,11 +61,11 @@ def generate_index_html(output_dir: Path) -> Path:
             padding: 40px 24px;
         }
         .container {
-            max-width: 1040px;
+            max-width: 1180px;
             margin: 0 auto;
         }
         header {
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             border-bottom: 1px solid #E2E8F0;
             padding-bottom: 24px;
         }
@@ -86,7 +91,7 @@ def generate_index_html(output_dir: Path) -> Path:
         p.subtitle {
             font-size: 15px;
             color: #475569;
-            max-width: 800px;
+            max-width: 860px;
         }
         .causal-blueprint-card {
             background: #F8FAFC;
@@ -97,7 +102,7 @@ def generate_index_html(output_dir: Path) -> Path:
             margin-bottom: 36px;
         }
         .causal-blueprint-card h3 {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 700;
             color: #1E293B;
             text-transform: uppercase;
@@ -125,12 +130,9 @@ def generate_index_html(output_dir: Path) -> Path:
 
         .steps-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
             margin-bottom: 40px;
-        }
-        @media (max-width: 768px) {
-            .steps-grid { grid-template-columns: 1fr; }
         }
         .step-card {
             background: #FFFFFF;
@@ -148,7 +150,7 @@ def generate_index_html(output_dir: Path) -> Path:
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
         .step-header {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
         .step-tag {
             font-size: 11px;
@@ -161,14 +163,15 @@ def generate_index_html(output_dir: Path) -> Path:
         }
         .step-tag.step1 { background: #E0F2FE; color: #0284C7; }
         .step-tag.step2 { background: #FEF3C7; color: #D97706; }
+        .step-tag.step3 { background: #DBEAFE; color: #1D4ED8; }
         .step-card h2 {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             color: #0F172A;
             margin-bottom: 6px;
         }
         .step-card p {
-            font-size: 13.5px;
+            font-size: 13px;
             color: #64748B;
             margin-bottom: 18px;
             line-height: 1.5;
@@ -182,13 +185,13 @@ def generate_index_html(output_dir: Path) -> Path:
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 14px;
+            padding: 9px 12px;
             background: #F8FAFC;
             border: 1px solid #E2E8F0;
             border-radius: 8px;
             color: #1E293B;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             transition: all 0.15s;
         }
@@ -207,15 +210,15 @@ def generate_index_html(output_dir: Path) -> Path:
         }
         .file-list {
             margin-top: 14px;
-            padding-top: 12px;
+            padding-top: 10px;
             border-top: 1px dashed #E2E8F0;
-            font-size: 12px;
+            font-size: 11.5px;
             color: #64748B;
         }
         .file-list a {
             color: #2563EB;
             text-decoration: none;
-            margin-right: 12px;
+            margin-right: 10px;
         }
         .file-list a:hover {
             text-decoration: underline;
@@ -235,7 +238,7 @@ def generate_index_html(output_dir: Path) -> Path:
         }
         .topics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 16px;
         }
         .topic-pill {
@@ -277,7 +280,7 @@ def generate_index_html(output_dir: Path) -> Path:
             <h1>1920s Chinese Strike Causal Knowledge Graph</h1>
             <p class="subtitle">
                 Demonstrating causal knowledge graph induction from archival news text (The China Mail, Canton Gazette, HKPL MMIS).
-                Progressing from dispersed vocabulary strings to visible clusters and directed causal relationships.
+                Progressing across three unified stages: Initial Vocabulary Positions ➔ Topic Clustering ➔ Directed Causal Graph.
             </p>
         </header>
 
@@ -336,25 +339,25 @@ def generate_index_html(output_dir: Path) -> Path:
             </div>
 
             <!-- Step 2 Card -->
-            <div class="step-card" style="border-color: #93C5FD; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);">
+            <div class="step-card">
                 <div>
                     <div class="step-header">
-                        <span class="step-tag step2">Step 2 • Active Stage</span>
-                        <h2>Thematic Clusters Revealed (Zero Movement)</h2>
+                        <span class="step-tag step2">Step 2 • Thematic Clusters</span>
+                        <h2>Clusters Revealed (Zero Movement)</h2>
                     </div>
                     <p>
-                        <strong>Zero Node Movement:</strong> Nodes do not shift from their initial positions. Clusters are identified based on spatial proximity in embedding space, delineated by colored boundary capsules and overall cluster labels.
+                        <strong>Zero Node Movement:</strong> Nodes remain at their exact initial coordinates. Clusters are delineated by colored boundary capsules, palettes, and header labels.
                     </p>
                 </div>
                 <div>
                     <div class="view-links">
-                        <a href="step2_clustered/graph_2d_viewer.html" class="view-btn" style="border-color: #BFDBFE; background: #EFF6FF;">
-                            <span style="color: #1D4ED8; font-weight: 700;">Interactive 2D Clustered Viewer</span>
-                            <span class="btn-badge" style="background: #DBEAFE; color: #1D4ED8;">D3.js Hulls & Labels</span>
+                        <a href="step2_clustered/graph_2d_viewer.html" class="view-btn">
+                            <span>Interactive 2D Clustered Viewer</span>
+                            <span class="btn-badge">D3.js Hulls</span>
                         </a>
-                        <a href="step2_clustered/graph_3d_viewer.html" class="view-btn" style="border-color: #BFDBFE; background: #EFF6FF;">
-                            <span style="color: #1D4ED8; font-weight: 700;">Interactive 3D Clustered Viewer</span>
-                            <span class="btn-badge" style="background: #DBEAFE; color: #1D4ED8;">Three.js Billboards</span>
+                        <a href="step2_clustered/graph_3d_viewer.html" class="view-btn">
+                            <span>Interactive 3D Clustered Viewer</span>
+                            <span class="btn-badge">Three.js Billboards</span>
                         </a>
                         <a href="step2_clustered/graph_2d_plotly.html" class="view-btn">
                             <span>Plotly 2D Clustered Scatter</span>
@@ -372,6 +375,44 @@ def generate_index_html(output_dir: Path) -> Path:
                     </div>
                 </div>
             </div>
+
+            <!-- Step 3 Card -->
+            <div class="step-card" style="border-color: #93C5FD; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);">
+                <div>
+                    <div class="step-header">
+                        <span class="step-tag step3">Step 3 • Final Causal KG</span>
+                        <h2>Directed Causal Induction</h2>
+                    </div>
+                    <p>
+                        <strong>Complete Causal Knowledge Graph:</strong> Macro directed causal arrows (A, B ➔ C ➔ D), animated flow pulses, mechanism cards, and micro word links over stationary nodes.
+                    </p>
+                </div>
+                <div>
+                    <div class="view-links">
+                        <a href="step3_causal/graph_2d_viewer.html" class="view-btn" style="border-color: #BFDBFE; background: #EFF6FF;">
+                            <span style="color: #1D4ED8; font-weight: 700;">Interactive 2D Causal Viewer</span>
+                            <span class="btn-badge" style="background: #DBEAFE; color: #1D4ED8;">D3.js Animated Vectors</span>
+                        </a>
+                        <a href="step3_causal/graph_3d_viewer.html" class="view-btn" style="border-color: #BFDBFE; background: #EFF6FF;">
+                            <span style="color: #1D4ED8; font-weight: 700;">Interactive 3D Causal Viewer</span>
+                            <span class="btn-badge" style="background: #DBEAFE; color: #1D4ED8;">Three.js 3D Tubes</span>
+                        </a>
+                        <a href="step3_causal/graph_2d_plotly.html" class="view-btn">
+                            <span>Plotly 2D Causal Graph</span>
+                            <span class="btn-badge">Plotly.js</span>
+                        </a>
+                        <a href="step3_causal/graph_3d_plotly.html" class="view-btn">
+                            <span>Plotly 3D Causal Graph</span>
+                            <span class="btn-badge">Plotly.js</span>
+                        </a>
+                    </div>
+                    <div class="file-list">
+                        Data files:
+                        <a href="step3_causal/create_graph.cypher">Cypher Script</a>
+                        <a href="step3_causal/graph_data.json">JSON Export</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <section class="topics-section">
@@ -382,7 +423,7 @@ def generate_index_html(output_dir: Path) -> Path:
                         <span class="topic-indicator" style="background: #E11D48;"></span>
                         Topic A: Economic Grievances
                     </div>
-                    <div class="topic-role">Pre-condition / Cause (A ➔ C)</div>
+                    <div class="topic-role">Precondition / Cause (A ➔ C)</div>
                     <div class="topic-words">Wage Depression, Rice Inflation, Ten-Hour Shift, Living Cost Spiral</div>
                 </div>
                 <div class="topic-pill" style="border-left: 3px solid #0D9488;">
@@ -425,9 +466,9 @@ def main():
     )
     parser.add_argument(
         "--step",
-        choices=["1", "2", "all"],
+        choices=["1", "2", "3", "all"],
         default="all",
-        help="Which step to generate: '1' (dispersed), '2' (clustered), or 'all' (default).",
+        help="Which step to generate: '1' (initial), '2' (clustered), '3' (causal), or 'all' (default).",
     )
     parser.add_argument(
         "--output-dir",
@@ -472,34 +513,42 @@ def main():
     print(f"[*] Base Output Directory: {out_base.resolve()}")
     print(f"[*] Total Vocabulary Terms: {len(STRIKE_NODES)}")
     print(f"[*] Thematic Topics:        {len(TOPICS)}")
+    print(f"[*] Causal Relationships:   {len(CAUSAL_EDGES)}")
     print(f"[*] Selected Step:          {args.step.upper()}")
     print("-" * 70)
-    print("Latent Causal Blueprint:")
-    print("  * Topic A (Economic Grievance)  -->  Topic C (General Strike)")
-    print("  * Topic B (Labor Organizing)    -->  Topic C (General Strike)")
-    print("  * Topic C (General Strike)      -->  Topic D (Harbor Paralysis)")
+    print("Causal Blueprint Architecture:")
+    print("  * Topic A (Economic Grievance)  ──➔  Topic C (General Strike)")
+    print("  * Topic B (Labor Organizing)    ──➔  Topic C (General Strike)")
+    print("  * Topic C (General Strike)      ──➔  Topic D (Harbor Paralysis)")
     print("-" * 70)
 
     # 1. Step 1 Generation
     if args.step in ["1", "all"]:
-        step1_dir = out_base / "step1_dispersed" if args.step == "all" else out_base
-        print(f"\n[+] Generating Step 1 (Dispersed Baseline) in: {step1_dir}")
+        step1_dir = out_base / "step1_dispersed" if out_base.name != "step1_dispersed" else out_base
+        print(f"\n[+] Generating Step 1 (Initial Baseline) in: {step1_dir}")
         res1 = export_all_formats(step1_dir)
         for key, path in res1.items():
             print(f"    - [{key.upper():10}] {path.name}")
 
     # 2. Step 2 Generation
     if args.step in ["2", "all"]:
-        step2_dir = out_base / "step2_clustered" if args.step == "all" else out_base
+        step2_dir = out_base / "step2_clustered" if out_base.name != "step2_clustered" else out_base
         print(f"\n[+] Generating Step 2 (Thematic Clusters & Labels) in: {step2_dir}")
         res2 = export_step2_formats(step2_dir)
         for key, path in res2.items():
             print(f"    - [{key.upper():10}] {path.name}")
 
-    # 3. Unified Navigation Index
-    if args.step == "all":
-        index_path = generate_index_html(out_base)
-        print(f"\n[+] Unified Navigation Index: {index_path.resolve()}")
+    # 3. Step 3 Generation
+    if args.step in ["3", "all"]:
+        step3_dir = out_base / "step3_causal" if out_base.name != "step3_causal" else out_base
+        print(f"\n[+] Generating Step 3 (Directed Causal Graph) in: {step3_dir}")
+        res3 = export_step3_formats(step3_dir)
+        for key, path in res3.items():
+            print(f"    - [{key.upper():10}] {path.name}")
+
+    # 4. Unified Navigation Index
+    index_path = generate_index_html(out_base)
+    print(f"\n[+] Unified Navigation Index: {index_path.resolve()}")
 
     # Live Neo4j upload attempt if requested
     if args.upload:
@@ -510,8 +559,14 @@ def main():
                 user=args.neo4j_user,
                 password=args.neo4j_pass,
             )
-        else:
+        elif args.step == "2":
             upload_res = connect_and_upload_neo4j_step2(
+                uri=args.neo4j_uri,
+                user=args.neo4j_user,
+                password=args.neo4j_pass,
+            )
+        else:
+            upload_res = connect_and_upload_neo4j_step3(
                 uri=args.neo4j_uri,
                 user=args.neo4j_user,
                 password=args.neo4j_pass,
