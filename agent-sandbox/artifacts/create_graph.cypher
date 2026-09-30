@@ -206,7 +206,7 @@ CREATE (:StrikeWord:Word {
 });
 
 // ====================================================================
-// Step 1 Query: Retrieve all 16 dispersed nodes with 3D coordinates
+// Step 1 Query: Retrieve all 16 dispersed nodes with coordinates
 // ====================================================================
 MATCH (w:StrikeWord)
 RETURN w.id AS id, w.word AS word, w.chinese AS chinese,

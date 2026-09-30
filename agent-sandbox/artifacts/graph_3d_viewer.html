@@ -146,7 +146,7 @@
     <div class="hud-panel">
         <div class="hud-title">
             <span>China Strike Knowledge Graph</span>
-            <span class="badge">Step 1</span>
+            <span class="badge">Step 1 • 3D</span>
         </div>
         <div class="hud-desc">
             16 dispersed vocabulary terms extracted from 1920s newspaper press (<i>The China Mail</i>, Hong Kong MMIS).
@@ -175,7 +175,6 @@
         let showLabels = true;
         const uniformColor = '#38BDF8';
 
-        // Format nodes for 3d-force-graph
         const gData = {
             nodes: graphData.nodes.map(n => ({
                 id: n.id,
@@ -200,7 +199,6 @@
             .nodeThreeObject(node => {
                 const group = new THREE.Group();
 
-                // Uniform Glowing Sphere
                 const sphereGeometry = new THREE.SphereGeometry(3.5, 24, 24);
                 const sphereMaterial = new THREE.MeshLambertMaterial({
                     color: uniformColor,
@@ -210,7 +208,6 @@
                 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
                 group.add(sphere);
 
-                // Billboard Sprite Text Label
                 if (showLabels) {
                     const sprite = new SpriteText(`${node.name}\n(${node.chinese})`);
                     sprite.color = '#F3F4F6';
@@ -225,7 +222,6 @@
                 return group;
             })
             .onNodeClick(node => {
-                // Aim camera at node
                 const distance = 80;
                 const distRatio = 1 + distance/Math.hypot(node.fx, node.fy, node.fz);
                 Graph.cameraPosition(
@@ -234,7 +230,6 @@
                     2000
                 );
 
-                // Show details card without revealing clusters
                 document.getElementById('node-details').style.display = 'block';
                 document.getElementById('det-word').innerText = node.name;
                 document.getElementById('det-chinese').innerText = node.chinese;
@@ -246,7 +241,6 @@
                 document.getElementById('node-details').style.display = 'none';
             });
 
-        // Adjust camera
         Graph.cameraPosition({ x: 180, y: 140, z: 200 });
 
         function toggleLabels() {

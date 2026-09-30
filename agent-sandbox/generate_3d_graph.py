@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-Convenience CLI runner for generating the 1920s Chinese Strike 3D Causal Knowledge Graph (Step 1).
+Convenience CLI runner for generating the 1920s Chinese Strike Causal Knowledge Graph (Step 1).
 
-Outputs:
+Generates both 3D and 2D visual representations:
 1. agent-sandbox/artifacts/create_graph.cypher   (Neo4j Cypher ingestion script)
 2. agent-sandbox/artifacts/graph_data.json      (Structured graph export)
-3. agent-sandbox/artifacts/graph_3d_plotly.html (Standalone interactive 3D HTML)
-4. agent-sandbox/artifacts/graph_3d_viewer.html (WebGL / Three.js 3D application)
+3. agent-sandbox/artifacts/graph_3d_plotly.html (Plotly 3D visualizer)
+4. agent-sandbox/artifacts/graph_3d_viewer.html (WebGL / Three.js 3D viewer)
+5. agent-sandbox/artifacts/graph_2d_plotly.html (Plotly 2D visualizer)
+6. agent-sandbox/artifacts/graph_2d_viewer.html (D3.js 2D interactive viewer)
 """
 
 import os
@@ -26,7 +28,7 @@ from china_causal_kg.graph.visualizer import export_all_formats, connect_and_upl
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate 3D Causal Knowledge Graph (Step 1: 16 Dispersed Nodes) for Neo4j and 3D Viewers."
+        description="Generate 3D & 2D Causal Knowledge Graph (Step 1: 16 Dispersed Nodes) for Neo4j and Viewers."
     )
     parser.add_argument(
         "--output-dir",
@@ -66,7 +68,7 @@ def main():
     out_path = Path(args.output_dir)
 
     print("=" * 70)
-    print("1920s Chinese Strike 3D Causal Knowledge Graph Generator (Step 1)")
+    print("1920s Chinese Strike Causal Knowledge Graph Generator (Step 1: 3D & 2D)")
     print("=" * 70)
     print(f"[*] Target Output Directory: {out_path.resolve()}")
     print(f"[*] Total Dispersed Nodes:   {len(STRIKE_NODES)}")
@@ -78,10 +80,10 @@ def main():
     print("  * Topic C (General Strike)      -->  Topic D (Port & Market Paralysis)")
     print("-" * 70)
 
-    # Export all files
+    # Export all files (both 3D and 2D)
     results = export_all_formats(out_path)
     for key, path in results.items():
-        print(f"[OK] Generated ({key.upper():7}): {path.resolve()}")
+        print(f"[OK] Generated ({key.upper():10}): {path.resolve()}")
 
     # Live Neo4j upload attempt if requested
     if args.upload:
@@ -98,7 +100,7 @@ def main():
             if "hint" in upload_res:
                 print(f"    Hint: {upload_res['hint']}")
 
-    print("\n[*] Generation complete. Open either of the HTML files in a browser to inspect the 3D graph.")
+    print("\n[*] Generation complete. Open any of the HTML files in a browser to inspect the graph.")
 
 
 if __name__ == "__main__":
