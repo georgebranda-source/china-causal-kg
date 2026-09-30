@@ -183,7 +183,7 @@ def generate_step2_plotly_2d_html() -> str:
                 x=xs,
                 y=ys,
                 mode="markers+text",
-                name=f"{t['short_label']}",
+                name=f"{t['name']}",
                 text=labels,
                 textposition="top center",
                 textfont=dict(size=11, color="#0F172A"),
@@ -199,21 +199,20 @@ def generate_step2_plotly_2d_html() -> str:
             )
         )
 
-    # 3. Add Cluster Centroid Header Badges
+    # 3. Minimal Cluster Topic Labels Above Each Topic
     for topic_id, t in TOPICS.items():
         c = t["centroid_2d"]
-        # Position label badge above centroid
-        badge_y = c["y"] + (26 if c["y"] >= 0 else 26)
+        badge_y = c["y"] + (20 if c["y"] >= 0 else 18)
         fig.add_annotation(
             x=c["x"],
             y=badge_y,
-            text=f"<b>{t['short_label']}</b><br><span style='font-size:10px; color:{t['color']}'>{t['causal_role']}</span>",
+            text=f"<b>{t['name']}</b>",
             showarrow=False,
-            font=dict(size=12, color="#0F172A"),
-            bgcolor="rgba(255, 255, 255, 0.95)",
-            bordercolor=t["color"],
-            borderwidth=1.5,
-            borderpad=6,
+            font=dict(size=11, color="#0F172A"),
+            bgcolor="rgba(255, 255, 255, 0.92)",
+            bordercolor="#E2E8F0",
+            borderwidth=1,
+            borderpad=4,
             align="center",
         )
 
@@ -469,23 +468,26 @@ def generate_step2_d3_2d_viewer_html() -> str:
         }
         .cluster-badge-group {
             cursor: pointer;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .cluster-badge-group:hover {
+            transform: scale(1.05);
         }
         .cluster-badge-bg {
-            fill: #FFFFFF;
-            rx: 8px;
-            ry: 8px;
-            stroke-width: 1.5px;
+            fill: rgba(255, 255, 255, 0.94);
+            stroke: #E2E8F0;
+            stroke-width: 1px;
+            rx: 11px;
+            ry: 11px;
+            transition: stroke 0.2s ease;
+        }
+        .cluster-badge-group:hover .cluster-badge-bg {
+            stroke: #CBD5E1;
         }
         .cluster-badge-title {
-            font-size: 13px;
-            font-weight: 700;
-            text-anchor: middle;
-            dominant-baseline: central;
-        }
-        .cluster-badge-sub {
-            font-size: 10px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
+            fill: #0F172A;
             text-anchor: middle;
             dominant-baseline: central;
         }
@@ -560,10 +562,22 @@ def generate_step2_d3_2d_viewer_html() -> str:
         </div>
 
         <div class="causal-blueprint">
-            <div style="font-weight: 700; margin-bottom: 4px; color: #0F172A;">Causal Blueprint Architecture:</div>
-            <div class="blueprint-row"><span>Topic A (Heavy Rain)</span> <span>➔</span> <span>Topic C (Traffic)</span></div>
-            <div class="blueprint-row"><span>Topic B (High Winds)</span> <span>➔</span> <span>Topic C (Traffic)</span></div>
-            <div class="blueprint-row"><span>Topic C (Traffic)</span> <span>➔</span> <span>Topic D (Delays)</span></div>
+            <div style="font-weight: 700; margin-bottom: 6px; color: #0F172A;">Causal Blueprint:</div>
+            <div class="blueprint-row">
+                <span style="color: #0284C7; font-weight:600;">Heavy Rain</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:600;">Traffic Gridlock</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #0D9488; font-weight:600;">High Winds</span>
+                <span>──➔</span>
+                <span style="color: #EA580C; font-weight:600;">Traffic Gridlock</span>
+            </div>
+            <div class="blueprint-row">
+                <span style="color: #EA580C; font-weight:600;">Traffic Gridlock</span>
+                <span>──➔</span>
+                <span style="color: #7C3AED; font-weight:600;">Daily Delays</span>
+            </div>
         </div>
 
         <div class="cluster-pill-list" id="cluster-pills"></div>
@@ -607,7 +621,7 @@ def generate_step2_d3_2d_viewer_html() -> str:
             item.className = "cluster-pill-item";
             item.innerHTML = `
                 <div class="cluster-color-circle" style="background:${t.color};"></div>
-                <span style="color:#0F172A;">Topic ${id}</span>
+                <span style="color:#0F172A;">${t.name}</span>
             `;
             item.onclick = () => focusCluster(id);
             pillsContainer.appendChild(item);
@@ -713,38 +727,37 @@ def generate_step2_d3_2d_viewer_html() -> str:
         }
         updateHulls();
 
-        // 3. Draw Overall Cluster Header Badges
+        // 3. Draw Minimal Cluster Topic Labels
         Object.values(clusters).forEach(cl => {
             const badge = badgeLayer.append("g")
                 .attr("class", "cluster-badge-group")
-                .attr("transform", `translate(${cl.cx}, ${cl.cy - 95})`)
+                .attr("transform", `translate(${cl.cx}, ${cl.cy - 72})`)
                 .on("click", (event) => {
                     event.stopPropagation();
                     focusCluster(cl.id);
                 });
 
-            // Badge Background Pill
+            const topicText = cl.meta.name;
+            const labelWidth = topicText.length * 7 + 28;
+
             badge.append("rect")
                 .attr("class", "cluster-badge-bg")
-                .attr("x", -135)
-                .attr("y", -24)
-                .attr("width", 270)
-                .attr("height", 48)
-                .attr("stroke", cl.meta.color);
+                .attr("x", -labelWidth / 2)
+                .attr("y", -11)
+                .attr("width", labelWidth)
+                .attr("height", 22);
 
-            // Title
+            badge.append("circle")
+                .attr("cx", -labelWidth / 2 + 10)
+                .attr("cy", 0)
+                .attr("r", 3)
+                .attr("fill", cl.meta.color);
+
             badge.append("text")
                 .attr("class", "cluster-badge-title")
-                .attr("y", -6)
-                .attr("fill", cl.meta.color)
-                .text(cl.meta.short_label);
-
-            // Subtitle
-            badge.append("text")
-                .attr("class", "cluster-badge-sub")
-                .attr("y", 12)
-                .attr("fill", "#475569")
-                .text(`${cl.meta.chinese_name} • ${cl.meta.causal_role}`);
+                .attr("x", 5)
+                .attr("y", 0)
+                .text(topicText);
         });
 
         // 4. Render Nodes
@@ -798,22 +811,17 @@ def generate_step2_d3_2d_viewer_html() -> str:
 
         labelGroups.append("rect")
             .attr("class", "label-bg")
-            .attr("x", -65)
-            .attr("y", -8)
-            .attr("width", 130)
-            .attr("height", 32)
-            .attr("stroke", d => d.color);
+            .attr("x", -70)
+            .attr("y", -11)
+            .attr("width", 140)
+            .attr("height", 24)
+            .attr("stroke", d => d.color)
+            .attr("stroke-width", 1);
 
         labelGroups.append("text")
             .attr("class", "label-text-en")
-            .attr("y", 2)
+            .attr("y", 1)
             .text(d => d.word);
-
-        labelGroups.append("text")
-            .attr("class", "label-text-zh")
-            .attr("y", 16)
-            .attr("fill", d => d.color)
-            .text(d => d.chinese);
 
         // Zoom Behavior
         const zoom = d3.zoom()
@@ -885,7 +893,6 @@ def generate_step2_d3_2d_viewer_html() -> str:
                 nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", d => d.color);
                 nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", d => d.color);
                 labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", d => d.color);
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", d => d.color);
             } else {
                 btn.classList.remove("active");
                 btn.textContent = "Mode: Initial Baseline";
@@ -896,10 +903,9 @@ def generate_step2_d3_2d_viewer_html() -> str:
                 badgeLayer.transition().duration(500).style("opacity", 0);
                 linkLayer.transition().duration(500).style("opacity", 0);
 
-                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", "#0284C7");
-                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", "#0284C7");
+                nodeGroups.selectAll(".node-halo").transition().duration(500).attr("fill", "#475569");
+                nodeGroups.selectAll(".node-circle").transition().duration(500).attr("fill", "#475569");
                 labelGroups.selectAll(".label-bg").transition().duration(500).attr("stroke", "#CBD5E1");
-                labelGroups.selectAll(".label-text-zh").transition().duration(500).attr("fill", "#64748B");
             }
         }
 

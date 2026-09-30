@@ -242,22 +242,26 @@
         }
         .cluster-badge-group {
             cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .cluster-badge-group:hover {
+            transform: scale(1.05);
         }
         .cluster-badge-bg {
-            fill: rgba(255, 255, 255, 0.96);
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.07));
-            rx: 6px;
-            ry: 6px;
+            fill: rgba(255, 255, 255, 0.94);
+            stroke: #E2E8F0;
+            stroke-width: 1px;
+            rx: 11px;
+            ry: 11px;
+            transition: stroke 0.2s ease;
+        }
+        .cluster-badge-group:hover .cluster-badge-bg {
+            stroke: #CBD5E1;
         }
         .cluster-badge-title {
-            font-size: 12px;
-            font-weight: 700;
-            text-anchor: middle;
-            dominant-baseline: central;
-        }
-        .cluster-badge-sub {
-            font-size: 9.5px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
+            fill: #0F172A;
             text-anchor: middle;
             dominant-baseline: central;
         }
@@ -342,40 +346,40 @@
         </div>
 
         <div class="causal-blueprint">
-            <div style="font-weight: 700; margin-bottom: 6px; color: #0F172A;">Causal DAG Architecture:</div>
+            <div style="font-weight: 700; margin-bottom: 6px; color: #0F172A;">Causal Blueprint:</div>
             <div class="blueprint-row">
-                <span style="color: #0284C7; font-weight:700;">Topic A (Heavy Rain)</span>
+                <span style="color: #0284C7; font-weight:600;">Heavy Rain</span>
                 <span>──➔</span>
-                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+                <span style="color: #EA580C; font-weight:600;">Traffic Gridlock</span>
             </div>
             <div class="blueprint-row">
-                <span style="color: #0D9488; font-weight:700;">Topic B (High Winds)</span>
+                <span style="color: #0D9488; font-weight:600;">High Winds</span>
                 <span>──➔</span>
-                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+                <span style="color: #EA580C; font-weight:600;">Traffic Gridlock</span>
             </div>
             <div class="blueprint-row">
-                <span style="color: #EA580C; font-weight:700;">Topic C (Traffic)</span>
+                <span style="color: #EA580C; font-weight:600;">Traffic Gridlock</span>
                 <span>──➔</span>
-                <span style="color: #7C3AED; font-weight:700;">Topic D (Delays)</span>
+                <span style="color: #7C3AED; font-weight:600;">Daily Delays</span>
             </div>
         </div>
 
         <div class="cluster-pill-list">
             <div class="cluster-pill-item" onclick="focusCluster('A')">
                 <div class="cluster-color-circle" style="background: #0284C7;"></div>
-                <span>A: Heavy Rain</span>
+                <span>Heavy Rain</span>
             </div>
             <div class="cluster-pill-item" onclick="focusCluster('B')">
                 <div class="cluster-color-circle" style="background: #0D9488;"></div>
-                <span>B: High Winds</span>
+                <span>High Winds</span>
             </div>
             <div class="cluster-pill-item" onclick="focusCluster('C')">
                 <div class="cluster-color-circle" style="background: #EA580C;"></div>
-                <span>C: Traffic Gridlock</span>
+                <span>Traffic Gridlock</span>
             </div>
             <div class="cluster-pill-item" onclick="focusCluster('D')">
                 <div class="cluster-color-circle" style="background: #7C3AED;"></div>
-                <span>D: Daily Delays</span>
+                <span>Daily Delays</span>
             </div>
         </div>
 
@@ -526,35 +530,37 @@
         }
         updateHulls();
 
-        // 3. Draw Overall Cluster Header Badges
+        // 3. Draw Minimal Cluster Topic Labels
         Object.values(clusters).forEach(cl => {
             const badge = badgeLayer.append("g")
                 .attr("class", "cluster-badge-group")
-                .attr("transform", `translate(${cl.cx}, ${cl.cy - 95})`)
+                .attr("transform", `translate(${cl.cx}, ${cl.cy - 72})`)
                 .on("click", (event) => {
                     event.stopPropagation();
                     focusCluster(cl.id);
                 });
 
+            const topicText = cl.meta.name;
+            const labelWidth = topicText.length * 7 + 28;
+
             badge.append("rect")
                 .attr("class", "cluster-badge-bg")
-                .attr("x", -120)
-                .attr("y", -22)
-                .attr("width", 240)
-                .attr("height", 44)
-                .attr("stroke", cl.meta.color);
+                .attr("x", -labelWidth / 2)
+                .attr("y", -11)
+                .attr("width", labelWidth)
+                .attr("height", 22);
+
+            badge.append("circle")
+                .attr("cx", -labelWidth / 2 + 10)
+                .attr("cy", 0)
+                .attr("r", 3)
+                .attr("fill", cl.meta.color);
 
             badge.append("text")
                 .attr("class", "cluster-badge-title")
-                .attr("y", -5)
-                .attr("fill", cl.meta.color)
-                .text(cl.meta.short_label);
-
-            badge.append("text")
-                .attr("class", "cluster-badge-sub")
-                .attr("y", 11)
-                .attr("fill", "#475569")
-                .text(cl.meta.causal_role);
+                .attr("x", 5)
+                .attr("y", 0)
+                .text(topicText);
         });
 
         // 4. Draw Directed Causal Flow Vectors (A -> C, B -> C, C -> D)
