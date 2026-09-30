@@ -229,6 +229,15 @@ def generate_step3_plotly_2d_html() -> str:
         xs = [n["x"] for n in t_nodes]
         ys = [n["y"] for n in t_nodes]
         labels = [f"<b>{n['word']}</b>" for n in t_nodes]
+        
+        # Smart text positioning: upper nodes top, lower nodes bottom
+        textpos = []
+        for n in t_nodes:
+            if n["y"] < t["centroid_2d"]["y"] - 5:
+                textpos.append("bottom center")
+            else:
+                textpos.append("top center")
+
         hover_texts = [
             f"<b>{n['word']}</b><br>"
             f"<b>Topic:</b> {t['name']}<br>"
@@ -245,12 +254,12 @@ def generate_step3_plotly_2d_html() -> str:
                 mode="markers+text",
                 name=f"{t['name']}",
                 text=labels,
-                textposition="top center",
-                textfont=dict(size=11, color="#0F172A"),
+                textposition=textpos,
+                textfont=dict(size=10.5, color="#1E293B"),
                 hoverinfo="text",
                 hovertext=hover_texts,
                 marker=dict(
-                    size=15,
+                    size=13,
                     color=t["color"],
                     opacity=0.95,
                     line=dict(color="#FFFFFF", width=2.5),
@@ -259,43 +268,85 @@ def generate_step3_plotly_2d_html() -> str:
             )
         )
 
-    # 4. Minimal Cluster Topic Labels Above Each Topic
+    # 4. Minimal Cluster Topic Labels MOVED UP Above Each Topic Box
     for topic_id, t in TOPICS.items():
+        t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
+        max_y = max(n["y"] for n in t_nodes) + 8
         c = t["centroid_2d"]
-        badge_y = c["y"] + (20 if c["y"] >= 0 else 18)
+        badge_y = max_y + 11
+        badge_x = c["x"]
+
         fig.add_annotation(
-            x=c["x"],
+            x=badge_x,
             y=badge_y,
             text=f"<b>{t['name']}</b>",
             showarrow=False,
-            font=dict(size=11, color="#0F172A"),
-            bgcolor="rgba(255, 255, 255, 0.92)",
-            bordercolor="#E2E8F0",
-            borderwidth=1,
-            borderpad=4,
+            font=dict(size=11, color="#0F172A", family="Arial, sans-serif"),
+            bgcolor="rgba(255, 255, 255, 0.95)",
+            bordercolor=t["color"],
+            borderwidth=1.2,
+            borderpad=5,
             align="center",
         )
 
-    # 5. Prominent Directed Causal Arrows Between Clusters (NO EDGE LABELS)
-    for edge in causal_edges:
-        src = TOPICS[edge["source"]]["centroid_2d"]
-        tgt = TOPICS[edge["target"]]["centroid_2d"]
+    # 5. Prominent, Sleek Directed Causal Arrows (NO EDGE LABELS)
+    arrow_corridors = [
+        # (A -> C): Rain to Traffic Gridlock
+        {
+            "start": (-38.0, 32.0),
+            "end": (-18.0, 10.0),
+            "color": "#0284C7",
+        },
+        # (B -> C): Wind to Traffic Gridlock
+        {
+            "start": (-38.0, -24.0),
+            "end": (-18.0, -8.0),
+            "color": "#0D9488",
+        },
+        # (C -> D): Traffic Gridlock to Delays
+        {
+            "start": (28.0, 0.0),
+            "end": (52.0, 0.0),
+            "color": "#EA580C",
+        },
+    ]
+
+    for p in arrow_corridors:
+        # Subtle glow underlay for depth
         fig.add_annotation(
-            x=tgt["x"],
-            y=tgt["y"],
-            ax=src["x"],
-            ay=src["y"],
+            x=p["end"][0],
+            y=p["end"][1],
+            ax=p["start"][0],
+            ay=p["start"][1],
             xref="x",
             yref="y",
             axref="x",
             ayref="y",
             showarrow=True,
             arrowhead=2,
-            arrowsize=2.0,
-            arrowwidth=4.0,
-            arrowcolor=edge["color"],
-            opacity=0.9,
-            text="",  # NO EDGE LABELS
+            arrowsize=1.2,
+            arrowwidth=5.5,
+            arrowcolor=p["color"],
+            opacity=0.22,
+            text="",
+        )
+        # Main crisp foreground arrow
+        fig.add_annotation(
+            x=p["end"][0],
+            y=p["end"][1],
+            ax=p["start"][0],
+            ay=p["start"][1],
+            xref="x",
+            yref="y",
+            axref="x",
+            ayref="y",
+            showarrow=True,
+            arrowhead=2,
+            arrowsize=1.1,
+            arrowwidth=2.8,
+            arrowcolor=p["color"],
+            opacity=0.95,
+            text="",
         )
 
     fig.update_layout(
@@ -304,7 +355,7 @@ def generate_step3_plotly_2d_html() -> str:
                 "<b>Weather & Commuting Disruption: Causal Knowledge Graph (2D)</b><br>"
                 "<sup>Step 3: Directed Causal Graph (A, B ➔ C ➔ D Influence Flow)</sup>"
             ),
-            font=dict(size=18, color="#0F172A"),
+            font=dict(size=17, color="#0F172A"),
             x=0.5,
             xanchor="center",
             y=0.96,
@@ -334,7 +385,7 @@ def generate_step3_plotly_2d_html() -> str:
             tickfont=dict(color="#64748B"),
             scaleanchor="x",
             scaleratio=1,
-            range=[-105, 95],
+            range=[-100, 105],
         ),
         margin=dict(l=60, r=60, b=60, t=100),
     )

@@ -178,6 +178,14 @@ def generate_step2_plotly_2d_html() -> str:
             for n in t_nodes
         ]
 
+        # Smart text positioning: upper nodes top, lower nodes bottom
+        textpos = []
+        for n in t_nodes:
+            if n["y"] < t["centroid_2d"]["y"] - 5:
+                textpos.append("bottom center")
+            else:
+                textpos.append("top center")
+
         fig.add_trace(
             go.Scatter(
                 x=xs,
@@ -185,12 +193,12 @@ def generate_step2_plotly_2d_html() -> str:
                 mode="markers+text",
                 name=f"{t['name']}",
                 text=labels,
-                textposition="top center",
-                textfont=dict(size=11, color="#0F172A"),
+                textposition=textpos,
+                textfont=dict(size=10.5, color="#1E293B"),
                 hoverinfo="text",
                 hovertext=hover_texts,
                 marker=dict(
-                    size=15,
+                    size=13,
                     color=t["color"],
                     opacity=0.95,
                     line=dict(color="#FFFFFF", width=2.5),
@@ -199,20 +207,24 @@ def generate_step2_plotly_2d_html() -> str:
             )
         )
 
-    # 3. Minimal Cluster Topic Labels Above Each Topic
+    # 3. Minimal Cluster Topic Labels MOVED UP Above Each Topic Box
     for topic_id, t in TOPICS.items():
+        t_nodes = [n for n in nodes if n["topic_id"] == topic_id]
+        max_y = max(n["y"] for n in t_nodes) + 8
         c = t["centroid_2d"]
-        badge_y = c["y"] + (20 if c["y"] >= 0 else 18)
+        badge_y = max_y + 11
+        badge_x = c["x"]
+
         fig.add_annotation(
-            x=c["x"],
+            x=badge_x,
             y=badge_y,
             text=f"<b>{t['name']}</b>",
             showarrow=False,
-            font=dict(size=11, color="#0F172A"),
-            bgcolor="rgba(255, 255, 255, 0.92)",
-            bordercolor="#E2E8F0",
-            borderwidth=1,
-            borderpad=4,
+            font=dict(size=11, color="#0F172A", family="Arial, sans-serif"),
+            bgcolor="rgba(255, 255, 255, 0.95)",
+            bordercolor=t["color"],
+            borderwidth=1.2,
+            borderpad=5,
             align="center",
         )
 
@@ -222,7 +234,7 @@ def generate_step2_plotly_2d_html() -> str:
                 "<b>Weather & Commuting Disruption: Causal Knowledge Graph (2D)</b><br>"
                 "<sup>Step 2: Thematic Topic Clusters (A, B → C → D Causal Blueprint)</sup>"
             ),
-            font=dict(size=18, color="#0F172A"),
+            font=dict(size=17, color="#0F172A"),
             x=0.5,
             xanchor="center",
             y=0.96,
@@ -252,7 +264,7 @@ def generate_step2_plotly_2d_html() -> str:
             tickfont=dict(color="#64748B"),
             scaleanchor="x",
             scaleratio=1,
-            range=[-105, 95],
+            range=[-100, 105],
         ),
         margin=dict(l=60, r=60, b=60, t=100),
     )
