@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Causal Graph - Step 2: Thematic Topic Clusters</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #FFFFFF;
+            color: #0F172A;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            user-select: none;
+        }
+        #svg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            background: #FFFFFF;
+        }
+        #svg-canvas:active {
+            cursor: grabbing;
+        }
+        .hud-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 420px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .hud-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .badge {
+            display: inline-block;
+            background: #2563EB;
+            color: #EFF6FF;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .hud-desc {
+            font-size: 13px;
+            color: #64748B;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .causal-blueprint {
+            background: #F8FAFC;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            border-left: 3px solid #2563EB;
+            font-size: 12px;
+            color: #334155;
+            line-height: 1.5;
+        }
+        .blueprint-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 2px;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 11px;
+            color: #1E293B;
+        }
+        .cluster-pill-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .cluster-pill-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 8px;
+            border-radius: 6px;
+            background: #F1F5F9;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .cluster-pill-item:hover {
+            transform: translateY(-1px);
+        }
+        .cluster-color-circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .controls-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .btn {
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            color: #334155;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            background: #E2E8F0;
+        }
+        .btn.active {
+            background: #2563EB;
+            border-color: #2563EB;
+            color: #FFFFFF;
+        }
+        #node-details {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 380px;
+            display: none;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        #node-details h3 {
+            font-size: 18px;
+            color: #0F172A;
+            margin-bottom: 2px;
+        }
+        #node-details .chinese {
+            font-size: 14px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        #node-details .meta-row {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        #node-details .meta-row strong {
+            color: #0F172A;
+        }
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            color: #0F172A;
+        }
+
+        /* SVG Clustered Elements */
+        .cluster-hull {
+            fill-opacity: 0.08;
+            stroke-dasharray: 6, 4;
+            stroke-width: 1.8px;
+            transition: fill-opacity 0.2s, stroke-width 0.2s;
+            cursor: pointer;
+        }
+        .cluster-hull:hover {
+            fill-opacity: 0.14;
+            stroke-width: 2.5px;
+        }
+        .cluster-badge-group {
+            cursor: pointer;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+        }
+        .cluster-badge-bg {
+            fill: #FFFFFF;
+            rx: 8px;
+            ry: 8px;
+            stroke-width: 1.5px;
+        }
+        .cluster-badge-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+        .cluster-badge-sub {
+            font-size: 10px;
+            font-weight: 500;
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+        .intra-link {
+            stroke-opacity: 0.25;
+            stroke-width: 1px;
+            stroke-dasharray: 3, 3;
+            pointer-events: none;
+        }
+        .node-circle {
+            cursor: pointer;
+            transition: r 0.2s ease, filter 0.2s ease;
+        }
+        .node-circle:hover {
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+        .node-halo {
+            pointer-events: none;
+            animation: pulse-halo 3s infinite ease-in-out;
+        }
+        @keyframes pulse-halo {
+            0% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(1.18); }
+            100% { opacity: 0.15; transform: scale(1); }
+        }
+        .label-bg {
+            fill: rgba(255, 255, 255, 0.95);
+            stroke: #CBD5E1;
+            stroke-width: 1px;
+            rx: 6px;
+            ry: 6px;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+        }
+        .label-text-en {
+            fill: #0F172A;
+            font-size: 11px;
+            font-weight: 600;
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+        .label-text-zh {
+            font-size: 10px;
+            font-weight: 600;
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+        .selected-ring {
+            fill: none;
+            stroke: #F59E0B;
+            stroke-width: 3px;
+            stroke-dasharray: 4, 3;
+            animation: rotate-ring 6s linear infinite;
+        }
+        @keyframes rotate-ring {
+            100% { stroke-dashoffset: 28; }
+        }
+    </style>
+</head>
+<body>
+    <svg id="svg-canvas"></svg>
+
+    <div class="hud-panel">
+        <div class="hud-title">
+            <span>China Strike Knowledge Graph</span>
+            <span class="badge">Step 2 • Clustered</span>
+        </div>
+        <div class="hud-desc">
+            16 terms gathered into 4 thematic clusters representing the causal flow from grievances and mobilization to the strike and systemic impact.
+        </div>
+
+        <div class="causal-blueprint">
+            <div style="font-weight: 700; margin-bottom: 4px; color: #0F172A;">Causal Blueprint Architecture:</div>
+            <div class="blueprint-row"><span>(A) Economic Grievances</span> <span>➔</span> <span>(C) Strike</span></div>
+            <div class="blueprint-row"><span>(B) Union Mobilization</span>  <span>➔</span> <span>(C) Strike</span></div>
+            <div class="blueprint-row"><span>(C) General Strike</span>      <span>➔</span> <span>(D) Paralysis</span></div>
+        </div>
+
+        <div class="cluster-pill-list" id="cluster-pills"></div>
+
+        <div class="controls-group">
+            <button class="btn active" id="btn-toggle-labels" onclick="toggleLabels()">Toggle Labels</button>
+            <button class="btn active" id="btn-toggle-hulls" onclick="toggleHulls()">Toggle Hulls</button>
+            <button class="btn" onclick="zoomIn()">Zoom (+)</button>
+            <button class="btn" onclick="zoomOut()">Zoom (-)</button>
+            <button class="btn" onclick="resetZoom()">Reset View</button>
+        </div>
+    </div>
+
+    <div id="node-details">
+        <button class="close-btn" onclick="closeDetails()">&times;</button>
+        <h3 id="det-word">Word</h3>
+        <div class="chinese" id="det-chinese">中文</div>
+        <div class="meta-row"><strong>Thematic Cluster:</strong> <span id="det-cluster"></span></div>
+        <div class="meta-row"><strong>Causal Role:</strong> <span id="det-role"></span></div>
+        <div class="meta-row"><strong>Historical Source:</strong> <span id="det-source"></span></div>
+        <div class="meta-row"><strong>Archival Context:</strong> <span id="det-context"></span></div>
+        <div class="meta-row"><strong>2D Coordinates:</strong> <span id="det-coords"></span></div>
+    </div>
+
+    <script>
+        const graphData = {"metadata": {"title": "1920s Chinese Strike Causal Knowledge Graph", "step": 2, "step_title": "Thematic Topic Clustering", "description": "16 vocabulary terms clustered into 4 topics (A, B, C, D) with overall cluster labels.", "total_nodes": 16, "total_clusters": 4, "total_intra_links": 24, "theme": "light_white_background", "causal_flow": "(A: Economic) & (B: Union) -> (C: Strike) -> (D: Paralysis)"}, "topics": {"A": {"id": "A", "name": "Economic Grievances & Inflation", "chinese_name": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "short_label": "Topic A: Economic Grievances", "description": "Post-WWI economic depression, soaring rice prices, currency volatility, and unlivable laborer wages.", "causal_role": "Pre-condition / Cause (A -> C)", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "centroid_2d": {"x": -64.0, "y": 48.0}, "centroid_3d": {"x": -64.0, "y": 48.0, "z": 25.0}}, "B": {"id": "B", "name": "Labor Organizing & Solidarity", "chinese_name": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "short_label": "Topic B: Labor Organizing", "description": "Establishment of labor syndicates, strike committees, boycott manifestos, and picket enforcement.", "causal_role": "Catalyst / Cause (B -> C)", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "centroid_2d": {"x": -64.0, "y": -48.0}, "centroid_3d": {"x": -64.0, "y": -48.0, "z": -25.0}}, "C": {"id": "C", "name": "Strike Action & Work Stoppage", "chinese_name": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "short_label": "Topic C: General Strike Action", "description": "Mass walkouts, dock shutdowns, street demonstrations, and systemic withdrawal of maritime and municipal labor.", "causal_role": "Central Strike Event (A, B -> C -> D)", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "centroid_2d": {"x": 5.0, "y": 0.0}, "centroid_3d": {"x": 5.0, "y": 0.0, "z": 0.0}}, "D": {"id": "D", "name": "Harbor Paralysis & Colonial Impact", "chinese_name": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "short_label": "Topic D: Harbor & Market Paralysis", "description": "Harbor standstill, 150+ stranded steamships, commercial food shortages, and imperial legislative negotiations.", "causal_role": "Consequence (C -> D)", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "centroid_2d": {"x": 76.0, "y": 0.0}, "centroid_3d": {"x": 76.0, "y": 0.0, "z": 20.0}}}, "nodes": [{"id": "node_1", "word": "Wage Depression", "chinese": "\u5de5\u8cc7\u524a\u6ec5", "topic_id": "A", "historical_source": "The China Mail (1921-1922)", "context": "Stagnant daily laborer wages amidst sharp post-war currency fluctuations.", "x": -78.0, "y": 62.0, "z": 32.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 2, "status": "clustered"}, {"id": "node_2", "word": "Rice Inflation", "chinese": "\u7c73\u50f9\u66b4\u6f32", "topic_id": "A", "historical_source": "Hong Kong MMIS Gazette (1922)", "context": "Skyrocketing price of staple rice threatening subsistence of dock families.", "x": -50.0, "y": 64.0, "z": 22.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 2, "status": "clustered"}, {"id": "node_3", "word": "Ten-Hour Shift", "chinese": "\u6bcf\u65e5\u5341\u6642\u5de5\u5236", "topic_id": "A", "historical_source": "North-China Herald (1923)", "context": "Exhausting operational hours demanded from maritime and transport coolies.", "x": -76.0, "y": 34.0, "z": 18.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 2, "status": "clustered"}, {"id": "node_4", "word": "Living Cost Spiral", "chinese": "\u751f\u6d3b\u6602\u8cb4", "topic_id": "A", "historical_source": "The China Mail (1922)", "context": "General cost-of-living index surges driving desperate economic petitions.", "x": -52.0, "y": 32.0, "z": 28.0, "topic_name": "Economic Grievances & Inflation", "topic_chinese": "\u751f\u6d3b\u6210\u672c\u8207\u5de5\u8cc7\u524a\u6e1b", "cluster_label": "Topic A: Economic Grievances", "color": "#E11D48", "bg_color": "rgba(225, 29, 72, 0.08)", "border_color": "rgba(225, 29, 72, 0.4)", "causal_role": "Pre-condition / Cause (A -> C)", "step": 2, "status": "clustered"}, {"id": "node_5", "word": "Seamen's Union", "chinese": "\u4e2d\u83ef\u6d77\u54e1\u5de5\u6703", "topic_id": "B", "historical_source": "The China Mail (1922)", "context": "The central maritime guild led by Su Zhaozheng organizing across Hong Kong and Canton.", "x": -78.0, "y": -34.0, "z": -18.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 2, "status": "clustered"}, {"id": "node_6", "word": "Strike Committee", "chinese": "\u7f77\u5de5\u59d4\u54e1\u6703", "topic_id": "B", "historical_source": "Canton Gazette (1925)", "context": "Executive coordinating council managing strike logistics, food rations, and strategy.", "x": -50.0, "y": -32.0, "z": -28.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 2, "status": "clustered"}, {"id": "node_7", "word": "Picket Corps", "chinese": "\u5de5\u4eba\u7cfe\u5bdf\u968a", "topic_id": "B", "historical_source": "The China Mail (1925)", "context": "Organized worker patrols enforcing the anti-colonial shipping embargo.", "x": -76.0, "y": -62.0, "z": -32.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 2, "status": "clustered"}, {"id": "node_8", "word": "Boycott Manifesto", "chinese": "\u62b5\u5236\u5ba3\u50b3\u5ba3\u8a00", "topic_id": "B", "historical_source": "Shanghai Municipal Archives (1925)", "context": "Leaflets distributed across treaty ports calling for national anti-imperial unity.", "x": -52.0, "y": -64.0, "z": -22.0, "topic_name": "Labor Organizing & Solidarity", "topic_chinese": "\u5de5\u6703\u7d44\u7e54\u8207\u5de5\u4eba\u52d5\u54e1", "cluster_label": "Topic B: Labor Organizing", "color": "#0D9488", "bg_color": "rgba(13, 148, 136, 0.08)", "border_color": "rgba(13, 148, 136, 0.4)", "causal_role": "Catalyst / Cause (B -> C)", "step": 2, "status": "clustered"}, {"id": "node_9", "word": "General Strike", "chinese": "\u5168\u6e2f\u5927\u7f77\u5de5", "topic_id": "C", "historical_source": "The China Mail (1922)", "context": "Complete stoppage of maritime and municipal work paralyzing the colony.", "x": -8.0, "y": 14.0, "z": 10.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 2, "status": "clustered"}, {"id": "node_10", "word": "Dockworker Walkout", "chinese": "\u78bc\u982d\u5de5\u4eba\u5168\u9ad4\u96e2\u5de5", "topic_id": "C", "historical_source": "The China Mail (1922)", "context": "Stevedores and cargo loaders abandoning British ships in Victoria Harbour.", "x": 20.0, "y": 16.0, "z": -8.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 2, "status": "clustered"}, {"id": "node_11", "word": "Work Cessation", "chinese": "\u505c\u5de5\u505c\u696d", "topic_id": "C", "historical_source": "Hong Kong MMIS (1925)", "context": "Sympathy strikes spreading to domestic servants, tram drivers, and clerks.", "x": -10.0, "y": -16.0, "z": -10.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 2, "status": "clustered"}, {"id": "node_12", "word": "Mass Demonstration", "chinese": "\u7fa4\u773e\u8acb\u9858\u793a\u5a01", "topic_id": "C", "historical_source": "The China Mail (1922)", "context": "Gatherings of thousands marching through urban centers demanding rights and dignity.", "x": 18.0, "y": -14.0, "z": 8.0, "topic_name": "Strike Action & Work Stoppage", "topic_chinese": "\u5168\u6e2f\u5927\u7f77\u5de5\u884c\u52d5", "cluster_label": "Topic C: General Strike Action", "color": "#2563EB", "bg_color": "rgba(37, 99, 235, 0.08)", "border_color": "rgba(37, 99, 235, 0.4)", "causal_role": "Central Strike Event (A, B -> C -> D)", "step": 2, "status": "clustered"}, {"id": "node_13", "word": "Port Paralysis", "chinese": "\u6e2f\u53e3\u6d77\u904b\u7671\u7613", "topic_id": "D", "historical_source": "The China Mail (1922)", "context": "Over 150 merchant vessels anchored idle with zero cargo discharge capacity.", "x": 62.0, "y": 14.0, "z": 25.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 2, "status": "clustered"}, {"id": "node_14", "word": "Shipping Deadlock", "chinese": "\u8f2a\u8239\u505c\u822a\u505c\u6cca", "topic_id": "D", "historical_source": "The China Mail (1925)", "context": "Complete standstill of coastal and trans-Pacific commercial steamer traffic.", "x": 90.0, "y": 16.0, "z": 15.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 2, "status": "clustered"}, {"id": "node_15", "word": "Market Interruption", "chinese": "\u5e02\u9762\u5546\u696d\u505c\u6eef", "topic_id": "D", "historical_source": "Hong Kong Chamber of Commerce (1922)", "context": "Retail closures, supply shortages, and emergency rationing across Victoria.", "x": 64.0, "y": -16.0, "z": 20.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 2, "status": "clustered"}, {"id": "node_16", "word": "Colonial Concessions", "chinese": "\u7576\u5c40\u8b93\u6b65\u8ac7\u5224", "topic_id": "D", "historical_source": "The China Mail (1922)", "context": "Colonial government and shipping conglomerates agreeing to wage hikes and union recognition.", "x": 88.0, "y": -14.0, "z": 22.0, "topic_name": "Harbor Paralysis & Colonial Impact", "topic_chinese": "\u6e2f\u53e3\u7671\u7613\u8207\u6b96\u6c11\u8ac7\u5224", "cluster_label": "Topic D: Harbor & Market Paralysis", "color": "#7C3AED", "bg_color": "rgba(124, 58, 237, 0.08)", "border_color": "rgba(124, 58, 237, 0.4)", "causal_role": "Consequence (C -> D)", "step": 2, "status": "clustered"}], "intra_cluster_links": [{"source": "node_1", "target": "node_2", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_1", "target": "node_3", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_1", "target": "node_4", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_2", "target": "node_3", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_2", "target": "node_4", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_3", "target": "node_4", "topic_id": "A", "color": "#E11D48", "type": "INTRA_CLUSTER"}, {"source": "node_5", "target": "node_6", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_5", "target": "node_7", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_5", "target": "node_8", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_6", "target": "node_7", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_6", "target": "node_8", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_7", "target": "node_8", "topic_id": "B", "color": "#0D9488", "type": "INTRA_CLUSTER"}, {"source": "node_9", "target": "node_10", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_9", "target": "node_11", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_9", "target": "node_12", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_10", "target": "node_11", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_10", "target": "node_12", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_11", "target": "node_12", "topic_id": "C", "color": "#2563EB", "type": "INTRA_CLUSTER"}, {"source": "node_13", "target": "node_14", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_13", "target": "node_15", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_13", "target": "node_16", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_14", "target": "node_15", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_14", "target": "node_16", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}, {"source": "node_15", "target": "node_16", "topic_id": "D", "color": "#7C3AED", "type": "INTRA_CLUSTER"}]};
+        let showLabels = true;
+        let showHulls = true;
+        let selectedNodeId = null;
+
+        const svg = d3.select("#svg-canvas");
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        svg.attr("width", width).attr("height", height);
+
+        // Populate HUD cluster pills
+        const pillsContainer = document.getElementById("cluster-pills");
+        Object.entries(graphData.topics).forEach(([id, t]) => {
+            const item = document.createElement("div");
+            item.className = "cluster-pill-item";
+            item.innerHTML = `
+                <div class="cluster-color-circle" style="background:${t.color};"></div>
+                <span style="color:#0F172A;">Topic ${id}</span>
+            `;
+            item.onclick = () => focusCluster(id);
+            pillsContainer.appendChild(item);
+        });
+
+        // SVG Definitions
+        const defs = svg.append("defs");
+
+        // Background subtle grid pattern
+        const pattern = defs.append("pattern")
+            .attr("id", "grid")
+            .attr("width", 40)
+            .attr("height", 40)
+            .attr("patternUnits", "userSpaceOnUse");
+        pattern.append("circle")
+            .attr("cx", 20)
+            .attr("cy", 20)
+            .attr("r", 1.2)
+            .attr("fill", "rgba(0, 0, 0, 0.05)");
+
+        svg.append("rect")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", "url(#grid)");
+
+        const container = svg.append("g").attr("id", "zoom-container");
+        const hullLayer = container.append("g").attr("id", "hull-layer");
+        const linkLayer = container.append("g").attr("id", "link-layer");
+        const badgeLayer = container.append("g").attr("id", "badge-layer");
+        const nodeLayer = container.append("g").attr("id", "node-layer");
+
+        // Scale coordinates
+        const scaleFactor = 4.8;
+        const nodes = graphData.nodes.map(n => ({
+            ...n,
+            x: width / 2 + n.x * scaleFactor,
+            y: height / 2 - n.y * scaleFactor
+        }));
+
+        // Quick lookup by ID
+        const nodeMap = new Map(nodes.map(n => [n.id, n]));
+
+        // Calculate Clusters
+        const clusters = {};
+        Object.entries(graphData.topics).forEach(([id, t]) => {
+            const tNodes = nodes.filter(n => n.topic_id === id);
+            const cx = d3.mean(tNodes, n => n.x);
+            const cy = d3.mean(tNodes, n => n.y);
+            clusters[id] = {
+                id: id,
+                meta: t,
+                nodes: tNodes,
+                cx: cx,
+                cy: cy
+            };
+        });
+
+        // 1. Draw Intra-Cluster Links
+        graphData.intra_cluster_links.forEach(l => {
+            const src = nodeMap.get(l.source);
+            const tgt = nodeMap.get(l.target);
+            if (src && tgt) {
+                linkLayer.append("line")
+                    .attr("class", "intra-link")
+                    .attr("x1", src.x)
+                    .attr("y1", src.y)
+                    .attr("x2", tgt.x)
+                    .attr("y2", tgt.y)
+                    .attr("stroke", l.color);
+            }
+        });
+
+        // 2. Draw Cluster Boundary Bubbles (Hulls)
+        function updateHulls() {
+            hullLayer.selectAll("*").remove();
+            if (!showHulls) return;
+
+            Object.values(clusters).forEach(cl => {
+                const points = cl.nodes.map(n => [n.x, n.y]);
+                const hull = d3.polygonHull(points);
+                if (hull) {
+                    // Expand hull outward from centroid for padding
+                    const padding = 55;
+                    const expanded = hull.map(pt => {
+                        const dx = pt[0] - cl.cx;
+                        const dy = pt[1] - cl.cy;
+                        const dist = Math.hypot(dx, dy) || 1;
+                        return [cl.cx + (dx / dist) * (dist + padding), cl.cy + (dy / dist) * (dist + padding)];
+                    });
+
+                    const pathData = d3.line().curve(d3.curveCardinalClosed.tension(0.65))(expanded);
+                    hullLayer.append("path")
+                        .attr("class", "cluster-hull")
+                        .attr("d", pathData)
+                        .attr("fill", cl.meta.color)
+                        .attr("stroke", cl.meta.color)
+                        .on("click", (event) => {
+                            event.stopPropagation();
+                            focusCluster(cl.id);
+                        });
+                }
+            });
+        }
+        updateHulls();
+
+        // 3. Draw Overall Cluster Header Badges
+        Object.values(clusters).forEach(cl => {
+            const badge = badgeLayer.append("g")
+                .attr("class", "cluster-badge-group")
+                .attr("transform", `translate(${cl.cx}, ${cl.cy - 95})`)
+                .on("click", (event) => {
+                    event.stopPropagation();
+                    focusCluster(cl.id);
+                });
+
+            // Badge Background Pill
+            badge.append("rect")
+                .attr("class", "cluster-badge-bg")
+                .attr("x", -135)
+                .attr("y", -24)
+                .attr("width", 270)
+                .attr("height", 48)
+                .attr("stroke", cl.meta.color);
+
+            // Title
+            badge.append("text")
+                .attr("class", "cluster-badge-title")
+                .attr("y", -6)
+                .attr("fill", cl.meta.color)
+                .text(cl.meta.short_label);
+
+            // Subtitle
+            badge.append("text")
+                .attr("class", "cluster-badge-sub")
+                .attr("y", 12)
+                .attr("fill", "#475569")
+                .text(`${cl.meta.chinese_name} • ${cl.meta.causal_role}`);
+        });
+
+        // 4. Render Nodes
+        const drag = d3.drag()
+            .on("start", function(event, d) {
+                d3.select(this).raise();
+            })
+            .on("drag", function(event, d) {
+                d.x = event.x;
+                d.y = event.y;
+                d3.select(this).attr("transform", `translate(${d.x}, ${d.y})`);
+                updateHulls();
+            });
+
+        const nodeGroups = nodeLayer.selectAll(".node-group")
+            .data(nodes)
+            .enter()
+            .append("g")
+            .attr("class", "node-group")
+            .attr("transform", d => `translate(${d.x}, ${d.y})`)
+            .call(drag)
+            .on("click", (event, d) => {
+                event.stopPropagation();
+                selectNode(d);
+            });
+
+        // Pulsing Halo
+        nodeGroups.append("circle")
+            .attr("class", "node-halo")
+            .attr("r", 20)
+            .attr("fill", d => d.color);
+
+        // Core Circle
+        nodeGroups.append("circle")
+            .attr("class", "node-circle")
+            .attr("r", 13)
+            .attr("fill", d => d.color)
+            .attr("stroke", "#FFFFFF")
+            .attr("stroke-width", 2.5);
+
+        // Selection Ring
+        nodeGroups.append("circle")
+            .attr("class", "selected-ring")
+            .attr("r", 19)
+            .attr("display", d => (d.id === selectedNodeId ? "block" : "none"));
+
+        // Label Pill
+        const labelGroups = nodeGroups.append("g")
+            .attr("class", "node-label-pill")
+            .attr("transform", "translate(0, 24)");
+
+        labelGroups.append("rect")
+            .attr("class", "label-bg")
+            .attr("x", -65)
+            .attr("y", -8)
+            .attr("width", 130)
+            .attr("height", 32)
+            .attr("stroke", d => d.color);
+
+        labelGroups.append("text")
+            .attr("class", "label-text-en")
+            .attr("y", 2)
+            .text(d => d.word);
+
+        labelGroups.append("text")
+            .attr("class", "label-text-zh")
+            .attr("y", 16)
+            .attr("fill", d => d.color)
+            .text(d => d.chinese);
+
+        // Zoom Behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.3, 3])
+            .on("zoom", (event) => {
+                container.attr("transform", event.transform);
+            });
+        svg.call(zoom);
+
+        // Background click clears selection
+        svg.on("click", () => {
+            selectedNodeId = null;
+            updateSelection();
+            closeDetails();
+        });
+
+        function selectNode(d) {
+            selectedNodeId = d.id;
+            updateSelection();
+
+            document.getElementById("node-details").style.display = "block";
+            document.getElementById("det-word").innerText = d.word;
+            document.getElementById("det-chinese").innerText = d.chinese;
+            document.getElementById("det-chinese").style.color = d.color;
+            document.getElementById("det-cluster").innerText = `${d.cluster_label} (${d.topic_chinese})`;
+            document.getElementById("det-role").innerText = d.causal_role;
+            document.getElementById("det-source").innerText = d.historical_source;
+            document.getElementById("det-context").innerText = d.context;
+            document.getElementById("det-coords").innerText = `(${d.x.toFixed(1)}, ${d.y.toFixed(1)})`;
+        }
+
+        function updateSelection() {
+            container.selectAll(".selected-ring")
+                .attr("display", d => (d.id === selectedNodeId ? "block" : "none"));
+        }
+
+        function focusCluster(topicId) {
+            const cl = clusters[topicId];
+            if (!cl) return;
+            svg.transition().duration(750).call(
+                zoom.transform,
+                d3.zoomIdentity.translate(width / 2 - cl.cx, height / 2 - cl.cy).scale(1.2)
+            );
+        }
+
+        function closeDetails() {
+            document.getElementById("node-details").style.display = "none";
+            selectedNodeId = null;
+            updateSelection();
+        }
+
+        function toggleLabels() {
+            showLabels = !showLabels;
+            const btn = document.getElementById("btn-toggle-labels");
+            btn.classList.toggle("active", showLabels);
+            container.selectAll(".node-label-pill")
+                .attr("display", showLabels ? "block" : "none");
+        }
+
+        function toggleHulls() {
+            showHulls = !showHulls;
+            const btn = document.getElementById("btn-toggle-hulls");
+            btn.classList.toggle("active", showHulls);
+            updateHulls();
+        }
+
+        function zoomIn() {
+            svg.transition().duration(350).call(zoom.scaleBy, 1.3);
+        }
+
+        function zoomOut() {
+            svg.transition().duration(350).call(zoom.scaleBy, 0.7);
+        }
+
+        function resetZoom() {
+            svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+            closeDetails();
+        }
+
+        window.addEventListener("resize", () => {
+            const newW = window.innerWidth;
+            const newH = window.innerHeight;
+            svg.attr("width", newW).attr("height", newH);
+        });
+    </script>
+</body>
+</html>

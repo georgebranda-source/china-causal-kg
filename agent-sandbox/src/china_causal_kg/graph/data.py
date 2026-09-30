@@ -1,245 +1,321 @@
 """
 Data definitions for the 1920s Chinese Strike Causal Knowledge Graph.
 
-Defines:
-- 16 distinct vocabulary terms from 1920s newspaper press (e.g. The China Mail).
-- Maximally dispersed, non-clustered spatial coordinates (Latin-square interleaved)
-  ensuring uniform pairwise separation (min pairwise distance > 36) in both 2D and 3D.
-- Latent topic attributes (A, B, C, D) preserved internally for future clustering.
+Supports:
+- Step 1: Dispersed, unclustered baseline (16 uniform nodes, Latin-square dispersed).
+- Step 2: Thematic Topic Clusters (16 nodes visibly clustered into 4 topics A, B, C, D with overall cluster labels).
 """
 
 from typing import List, Dict, Any
+import copy
 
 # Primary uniform theme color for Step 1 unclustered nodes (high contrast for white background)
 UNIFORM_NODE_COLOR = "#0284C7"  # Vibrant ocean blue
 
+# The 4 Thematic Topic Clusters
 TOPICS: Dict[str, Dict[str, Any]] = {
     "A": {
         "id": "A",
         "name": "Economic Grievances & Inflation",
-        "description": "Post-WWI economic depression, soaring rice prices, currency volatility, and unlivable wages.",
-        "causal_role": "Cause (A -> C)",
+        "chinese_name": "生活成本與工資削減",
+        "short_label": "Topic A: Economic Grievances",
+        "description": "Post-WWI economic depression, soaring rice prices, currency volatility, and unlivable laborer wages.",
+        "causal_role": "Pre-condition / Cause (A -> C)",
+        "color": "#E11D48",          # Crimson / Rose
+        "bg_color": "rgba(225, 29, 72, 0.08)",
+        "border_color": "rgba(225, 29, 72, 0.4)",
+        "centroid_2d": {"x": -64.0, "y": 48.0},
+        "centroid_3d": {"x": -64.0, "y": 48.0, "z": 25.0},
     },
     "B": {
         "id": "B",
         "name": "Labor Organizing & Solidarity",
+        "chinese_name": "工會組織與工人動員",
+        "short_label": "Topic B: Labor Organizing",
         "description": "Establishment of labor syndicates, strike committees, boycott manifestos, and picket enforcement.",
-        "causal_role": "Cause (B -> C)",
+        "causal_role": "Catalyst / Cause (B -> C)",
+        "color": "#0D9488",          # Deep Teal
+        "bg_color": "rgba(13, 148, 136, 0.08)",
+        "border_color": "rgba(13, 148, 136, 0.4)",
+        "centroid_2d": {"x": -64.0, "y": -48.0},
+        "centroid_3d": {"x": -64.0, "y": -48.0, "z": -25.0},
     },
     "C": {
         "id": "C",
         "name": "Strike Action & Work Stoppage",
-        "description": "Mass walkouts, dock shutdowns, street demonstrations, and systemic withdrawal of labor.",
+        "chinese_name": "全港大罷工行動",
+        "short_label": "Topic C: General Strike Action",
+        "description": "Mass walkouts, dock shutdowns, street demonstrations, and systemic withdrawal of maritime and municipal labor.",
         "causal_role": "Central Strike Event (A, B -> C -> D)",
+        "color": "#2563EB",          # Royal Blue
+        "bg_color": "rgba(37, 99, 235, 0.08)",
+        "border_color": "rgba(37, 99, 235, 0.4)",
+        "centroid_2d": {"x": 5.0, "y": 0.0},
+        "centroid_3d": {"x": 5.0, "y": 0.0, "z": 0.0},
     },
     "D": {
         "id": "D",
-        "name": "Economic Paralysis & Colonial Impact",
-        "description": "Harbor standstill, stranded steamships, supply shortages, and imperial legislative negotiations.",
+        "name": "Harbor Paralysis & Colonial Impact",
+        "chinese_name": "港口癱瘓與殖民談判",
+        "short_label": "Topic D: Harbor & Market Paralysis",
+        "description": "Harbor standstill, 150+ stranded steamships, commercial food shortages, and imperial legislative negotiations.",
         "causal_role": "Consequence (C -> D)",
+        "color": "#7C3AED",          # Purple / Violet
+        "bg_color": "rgba(124, 58, 237, 0.08)",
+        "border_color": "rgba(124, 58, 237, 0.4)",
+        "centroid_2d": {"x": 76.0, "y": 0.0},
+        "centroid_3d": {"x": 76.0, "y": 0.0, "z": 20.0},
     },
 }
 
-# The 16 dispersed vocabulary nodes
-# Coordinates are arranged in an organic Latin-square layout to eliminate spatial clustering:
-# Each quadrant and row/col contains a balanced mixture of topics with maximized pairwise distance.
-STRIKE_NODES: List[Dict[str, Any]] = [
+# Base definitions of the 16 vocabulary nodes
+BASE_VOCABULARY: List[Dict[str, Any]] = [
+    # Topic A (Economic Grievance)
     {
         "id": "node_1",
         "word": "Wage Depression",
         "chinese": "工資削滅",
-        "latent_topic_id": "A",
-        "latent_topic_name": TOPICS["A"]["name"],
+        "topic_id": "A",
         "historical_source": "The China Mail (1921-1922)",
         "context": "Stagnant daily laborer wages amidst sharp post-war currency fluctuations.",
-        "x": -81.0,
-        "y": 82.0,
-        "z": -37.7,
     },
     {
         "id": "node_2",
-        "word": "Seamen's Union",
-        "chinese": "中華海員工會",
-        "latent_topic_id": "B",
-        "latent_topic_name": TOPICS["B"]["name"],
-        "historical_source": "The China Mail (1922)",
-        "context": "The central maritime guild led by Su Zhaozheng organizing across Hong Kong and Canton.",
-        "x": -17.0,
-        "y": 70.0,
-        "z": 13.1,
+        "word": "Rice Inflation",
+        "chinese": "米價暴漲",
+        "topic_id": "A",
+        "historical_source": "Hong Kong MMIS Gazette (1922)",
+        "context": "Skyrocketing price of staple rice threatening subsistence of dock families.",
     },
     {
         "id": "node_3",
-        "word": "General Strike",
-        "chinese": "全港大罷工",
-        "latent_topic_id": "C",
-        "latent_topic_name": TOPICS["C"]["name"],
-        "historical_source": "The China Mail (1922)",
-        "context": "Complete stoppage of maritime and municipal work paralyzing the colony.",
-        "x": 20.0,
-        "y": 81.0,
-        "z": 33.5,
+        "word": "Ten-Hour Shift",
+        "chinese": "每日十時工制",
+        "topic_id": "A",
+        "historical_source": "North-China Herald (1923)",
+        "context": "Exhausting operational hours demanded from maritime and transport coolies.",
     },
     {
         "id": "node_4",
-        "word": "Port Paralysis",
-        "chinese": "港口海運癱瘓",
-        "latent_topic_id": "D",
-        "latent_topic_name": TOPICS["D"]["name"],
+        "word": "Living Cost Spiral",
+        "chinese": "生活昂貴",
+        "topic_id": "A",
         "historical_source": "The China Mail (1922)",
-        "context": "Over 150 merchant vessels anchored idle with zero cargo discharge capacity.",
-        "x": 82.0,
-        "y": 67.0,
-        "z": -36.1,
+        "context": "General cost-of-living index surges driving desperate economic petitions.",
     },
+
+    # Topic B (Labor Organizing)
     {
         "id": "node_5",
-        "word": "Dockworker Walkout",
-        "chinese": "碼頭工人全體離工",
-        "latent_topic_id": "C",
-        "latent_topic_name": TOPICS["C"]["name"],
+        "word": "Seamen's Union",
+        "chinese": "中華海員工會",
+        "topic_id": "B",
         "historical_source": "The China Mail (1922)",
-        "context": "Stevedores and cargo loaders abandoning British ships in Victoria Harbour.",
-        "x": -68.0,
-        "y": 18.0,
-        "z": 3.4,
+        "context": "The central maritime guild led by Su Zhaozheng organizing across Hong Kong and Canton.",
     },
     {
         "id": "node_6",
-        "word": "Shipping Deadlock",
-        "chinese": "輪船停航停泊",
-        "latent_topic_id": "D",
-        "latent_topic_name": TOPICS["D"]["name"],
-        "historical_source": "The China Mail (1925)",
-        "context": "Complete standstill of coastal and trans-Pacific commercial steamer traffic.",
-        "x": -31.0,
-        "y": 33.0,
-        "z": 21.8,
+        "word": "Strike Committee",
+        "chinese": "罷工委員會",
+        "topic_id": "B",
+        "historical_source": "Canton Gazette (1925)",
+        "context": "Executive coordinating council managing strike logistics, food rations, and strategy.",
     },
     {
         "id": "node_7",
-        "word": "Rice Inflation",
-        "chinese": "米價暴漲",
-        "latent_topic_id": "A",
-        "latent_topic_name": TOPICS["A"]["name"],
-        "historical_source": "Hong Kong MMIS Gazette (1922)",
-        "context": "Skyrocketing price of staple rice threatening subsistence of dock families.",
-        "x": 33.0,
-        "y": 19.0,
-        "z": -46.4,
+        "word": "Picket Corps",
+        "chinese": "工人糾察隊",
+        "topic_id": "B",
+        "historical_source": "The China Mail (1925)",
+        "context": "Organized worker patrols enforcing the anti-colonial shipping embargo.",
     },
     {
         "id": "node_8",
-        "word": "Strike Committee",
-        "chinese": "罷工委員會",
-        "latent_topic_id": "B",
-        "latent_topic_name": TOPICS["B"]["name"],
-        "historical_source": "Canton Gazette (1925)",
-        "context": "Executive coordinating council managing strike logistics, food rations, and strategy.",
-        "x": 68.0,
-        "y": 30.0,
-        "z": -27.4,
+        "word": "Boycott Manifesto",
+        "chinese": "抵制宣傳宣言",
+        "topic_id": "B",
+        "historical_source": "Shanghai Municipal Archives (1925)",
+        "context": "Leaflets distributed across treaty ports calling for national anti-imperial unity.",
     },
+
+    # Topic C (Strike Action)
     {
         "id": "node_9",
-        "word": "Picket Corps",
-        "chinese": "工人糾察隊",
-        "latent_topic_id": "B",
-        "latent_topic_name": TOPICS["B"]["name"],
-        "historical_source": "The China Mail (1925)",
-        "context": "Organized worker patrols enforcing the anti-colonial shipping embargo.",
-        "x": -83.0,
-        "y": -19.0,
-        "z": 11.4,
+        "word": "General Strike",
+        "chinese": "全港大罷工",
+        "topic_id": "C",
+        "historical_source": "The China Mail (1922)",
+        "context": "Complete stoppage of maritime and municipal work paralyzing the colony.",
     },
     {
         "id": "node_10",
-        "word": "Ten-Hour Shift",
-        "chinese": "每日十時工制",
-        "latent_topic_id": "A",
-        "latent_topic_name": TOPICS["A"]["name"],
-        "historical_source": "North-China Herald (1923)",
-        "context": "Exhausting operational hours demanded from maritime and transport coolies.",
-        "x": -20.0,
-        "y": -33.0,
-        "z": -57.5,
+        "word": "Dockworker Walkout",
+        "chinese": "碼頭工人全體離工",
+        "topic_id": "C",
+        "historical_source": "The China Mail (1922)",
+        "context": "Stevedores and cargo loaders abandoning British ships in Victoria Harbour.",
     },
     {
         "id": "node_11",
-        "word": "Market Interruption",
-        "chinese": "市面商業停滯",
-        "latent_topic_id": "D",
-        "latent_topic_name": TOPICS["D"]["name"],
-        "historical_source": "Hong Kong Chamber of Commerce (1922)",
-        "context": "Retail closures, supply shortages, and emergency rationing across Victoria.",
-        "x": 18.0,
-        "y": -18.0,
-        "z": -38.4,
+        "word": "Work Cessation",
+        "chinese": "停工停業",
+        "topic_id": "C",
+        "historical_source": "Hong Kong MMIS (1925)",
+        "context": "Sympathy strikes spreading to domestic servants, tram drivers, and clerks.",
     },
     {
         "id": "node_12",
-        "word": "Work Cessation",
-        "chinese": "停工停業",
-        "latent_topic_id": "C",
-        "latent_topic_name": TOPICS["C"]["name"],
-        "historical_source": "Hong Kong MMIS (1925)",
-        "context": "Sympathy strikes spreading to domestic servants, tram drivers, and clerks.",
-        "x": 81.0,
-        "y": -31.0,
-        "z": 12.2,
+        "word": "Mass Demonstration",
+        "chinese": "群眾請願示威",
+        "topic_id": "C",
+        "historical_source": "The China Mail (1922)",
+        "context": "Gatherings of thousands marching through urban centers demanding rights and dignity.",
     },
+
+    # Topic D (Harbor Paralysis & Impact)
     {
         "id": "node_13",
-        "word": "Colonial Concessions",
-        "chinese": "當局讓步談判",
-        "latent_topic_id": "D",
-        "latent_topic_name": TOPICS["D"]["name"],
+        "word": "Port Paralysis",
+        "chinese": "港口海運癱瘓",
+        "topic_id": "D",
         "historical_source": "The China Mail (1922)",
-        "context": "Colonial government and shipping conglomerates agreeing to wage hikes and union recognition.",
-        "x": -70.0,
-        "y": -80.0,
-        "z": 51.0,
+        "context": "Over 150 merchant vessels anchored idle with zero cargo discharge capacity.",
     },
     {
         "id": "node_14",
-        "word": "Mass Demonstration",
-        "chinese": "群眾請願示威",
-        "latent_topic_id": "C",
-        "latent_topic_name": TOPICS["C"]["name"],
-        "historical_source": "The China Mail (1922)",
-        "context": "Gatherings of thousands marching through urban centers demanding rights and dignity.",
-        "x": -32.0,
-        "y": -69.0,
-        "z": -47.9,
+        "word": "Shipping Deadlock",
+        "chinese": "輪船停航停泊",
+        "topic_id": "D",
+        "historical_source": "The China Mail (1925)",
+        "context": "Complete standstill of coastal and trans-Pacific commercial steamer traffic.",
     },
     {
         "id": "node_15",
-        "word": "Boycott Manifesto",
-        "chinese": "抵制宣傳宣言",
-        "latent_topic_id": "B",
-        "latent_topic_name": TOPICS["B"]["name"],
-        "historical_source": "Shanghai Municipal Archives (1925)",
-        "context": "Leaflets distributed across treaty ports calling for national anti-imperial unity.",
-        "x": 31.0,
-        "y": -83.0,
-        "z": 3.2,
+        "word": "Market Interruption",
+        "chinese": "市面商業停滯",
+        "topic_id": "D",
+        "historical_source": "Hong Kong Chamber of Commerce (1922)",
+        "context": "Retail closures, supply shortages, and emergency rationing across Victoria.",
     },
     {
         "id": "node_16",
-        "word": "Living Cost Spiral",
-        "chinese": "生活昂貴",
-        "latent_topic_id": "A",
-        "latent_topic_name": TOPICS["A"]["name"],
+        "word": "Colonial Concessions",
+        "chinese": "當局讓步談判",
+        "topic_id": "D",
         "historical_source": "The China Mail (1922)",
-        "context": "General cost-of-living index surges driving desperate economic petitions.",
-        "x": 67.0,
-        "y": -68.0,
-        "z": 20.9,
+        "context": "Colonial government and shipping conglomerates agreeing to wage hikes and union recognition.",
     },
 ]
 
+# Step 1: Coordinates interleaved with Latin-square dispersion
+STEP1_COORDINATES: Dict[str, Dict[str, float]] = {
+    "node_1":  {"x": -81.0, "y":  82.0, "z": -37.7},
+    "node_2":  {"x":  33.0, "y":  19.0, "z": -46.4},
+    "node_3":  {"x": -20.0, "y": -33.0, "z": -57.5},
+    "node_4":  {"x":  67.0, "y": -68.0, "z":  20.9},
+    "node_5":  {"x": -17.0, "y":  70.0, "z":  13.1},
+    "node_6":  {"x":  68.0, "y":  30.0, "z": -27.4},
+    "node_7":  {"x": -83.0, "y": -19.0, "z":  11.4},
+    "node_8":  {"x":  31.0, "y": -83.0, "z":   3.2},
+    "node_9":  {"x":  20.0, "y":  81.0, "z":  33.5},
+    "node_10": {"x": -68.0, "y":  18.0, "z":   3.4},
+    "node_11": {"x":  81.0, "y": -31.0, "z":  12.2},
+    "node_12": {"x": -32.0, "y": -69.0, "z": -47.9},
+    "node_13": {"x":  82.0, "y":  67.0, "z": -36.1},
+    "node_14": {"x": -31.0, "y":  33.0, "z":  21.8},
+    "node_15": {"x":  18.0, "y": -18.0, "z": -38.4},
+    "node_16": {"x": -70.0, "y": -80.0, "z":  51.0},
+}
 
-def get_nodes_as_dict() -> List[Dict[str, Any]]:
-    """Return a deep copy list of node dictionaries."""
-    import copy
-    return copy.deepcopy(STRIKE_NODES)
+# Step 2: Coordinates clustered tightly into 4 geographic regions (A: Top-Left, B: Bottom-Left, C: Center, D: Right)
+STEP2_COORDINATES: Dict[str, Dict[str, float]] = {
+    # Cluster A (Top-Left: Centroid (-64, 48))
+    "node_1":  {"x": -78.0, "y":  62.0, "z":  32.0},  # Wage Depression
+    "node_2":  {"x": -50.0, "y":  64.0, "z":  22.0},  # Rice Inflation
+    "node_3":  {"x": -76.0, "y":  34.0, "z":  18.0},  # Ten-Hour Shift
+    "node_4":  {"x": -52.0, "y":  32.0, "z":  28.0},  # Living Cost Spiral
+
+    # Cluster B (Bottom-Left: Centroid (-64, -48))
+    "node_5":  {"x": -78.0, "y": -34.0, "z": -18.0},  # Seamen's Union
+    "node_6":  {"x": -50.0, "y": -32.0, "z": -28.0},  # Strike Committee
+    "node_7":  {"x": -76.0, "y": -62.0, "z": -32.0},  # Picket Corps
+    "node_8":  {"x": -52.0, "y": -64.0, "z": -22.0},  # Boycott Manifesto
+
+    # Cluster C (Center Hub: Centroid (5, 0))
+    "node_9":  {"x":  -8.0, "y":  14.0, "z":  10.0},  # General Strike
+    "node_10": {"x":  20.0, "y":  16.0, "z":  -8.0},  # Dockworker Walkout
+    "node_11": {"x": -10.0, "y": -16.0, "z": -10.0},  # Work Cessation
+    "node_12": {"x":  18.0, "y": -14.0, "z":   8.0},  # Mass Demonstration
+
+    # Cluster D (Right Hub: Centroid (76, 0))
+    "node_13": {"x":  62.0, "y":  14.0, "z":  25.0},  # Port Paralysis
+    "node_14": {"x":  90.0, "y":  16.0, "z":  15.0},  # Shipping Deadlock
+    "node_15": {"x":  64.0, "y": -16.0, "z":  20.0},  # Market Interruption
+    "node_16": {"x":  88.0, "y": -14.0, "z":  22.0},  # Colonial Concessions
+}
+
+
+def get_step1_nodes() -> List[Dict[str, Any]]:
+    """Return nodes for Step 1 (Dispersed, uniform styling)."""
+    nodes = []
+    for item in BASE_VOCABULARY:
+        n = dict(item)
+        c = STEP1_COORDINATES[item["id"]]
+        n["x"] = c["x"]
+        n["y"] = c["y"]
+        n["z"] = c["z"]
+        n["latent_topic_id"] = item["topic_id"]
+        n["latent_topic_name"] = TOPICS[item["topic_id"]]["name"]
+        n["step"] = 1
+        n["status"] = "dispersed_unclustered"
+        n["color"] = UNIFORM_NODE_COLOR
+        nodes.append(n)
+    return nodes
+
+
+def get_step2_nodes() -> List[Dict[str, Any]]:
+    """Return nodes for Step 2 (Clustered by topic, with topic colors & labels)."""
+    nodes = []
+    for item in BASE_VOCABULARY:
+        n = dict(item)
+        c = STEP2_COORDINATES[item["id"]]
+        t = TOPICS[item["topic_id"]]
+        n["x"] = c["x"]
+        n["y"] = c["y"]
+        n["z"] = c["z"]
+        n["topic_id"] = item["topic_id"]
+        n["topic_name"] = t["name"]
+        n["topic_chinese"] = t["chinese_name"]
+        n["cluster_label"] = t["short_label"]
+        n["color"] = t["color"]
+        n["bg_color"] = t["bg_color"]
+        n["border_color"] = t["border_color"]
+        n["causal_role"] = t["causal_role"]
+        n["step"] = 2
+        n["status"] = "clustered"
+        nodes.append(n)
+    return nodes
+
+
+def get_step2_intra_links() -> List[Dict[str, Any]]:
+    """Return intra-cluster visual links connecting nodes within the same topic cluster."""
+    links = []
+    # Fully connect each 4-node cluster or ring connect
+    for topic_id in ["A", "B", "C", "D"]:
+        nodes = [n for n in BASE_VOCABULARY if n["topic_id"] == topic_id]
+        color = TOPICS[topic_id]["color"]
+        for i in range(len(nodes)):
+            for j in range(i + 1, len(nodes)):
+                links.append({
+                    "source": nodes[i]["id"],
+                    "target": nodes[j]["id"],
+                    "topic_id": topic_id,
+                    "color": color,
+                    "type": "INTRA_CLUSTER",
+                })
+    return links
+
+
+# Backward-compatible alias for Step 1
+STRIKE_NODES = get_step1_nodes()
+get_nodes_as_dict = get_step1_nodes
