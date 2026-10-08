@@ -3,11 +3,8 @@
 import sys
 from pathlib import Path
 
-# Add src to sys.path
-src_dir = Path(__file__).parent / "src"
-if not src_dir.exists():
-    src_dir = Path(__file__).parent.parent / "src"
-sys.path.insert(0, str(src_dir))
+# Add agent-sandbox/src to sys.path
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
 from china_causal_kg.ingestion.hkpl_scraper import main
 

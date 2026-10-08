@@ -7,6 +7,7 @@ Automates:
 3. Extracting metadata (title, bib ID, publication date, headlines, existing library OCR text).
 4. Downloading all full-resolution page scans (e.g. 3595x4665 PNGs).
 5. Assembling pages into a high-res PDF and saving structured metadata.json.
+6. Batch mode: collecting every issue from a search results page and scraping each in turn.
 """
 
 import os
@@ -16,9 +17,17 @@ import json
 import base64
 import argparse
 from pathlib import Path
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 from PIL import Image
 from selenium import webdriver
+
+# Repo root: <repo>/agent-sandbox/src/china_causal_kg/ingestion/hkpl_scraper.py
+REPO_ROOT = Path(__file__).resolve().parents[4]
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "data" / "raw" / "hkpl"
+
+SEARCH_API_PATH = "/api/drmapi/client-api/mmissearch/advanceQuery"
+# Performance logging lets us read the search API's JSON response via CDP
+PERFORMANCE_LOGGING = {"performance": "ALL"}
 
 
 def parse_catalogue_id(url_or_id: str) -> str:
@@ -45,6 +54,7 @@ def init_browser(headless: bool = True):
             "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
         )
+        options.set_capability("goog:loggingPrefs", PERFORMANCE_LOGGING)
         return webdriver.Chrome(options=options)
     except Exception as e:
         print(f"[!] Chrome initialization failed: {e}. Trying Edge fallback...")
@@ -56,15 +66,17 @@ def init_browser(headless: bool = True):
             "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
         )
+        options.set_capability("ms:loggingPrefs", PERFORMANCE_LOGGING)
         return webdriver.Edge(options=options)
 
 
 def scrape_document(
     url_or_id: str,
-    output_dir: str = "data/raw/hkpl",
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
     create_pdf: bool = True,
     headless: bool = True,
     delay_between_pages: float = 0.5,
+    driver=None,
 ) -> Path:
     """
     Scrapes all pages and metadata for a given HKPL newspaper issue.
@@ -75,6 +87,7 @@ def scrape_document(
         create_pdf: Whether to compile downloaded page images into a multi-page PDF.
         headless: Whether to run the browser headlessly.
         delay_between_pages: Gentle pause between page downloads.
+        driver: Existing webdriver to reuse (batch mode). If None, one is created and closed here.
     
     Returns:
         Path to the directory containing downloaded assets.
@@ -88,7 +101,9 @@ def scrape_document(
     print(f"[*] Target Catalogue ID: {catalogue_id}")
     print(f"[*] Navigating to: {target_url}")
 
-    driver = init_browser(headless=headless)
+    own_driver = driver is None
+    if own_driver:
+        driver = init_browser(headless=headless)
     try:
         driver.get(target_url)
         print("[*] Waiting for Queue-it authentication and initial page hydration...")
@@ -220,6 +235,7 @@ def scrape_document(
 
         trace_id = manifest["traceId"]
         downloaded_image_paths = []
+        new_downloads = 0
 
         # Download each page image
         for page in pages:
@@ -227,6 +243,11 @@ def scrape_document(
             page_id = page["id"]
             page_filename = page["fileName"]
             out_img_path = doc_dir / f"page_{page_num:03d}_{page_filename}"
+
+            if out_img_path.exists() and out_img_path.stat().st_size > 0:
+                print(f"[=] Page {page_num}/{len(pages)} already downloaded, skipping.")
+                downloaded_image_paths.append(out_img_path)
+                continue
 
             print(f"[*] Downloading Page {page_num}/{len(pages)} (ID: {page_id}, {page_filename})...", end="", flush=True)
 
@@ -261,6 +282,7 @@ def scrape_document(
                 with open(out_img_path, "wb") as f:
                     f.write(img_bytes)
                 downloaded_image_paths.append(out_img_path)
+                new_downloads += 1
                 print(f" [DONE: {len(img_bytes) / 1024:.1f} KB]")
             else:
                 print(" [FAILED: Invalid Base64 payload]")
@@ -268,11 +290,13 @@ def scrape_document(
             if delay_between_pages > 0:
                 time.sleep(delay_between_pages)
 
-        # Assemble PDF if requested
-        if create_pdf and downloaded_image_paths:
+        # Assemble PDF if requested (skipped when it exists and no new pages arrived)
+        pdf_path = doc_dir / f"{title_slug}.pdf"
+        if create_pdf and pdf_path.exists() and new_downloads == 0:
+            print(f"[=] PDF already exists, skipping: {pdf_path.name}")
+        elif create_pdf and downloaded_image_paths:
             print(f"[*] Compiling {len(downloaded_image_paths)} pages into high-res PDF...")
-            pdf_path = doc_dir / f"{title_slug}.pdf"
-            
+
             pil_images = []
             for p in downloaded_image_paths:
                 img = Image.open(p)
@@ -294,6 +318,135 @@ def scrape_document(
         return doc_dir
 
     finally:
+        if own_driver:
+            driver.quit()
+
+
+def search_page_url(search_url: str, page: int) -> str:
+    """Return the search results URL with its embedded `param` JSON pointed at the given page."""
+    parsed = urlparse(search_url)
+    query = parse_qs(parsed.query)
+    if "param" not in query:
+        raise ValueError("Search URL has no 'param' query parameter (expected a searchresults.html URL).")
+    param = json.loads(query["param"][0])
+    param["current"] = page
+    query["param"] = [json.dumps(param, separators=(",", ":"))]
+    return urlunparse(parsed._replace(query=urlencode(query, doseq=True)))
+
+
+def _capture_search_response(driver, max_wait: float = 45) -> dict:
+    """Wait for the page's own search API call and return its JSON `data` payload."""
+    driver.get_log("performance")  # drain anything buffered from earlier navigations
+    return_value = None
+    request_id = None
+    start_time = time.time()
+    while time.time() - start_time < max_wait:
+        for entry in driver.get_log("performance"):
+            message = json.loads(entry["message"])["message"]
+            params = message.get("params", {})
+            if (
+                message["method"] == "Network.requestWillBeSent"
+                and SEARCH_API_PATH in params.get("request", {}).get("url", "")
+            ):
+                request_id = params["requestId"]
+            elif message["method"] == "Network.loadingFinished" and params.get("requestId") == request_id:
+                body = driver.execute_cdp_cmd("Network.getResponseBody", {"requestId": request_id})["body"]
+                return_value = json.loads(body)
+                break
+        if return_value is not None:
+            break
+        time.sleep(1)
+
+    if return_value is None:
+        raise TimeoutError("Timed out waiting for the search results API response.")
+    if str(return_value.get("code")) != "200":
+        raise RuntimeError(f"Search API returned an error: {return_value.get('desc')}")
+    return return_value["data"]
+
+
+def collect_search_results(search_url: str, driver) -> list[dict]:
+    """
+    Loads an HKPL searchresults.html URL (page by page) and returns every result record.
+
+    Each record includes `id` (the catalogueId used by contentcoverpage.html), `bibNo`, `title` and `date`.
+    """
+    records = []
+    seen_ids = set()
+    page = 1
+    while True:
+        url = search_page_url(search_url, page)
+        print(f"[*] Loading search results page {page}...")
+        driver.get(url)
+        data = _capture_search_response(driver)
+
+        page_records = data.get("records") or []
+        for record in page_records:
+            if record["id"] not in seen_ids:
+                seen_ids.add(record["id"])
+                records.append(record)
+
+        total = int(data.get("total") or 0)
+        size = int(data.get("size") or len(page_records) or 1)
+        print(f"[+] Page {page}: {len(page_records)} results ({len(records)}/{total} collected)")
+        if not page_records or page * size >= total:
+            break
+        page += 1
+
+    return records
+
+
+def scrape_search_results(
+    search_url: str,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+    create_pdf: bool = True,
+    headless: bool = True,
+    limit: int | None = None,
+    delay_between_docs: float = 2.0,
+) -> list[Path]:
+    """
+    Scrapes every document listed on an HKPL search results page, reusing one browser session.
+
+    Documents are saved exactly as `scrape_document` saves them (e.g. NPCM19250801_The_China_Mail_1925-08-01).
+    Pages already on disk are skipped, so an interrupted batch can simply be re-run.
+
+    Returns:
+        Paths of the document directories that were scraped successfully.
+    """
+    driver = init_browser(headless=headless)
+    try:
+        records = collect_search_results(search_url, driver)
+        if limit is not None:
+            records = records[:limit]
+        print(f"[*] Scraping {len(records)} documents from search results\n")
+
+        doc_dirs = []
+        failures = []
+        for idx, record in enumerate(records, start=1):
+            print(f"=== [{idx}/{len(records)}] {record.get('title')} ({record.get('bibNo')}) ===")
+            try:
+                doc_dirs.append(
+                    scrape_document(
+                        record["id"],
+                        output_dir=output_dir,
+                        create_pdf=create_pdf,
+                        headless=headless,
+                        driver=driver,
+                    )
+                )
+            except Exception as e:
+                print(f"[!] Failed to scrape {record.get('title')}: {e}")
+                failures.append(record)
+            if delay_between_docs > 0 and idx < len(records):
+                time.sleep(delay_between_docs)
+            print()
+
+        print(f"[SUCCESS] Batch complete: {len(doc_dirs)}/{len(records)} documents scraped.")
+        if failures:
+            print("[!] Failed documents (re-run the same command to retry):")
+            for record in failures:
+                print(f"    - {record.get('title')} (catalogueId={record['id']})")
+        return doc_dirs
+    finally:
         driver.quit()
 
 
@@ -306,9 +459,19 @@ def main():
         help="URL or catalogue ID of the newspaper issue"
     )
     parser.add_argument(
+        "--search-url",
+        "-s",
+        help="searchresults.html URL; scrapes every document in the results (overrides --url)"
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        help="With --search-url, only scrape the first N results"
+    )
+    parser.add_argument(
         "--output-dir",
         "-o",
-        default="data/raw/hkpl",
+        default=str(DEFAULT_OUTPUT_DIR),
         help="Target output directory"
     )
     parser.add_argument(
@@ -323,6 +486,16 @@ def main():
     )
 
     args = parser.parse_args()
+    if args.search_url:
+        scrape_search_results(
+            search_url=args.search_url,
+            output_dir=args.output_dir,
+            create_pdf=not args.no_pdf,
+            headless=not args.headful,
+            limit=args.limit,
+        )
+        return
+
     scrape_document(
         url_or_id=args.url,
         output_dir=args.output_dir,
