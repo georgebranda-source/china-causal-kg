@@ -335,8 +335,11 @@ def search_page_url(search_url: str, page: int) -> str:
 
 
 def _capture_search_response(driver, max_wait: float = 45) -> dict:
-    """Wait for the page's own search API call and return its JSON `data` payload."""
-    driver.get_log("performance")  # drain anything buffered from earlier navigations
+    """
+    Wait for the page's own search API call and return its JSON `data` payload.
+
+    The performance log must be drained *before* navigating, or the request can be lost.
+    """
     return_value = None
     request_id = None
     start_time = time.time()
@@ -364,26 +367,57 @@ def _capture_search_response(driver, max_wait: float = 45) -> dict:
     return return_value["data"]
 
 
+def find_complete_download(output_dir: str | Path, bib_no: str | None, require_pdf: bool = True) -> Path | None:
+    """
+    Return the existing directory for `bib_no` if it is a complete download, else None.
+
+    Complete means: metadata.json is present, one non-empty page image exists per page in the
+    manifest, and (if `require_pdf`) the compiled PDF exists.
+    """
+    if not bib_no:
+        return None
+    for doc_dir in sorted(Path(output_dir).glob(f"{bib_no}_*")):
+        try:
+            with open(doc_dir / "metadata.json", encoding="utf-8") as f:
+                total_pages = int(json.load(f)["metadata"]["totalPages"])
+        except (OSError, KeyError, TypeError, ValueError):
+            continue
+        page_files = [p for p in doc_dir.glob("page_*") if p.stat().st_size > 0]
+        has_pdf = any(doc_dir.glob("*.pdf"))
+        if total_pages > 0 and len(page_files) >= total_pages and (has_pdf or not require_pdf):
+            return doc_dir
+    return None
+
+
 def collect_search_results(search_url: str, driver) -> list[dict]:
     """
-    Loads an HKPL searchresults.html URL (page by page) and returns every result record.
+    Loads an HKPL searchresults.html URL (page by page) and returns every unique result record.
 
+    Results are deduplicated by catalogue ID and by bib number (the same issue can be listed twice).
     Each record includes `id` (the catalogueId used by contentcoverpage.html), `bibNo`, `title` and `date`.
     """
     records = []
     seen_ids = set()
+    seen_bib_nos = set()
+    duplicates = 0
     page = 1
     while True:
         url = search_page_url(search_url, page)
         print(f"[*] Loading search results page {page}...")
+        driver.get_log("performance")  # drop entries from earlier navigations
         driver.get(url)
         data = _capture_search_response(driver)
 
         page_records = data.get("records") or []
         for record in page_records:
-            if record["id"] not in seen_ids:
-                seen_ids.add(record["id"])
-                records.append(record)
+            bib_no = record.get("bibNo")
+            if record["id"] in seen_ids or (bib_no and bib_no in seen_bib_nos):
+                duplicates += 1
+                continue
+            seen_ids.add(record["id"])
+            if bib_no:
+                seen_bib_nos.add(bib_no)
+            records.append(record)
 
         total = int(data.get("total") or 0)
         size = int(data.get("size") or len(page_records) or 1)
@@ -392,6 +426,8 @@ def collect_search_results(search_url: str, driver) -> list[dict]:
             break
         page += 1
 
+    if duplicates:
+        print(f"[=] Dropped {duplicates} duplicate search results")
     return records
 
 
@@ -402,15 +438,18 @@ def scrape_search_results(
     headless: bool = True,
     limit: int | None = None,
     delay_between_docs: float = 2.0,
+    force: bool = False,
 ) -> list[Path]:
     """
     Scrapes every document listed on an HKPL search results page, reusing one browser session.
 
     Documents are saved exactly as `scrape_document` saves them (e.g. NPCM19250801_The_China_Mail_1925-08-01).
-    Pages already on disk are skipped, so an interrupted batch can simply be re-run.
+    Issues already fully downloaded in `output_dir` are skipped without visiting them (unless
+    `force`), and partially downloaded issues only fetch their missing pages, so an interrupted
+    batch can simply be re-run.
 
     Returns:
-        Paths of the document directories that were scraped successfully.
+        Paths of the document directories that were scraped successfully or already complete.
     """
     driver = init_browser(headless=headless)
     try:
@@ -420,9 +459,16 @@ def scrape_search_results(
         print(f"[*] Scraping {len(records)} documents from search results\n")
 
         doc_dirs = []
+        skipped = 0
         failures = []
         for idx, record in enumerate(records, start=1):
             print(f"=== [{idx}/{len(records)}] {record.get('title')} ({record.get('bibNo')}) ===")
+            existing_dir = None if force else find_complete_download(output_dir, record.get("bibNo"), create_pdf)
+            if existing_dir:
+                print(f"[=] Already downloaded, skipping: {existing_dir.name}\n")
+                doc_dirs.append(existing_dir)
+                skipped += 1
+                continue
             try:
                 doc_dirs.append(
                     scrape_document(
@@ -440,7 +486,10 @@ def scrape_search_results(
                 time.sleep(delay_between_docs)
             print()
 
-        print(f"[SUCCESS] Batch complete: {len(doc_dirs)}/{len(records)} documents scraped.")
+        print(
+            f"[SUCCESS] Batch complete: {len(doc_dirs) - skipped} scraped, "
+            f"{skipped} already downloaded, {len(failures)} failed (of {len(records)})."
+        )
         if failures:
             print("[!] Failed documents (re-run the same command to retry):")
             for record in failures:
@@ -451,7 +500,10 @@ def scrape_search_results(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Scrape HKPL MMIS historical newspapers")
+    parser = argparse.ArgumentParser(
+        description="Scrape HKPL MMIS historical newspapers",
+        epilog="Full usage guide: agent-sandbox/README.md",
+    )
     parser.add_argument(
         "--url",
         "-u",
@@ -467,6 +519,11 @@ def main():
         "--limit",
         type=int,
         help="With --search-url, only scrape the first N results"
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="With --search-url, re-check issues that look complete (refreshes metadata/OCR; existing page images are kept)"
     )
     parser.add_argument(
         "--output-dir",
@@ -493,6 +550,7 @@ def main():
             create_pdf=not args.no_pdf,
             headless=not args.headful,
             limit=args.limit,
+            force=args.force,
         )
         return
 
