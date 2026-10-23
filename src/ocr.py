@@ -4,7 +4,8 @@ ocr = PaddleOCR(
     use_doc_orientation_classify=False,
     use_doc_unwarping=False,
     use_textline_orientation=False,
-    engine="transformers",
+    engine="paddle",
+    device="gpu", #Remove this if not running on GISCOMPUTER
 )
 
 result = ocr.predict('data/raw/test.png')
