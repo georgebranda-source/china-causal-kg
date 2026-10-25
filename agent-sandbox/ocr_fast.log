@@ -1,0 +1,996 @@
+C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\ocr_fast.py:7: SyntaxWarning: invalid escape sequence '\S'
+  .venv\Scripts\python.exe -u agent-sandbox\ocr_fast.py 'data/raw/hkpl/**/page_*.png'
+[32mCreating model: ('PP-OCRv5_mobile_det', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex\official_models\PP-OCRv5_mobile_det`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1024 18:10:31.777598 22464 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PP-OCRv5_mobile_rec', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex\official_models\PP-OCRv5_mobile_rec`.[0m
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250601_01_0001: 556 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250601_01_0002: 563 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250601_01_0003: 335 lines, 1.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250601_01_0004: 511 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250601_01_0005: 635 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250601_01_0006: 509 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250601_01_0007: 504 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250601_01_0008: 515 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250601_01_0009: 481 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250601_01_0010: 454 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250601_01_0011: 572 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250601_01_0012: 158 lines, 0.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250601_01_0013: 486 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250601_01_0014: 477 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250602_01_0002: 579 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250602_01_0003: 444 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250602_01_0004: 529 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250602_01_0006: 572 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250602_01_0007: 651 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250602_01_0008: 145 lines, 0.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250602_01_0009: 590 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250602_01_0010: 590 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250602_01_0011: 595 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250602_01_0012: 501 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250602_01_0013: 624 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250602_01_0014: 509 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250603_01_0001: 577 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250603_01_0002: 551 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250603_01_0003: 439 lines, 1.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250603_01_0004: 491 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250603_01_0005: 487 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250603_01_0006: 515 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250603_01_0007: 655 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250603_01_0008: 667 lines, 2.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250603_01_0009: 445 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250603_01_0010: 514 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250603_01_0011: 621 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250603_01_0012: 111 lines, 0.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250603_01_0013: 546 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250603_01_0014: 492 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250604_01_0001: 551 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250604_01_0002: 583 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250604_01_0003: 485 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250604_01_0004: 544 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250604_01_0005: 580 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250604_01_0006: 549 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250604_01_0007: 581 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250604_01_0008: 604 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250604_01_0009: 293 lines, 1.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250604_01_0010: 551 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250604_01_0011: 576 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250604_01_0012: 155 lines, 0.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250604_01_0013: 620 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250604_01_0014: 479 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250605_01_0001: 588 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250605_01_0002: 680 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250605_01_0003: 451 lines, 1.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250605_01_0004: 558 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250605_01_0005: 637 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250605_01_0006: 530 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250605_01_0007: 528 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250605_01_0008: 613 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250605_01_0009: 584 lines, 2.2s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250605_01_0010: 527 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250605_01_0011: 658 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250605_01_0012: 147 lines, 0.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250605_01_0013: 516 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250605_01_0014: 537 lines, 1.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250606_01_0001: 561 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250606_01_0002: 603 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250606_01_0003: 515 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250606_01_0004: 542 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250606_01_0005: 543 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250606_01_0006: 113 lines, 0.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250606_01_0007: 476 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250606_01_0008: 517 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250606_01_0009: 421 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250606_01_0010: 159 lines, 0.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250606_01_0011: 522 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250606_01_0012: 509 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250606_01_0013: 536 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250606_01_0014: 555 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_015_NPCM19250606_01_0015: 563 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_016_NPCM19250606_01_0016: 455 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250608_01_0001: 639 lines, 2.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250608_01_0002: 710 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250608_01_0003: 515 lines, 1.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250608_01_0004: 513 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250608_01_0005: 688 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250608_01_0006: 605 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250608_01_0007: 597 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250608_01_0008: 662 lines, 2.2s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250608_01_0009: 653 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250608_01_0010: 741 lines, 2.4s
+[33mResized image size (3420x4903) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250608_01_0011: 685 lines, 2.1s
+[33mResized image size (3420x4903) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250608_01_0012: 132 lines, 0.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250608_01_0013: 521 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250608_01_0014: 581 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250609_01_0001: 646 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250609_01_0002: 694 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250609_01_0003: 548 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250609_01_0004: 692 lines, 2.2s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250609_01_0005: 705 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250609_01_0006: 641 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250609_01_0007: 523 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250609_01_0008: 584 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250609_01_0009: 630 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250609_01_0010: 541 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250609_01_0011: 663 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250609_01_0012: 172 lines, 0.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250609_01_0013: 618 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250609_01_0014: 502 lines, 1.4s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250610_01_0001: 596 lines, 2.0s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250610_01_0002: 582 lines, 1.7s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250610_01_0003: 516 lines, 1.6s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250610_01_0004: 461 lines, 1.4s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250610_01_0005: 628 lines, 2.0s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250610_01_0006: 552 lines, 2.0s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250610_01_0007: 531 lines, 2.1s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250610_01_0008: 691 lines, 2.3s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250610_01_0009: 705 lines, 2.3s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250610_01_0010: 600 lines, 2.1s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250610_01_0011: 166 lines, 0.7s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250610_01_0012: 582 lines, 1.8s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250610_01_0013: 530 lines, 1.7s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250610_01_0014: 506 lines, 1.4s
+[33mResized image size (3576x4689) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250611_01_0001: 570 lines, 1.8s
+[33mResized image size (3591x4669) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250611_01_0002: 687 lines, 2.3s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250611_01_0003: 479 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250611_01_0004: 486 lines, 1.7s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250611_01_0005: 531 lines, 1.6s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250611_01_0006: 579 lines, 2.1s
+[33mResized image size (3563x4706) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250611_01_0007: 509 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250611_01_0008: 572 lines, 2.0s
+[33mResized image size (3580x4684) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250611_01_0009: 426 lines, 1.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250611_01_0010: 510 lines, 1.7s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250611_01_0011: 586 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250611_01_0012: 184 lines, 0.9s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250611_01_0013: 646 lines, 2.4s
+[33mResized image size (3592x4668) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250611_01_0014: 456 lines, 1.3s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250612_01_0001: 606 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250612_01_0002: 662 lines, 1.9s
+[33mResized image size (3576x4689) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250612_01_0003: 588 lines, 2.0s
+[33mResized image size (3579x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250612_01_0004: 154 lines, 0.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250612_01_0005: 508 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250612_01_0006: 550 lines, 1.6s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250612_01_0007: 523 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250612_01_0008: 579 lines, 2.2s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250612_01_0009: 575 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250612_01_0010: 588 lines, 1.9s
+[33mResized image size (3586x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250612_01_0011: 568 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250612_01_0012: 471 lines, 1.7s
+[33mResized image size (3571x4696) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250612_01_0013: 562 lines, 2.1s
+[33mResized image size (3585x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250612_01_0014: 548 lines, 1.7s
+[33mResized image size (3559x4712) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250613_01_0001: 597 lines, 2.0s
+[33mResized image size (3569x4698) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250613_01_0002: 591 lines, 1.6s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250613_01_0003: 438 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250613_01_0004: 636 lines, 1.7s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250613_01_0005: 604 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250613_01_0006: 127 lines, 0.6s
+[33mResized image size (3575x4691) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250613_01_0007: 518 lines, 1.9s
+[33mResized image size (3585x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250613_01_0008: 582 lines, 2.1s
+[33mResized image size (3568x4700) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250613_01_0009: 586 lines, 2.2s
+[33mResized image size (3579x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250613_01_0010: 158 lines, 0.9s
+[33mResized image size (3582x4681) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250613_01_0011: 434 lines, 1.5s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250613_01_0012: 491 lines, 1.7s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250613_01_0013: 729 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250613_01_0014: 634 lines, 2.3s
+[33mResized image size (3575x4690) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_015_NPCM19250613_01_0015: 637 lines, 1.8s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_016_NPCM19250613_01_0016: 497 lines, 1.6s
+[33mResized image size (3572x4694) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250616_01_0001: 594 lines, 2.2s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250616_01_0002: 684 lines, 2.1s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250616_01_0003: 645 lines, 1.8s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250616_01_0004: 609 lines, 1.6s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250616_01_0005: 683 lines, 2.0s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250616_01_0006: 522 lines, 2.1s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250616_01_0007: 508 lines, 1.9s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250616_01_0008: 613 lines, 2.1s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250616_01_0009: 643 lines, 1.9s
+[33mResized image size (3572x4694) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250616_01_0010: 494 lines, 1.9s
+[33mResized image size (3572x4694) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250616_01_0011: 562 lines, 1.9s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250616_01_0012: 156 lines, 0.7s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250616_01_0013: 631 lines, 2.1s
+[33mResized image size (3630x4620) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250616_01_0014: 480 lines, 1.4s
+[33mResized image size (3576x4689) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250617_01_0001: 599 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250617_01_0002: 700 lines, 2.2s
+[33mResized image size (3593x4667) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250617_01_0003: 583 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250617_01_0004: 586 lines, 1.5s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250617_01_0005: 563 lines, 1.7s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250617_01_0006: 611 lines, 2.2s
+[33mResized image size (3568x4699) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250617_01_0007: 454 lines, 1.5s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250617_01_0008: 597 lines, 1.9s
+[33mResized image size (3578x4687) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250617_01_0009: 658 lines, 1.9s
+[33mResized image size (3580x4685) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250617_01_0010: 551 lines, 2.2s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250617_01_0011: 615 lines, 2.2s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250617_01_0012: 159 lines, 0.7s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250617_01_0013: 505 lines, 1.7s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250617_01_0014: 472 lines, 1.3s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250619_01_0001: 633 lines, 2.2s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250619_01_0002: 618 lines, 1.9s
+[33mResized image size (3580x4685) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250619_01_0003: 470 lines, 1.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250619_01_0004: 497 lines, 1.6s
+[33mResized image size (3567x4701) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250619_01_0005: 514 lines, 1.5s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250619_01_0006: 524 lines, 2.0s
+[33mResized image size (3578x4687) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250619_01_0007: 503 lines, 2.0s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250619_01_0008: 585 lines, 1.9s
+[33mResized image size (3593x4668) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250619_01_0009: 625 lines, 1.9s
+[33mResized image size (3593x4668) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250619_01_0010: 534 lines, 1.8s
+[33mResized image size (3584x4679) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250619_01_0011: 591 lines, 2.1s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250619_01_0012: 144 lines, 0.7s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250619_01_0013: 563 lines, 1.7s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250619_01_0014: 574 lines, 1.5s
+[33mResized image size (3574x4693) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250620_01_0001: 618 lines, 2.2s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250620_01_0002: 662 lines, 2.2s
+[33mResized image size (3567x4701) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250620_01_0003: 664 lines, 2.2s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250620_01_0004: 660 lines, 1.7s
+[33mResized image size (3565x4704) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250620_01_0005: 607 lines, 1.7s
+[33mResized image size (3586x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250620_01_0006: 126 lines, 0.7s
+[33mResized image size (3544x4732) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250620_01_0007: 476 lines, 1.8s
+[33mResized image size (3567x4701) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250620_01_0008: 655 lines, 2.2s
+[33mResized image size (3548x4727) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250620_01_0009: 501 lines, 1.7s
+[33mResized image size (3572x4695) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250620_01_0010: 178 lines, 0.7s
+[33mResized image size (3573x4694) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250620_01_0011: 443 lines, 1.8s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250620_01_0012: 579 lines, 2.2s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250620_01_0013: 661 lines, 2.2s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250620_01_0014: 617 lines, 2.0s
+[33mResized image size (3570x4697) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_015_NPCM19250620_01_0015: 630 lines, 2.1s
+[33mResized image size (3568x4700) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_016_NPCM19250620_01_0016: 495 lines, 1.8s
+[33mResized image size (3592x4669) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250622_01_0001: 647 lines, 2.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250622_01_0002: 658 lines, 1.8s
+[33mResized image size (3592x4668) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250622_01_0003: 436 lines, 1.2s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250622_01_0004: 608 lines, 1.7s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250622_01_0005: 612 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250622_01_0006: 612 lines, 2.0s
+[33mResized image size (3576x4689) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250622_01_0007: 676 lines, 2.2s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250622_01_0008: 614 lines, 1.7s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250622_01_0009: 634 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250622_01_0010: 698 lines, 2.3s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250622_01_0011: 648 lines, 2.0s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250622_01_0012: 172 lines, 0.8s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250622_01_0013: 569 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250622_01_0014: 654 lines, 1.9s
+[33mResized image size (3560x4711) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250623_01_0001: 682 lines, 2.1s
+[33mResized image size (3564x4705) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250623_01_0002: 643 lines, 2.0s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250624_01_0001: 134 lines, 0.8s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250624_01_0002: 163 lines, 0.9s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250624_01_0003: 174 lines, 0.9s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250624_01_0004: 141 lines, 0.8s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250626_01_0001: 134 lines, 0.8s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250626_01_0002: 146 lines, 0.9s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250626_01_0003: 137 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250626_01_0004: 115 lines, 0.5s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250626_01_0005: 117 lines, 0.5s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250626_01_0006: 134 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250626_01_0007: 394 lines, 1.3s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250626_01_0008: 191 lines, 0.7s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250626_01_0009: 120 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250626_01_0010: 122 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250626_01_0011: 114 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250626_01_0012: 129 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_013_NPCM19250626_01_0013: 203 lines, 0.8s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_014_NPCM19250626_01_0014: 408 lines, 1.2s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_015_NPCM19250626_01_0015: 122 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_016_NPCM19250626_01_0016: 135 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_017_NPCM19250626_01_0017: 111 lines, 0.5s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_018_NPCM19250626_01_0018: 85 lines, 0.4s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_019_NPCM19250626_01_0019: 198 lines, 0.7s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_020_NPCM19250626_01_0020: 400 lines, 1.2s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_021_NPCM19250626_01_0021: 118 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_022_NPCM19250626_01_0022: 113 lines, 0.6s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_023_NPCM19250626_01_0023: 99 lines, 0.5s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_024_NPCM19250626_01_0024: 215 lines, 0.7s
+[33mResized image size (3544x4732) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250627_01_0001: 296 lines, 1.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250627_01_0002: 587 lines, 2.0s
+[33mResized image size (3575x4691) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250627_01_0003: 712 lines, 2.2s
+[33mResized image size (3585x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250627_01_0004: 398 lines, 1.4s
+[33mResized image size (3547x4728) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250629_01_0001: 207 lines, 0.8s
+[33mResized image size (3576x4689) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250629_01_0002: 535 lines, 1.9s
+[33mResized image size (3556x4715) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250629_01_0003: 627 lines, 2.0s
+[33mResized image size (3560x4711) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250629_01_0004: 241 lines, 0.8s
+[33mResized image size (3532x4747) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250630_01_0001: 265 lines, 0.9s
+[33mResized image size (3567x4702) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250630_01_0002: 551 lines, 1.9s
+[33mResized image size (3497x4795) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250630_01_0003: 619 lines, 2.3s
+[33mResized image size (3486x4810) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250630_01_0004: 406 lines, 1.2s
+[33mResized image size (3543x4734) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250701_01_0001: 305 lines, 1.0s
+[33mResized image size (3500x4791) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250701_01_0002: 418 lines, 1.4s
+[33mResized image size (3480x4819) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250701_01_0003: 471 lines, 1.6s
+[33mResized image size (3568x4699) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250701_01_0004: 345 lines, 1.2s
+[33mResized image size (3535x4744) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250702_01_0001: 302 lines, 1.1s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250702_01_0002: 502 lines, 1.9s
+[33mResized image size (3530x4750) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250702_01_0003: 571 lines, 1.9s
+[33mResized image size (3575x4690) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250702_01_0004: 309 lines, 1.1s
+[33mResized image size (3555x4717) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250703_01_0001: 571 lines, 2.2s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250703_01_0002: 516 lines, 1.9s
+[33mResized image size (3537x4741) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250703_01_0003: 550 lines, 1.7s
+[33mResized image size (3558x4714) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250703_01_0004: 542 lines, 1.6s
+[33mResized image size (3550x4724) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250703_01_0005: 423 lines, 1.3s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250703_01_0006: 177 lines, 0.8s
+[33mResized image size (3560x4710) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250704_01_0001: 621 lines, 1.9s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250704_01_0002: 531 lines, 1.9s
+[33mResized image size (3558x4713) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250704_01_0003: 563 lines, 1.8s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250704_01_0004: 582 lines, 1.7s
+[33mResized image size (3554x4718) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250704_01_0005: 462 lines, 1.5s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250704_01_0006: 194 lines, 0.9s
+[33mResized image size (3566x4703) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250706_01_0001: 689 lines, 2.3s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250706_01_0002: 540 lines, 1.8s
+[33mResized image size (3553x4719) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250706_01_0003: 507 lines, 1.8s
+[33mResized image size (3580x4684) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250706_01_0004: 681 lines, 2.3s
+[33mResized image size (3573x4694) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250706_01_0005: 490 lines, 1.6s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250706_01_0006: 205 lines, 0.9s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250707_01_0001: 700 lines, 2.2s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250707_01_0002: 526 lines, 1.6s
+[33mResized image size (3578x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250707_01_0003: 397 lines, 1.4s
+[33mResized image size (3580x4685) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250707_01_0004: 548 lines, 2.0s
+[33mResized image size (3572x4695) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250707_01_0005: 634 lines, 2.1s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250707_01_0006: 748 lines, 2.1s
+[33mResized image size (3584x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250707_01_0007: 316 lines, 1.3s
+[33mResized image size (3591x4669) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250707_01_0008: 466 lines, 1.6s
+[33mResized image size (3576x4689) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250708_01_0001: 566 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250708_01_0002: 458 lines, 1.4s
+[33mResized image size (3578x4687) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250708_01_0003: 408 lines, 1.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250708_01_0004: 609 lines, 2.1s
+[33mResized image size (3563x4707) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250708_01_0005: 669 lines, 2.3s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250708_01_0006: 582 lines, 1.7s
+[33mResized image size (3567x4701) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250708_01_0007: 287 lines, 1.0s
+[33mResized image size (3586x4676) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250708_01_0008: 426 lines, 1.4s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250709_01_0001: 704 lines, 2.4s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250709_01_0002: 478 lines, 1.7s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250709_01_0003: 443 lines, 1.6s
+[33mResized image size (3586x4676) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250709_01_0004: 585 lines, 1.9s
+[33mResized image size (3575x4690) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250709_01_0005: 689 lines, 2.4s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250709_01_0006: 695 lines, 2.1s
+[33mResized image size (3586x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250709_01_0007: 268 lines, 1.1s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250709_01_0008: 492 lines, 1.6s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250710_01_0001: 725 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250710_01_0002: 571 lines, 1.9s
+[33mResized image size (3574x4693) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250710_01_0003: 431 lines, 1.6s
+[33mResized image size (3593x4667) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250710_01_0004: 538 lines, 2.1s
+[33mResized image size (3569x4699) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250710_01_0005: 589 lines, 1.9s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250710_01_0006: 638 lines, 1.9s
+[33mResized image size (3573x4693) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250710_01_0007: 306 lines, 1.3s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250710_01_0008: 511 lines, 1.6s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250711_01_0001: 637 lines, 1.9s
+[33mResized image size (3593x4667) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250711_01_0002: 526 lines, 1.5s
+[33mResized image size (3579x4685) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250711_01_0003: 576 lines, 1.9s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250711_01_0004: 619 lines, 2.4s
+[33mResized image size (3577x4688) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250711_01_0005: 688 lines, 2.4s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250711_01_0006: 686 lines, 2.0s
+[33mResized image size (3548x4726) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250711_01_0007: 352 lines, 1.2s
+[33mResized image size (3550x4723) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250711_01_0008: 595 lines, 2.0s
+[33mResized image size (3580x4685) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250713_01_0001: 602 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250713_01_0002: 508 lines, 1.5s
+[33mResized image size (3584x4679) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250713_01_0003: 477 lines, 1.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250713_01_0004: 621 lines, 2.3s
+[33mResized image size (3570x4697) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250713_01_0005: 618 lines, 2.2s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250713_01_0006: 655 lines, 2.2s
+[33mResized image size (3569x4698) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250713_01_0007: 340 lines, 1.2s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250713_01_0008: 462 lines, 1.5s
+[33mResized image size (3578x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250714_01_0001: 730 lines, 2.5s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250714_01_0002: 482 lines, 1.6s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250714_01_0003: 438 lines, 1.4s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250714_01_0004: 542 lines, 1.9s
+[33mResized image size (3567x4701) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250714_01_0005: 617 lines, 2.0s
+[33mResized image size (3579x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250714_01_0006: 569 lines, 1.8s
+[33mResized image size (3568x4700) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250714_01_0007: 296 lines, 1.1s
+[33mResized image size (3581x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250714_01_0008: 435 lines, 1.5s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250715_01_0001: 691 lines, 2.1s
+[33mResized image size (3591x4669) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250715_01_0002: 467 lines, 1.4s
+[33mResized image size (3584x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250715_01_0003: 536 lines, 1.7s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250715_01_0004: 578 lines, 2.0s
+[33mResized image size (3565x4704) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250715_01_0005: 587 lines, 1.9s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250715_01_0006: 555 lines, 1.6s
+[33mResized image size (3563x4707) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250715_01_0007: 282 lines, 1.2s
+[33mResized image size (3581x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250715_01_0008: 470 lines, 1.7s
+[33mResized image size (3569x4698) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250716_01_0001: 710 lines, 2.6s
+[33mResized image size (3593x4667) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250716_01_0002: 530 lines, 1.6s
+[33mResized image size (3579x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250716_01_0003: 446 lines, 1.4s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250716_01_0004: 583 lines, 2.1s
+[33mResized image size (3571x4696) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250716_01_0005: 674 lines, 2.3s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250716_01_0006: 661 lines, 2.0s
+[33mResized image size (3580x4685) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250716_01_0007: 334 lines, 1.2s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250716_01_0008: 472 lines, 1.6s
+[33mResized image size (3580x4685) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250717_01_0001: 626 lines, 2.3s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250717_01_0002: 510 lines, 1.7s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250717_01_0003: 544 lines, 1.7s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250717_01_0004: 590 lines, 2.0s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250717_01_0005: 701 lines, 2.4s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250717_01_0006: 660 lines, 2.1s
+[33mResized image size (3573x4694) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250717_01_0007: 284 lines, 1.2s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250717_01_0008: 564 lines, 1.8s
+[33mResized image size (3578x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250718_01_0001: 651 lines, 2.1s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250718_01_0002: 580 lines, 1.8s
+[33mResized image size (3586x4676) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250718_01_0003: 516 lines, 1.9s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250718_01_0004: 569 lines, 2.0s
+[33mResized image size (3578x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250718_01_0005: 658 lines, 2.2s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250718_01_0006: 618 lines, 1.8s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250718_01_0007: 223 lines, 1.1s
+[33mResized image size (3351x5004) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250718_01_0008: 166 lines, 0.8s
+[33mResized image size (3513x4774) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250718_01_0009: 419 lines, 1.4s
+[33mResized image size (3559x4712) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250718_01_0010: 469 lines, 1.5s
+[33mResized image size (3584x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250720_01_0001: 616 lines, 2.2s
+[33mResized image size (3592x4669) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250720_01_0002: 498 lines, 1.7s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250720_01_0003: 539 lines, 1.9s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250720_01_0004: 655 lines, 2.2s
+[33mResized image size (3580x4684) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250720_01_0005: 663 lines, 2.2s
+[33mResized image size (3592x4668) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250720_01_0006: 599 lines, 2.1s
+[33mResized image size (3568x4700) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250720_01_0007: 281 lines, 1.0s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250720_01_0008: 550 lines, 1.9s
+[33mResized image size (3574x4693) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250721_01_0001: 593 lines, 1.9s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250721_01_0002: 486 lines, 1.6s
+[33mResized image size (3577x4688) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250721_01_0003: 367 lines, 1.2s
+[33mResized image size (3592x4669) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250721_01_0004: 490 lines, 1.8s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250721_01_0005: 635 lines, 2.2s
+[33mResized image size (3586x4676) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250721_01_0006: 495 lines, 1.5s
+[33mResized image size (3571x4696) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250721_01_0007: 248 lines, 0.9s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250721_01_0008: 563 lines, 1.7s
+[33mResized image size (3584x4679) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250722_01_0001: 706 lines, 2.2s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250722_01_0002: 555 lines, 1.7s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250722_01_0003: 583 lines, 1.8s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250722_01_0004: 665 lines, 2.3s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250722_01_0005: 536 lines, 2.2s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250722_01_0006: 662 lines, 2.0s
+[33mResized image size (3572x4695) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250722_01_0007: 325 lines, 1.2s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250722_01_0008: 591 lines, 1.7s
+[33mResized image size (3575x4691) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250723_01_0001: 709 lines, 2.4s
+[33mResized image size (3593x4667) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250723_01_0002: 572 lines, 1.7s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250723_01_0003: 485 lines, 1.5s
+[33mResized image size (3594x4666) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250723_01_0004: 628 lines, 2.2s
+[33mResized image size (3573x4694) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250723_01_0005: 630 lines, 2.2s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250723_01_0006: 619 lines, 2.3s
+[33mResized image size (3575x4690) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250723_01_0007: 288 lines, 1.2s
+[33mResized image size (3547x4728) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250723_01_0008: 561 lines, 1.6s
+[33mResized image size (3584x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250724_01_0001: 593 lines, 2.0s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250724_01_0002: 545 lines, 1.7s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250724_01_0003: 429 lines, 1.4s
+[33mResized image size (3588x4673) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250724_01_0004: 606 lines, 2.0s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250724_01_0005: 691 lines, 2.2s
+[33mResized image size (3592x4668) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250724_01_0006: 670 lines, 2.2s
+[33mResized image size (3575x4690) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250724_01_0007: 297 lines, 1.1s
+[33mResized image size (3588x4674) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250724_01_0008: 499 lines, 1.9s
+[33mResized image size (3579x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250725_01_0001: 722 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250725_01_0002: 581 lines, 1.7s
+[33mResized image size (3578x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250725_01_0003: 497 lines, 1.7s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250725_01_0004: 642 lines, 2.5s
+[33mResized image size (3576x4689) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250725_01_0005: 570 lines, 1.8s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250725_01_0006: 684 lines, 2.0s
+[33mResized image size (3553x4719) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250725_01_0007: 393 lines, 1.5s
+[33mResized image size (3571x4696) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250725_01_0008: 548 lines, 1.9s
+[33mResized image size (3582x4681) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250727_01_0001: 679 lines, 2.4s
+[33mResized image size (3586x4676) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250727_01_0002: 619 lines, 1.9s
+[33mResized image size (3587x4675) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250727_01_0003: 670 lines, 2.1s
+[33mResized image size (3585x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250727_01_0004: 647 lines, 2.2s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250727_01_0005: 628 lines, 2.0s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250727_01_0006: 728 lines, 2.3s
+[33mResized image size (3595x4665) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250727_01_0007: 714 lines, 2.5s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250727_01_0008: 621 lines, 2.3s
+[33mResized image size (3529x4752) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250727_01_0009: 490 lines, 1.6s
+[33mResized image size (3593x4668) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250727_01_0010: 530 lines, 1.8s
+[33mResized image size (3575x4691) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_011_NPCM19250727_01_0011: 389 lines, 1.4s
+[33mResized image size (3585x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_012_NPCM19250727_01_0012: 504 lines, 1.8s
+[33mResized image size (3584x4679) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250728_01_0001: 740 lines, 2.4s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250728_01_0002: 692 lines, 2.2s
+[33mResized image size (3586x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250728_01_0003: 600 lines, 1.9s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250728_01_0004: 604 lines, 2.2s
+[33mResized image size (3584x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250728_01_0005: 719 lines, 2.7s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250728_01_0006: 597 lines, 2.0s
+[33mResized image size (3584x4678) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250728_01_0007: 724 lines, 2.5s
+[33mResized image size (3592x4669) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250728_01_0008: 583 lines, 2.1s
+[33mResized image size (3571x4696) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_009_NPCM19250728_01_0009: 583 lines, 2.0s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_010_NPCM19250728_01_0010: 490 lines, 1.5s
+[33mResized image size (3560x4711) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250729_01_0001: 671 lines, 2.3s
+[33mResized image size (3586x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250729_01_0002: 540 lines, 1.9s
+[33mResized image size (3569x4698) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250729_01_0003: 571 lines, 2.0s
+[33mResized image size (3585x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250729_01_0004: 513 lines, 1.8s
+[33mResized image size (3567x4702) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250729_01_0005: 656 lines, 2.1s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250729_01_0006: 521 lines, 1.7s
+[33mResized image size (3571x4696) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250729_01_0007: 304 lines, 1.2s
+[33mResized image size (3586x4676) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250729_01_0008: 545 lines, 1.7s
+[33mResized image size (3574x4693) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250730_01_0001: 598 lines, 2.1s
+[33mResized image size (3582x4682) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250730_01_0002: 607 lines, 1.8s
+[33mResized image size (3584x4679) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250730_01_0003: 453 lines, 1.6s
+[33mResized image size (3586x4676) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250730_01_0004: 614 lines, 2.4s
+[33mResized image size (3581x4683) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250730_01_0005: 642 lines, 2.1s
+[33mResized image size (3583x4680) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250730_01_0006: 643 lines, 1.9s
+[33mResized image size (3574x4693) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250730_01_0007: 471 lines, 1.6s
+[33mResized image size (3586x4677) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250730_01_0008: 556 lines, 1.8s
+[33mResized image size (3571x4696) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_001_NPCM19250731_01_0001: 651 lines, 2.1s
+[33mResized image size (3591x4670) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_002_NPCM19250731_01_0002: 650 lines, 1.8s
+[33mResized image size (3574x4692) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_003_NPCM19250731_01_0003: 548 lines, 1.6s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_004_NPCM19250731_01_0004: 606 lines, 2.3s
+[33mResized image size (3579x4686) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_005_NPCM19250731_01_0005: 669 lines, 2.6s
+[33mResized image size (3590x4671) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_006_NPCM19250731_01_0006: 615 lines, 1.9s
+[33mResized image size (3577x4688) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_007_NPCM19250731_01_0007: 320 lines, 1.2s
+[33mResized image size (3589x4672) exceeds max_side_limit of 4000. Resizing to fit within limit.[0m
+page_008_NPCM19250731_01_0008: 603 lines, 1.8s

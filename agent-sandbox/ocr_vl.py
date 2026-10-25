@@ -7,6 +7,7 @@ Usage (from repo root):
     .venv\\Scripts\\python.exe agent-sandbox\\ocr_vl.py [image ...]
 """
 
+import glob
 import json
 import sys
 from pathlib import Path
@@ -30,10 +31,20 @@ pipeline = PaddleOCRVL(
     device="gpu",  # Remove this if not running on GISCOMPUTER
 )
 
-images = sys.argv[1:] or ["data/raw/test.png"]
+# Args may be paths or quoted glob patterns (a shell-expanded glob over a whole
+# collection overflows the command line).
+def expand(arg):
+    if arg.startswith("@"):  # @list.txt: one image path per line
+        return Path(arg[1:]).read_text(encoding="utf-8").split()
+    return sorted(glob.glob(arg)) or [arg]
+
+
+images = [p for arg in sys.argv[1:] for p in expand(arg)] or ["data/raw/test.png"]
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 for image in images:
+    if (OUT_DIR / f"{Path(image).stem}_blocks.json").exists():
+        continue  # already done; lets an interrupted batch resume
     for res in pipeline.predict(image):
         res.save_to_json(OUT_DIR)
         res.save_to_markdown(OUT_DIR)

@@ -1,0 +1,45 @@
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1024 17:43:08.665916  7464 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_001_NPCM19250602_01_0001.png: 104 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250602_01_0001_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_002_NPCM19250602_01_0002.png: 165 blocks -> agent-sandbox\ocr_vl_out\page_002_NPCM19250602_01_0002_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_003_NPCM19250602_01_0003.png: 126 blocks -> agent-sandbox\ocr_vl_out\page_003_NPCM19250602_01_0003_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_004_NPCM19250602_01_0004.png: 125 blocks -> agent-sandbox\ocr_vl_out\page_004_NPCM19250602_01_0004_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_005_NPCM19250602_01_0005.png: 129 blocks -> agent-sandbox\ocr_vl_out\page_005_NPCM19250602_01_0005_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_006_NPCM19250602_01_0006.png: 124 blocks -> agent-sandbox\ocr_vl_out\page_006_NPCM19250602_01_0006_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_007_NPCM19250602_01_0007.png: 108 blocks -> agent-sandbox\ocr_vl_out\page_007_NPCM19250602_01_0007_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_008_NPCM19250602_01_0008.png: 35 blocks -> agent-sandbox\ocr_vl_out\page_008_NPCM19250602_01_0008_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_009_NPCM19250602_01_0009.png: 157 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250602_01_0009_blocks.json
+data/raw/hkpl/china_mail_june_july_1925\NPCM19250602_The_China_Mail_1925-06-02\page_010_NPCM19250602_01_0010.png: 75 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250602_01_0010_blocks.json
