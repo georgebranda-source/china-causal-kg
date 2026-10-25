@@ -1,0 +1,431 @@
+<title>Hongkong Strike Causal Graph</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: masthead + inline stats, then graph canvas beside an evidence panel (stacks on phones), then method notes. */
+:root {
+  --paper: #f2f5f4;
+  --surface: #ffffff;
+  --ink: #17211f;
+  --muted: #586562;
+  --rule: #d3dbd9;
+  --accent: #1d5f8a;
+  --t-labour: #d9701a;
+  --t-agitation: #b4233c;
+  --t-violence: #6a35a0;
+  --t-response: #1f6fb2;
+  --t-economy: #2a8754;
+  --t-diplomacy: #8f6f12;
+  --t-opinion: #667687;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #101716; --surface: #172120; --ink: #e3ebe9; --muted: #93a29e; --rule: #2a3735; --accent: #6db0de;
+    --t-labour: #f0953f; --t-agitation: #e45b70; --t-violence: #a982d8; --t-response: #5ba6e6;
+    --t-economy: #5cbf88; --t-diplomacy: #d2b050; --t-opinion: #9aabbd;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #101716; --surface: #172120; --ink: #e3ebe9; --muted: #93a29e; --rule: #2a3735; --accent: #6db0de;
+  --t-labour: #f0953f; --t-agitation: #e45b70; --t-violence: #a982d8; --t-response: #5ba6e6;
+  --t-economy: #5cbf88; --t-diplomacy: #d2b050; --t-opinion: #9aabbd;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+  display: grid;
+  gap: 22px;
+}
+header { display: grid; gap: 10px; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(30px, 4.4vw, 46px);
+  line-height: 1.08;
+  margin: 0;
+  text-wrap: balance;
+}
+.lede { margin: 0; max-width: 68ch; color: var(--muted); font-size: 16px; }
+.lede strong { color: var(--ink); font-weight: 500; }
+.stats {
+  display: flex; flex-wrap: wrap; gap: 6px 22px;
+  font-family: var(--font-mono); font-size: 13px; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.stats b { color: var(--ink); font-weight: 500; }
+
+.controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px;
+  padding-block: 12px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.ctl-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.themes { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  font: 500 13px var(--font-body);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 11px 4px 9px;
+  cursor: pointer;
+}
+.chip .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
+.chip[aria-pressed="false"] { color: var(--muted); background: transparent; }
+.chip[aria-pressed="false"] .dot { background: transparent; box-shadow: inset 0 0 0 1.5px var(--c); }
+.chip:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.date-ctl { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.date-ctl input[type=range] { width: 200px; max-width: 60vw; accent-color: var(--accent); }
+.date-out { font-family: var(--font-mono); font-size: 13px; min-width: 11ch; font-variant-numeric: tabular-nums; }
+.toggle { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; cursor: pointer; }
+.toggle input { accent-color: var(--accent); }
+
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 18px; align-items: start; }
+.canvas-box {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  height: min(76vh, 760px);
+  min-height: 460px;
+  overflow: hidden;
+}
+#cy { position: absolute; inset: 0; }
+.canvas-tools { position: absolute; right: 10px; top: 10px; display: flex; gap: 6px; z-index: 2; }
+.canvas-tools button {
+  font: 500 12px var(--font-body); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+  padding: 5px 10px; cursor: pointer;
+}
+.edge-key {
+  position: absolute; left: 12px; bottom: 10px; z-index: 2;
+  display: flex; flex-wrap: wrap; gap: 4px 14px;
+  font-size: 12px; color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  padding: 4px 8px; border-radius: 4px;
+}
+.edge-key svg { vertical-align: middle; margin-right: 5px; }
+
+aside.panel {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 18px 18px 8px;
+  max-height: min(76vh, 760px);
+  min-height: 460px;
+  overflow-y: auto;
+  display: grid; align-content: start; gap: 14px;
+  min-width: 0;
+}
+.panel h2 {
+  font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.2;
+  margin: 0; text-wrap: balance;
+}
+.panel .sub { font-size: 13px; color: var(--muted); margin: 0; }
+.theme-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.theme-tag .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.arrow-head { display: grid; gap: 4px; }
+.arrow-head .from, .arrow-head .to { font-family: var(--font-display); font-size: 19px; line-height: 1.25; font-weight: 600; }
+.arrow-head .via { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.sect { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 6px 0 -4px; }
+.ev { display: grid; gap: 6px; padding: 12px 0; border-top: 1px solid var(--rule); }
+.ev blockquote {
+  margin: 0; font-family: var(--font-display); font-style: italic; font-size: 16.5px; line-height: 1.45;
+}
+.ev .meta { font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 10px; }
+.ev .meta .who { color: var(--ink); font-weight: 500; }
+.ev .meta code { font-family: var(--font-mono); font-size: 11.5px; }
+.ev .norm { font-size: 12.5px; color: var(--muted); }
+.kind {
+  font: 500 11px var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em;
+  border: 1px solid var(--rule); border-radius: 3px; padding: 0 5px; color: var(--muted);
+}
+.kind.counterfactual { border-style: dotted; }
+.kind.implicit { border-style: dashed; }
+.links { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.links button {
+  all: unset; cursor: pointer; display: flex; gap: 8px; align-items: baseline;
+  padding: 5px 4px; border-radius: 4px; width: 100%; box-sizing: border-box; font-size: 14px;
+}
+.links button:hover { background: var(--paper); }
+.links button:focus-visible { outline: 2px solid var(--accent); }
+.links .n { font-family: var(--font-mono); font-size: 12px; color: var(--muted); flex: none; min-width: 2.2ch; text-align: right; }
+.links .dir { color: var(--muted); flex: none; }
+.phrases { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); display: grid; gap: 2px; }
+.phrases code { font-family: var(--font-mono); font-size: 11.5px; }
+
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px 32px; padding-top: 6px; }
+.notes section { min-width: 0; }
+.notes h3 { font-family: var(--font-display); font-size: 19px; font-weight: 600; margin: 0 0 6px; }
+.notes p, .notes li { font-size: 14px; color: var(--muted); margin: 0 0 8px; max-width: 62ch; }
+.notes ol { margin: 0; padding-left: 20px; }
+.notes b { color: var(--ink); font-weight: 500; }
+.notes code { font-family: var(--font-mono); font-size: 12.5px; }
+.caveat { border-left: 2px solid var(--t-agitation); padding-left: 12px; }
+
+@media (max-width: 900px) {
+  .main { grid-template-columns: minmax(0, 1fr); }
+  .canvas-box { height: 62vh; min-height: 380px; }
+  aside.panel { max-height: none; min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">China Mail, Hongkong · 16 June – 3 July 1925</div>
+    <h1>What caused the 1925 Hongkong strike, according to the China Mail</h1>
+    <p class="lede">A proof-of-concept causal knowledge graph built from OCR'd pages of a British colonial newspaper. Each arrow is a causal claim made in print. <strong>Click any arrow to read the original 1925 sentences behind it</strong>, with who made the claim.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="controls">
+    <div class="themes" id="themes" role="group" aria-label="Event themes"></div>
+    <div class="date-ctl">
+      <label class="ctl-label" for="date">Claims published up to</label>
+      <input type="range" id="date" min="0" max="7" step="1" value="7">
+      <span class="date-out" id="date-out"></span>
+    </div>
+    <label class="toggle" for="frag"><input type="checkbox" id="frag"> Hide isolated pairs</label>
+  </div>
+
+  <div class="main">
+    <div class="canvas-box">
+      <div id="cy" aria-label="Causal graph"></div>
+      <div class="canvas-tools">
+        <button type="button" id="fit">Fit</button>
+        <button type="button" id="relayout">Re-arrange</button>
+      </div>
+      <div class="edge-key" aria-hidden="true">
+        <span><svg width="26" height="6"><line x1="0" y1="3" x2="26" y2="3" stroke="currentColor" stroke-width="2"></line></svg>explicit</span>
+        <span><svg width="26" height="6"><line x1="0" y1="3" x2="26" y2="3" stroke="currentColor" stroke-width="2" stroke-dasharray="5 3"></line></svg>implicit</span>
+        <span><svg width="26" height="6"><line x1="0" y1="3" x2="26" y2="3" stroke="currentColor" stroke-width="2" stroke-dasharray="1.5 3"></line></svg>counterfactual</span>
+        <span>thicker = more articles</span>
+      </div>
+    </div>
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+
+  <div class="notes">
+    <section>
+      <h3>How it was built</h3>
+      <ol>
+        <li><b>Extraction.</b> <span id="n-extract"></span> Every quote is checked by script to appear word for word in the OCR text, so OCR errors are kept as printed.</li>
+        <li><b>Clustering.</b> <span id="n-cluster"></span></li>
+        <li><b>Review.</b> <span id="n-review"></span></li>
+        <li><b>Graph.</b> Relations between the same two events are merged into one arrow that keeps every quote as evidence.</li>
+      </ol>
+    </section>
+    <section>
+      <h3>How to read it</h3>
+      <p>Arrows record <b>what the paper or its sources claimed</b>, not established causes. The China Mail was a British colonial paper, so instigation by Canton, Moscow or "agitators" is heavily represented, and the strikers' own reasons mostly reach print through quoted officials or a union secretary.</p>
+      <p>Contested claims stay separate. The Shameen shooting of 23 June has two incoming arrows that contradict each other: one from the Canton Christian College staff statement, one from its retraction.</p>
+    </section>
+    <section class="caveat">
+      <h3>Limits of this demo</h3>
+      <p>Extraction and review here were done by Claude as a stand-in for the planned local LLM (Llama or Mistral), and nobody has hand-checked them yet. The corpus is <span id="n-pages"></span> of the 40 strike-related pages already transcribed. Many events appear only once, so the graph is fragmented. More pages should join these fragments into longer chains.</p>
+    </section>
+  </div>
+</div>
+
+<script id="graph-data" type="application/json">__GRAPH_JSON__</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
+<script>
+(function () {
+  const G = JSON.parse(document.getElementById("graph-data").textContent);
+  const S = G.stats;
+  const nodeById = Object.fromEntries(G.nodes.map(n => [n.id, n]));
+  const dates = [...new Set(G.edges.flatMap(e => e.evidence.map(v => v.date)))].sort();
+  const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const css = () => getComputedStyle(document.documentElement);
+  const tok = name => css().getPropertyValue(name).trim();
+
+  document.getElementById("stats").innerHTML =
+    `<span><b>${S.pages}</b> newspaper pages</span><span><b>${S.relations}</b> causal claims</span>` +
+    `<span><b>${S.nodes}</b> events</span><span><b>${S.edges}</b> arrows</span>`;
+  document.getElementById("n-extract").textContent =
+    `${S.relations} cause → effect claims were taken from ${S.pages} pages, each with its quote, date, headline, who made the claim, and whether the link is stated outright, implied, or counterfactual.`;
+  document.getElementById("n-cluster").textContent =
+    `The ${S.phrases} distinct cause and effect phrases were embedded with ${S.embedding_model} and clustered with HDBSCAN, which proposed ${S.hdbscan_multi} multi-phrase groups.`;
+  document.getElementById("n-review").textContent =
+    `An LLM review kept ${S.review_kept} of those groups and split ${S.review_split}, mostly where opposites sat together (market closed / market reopens). It also merged synonyms HDBSCAN missed, giving ${S.nodes} events.`;
+  document.getElementById("n-pages").textContent = `${S.pages}`;
+
+  // edge kind: the strongest form any of its quotes takes
+  const kindOf = ev => ev.some(v => v.kind === "explicit") ? "explicit" : ev.some(v => v.kind === "implicit") ? "implicit" : "counterfactual";
+
+  const elements = [
+    ...G.nodes.map(n => ({ group: "nodes", data: { id: n.id, label: n.label, theme: n.theme, weight: n.weight } })),
+    ...G.edges.map((e, i) => ({ group: "edges", data: { id: "e" + i, source: e.source, target: e.target, n: e.evidence.length, kind: kindOf(e.evidence) } })),
+  ];
+  const edgeData = Object.fromEntries(G.edges.map((e, i) => ["e" + i, e]));
+
+  function style() {
+    const t = Object.fromEntries(Object.keys(G.themes).map(k => [k, tok("--t-" + k)]));
+    return [
+      { selector: "node", style: {
+        "background-color": ele => t[ele.data("theme")],
+        "width": ele => 14 + 5 * Math.sqrt(ele.data("weight")),
+        "height": ele => 14 + 5 * Math.sqrt(ele.data("weight")),
+        "label": "data(label)",
+        "font-family": "IBM Plex Sans, Segoe UI, sans-serif",
+        "font-size": ele => ele.data("weight") >= 5 ? 12 : 10,
+        "font-weight": ele => ele.data("weight") >= 5 ? 600 : 400,
+        "color": tok("--ink"),
+        "text-valign": "bottom", "text-margin-y": 4,
+        "text-wrap": "wrap", "text-max-width": 120,
+        "text-background-color": tok("--surface"), "text-background-opacity": 0.82, "text-background-padding": 1.5,
+        "min-zoomed-font-size": 7,
+        "border-width": 0,
+      }},
+      { selector: "edge", style: {
+        "width": ele => 1.2 + 1.3 * ele.data("n"),
+        "line-color": tok("--muted"), "target-arrow-color": tok("--muted"),
+        "target-arrow-shape": "triangle", "arrow-scale": 0.9,
+        "curve-style": "bezier", "opacity": 0.55,
+        "line-style": ele => ele.data("kind") === "explicit" ? "solid" : "dashed",
+        "line-dash-pattern": ele => ele.data("kind") === "counterfactual" ? [1.5, 4] : [6, 3],
+      }},
+      { selector: "node:selected", style: { "border-width": 3, "border-color": tok("--accent") } },
+      { selector: "edge:selected", style: { "line-color": tok("--accent"), "target-arrow-color": tok("--accent"), "opacity": 1 } },
+      { selector: ".faded", style: { "opacity": 0.12, "text-opacity": 0.15 } },
+      { selector: "edge.hl", style: { "opacity": 0.95, "line-color": tok("--ink"), "target-arrow-color": tok("--ink") } },
+    ];
+  }
+
+  const cy = cytoscape({
+    container: document.getElementById("cy"),
+    elements, style: style(),
+    wheelSensitivity: 0.25, minZoom: 0.2, maxZoom: 3,
+  });
+  const layoutOpts = { name: "cose", animate: false, nodeRepulsion: () => 9000, idealEdgeLength: () => 70,
+    edgeElasticity: () => 80, gravity: 0.35, numIter: 2500, componentSpacing: 60, padding: 30, randomize: true };
+  const runLayout = () => cy.elements(":visible").layout(layoutOpts).run();
+  runLayout();
+
+  // re-color when the viewer's theme changes
+  const restyle = () => cy.style(style());
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", restyle);
+  new MutationObserver(restyle).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ---- filters ----
+  const on = Object.fromEntries(Object.keys(G.themes).map(k => [k, true]));
+  const themesEl = document.getElementById("themes");
+  for (const [k, name] of Object.entries(G.themes)) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.setAttribute("aria-pressed", "true");
+    b.style.setProperty("--c", `var(--t-${k})`);
+    b.innerHTML = `<span class="dot"></span>${esc(name)}`;
+    b.addEventListener("click", () => { on[k] = !on[k]; b.setAttribute("aria-pressed", on[k]); applyFilters(); });
+    themesEl.appendChild(b);
+  }
+  const dateEl = document.getElementById("date"), dateOut = document.getElementById("date-out"), fragEl = document.getElementById("frag");
+  dateEl.max = dates.length - 1; dateEl.value = dates.length - 1;
+  dateEl.addEventListener("input", applyFilters);
+  fragEl.addEventListener("change", applyFilters);
+
+  function applyFilters() {
+    const upto = dates[+dateEl.value];
+    dateOut.textContent = fmtDate(upto);
+    cy.batch(() => {
+      cy.edges().forEach(e => {
+        const ev = edgeData[e.id()].evidence.filter(v => v.date <= upto);
+        const vis = ev.length > 0 && on[e.source().data("theme")] && on[e.target().data("theme")];
+        e.data("n", Math.max(ev.length, 1));
+        e.style("display", vis ? "element" : "none");
+      });
+      cy.nodes().forEach(n => n.style("display", on[n.data("theme")] && n.connectedEdges().some(e => e.style("display") === "element") ? "element" : "none"));
+      if (fragEl.checked) {
+        cy.elements(":visible").components().forEach(c => { if (c.nodes().length < 3) c.style("display", "none"); });
+      }
+    });
+  }
+
+  // ---- panel ----
+  const panel = document.getElementById("panel");
+  const themeTag = th => `<span class="theme-tag" style="--c: var(--t-${th})"><span class="dot"></span>${esc(G.themes[th])}</span>`;
+  const evHtml = v => `
+    <div class="ev">
+      <blockquote>“${esc(v.quote)}”</blockquote>
+      <div class="meta"><span class="who">${esc(v.asserted_by)}</span><span>${fmtDate(v.date)}</span><span>${esc(v.headline)}</span><span class="kind ${v.kind}">${v.kind}</span></div>
+      <div class="norm">Extracted as: ${esc(v.cause)} → ${esc(v.effect)} · <code>${esc(v.page)}</code></div>
+    </div>`;
+
+  function showEdge(e) {
+    const d = edgeData[e.id()], s = nodeById[d.source], t = nodeById[d.target];
+    panel.innerHTML = `
+      <div class="arrow-head">
+        <div class="from">${esc(s.label)}</div>
+        <div class="via">↓ caused, according to ${d.evidence.length} quote${d.evidence.length > 1 ? "s" : ""}</div>
+        <div class="to">${esc(t.label)}</div>
+      </div>
+      ${d.evidence.map(evHtml).join("")}`;
+  }
+
+  function showNode(n) {
+    const d = nodeById[n.id()];
+    const row = (e, dir) => {
+      const other = dir === "in" ? e.source() : e.target();
+      return `<li><button type="button" data-edge="${e.id()}"><span class="n">${edgeData[e.id()].evidence.length}</span><span class="dir">${dir === "in" ? "←" : "→"}</span><span>${esc(other.data("label"))}</span></button></li>`;
+    };
+    const ins = n.incomers("edge"), outs = n.outgoers("edge");
+    panel.innerHTML = `
+      <div>${themeTag(d.theme)}</div>
+      <h2>${esc(d.label)}</h2>
+      <p class="sub">${d.weight} quote${d.weight === 1 ? "" : "s"} touch this event. Pick a link to read them.</p>
+      ${ins.length ? `<div class="sect">Caused by</div><ul class="links">${ins.map(e => row(e, "in")).join("")}</ul>` : ""}
+      ${outs.length ? `<div class="sect">Leads to</div><ul class="links">${outs.map(e => row(e, "out")).join("")}</ul>` : ""}
+      <div class="sect">Extracted phrases merged here</div>
+      <ul class="phrases">${d.phrases.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+      <p class="sub">HDBSCAN cluster${d.hdbscan.length > 1 ? "s" : ""}: <code>${d.hdbscan.join(", ")}</code></p>`;
+    panel.querySelectorAll("[data-edge]").forEach(b => b.addEventListener("click", () => select(cy.getElementById(b.dataset.edge))));
+  }
+
+  function select(ele) {
+    cy.elements().unselect().removeClass("faded hl");
+    ele.select();
+    const hood = ele.isNode() ? ele.closedNeighborhood() : ele.union(ele.connectedNodes());
+    cy.elements().not(hood).addClass("faded");
+    if (ele.isNode()) { ele.connectedEdges().addClass("hl"); showNode(ele); } else { showEdge(ele); }
+  }
+
+  cy.on("tap", "node, edge", ev => select(ev.target));
+  cy.on("tap", ev => { if (ev.target === cy) { cy.elements().unselect().removeClass("faded hl"); } });
+  document.getElementById("fit").addEventListener("click", () => cy.fit(cy.elements(":visible"), 30));
+  document.getElementById("relayout").addEventListener("click", () => { runLayout(); cy.fit(cy.elements(":visible"), 30); });
+
+  applyFilters();
+  // open on the biggest hub so the panel is never empty
+  const hub = cy.nodes().max(n => n.data("weight")).ele;
+  select(hub);
+})();
+</script>

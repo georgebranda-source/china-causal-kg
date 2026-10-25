@@ -1,0 +1,2918 @@
+{
+ "themes": {
+  "labour": "Labour action",
+  "agitation": "Claimed instigators",
+  "violence": "Violence & shootings",
+  "response": "Colonial & official response",
+  "economy": "Economic & daily-life effects",
+  "diplomacy": "Diplomacy & politics",
+  "opinion": "Opinion & morale"
+ },
+ "nodes": [
+  {
+   "id": "hk_strike",
+   "label": "Canton–Hongkong general strike",
+   "theme": "labour",
+   "phrases": [
+    "Hongkong general strike",
+    "anti-foreign strike in Canton and Hongkong",
+    "Canton strike continuing",
+    "strike organised in South China"
+   ],
+   "hdbscan": [
+    "c26",
+    "c27",
+    "c28",
+    "c94"
+   ],
+   "weight": 13
+  },
+  {
+   "id": "seamen",
+   "label": "Seamen's strike & crew desertions",
+   "theme": "labour",
+   "phrases": [
+    "Hongkong seamen's strike",
+    "crews deserting their ships",
+    "crew refusing to obey orders",
+    "fear that crews would desert in Canton"
+   ],
+   "hdbscan": [
+    "c15",
+    "c28",
+    "c54",
+    "c64"
+   ],
+   "weight": 9
+  },
+  {
+   "id": "trades",
+   "label": "Strike spreads to other trades",
+   "theme": "labour",
+   "phrases": [
+    "domestic and hotel servants' strike",
+    "Post Office delivery staff strike",
+    "government launch crews strike",
+    "more workmen joining the strike",
+    "stevedores and godown workers striking",
+    "shipping clerks walk out",
+    "absence of striking pork butchers"
+   ],
+   "hdbscan": [
+    "c11",
+    "c22",
+    "c23",
+    "c70",
+    "c90"
+   ],
+   "weight": 8
+  },
+  {
+   "id": "tram",
+   "label": "Tramwaymen's walkout",
+   "theme": "labour",
+   "phrases": [
+    "tramwaymen's walkout"
+   ],
+   "hdbscan": [
+    "c100"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "outports",
+   "label": "Strike spreads to outports",
+   "theme": "labour",
+   "phrases": [
+    "strike spreads to outports"
+   ],
+   "hdbscan": [
+    "c95"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "students",
+   "label": "Student strikes, pickets & demonstrations",
+   "theme": "labour",
+   "phrases": [
+    "students joining the strike movement",
+    "student pickets",
+    "student demonstrations against the Powers"
+   ],
+   "hdbscan": [
+    "c23"
+   ],
+   "weight": 3
+  },
+  {
+   "id": "schools",
+   "label": "Students absent, schools close",
+   "theme": "economy",
+   "phrases": [
+    "students strike and schools close"
+   ],
+   "hdbscan": [
+    "c23"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "student_fail",
+   "label": "Student demonstrations fail",
+   "theme": "opinion",
+   "phrases": [
+    "student demonstrations fail"
+   ],
+   "hdbscan": [
+    "c23"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "bat",
+   "label": "Cigarette factory strike (Shanghai)",
+   "theme": "labour",
+   "phrases": [
+    "cigarette factory workers' strike"
+   ],
+   "hdbscan": [
+    "c51"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "canton_stop",
+   "label": "Work stoppages in Canton",
+   "theme": "labour",
+   "phrases": [
+    "work stoppages in Canton"
+   ],
+   "hdbscan": [
+    "c26"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "mercenaries",
+   "label": "Cantonese campaign against mercenary armies",
+   "theme": "diplomacy",
+   "phrases": [
+    "Cantonese campaign against the mercenary armies"
+   ],
+   "hdbscan": [
+    "c20"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "resume",
+   "label": "Strikers agree to resume work",
+   "theme": "labour",
+   "phrases": [
+    "strikers agree to resume work"
+   ],
+   "hdbscan": [
+    "c19"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "misund",
+   "label": "Misunderstandings cleared up",
+   "theme": "response",
+   "phrases": [
+    "misunderstandings with workers cleared up"
+   ],
+   "hdbscan": [
+    "c5"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "withhold",
+   "label": "Employers withhold strikers' pay",
+   "theme": "response",
+   "phrases": [
+    "employers' decision to withhold strikers' pay"
+   ],
+   "hdbscan": [
+    "c19"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "forfeit",
+   "label": "Strikers forfeit wages",
+   "theme": "economy",
+   "phrases": [
+    "strikers forfeit wages on return"
+   ],
+   "hdbscan": [
+    "c19"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "hardship",
+   "label": "Hardship for strikers (poor quarters, drill)",
+   "theme": "economy",
+   "phrases": [
+    "poor conditions for strikers ashore",
+    "military discipline in the Canton labour corps"
+   ],
+   "hdbscan": [
+    "c76",
+    "c82"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "unpopular",
+   "label": "Strike unpopular among strikers",
+   "theme": "opinion",
+   "phrases": [
+    "strike unpopular among strikers"
+   ],
+   "hdbscan": [
+    "c23"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "canton_org",
+   "label": "Direction from Canton (Government, Labour Union)",
+   "theme": "agitation",
+   "phrases": [
+    "Canton Government patronage",
+    "orders from the General Labour Union in Canton",
+    "agitators sent from Canton",
+    "mass meeting of students and workmen in Canton"
+   ],
+   "hdbscan": [
+    "c24",
+    "c74"
+   ],
+   "weight": 4
+  },
+  {
+   "id": "soviet",
+   "label": "Soviet / Bolshevik instigation",
+   "theme": "agitation",
+   "phrases": [
+    "Soviet money and agents",
+    "Third International agitation department",
+    "Moscow and Chinese communists",
+    "anti-foreignism backed by Bolshevism"
+   ],
+   "hdbscan": [
+    "c40",
+    "c45",
+    "c46",
+    "c49"
+   ],
+   "weight": 5
+  },
+  {
+   "id": "intimidation",
+   "label": "Intimidation & threats by strike agents",
+   "theme": "agitation",
+   "phrases": [
+    "propagandists and intimidators",
+    "persuasion by strike agents on the waterfront",
+    "intimidation of ships' crews",
+    "threats against students",
+    "threatening letters",
+    "outside pressure on government employees",
+    "strikers from Canton intimidating local Chinese",
+    "intimidation of market stall owners",
+    "pork traders enforcing the strike"
+   ],
+   "hdbscan": [
+    "c11",
+    "c15",
+    "c23",
+    "c27",
+    "c79",
+    "c81",
+    "c84",
+    "c98"
+   ],
+   "weight": 9
+  },
+  {
+   "id": "sympathy",
+   "label": "Sympathy with Shanghai (May 30th)",
+   "theme": "agitation",
+   "phrases": [
+    "national sympathy with the Shanghai movement",
+    "sympathy with rioters elsewhere in China"
+   ],
+   "hdbscan": [
+    "c18"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "antiforeign",
+   "label": "Anti-foreign agitation & unrest",
+   "theme": "agitation",
+   "phrases": [
+    "anti-foreign agitation in China",
+    "anti-imperialist agitation in China",
+    "widespread unrest exploited by interested parties"
+   ],
+   "hdbscan": [
+    "c102",
+    "c25"
+   ],
+   "weight": 4
+  },
+  {
+   "id": "labour_cond",
+   "label": "Poor labour conditions & wages",
+   "theme": "agitation",
+   "phrases": [
+    "low wages and child labour in Shanghai mills",
+    "labour-saving machinery and dismissal of women workers",
+    "coolies paid less than the going wage"
+   ],
+   "hdbscan": [
+    "c5",
+    "c53"
+   ],
+   "weight": 3
+  },
+  {
+   "id": "secret_exec",
+   "label": "Secret strike executive with political demands",
+   "theme": "labour",
+   "phrases": [
+    "secret strike executive formed with political demands"
+   ],
+   "hdbscan": [
+    "c88"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "peking",
+   "label": "Peking Government backs the movement",
+   "theme": "diplomacy",
+   "phrases": [
+    "Peking Government backing the anti-foreign movement"
+   ],
+   "hdbscan": [
+    "c25"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "strike_funds",
+   "label": "Strike funds levied on state employees",
+   "theme": "labour",
+   "phrases": [
+    "strike funds raised from state employees' pay"
+   ],
+   "hdbscan": [
+    "c93"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "collections",
+   "label": "Street collections for strikers",
+   "theme": "labour",
+   "phrases": [
+    "street collections for Shanghai strikers"
+   ],
+   "hdbscan": [
+    "c92"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "lose_sympathy",
+   "label": "Loss of popular sympathy",
+   "theme": "opinion",
+   "phrases": [
+    "loss of popular sympathy for the movement"
+   ],
+   "hdbscan": [
+    "c73"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "may30",
+   "label": "Shanghai police firing, May 30",
+   "theme": "violence",
+   "phrases": [
+    "police firing on the Shanghai mob, May 30"
+   ],
+   "hdbscan": [
+    "c17"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "mob_shanghai",
+   "label": "Mob overwhelms Shanghai police",
+   "theme": "violence",
+   "phrases": [
+    "mob overwhelming the Shanghai police"
+   ],
+   "hdbscan": [
+    "c17"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "bloodshed",
+   "label": "Greater bloodshed averted",
+   "theme": "violence",
+   "phrases": [
+    "greater bloodshed averted"
+   ],
+   "hdbscan": [
+    "c71"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "disturbances",
+   "label": "Shanghai, Hankow & wider disturbances",
+   "theme": "violence",
+   "phrases": [
+    "Shanghai disturbances",
+    "Shanghai and Hankow disturbances",
+    "outbreak in China"
+   ],
+   "hdbscan": [
+    "c16",
+    "c78"
+   ],
+   "weight": 4
+  },
+  {
+   "id": "mob_attack",
+   "label": "Mob attacks on foreign concessions",
+   "theme": "violence",
+   "phrases": [
+    "mob attack on the British Concession at Hankow",
+    "mob attacking foreign property at Swatow",
+    "danger to foreign lives and property from rioters",
+    "agitators boarding British ships"
+   ],
+   "hdbscan": [
+    "c57",
+    "c7",
+    "c9"
+   ],
+   "weight": 4
+  },
+  {
+   "id": "hankow_fire",
+   "label": "British firing & deaths at Hankow",
+   "theme": "violence",
+   "phrases": [
+    "British firing on the Hankow mob",
+    "loss of life in the Hankow riot"
+   ],
+   "hdbscan": [
+    "c9"
+   ],
+   "weight": 4
+  },
+  {
+   "id": "shameen",
+   "label": "Shameen shooting, June 23",
+   "theme": "violence",
+   "phrases": [
+    "Shameen shooting casualties, June 23"
+   ],
+   "hdbscan": [
+    "c42"
+   ],
+   "weight": 4
+  },
+  {
+   "id": "shameen_chinese",
+   "label": "Claim: firing began from the Chinese side",
+   "theme": "violence",
+   "phrases": [
+    "firing begun from the Chinese side"
+   ],
+   "hdbscan": [
+    "c65"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "shameen_troops",
+   "label": "Claim: Shameen troops fired on unarmed parade",
+   "theme": "violence",
+   "phrases": [
+    "Shameen troops firing on an unarmed parade"
+   ],
+   "hdbscan": [
+    "c43"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "pork_attacks",
+   "label": "Attacks on pork sellers",
+   "theme": "violence",
+   "phrases": [
+    "attacks on pork sellers"
+   ],
+   "hdbscan": [
+    "c11"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "drowning",
+   "label": "Drownings in the harbour rush",
+   "theme": "violence",
+   "phrases": [
+    "Chinese drowned in the harbour rush"
+   ],
+   "hdbscan": [
+    "c36"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "sampan",
+   "label": "Overcrowding & sampan owners' greed",
+   "theme": "economy",
+   "phrases": [
+    "overcrowding and avarice of sampan owners"
+   ],
+   "hdbscan": [
+    "c80"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "delta",
+   "label": "Disorder & piracy fears in the delta",
+   "theme": "violence",
+   "phrases": [
+    "disturbed conditions in the delta",
+    "fear of pirates in the delta"
+   ],
+   "hdbscan": [
+    "c15"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "pirates",
+   "label": "Pirate raid on Kongmun",
+   "theme": "violence",
+   "phrases": [
+    "pirate raid on Kongmun"
+   ],
+   "hdbscan": [
+    "c10"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "pirates_repelled",
+   "label": "Pirates repelled",
+   "theme": "response",
+   "phrases": [
+    "pirates repelled"
+   ],
+   "hdbscan": [
+    "c10"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "godown",
+   "label": "Disorder at Kowloon godowns",
+   "theme": "violence",
+   "phrases": [
+    "disorder at the Kowloon godowns"
+   ],
+   "hdbscan": [
+    "c58"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "paris",
+   "label": "Raid on Chinese Legation, Paris",
+   "theme": "violence",
+   "phrases": [
+    "raid on the Chinese Legation in Paris"
+   ],
+   "hdbscan": [
+    "c86"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "diplomats_passive",
+   "label": "Chinese diplomats seen as passive",
+   "theme": "diplomacy",
+   "phrases": [
+    "Chinese diplomats failing to press Chinese demands"
+   ],
+   "hdbscan": [
+    "c12"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "naval",
+   "label": "British naval intervention",
+   "theme": "response",
+   "phrases": [
+    "British naval parties landed",
+    "British armed launches"
+   ],
+   "hdbscan": [
+    "c30",
+    "c7"
+   ],
+   "weight": 3
+  },
+  {
+   "id": "emergency",
+   "label": "Emergency Regulations",
+   "theme": "response",
+   "phrases": [
+    "Emergency Regulations"
+   ],
+   "hdbscan": [
+    "c38"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "bank_limit",
+   "label": "Bank withdrawals limited to 10%",
+   "theme": "response",
+   "phrases": [
+    "bank withdrawals restricted to 10 per cent"
+   ],
+   "hdbscan": [
+    "c3"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "bank_limit_lifted",
+   "label": "Withdrawal limit lifted",
+   "theme": "response",
+   "phrases": [
+    "removal of the bank withdrawal restriction"
+   ],
+   "hdbscan": [
+    "c3"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "bank_confidence",
+   "label": "Confidence returns, no bank run",
+   "theme": "economy",
+   "phrases": [
+    "confidence returns and no run on banks"
+   ],
+   "hdbscan": [
+    "c52"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "native_banks",
+   "label": "Native banks stay closed",
+   "theme": "economy",
+   "phrases": [
+    "native banks remain closed"
+   ],
+   "hdbscan": [
+    "c3"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "rewards",
+   "label": "Government rewards for information",
+   "theme": "response",
+   "phrases": [
+    "Government rewards for information"
+   ],
+   "hdbscan": [
+    "c39"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "seditious",
+   "label": "Seditious literature",
+   "theme": "agitation",
+   "phrases": [
+    "possession of seditious literature"
+   ],
+   "hdbscan": [
+    "c83"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "arrests",
+   "label": "Arrests & convictions",
+   "theme": "response",
+   "phrases": [
+    "arrests and convictions of agitators",
+    "striking seamen imprisoned"
+   ],
+   "hdbscan": [
+    "c50",
+    "c96"
+   ],
+   "weight": 3
+  },
+  {
+   "id": "replace",
+   "label": "Europeans & volunteers replace strikers",
+   "theme": "response",
+   "phrases": [
+    "foreign staff and volunteers replace strikers",
+    "trams running again under European management"
+   ],
+   "hdbscan": [
+    "c19",
+    "c99"
+   ],
+   "weight": 5
+  },
+  {
+   "id": "patrol",
+   "label": "Volunteers on patrol duty",
+   "theme": "response",
+   "phrases": [
+    "volunteers available for patrol duty"
+   ],
+   "hdbscan": [
+    "c0"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "police_wharf",
+   "label": "Police use force at wharves",
+   "theme": "response",
+   "phrases": [
+    "police use force to clear wharves"
+   ],
+   "hdbscan": [
+    "c0"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "food_supply",
+   "label": "Food supply kept up (firms, Tung Wah, embargo)",
+   "theme": "response",
+   "phrases": [
+    "food supply maintained by firms and volunteers",
+    "Tung Wah Hospital supplying labour and cheap rice",
+    "food export embargo"
+   ],
+   "hdbscan": [
+    "c4",
+    "c47"
+   ],
+   "weight": 4
+  },
+  {
+   "id": "reassure",
+   "label": "Official reassurance in Hongkong",
+   "theme": "response",
+   "phrases": [
+    "reassuring statements by the Hongkong authorities"
+   ],
+   "hdbscan": [
+    "c87"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "china_assure",
+   "label": "Chinese officials guarantee protection",
+   "theme": "response",
+   "phrases": [
+    "Chinese authorities' assurance of protection for foreigners"
+   ],
+   "hdbscan": [
+    "c35"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "forces_reduced",
+   "label": "Foreign volunteers & bluejackets reduced",
+   "theme": "response",
+   "phrases": [
+    "foreign volunteers and bluejackets reduced"
+   ],
+   "hdbscan": [
+    "c68"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "warships",
+   "label": "Foreign warships & troops sent",
+   "theme": "response",
+   "phrases": [
+    "foreign warships and troops sent to South China"
+   ],
+   "hdbscan": [
+    "c69"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "prohibitions",
+   "label": "Official bans on demonstrations",
+   "theme": "response",
+   "phrases": [
+    "official prohibitions on demonstrations"
+   ],
+   "hdbscan": [
+    "c23"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "hint",
+   "label": "Military governor's warning",
+   "theme": "response",
+   "phrases": [
+    "warning from Chinese military governor"
+   ],
+   "hdbscan": [
+    "c101"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "agitators_leave",
+   "label": "Student agitators leave Hankow",
+   "theme": "opinion",
+   "phrases": [
+    "student agitators leave Hankow"
+   ],
+   "hdbscan": [
+    "c97"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "french",
+   "label": "French threat to revoke shop licences",
+   "theme": "response",
+   "phrases": [
+    "French threat to revoke shop licences"
+   ],
+   "hdbscan": [
+    "c1"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "boycott_off",
+   "label": "Boycott called off (French Concession)",
+   "theme": "economy",
+   "phrases": [
+    "boycott called off in the French Concession"
+   ],
+   "hdbscan": [
+    "c1"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "shipping",
+   "label": "Shipping deadlock & cancelled sailings",
+   "theme": "economy",
+   "phrases": [
+    "shipping brought to a deadlock",
+    "Canton steamer sailings cancelled",
+    "foreign liners skip Hongkong",
+    "foreign steamers leave Hongkong harbour"
+   ],
+   "hdbscan": [
+    "c33",
+    "c6",
+    "c89"
+   ],
+   "weight": 8
+  },
+  {
+   "id": "hoarding",
+   "label": "Hoarding & currency panic",
+   "theme": "economy",
+   "phrases": [
+    "families hoarding supplies",
+    "rumoured boycott of British banknotes"
+   ],
+   "hdbscan": [
+    "c1",
+    "c62"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "food_up",
+   "label": "Food prices rise",
+   "theme": "economy",
+   "phrases": [
+    "food prices rise in Hongkong",
+    "panic and rice prices rise in Macao"
+   ],
+   "hdbscan": [
+    "c8"
+   ],
+   "weight": 3
+  },
+  {
+   "id": "food_down",
+   "label": "Food prices fall",
+   "theme": "economy",
+   "phrases": [
+    "food prices fall"
+   ],
+   "hdbscan": [
+    "c67"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "market_closed",
+   "label": "Market closed / meat shortage",
+   "theme": "economy",
+   "phrases": [
+    "Central Market closed",
+    "meat shortage in Hongkong"
+   ],
+   "hdbscan": [
+    "c2",
+    "c75"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "market_open",
+   "label": "Central Market reopens",
+   "theme": "economy",
+   "phrases": [
+    "Central Market reopens with meat"
+   ],
+   "hdbscan": [
+    "c2"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "food_hitch",
+   "label": "Food distribution hitch",
+   "theme": "economy",
+   "phrases": [
+    "hitch in sorting and preparing food"
+   ],
+   "hdbscan": [
+    "c72"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "food_blocked",
+   "label": "Food blocked from Shanghai Settlement",
+   "theme": "economy",
+   "phrases": [
+    "food blocked from the Shanghai Settlement"
+   ],
+   "hdbscan": [
+    "c66"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "standstill",
+   "label": "Small businesses at a standstill",
+   "theme": "economy",
+   "phrases": [
+    "small businesses at a standstill"
+   ],
+   "hdbscan": [
+    "c91"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "china_mail",
+   "label": "China Mail printed smaller",
+   "theme": "economy",
+   "phrases": [
+    "China Mail printed at reduced size"
+   ],
+   "hdbscan": [
+    "c34"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "empty_flats",
+   "label": "Empty flats in outlying districts",
+   "theme": "economy",
+   "phrases": [
+    "empty flats in outlying districts"
+   ],
+   "hdbscan": [
+    "c60"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "mail",
+   "label": "Public must collect own mail",
+   "theme": "economy",
+   "phrases": [
+    "public must collect their own mail"
+   ],
+   "hdbscan": [
+    "c85"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "bus_ended",
+   "label": "Emergency hotel bus ended",
+   "theme": "economy",
+   "phrases": [
+    "emergency hotel bus service ended"
+   ],
+   "hdbscan": [
+    "c59"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "exodus",
+   "label": "Exodus of Chinese to Canton",
+   "theme": "economy",
+   "phrases": [
+    "exodus of Chinese from Hongkong to Canton",
+    "crowds rushing Canton-bound steamers"
+   ],
+   "hdbscan": [
+    "c20",
+    "c55"
+   ],
+   "weight": 5
+  },
+  {
+   "id": "fear",
+   "label": "Fear of serious trouble",
+   "theme": "opinion",
+   "phrases": [
+    "fear of serious trouble in Hongkong"
+   ],
+   "hdbscan": [
+    "c63"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "shameen_leave",
+   "label": "All Chinese leave Shameen",
+   "theme": "labour",
+   "phrases": [
+    "all Chinese staff leave Shameen"
+   ],
+   "hdbscan": [
+    "c48"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "shanghai_reopen_push",
+   "label": "Shanghai Chamber & officials urge reopening",
+   "theme": "response",
+   "phrases": [
+    "Chamber of Commerce request to reopen",
+    "official procession guaranteeing negotiations"
+   ],
+   "hdbscan": [
+    "c2",
+    "c77"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "shanghai_reopen",
+   "label": "Shanghai shops & banks reopen",
+   "theme": "economy",
+   "phrases": [
+    "Shanghai shops and banks reopen"
+   ],
+   "hdbscan": [
+    "c2"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "calm",
+   "label": "Calm & morale in the community",
+   "theme": "opinion",
+   "phrases": [
+    "calm in the Chinese community",
+    "calm in the European community",
+    "morale lifted in the Chinese community"
+   ],
+   "hdbscan": [
+    "c21"
+   ],
+   "weight": 3
+  },
+  {
+   "id": "ccc",
+   "label": "Canton Christian College staff statement",
+   "theme": "opinion",
+   "phrases": [
+    "Canton Christian College staff statement"
+   ],
+   "hdbscan": [
+    "c32"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "amer",
+   "label": "Hongkong Americans condemn statement",
+   "theme": "opinion",
+   "phrases": [
+    "American community in Hongkong condemns the statement"
+   ],
+   "hdbscan": [
+    "c29"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "missionaries",
+   "label": "Damage to missionaries' reputation",
+   "theme": "opinion",
+   "phrases": [
+    "damage to missionaries' reputation"
+   ],
+   "hdbscan": [
+    "c56"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "no_govt",
+   "label": "No effective Chinese central government",
+   "theme": "diplomacy",
+   "phrases": [
+    "absence of a central Chinese authority",
+    "absence of an effective Chinese central government"
+   ],
+   "hdbscan": [
+    "c13"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "no_coop",
+   "label": "Chinese authorities fail to co-operate (Hankow)",
+   "theme": "diplomacy",
+   "phrases": [
+    "Chinese authorities failing to co-operate with defence force"
+   ],
+   "hdbscan": [
+    "c12"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "powers_diff",
+   "label": "Difficulties for the Powers in China",
+   "theme": "diplomacy",
+   "phrases": [
+    "difficulties for the Powers in China"
+   ],
+   "hdbscan": [
+    "c14"
+   ],
+   "weight": 2
+  },
+  {
+   "id": "demands",
+   "label": "Chinese delegation's sweeping demands",
+   "theme": "diplomacy",
+   "phrases": [
+    "Chinese delegation's demands exceeding the commission's powers"
+   ],
+   "hdbscan": [
+    "c14"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "neg_broken",
+   "label": "Shanghai negotiations broken off",
+   "theme": "diplomacy",
+   "phrases": [
+    "Shanghai negotiations broken off"
+   ],
+   "hdbscan": [
+    "c44"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "washington",
+   "label": "Powers implement Washington Conference",
+   "theme": "diplomacy",
+   "phrases": [
+    "Powers carrying out the Washington Conference decisions"
+   ],
+   "hdbscan": [
+    "c41"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "antiforeign_eased",
+   "label": "Anti-foreign feeling eased",
+   "theme": "opinion",
+   "phrases": [
+    "anti-foreign feeling in China reduced"
+   ],
+   "hdbscan": [
+    "c25"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "protest",
+   "label": "Chinese official protest to Britain",
+   "theme": "diplomacy",
+   "phrases": [
+    "Chinese official protest to the British"
+   ],
+   "hdbscan": [
+    "c37"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "soviet_break",
+   "label": "British pretext to break with Russia",
+   "theme": "diplomacy",
+   "phrases": [
+    "British pretext to break with Soviet Russia"
+   ],
+   "hdbscan": [
+    "c31"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "extraterr",
+   "label": "Extraterritoriality talks deferred",
+   "theme": "diplomacy",
+   "phrases": [
+    "extraterritoriality talks deferred"
+   ],
+   "hdbscan": [
+    "c61"
+   ],
+   "weight": 1
+  }
+ ],
+ "edges": [
+  {
+   "source": "antiforeign",
+   "target": "disturbances",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "LABOUR CONDITIONS",
+     "cause": "widespread unrest exploited by interested parties",
+     "effect": "Shanghai and Hankow disturbances",
+     "quote": "The disturbances in Hankow and Shanghai were a symptom of the deep and widespread unrest exploited by interested parties",
+     "asserted_by": "A. M. Samuel, British Government",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "antiforeign",
+   "target": "extraterr",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "Britain's Stand",
+     "cause": "anti-foreign agitation in China",
+     "effect": "extraterritoriality talks deferred",
+     "quote": "not until the anti-foreign movement has subsided and the Shanghai and other incidents have been satisfactorily settled can wider issues like territorial rights be discussed",
+     "asserted_by": "Daily Telegraph diplomatic correspondent",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "antiforeign",
+   "target": "warships",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "FORCES FOR MACAO",
+     "cause": "anti-foreign agitation in China",
+     "effect": "foreign warships and troops sent to South China",
+     "quote": "Owing to the anti-foreign agitation in China, two warships and a transport with troops and munitions will be sent to Macao from Portugal.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "bank_limit",
+   "target": "native_banks",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "BANKS OPEN",
+     "cause": "bank withdrawals restricted to 10 per cent",
+     "effect": "native banks remain closed",
+     "quote": "Permission has not yet been given the native (as distinct from the Chinese) banks to allow customers to withdraw more than the 10 per cent. and consequently many of them remain closed.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "bank_limit_lifted",
+   "target": "bank_confidence",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "BANKS OPEN",
+     "cause": "removal of the bank withdrawal restriction",
+     "effect": "confidence returns and no run on banks",
+     "quote": "The opinion was general that the removal of restriction would lead to greater confidence.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "canton_org",
+   "target": "hk_strike",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "SEAMEN'S UNION'S DECISION",
+     "cause": "mass meeting of students and workmen in Canton",
+     "effect": "anti-foreign strike in Canton and Hongkong",
+     "quote": "a mass meeting of students, workmen, and other citizens at Kwang-ping University decided to call a gradual strike",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "canton_org",
+   "target": "outports",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "CANTON QUIET",
+     "cause": "agitators sent from Canton",
+     "effect": "strike spreads to outports",
+     "quote": "Agitators are reported to have gone from Canton to Samshui in an endeavour to stir up trouble there.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "canton_org",
+   "target": "seamen",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "SEAMEN'S UNION'S DECISION",
+     "cause": "orders from the General Labour Union in Canton",
+     "effect": "Hongkong seamen's strike",
+     "quote": "The Hongkong Seamen's Union has decided to take part in an anti-foreign strike “under orders from Canton.”",
+     "asserted_by": "Chan Kim-fook, Hongkong Seamen's Union",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "canton_org",
+   "target": "secret_exec",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "What the World is Being Told",
+     "cause": "Canton Government patronage",
+     "effect": "secret strike executive formed with political demands",
+     "quote": "A secret strike executive has been formed, reported to be under the patronage of the Canton Government, demanding, interalis, the abolition of racial discrimination, the right of workers to elect Chinese members of the Legislative Council, an eight-hour day and abolition of child labour.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "ccc",
+   "target": "amer",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "HONGKONG AMERICAN'S VIEW",
+     "cause": "Canton Christian College staff statement",
+     "effect": "American community in Hongkong condemns the statement",
+     "quote": "On account of the serious implications and consequences involved in the statement of the American members of the foreign staff of the Canton Christian College",
+     "asserted_by": "American community of Hongkong (letter)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "ccc",
+   "target": "missionaries",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "OUR TRAMS",
+     "cause": "Canton Christian College staff statement",
+     "effect": "damage to missionaries' reputation",
+     "quote": "that it casts serious reflection upon the standard of ability and intelligence of the general body of missionaries, and can be used by opponents to belittle missionaries",
+     "asserted_by": "Correspondent quoted in China Mail editorial",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "china_assure",
+   "target": "forces_reduced",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "Students Take Hint",
+     "cause": "Chinese authorities' assurance of protection for foreigners",
+     "effect": "foreign volunteers and bluejackets reduced",
+     "quote": "the Tupan has given a most exquisite assurance of protection for foreign lives and property with his 3,000 troops, following which the number of volunteers and blue-jackets is being reduced",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "collections",
+   "target": "lose_sympathy",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "Peking Quiet",
+     "cause": "street collections for Shanghai strikers",
+     "effect": "loss of popular sympathy for the movement",
+     "quote": "advises the entire abandonment of collections, as they are liable to alienate the sympathy of the populace",
+     "asserted_by": "Association of College Professors on Foreign Relations, Peking",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "delta",
+   "target": "pirates",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "KONGMUN RAID",
+     "cause": "disturbed conditions in the delta",
+     "effect": "pirate raid on Kongmun",
+     "quote": "Pirates in the district have endeavoured to profit by the disturbed conditions and attempted a raid on Kongmun",
+     "asserted_by": "Colonial Secretary",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "delta",
+   "target": "shipping",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "OUTPORT NEWS",
+     "cause": "fear of pirates in the delta",
+     "effect": "Canton steamer sailings cancelled",
+     "quote": "some of the boats are still lying idle through the fears of their owners of Kongmoon pirating",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "demands",
+   "target": "neg_broken",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "First Needs",
+     "cause": "Chinese delegation's demands exceeding the commission's powers",
+     "effect": "Shanghai negotiations broken off",
+     "quote": "The last named having presented demands which exceeded the powers of the delegation, the latter took note of the fact and is returning to make a report.",
+     "asserted_by": "Diplomatic body communique, Peking",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "diplomats_passive",
+   "target": "paris",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Paris Incident",
+     "cause": "Chinese diplomats failing to press Chinese demands",
+     "effect": "raid on the Chinese Legation in Paris",
+     "quote": "The Legation is of the opinion the motives of the raiders were patriotic, on the ground of Chinese Diplomatic officers not taking active enough steps to submit the Chinese demands of emancipation from foreign control",
+     "asserted_by": "Chinese Legation, Paris",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "disturbances",
+   "target": "soviet_break",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "SOVIET INTRIGUE",
+     "cause": "outbreak in China",
+     "effect": "British pretext to break with Soviet Russia",
+     "quote": "The pretext for severing relations is the outbreak in China.",
+     "asserted_by": "Chicherin, Soviet Commissar for Foreign Affairs",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "emergency",
+   "target": "bank_limit",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Bank Deposit Order",
+     "cause": "Emergency Regulations",
+     "effect": "bank withdrawals restricted to 10 per cent",
+     "quote": "The Banks named in the fellowing schedule are prohibited from paying out to any depositor a sum larger than ten per centum of the amount standing to his credit with them",
+     "asserted_by": "Government Gazette",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "exodus",
+   "target": "drowning",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "FATAL RUSH",
+     "cause": "exodus of Chinese from Hongkong to Canton",
+     "effect": "Chinese drowned in the harbour rush",
+     "quote": "Extraordinary scenes which it is believed have led to the death of a dozen or more Chinese were witnessed alongside the Sai On and Kwong Sai yesterday as they lay in midstream prior to their journey to Canton.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "exodus",
+   "target": "police_wharf",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "POLICE DISPERSE CROWD",
+     "cause": "crowds rushing Canton-bound steamers",
+     "effect": "police use force to clear wharves",
+     "quote": "Large crowds attempted to board the Tung On as she lay alongside the wharf this morning and they became so insistent in their demands that a certain amount of force had to be used by the police in clearing the wharf.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "fear",
+   "target": "exodus",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "The House Boys",
+     "cause": "fear of serious trouble in Hongkong",
+     "effect": "exodus of Chinese from Hongkong to Canton",
+     "quote": "there has been a pronounced exodus of Chinese from Hongkong, many being anxious to return home before and serious trouble breaks out",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "food_hitch",
+   "target": "market_closed",
+   "evidence": [
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "STRIKE SITUATION",
+     "cause": "hitch in sorting and preparing food",
+     "effect": "meat shortage in Hongkong",
+     "quote": "there were plenty of supplies in the Colony but there had been a slight hitch in the sorting and preparation",
+     "asserted_by": "Food Controller's office",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "food_supply",
+   "target": "calm",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "STRIKE MALADY",
+     "cause": "food supply maintained by firms and volunteers",
+     "effect": "calm in the European community",
+     "quote": "It is in the main due to this happy triumph of maintaining the supply of essential service that really matters — the supply of food — that the spirit of equanimity is so strongly evident",
+     "asserted_by": "China Mail editorial",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "food_supply",
+   "target": "food_down",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Smaller Businesses",
+     "cause": "food export embargo",
+     "effect": "food prices fall",
+     "quote": "The price of rice has also gone up and until distribution is running smoothly, it will be difficult to check possibles. At any rate, the food export embargo will have its effect very shortly.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    },
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "MARKET STARTED",
+     "cause": "Tung Wah Hospital supplying labour and cheap rice",
+     "effect": "food prices fall",
+     "quote": "owing to the action of the Tung Wah Hospital in selling rice cheaply the Chinese retailers had this morning been forced to bring their prices down",
+     "asserted_by": "N. L. Smith, Food Controller",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "food_supply",
+   "target": "market_open",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "MARKET STARTED",
+     "cause": "Tung Wah Hospital supplying labour and cheap rice",
+     "effect": "Central Market reopens with meat",
+     "quote": "This, the Food Controller, Mr. N. L. Smith, told a China Mail representative, is due to the action of the Tung Wah Hospital in placing men at the disposal of the Government.",
+     "asserted_by": "N. L. Smith, Food Controller",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "french",
+   "target": "boycott_off",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "SHANGHAI BRITON KILLED",
+     "cause": "French threat to revoke shop licences",
+     "effect": "boycott called off in the French Concession",
+     "quote": "The French told the shopkeepers that if they closed up they would lose their licences. They called off the boycott from the French Commission very quickly.",
+     "asserted_by": "Mrs. Herbert Sutor (letter from Shanghai)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "hankow_fire",
+   "target": "protest",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "PROTEST AND REPLY",
+     "cause": "British firing on the Hankow mob",
+     "effect": "Chinese official protest to the British",
+     "quote": "The Commissioner for Foreign Affairs has protested to the British Consul regarding the firing on the mob.",
+     "asserted_by": "Reuter",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "hardship",
+   "target": "unpopular",
+   "evidence": [
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "Outport reports",
+     "cause": "poor conditions for strikers ashore",
+     "effect": "strike unpopular among strikers",
+     "quote": "Conditions for strikers ashore are very unsatisfactory. The accommodation is bad and insanitary, causing sickness. Food is inadequate and the strike is unpopular.",
+     "asserted_by": "Hongkong Government outport reports (Swatow)",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "CANTON RIGOURS",
+     "cause": "military discipline in the Canton labour corps",
+     "effect": "strike unpopular among strikers",
+     "quote": "Drill twice a day and military discipline is too much for most of the idlers but a keen watch is being kept to prevent desertions.",
+     "asserted_by": "China Mail Canton correspondent",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "hint",
+   "target": "agitators_leave",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "Students Take Hint",
+     "cause": "warning from Chinese military governor",
+     "effect": "student agitators leave Hankow",
+     "quote": "The Peking student agitators have returned to Peking, it is reported, following a hint from Hsiao Yao-nan.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "hk_strike",
+   "target": "china_mail",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "LOCAL STRIKE: NOT SPREADING",
+     "cause": "Hongkong general strike",
+     "effect": "China Mail printed at reduced size",
+     "quote": "the strike has affected the \"China Mail\". To-day's issue is considerably reduced in size",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "hk_strike",
+   "target": "emergency",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "What the World is Being Told",
+     "cause": "Hongkong general strike",
+     "effect": "Emergency Regulations",
+     "quote": "The Government has issued a proclamation of Emergency Regulations, providing censorship of telegrams and letters, control of premises, vehicles, fuel and food stuffs",
+     "asserted_by": "Reuter",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "hk_strike",
+   "target": "empty_flats",
+   "evidence": [
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "STRIKE ITEMS",
+     "cause": "Hongkong general strike",
+     "effect": "empty flats in outlying districts",
+     "quote": "The number of empty flats and vacant sub-tenements in the outlying districts has increased.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "hk_strike",
+   "target": "exodus",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "LOCAL STRIKE: NOT SPREADING",
+     "cause": "Hongkong general strike",
+     "effect": "exodus of Chinese from Hongkong to Canton",
+     "quote": "One estimate puts the number of workers, and their families, who have left in the first three days, at 20,000.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "hk_strike",
+   "target": "shameen_leave",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "OUTWARDLY QUIET",
+     "cause": "Canton strike continuing",
+     "effect": "all Chinese staff leave Shameen",
+     "quote": "The strike continues and all Chinese have left Shameen.",
+     "asserted_by": "Colonial Secretary",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "hk_strike",
+   "target": "shipping",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Earlier Cables",
+     "cause": "Hongkong general strike",
+     "effect": "foreign liners skip Hongkong",
+     "quote": "The President McKinley and the Oostkerk are omitting their usual call at Hongkong, owing to the strike.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "hk_strike",
+   "target": "standstill",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Smaller Businesses",
+     "cause": "Hongkong general strike",
+     "effect": "small businesses at a standstill",
+     "quote": "Small business houses are in many cases at an absolute standstill and larger ones report \"little doing.\"",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "hoarding",
+   "target": "food_up",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Effect of Embargo",
+     "cause": "rumoured boycott of British banknotes",
+     "effect": "panic and rice prices rise in Macao",
+     "quote": "there was a panic, a rumour starting that there would be a boycott on British banknotes. By this morning rice in the Portuguese Colony had gone up as much as $5 a bag",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Smaller Businesses",
+     "cause": "families hoarding supplies",
+     "effect": "food prices rise in Hongkong",
+     "quote": "Many families were still hoarding up supplies yesterday and this morning",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "hk_strike",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "SEAMEN'S UNION'S DECISION",
+     "cause": "propagandists and intimidators",
+     "effect": "anti-foreign strike in Canton and Hongkong",
+     "quote": "propagandists and even intimidators were actively fomenting the anti-foreign strike",
+     "asserted_by": "China Mail Canton correspondent",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "market_closed",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "MARKET STARTED",
+     "cause": "intimidation of market stall owners",
+     "effect": "Central Market closed",
+     "quote": "the owners had replied that it was as much as their lives were worth to allow it to be sold",
+     "asserted_by": "N. L. Smith, Food Controller",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "outports",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "SITUATION AT THE PORTS",
+     "cause": "strikers from Canton intimidating local Chinese",
+     "effect": "strike spreads to outports",
+     "quote": "Hundreds of strikers from Canton are arriving at Samshui and intimidating the local Chinese with the object of making them strike. Certain businesses have closed",
+     "asserted_by": "Hongkong Government outport reports",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "pork_attacks",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "WOMAN KILLED",
+     "cause": "pork traders enforcing the strike",
+     "effect": "attacks on pork sellers",
+     "quote": "Another attack allegedly on the instigation of men concerned in the trade was that on a man who was also engaged in selling pork.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "schools",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "Queen's College",
+     "cause": "threats against students",
+     "effect": "students strike and schools close",
+     "quote": "Intimidation by means of threats unless the students abstained from attending College were made in some cases in the main streets by persons of workmanlike appearance.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "seamen",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "SEAMEN'S UNION'S DECISION",
+     "cause": "persuasion by strike agents on the waterfront",
+     "effect": "Hongkong seamen's strike",
+     "quote": "some of the men were reluctant to strike but that they \"yielded to persuasion,\"",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "shipping",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "What the World is Being Told",
+     "cause": "intimidation of ships' crews",
+     "effect": "foreign steamers leave Hongkong harbour",
+     "quote": "Attempts having been made to intimidate the crews of three Java-China-Japan Line steamers, the Captains promptly slipped moorings and went off to Stonecutters Island",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "intimidation",
+   "target": "trades",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "LIFE SERVICE LOST",
+     "cause": "outside pressure on government employees",
+     "effect": "government launch crews strike",
+     "quote": "The extent to which the men must have been influenced can be gathered from the fact that they will all lose their employment and qualifications for pensions.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    },
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "SHIPPING POSITION",
+     "cause": "threatening letters",
+     "effect": "shipping clerks walk out",
+     "quote": "the clerks of the Bank Line have left almost en masse, due, it is said, to threatening letters, which were placed under the doors",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "labour_cond",
+   "target": "bat",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "Hankow Quiet",
+     "cause": "labour-saving machinery and dismissal of women workers",
+     "effect": "cigarette factory workers' strike",
+     "quote": "The British Cigarette Company's workers, who struck on May 23, following the arrival of new labour saving machinery and the previous dismissal of a number of women workers",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "labour_cond",
+   "target": "disturbances",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "LABOUR CONDITIONS",
+     "cause": "low wages and child labour in Shanghai mills",
+     "effect": "Shanghai disturbances",
+     "quote": "the trouble in Shanghai was due to low wages and the employment of children",
+     "asserted_by": "Will Thorne (Labour MP), House of Commons",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "labour_cond",
+   "target": "godown",
+   "evidence": [
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "STRIKE SITUATION",
+     "cause": "coolies paid less than the going wage",
+     "effect": "disorder at the Kowloon godowns",
+     "quote": "This first accused was asked to tell the men the case work as they were being paid $1.40 instead of $1.65.",
+     "asserted_by": "W. M. Mason, Kowloon Magistracy evidence",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "may30",
+   "target": "bloodshed",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "LABOUR CONDITIONS",
+     "cause": "police firing on the Shanghai mob, May 30",
+     "effect": "greater bloodshed averted",
+     "quote": "Had the mob in Shanghai seized the arms in the Police Station on May 30 there would have been greater bloodshed",
+     "asserted_by": "A. M. Samuel, British Government",
+     "kind": "counterfactual"
+    }
+   ]
+  },
+  {
+   "source": "mercenaries",
+   "target": "canton_stop",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "CANTON SETTLING DOWN",
+     "cause": "Cantonese campaign against the mercenary armies",
+     "effect": "work stoppages in Canton",
+     "quote": "the stoppages engineered by the Cantonese to hinder the mercenaries cannot very well be described as being in sympathy with trouble at other ports",
+     "asserted_by": "China Mail Canton correspondent",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "misund",
+   "target": "resume",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "Hankow Quiet",
+     "cause": "misunderstandings with workers cleared up",
+     "effect": "strikers agree to resume work",
+     "quote": "have agreed to recommence work, all misapprehensions apparently having been cleared up.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "mob_attack",
+   "target": "hankow_fire",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "THE HANKOW RIOT",
+     "cause": "mob attack on the British Concession at Hankow",
+     "effect": "British firing on the Hankow mob",
+     "quote": "the mob forced their way through the barbed wire and, armed with long poles, began to climb it, showering bricks upon the defenders, several of whom were badly hurt. Then only firing took place",
+     "asserted_by": "British Note to the Waichiaopu",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "PROTEST AND REPLY",
+     "cause": "danger to foreign lives and property from rioters",
+     "effect": "British firing on the Hankow mob",
+     "quote": "the firing was most necessary in view of the danger to foreign lives and property in the Concession, particularly following the serious damage already done by the rioters and the murder of a Japanese the same evening",
+     "asserted_by": "British Consul, Hankow",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "mob_attack",
+   "target": "naval",
+   "evidence": [
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "Outport reports",
+     "cause": "agitators boarding British ships",
+     "effect": "British naval parties landed",
+     "quote": "Agitators have been attempting to board British ships. Protection from H.M.S. Bluebell has been necessary.",
+     "asserted_by": "Hongkong Government outport reports (Swatow)",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "Outport reports",
+     "cause": "mob attacking foreign property at Swatow",
+     "effect": "British naval parties landed",
+     "quote": "a mob broke out and was breaking up foreign hotels and property along the Customs Bund. An armed party was landed on the Customs Bund by H.M.S. Bluebell.",
+     "asserted_by": "Hongkong Government outport reports (Swatow)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "mob_shanghai",
+   "target": "may30",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "SHANGHAI BRITON KILLED",
+     "cause": "mob overwhelming the Shanghai police",
+     "effect": "police firing on the Shanghai mob, May 30",
+     "quote": "the odds were so great that the Police had to fire",
+     "asserted_by": "Mrs. Herbert Sutor (letter from Shanghai)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "naval",
+   "target": "pirates_repelled",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "KONGMUN RAID",
+     "cause": "British armed launches",
+     "effect": "pirates repelled",
+     "quote": "owing to the ready action of the British armed launches Dom Jpno. and Wing Lee these were driven off and many killed by machine and gun fire",
+     "asserted_by": "Colonial Secretary",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "no_coop",
+   "target": "hankow_fire",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "The Hankow Affair",
+     "cause": "Chinese authorities failing to co-operate with defence force",
+     "effect": "loss of life in the Hankow riot",
+     "quote": "Had the Chinese authorities co-operated with the defence force, a deplorable loss of life would have been avoided.",
+     "asserted_by": "British Consul, Hankow",
+     "kind": "counterfactual"
+    }
+   ]
+  },
+  {
+   "source": "no_govt",
+   "target": "powers_diff",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "LABOUR CONDITIONS",
+     "cause": "absence of an effective Chinese central government",
+     "effect": "difficulties for the Powers in China",
+     "quote": "the difficulties arising largely from the absence of an effective Government in China",
+     "asserted_by": "A. M. Samuel, British Government",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "Appeal to China",
+     "cause": "absence of a central Chinese authority",
+     "effect": "difficulties for the Powers in China",
+     "quote": "one of the greatest difficulties wherewith we are confronted is the disappearance of any authority which can really speak in the name of All China",
+     "asserted_by": "Austen Chamberlain, Foreign Secretary",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "peking",
+   "target": "strike_funds",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "SHANGHAI TROUBLE: BACKING",
+     "cause": "Peking Government backing the anti-foreign movement",
+     "effect": "strike funds raised from state employees' pay",
+     "quote": "the Ministry of Communications has issued an order to the telegraph, postal and railway services that each employee will have one day's pay deducted a month as a contribution to the strike funds",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "prohibitions",
+   "target": "student_fail",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "STUDENTS' BIG IDEAS",
+     "cause": "official prohibitions on demonstrations",
+     "effect": "student demonstrations fail",
+     "quote": "A programme for wide student demonstrations yesterday was largely a fiasco-owing to official prohibitions",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "reassure",
+   "target": "calm",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "The House Boys",
+     "cause": "reassuring statements by the Hongkong authorities",
+     "effect": "calm in the Chinese community",
+     "quote": "Statements by the authorities have had a very good effect on the Chinese community in general.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "replace",
+   "target": "bus_ended",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "OBJECT FULFILLED",
+     "cause": "trams running again under European management",
+     "effect": "emergency hotel bus service ended",
+     "quote": "This decision was come to in view of the maintenance of a regular service by the Tramway Company.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "replace",
+   "target": "calm",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "OUR TRAMS",
+     "cause": "trams running again under European management",
+     "effect": "morale lifted in the Chinese community",
+     "quote": "Significant indeed is the fact of the running this morning of the lower level trams. The moral effect on the Chinese community cannot be denied. It is acting as a tonic.",
+     "asserted_by": "China Mail editorial",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "rewards",
+   "target": "arrests",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "LOCAL STRIKE: NOT SPREADING",
+     "cause": "Government rewards for information",
+     "effect": "arrests and convictions of agitators",
+     "quote": "Those Government notifications regarding rewards and payment to those killed or injured, have borne effects as will be seen from the arrests and convictions reported to-day.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "sampan",
+   "target": "drowning",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "FATAL RUSH",
+     "cause": "overcrowding and avarice of sampan owners",
+     "effect": "Chinese drowned in the harbour rush",
+     "quote": "The precipitation into the water of the Chinese who are believed to have lost their lives was partly due to their own eagerness but even more so, to the avarice of the sampan owners",
+     "asserted_by": "China Mail (eyewitnesses)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "seamen",
+   "target": "arrests",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "Refused To Work",
+     "cause": "crew refusing to obey orders",
+     "effect": "striking seamen imprisoned",
+     "quote": "Four Chinese members of the crew of the s.s. Egremont Castle were sentenced to a month's Imprisonment yesterday at the Marine Court for failing to obey the orders of the Chief Officer.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "seamen",
+   "target": "replace",
+   "evidence": [
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "STRIKE SITUATION",
+     "cause": "crews deserting their ships",
+     "effect": "foreign staff and volunteers replace strikers",
+     "quote": "Manned by Mercantile Marine men from ships which are lying idle the “Star” Ferry boats are maintaining a twenty minute service across the harbour.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "seamen",
+   "target": "shipping",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "SEAMEN'S UNION'S DECISION",
+     "cause": "fear that crews would desert in Canton",
+     "effect": "Canton steamer sailings cancelled",
+     "quote": "the Steamboat Co. vessels avoided going to Canton because it was felt that the crews would leave, or be made to leave, their ships there",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "LOCAL STRIKE: NOT SPREADING",
+     "cause": "Hongkong seamen's strike",
+     "effect": "shipping brought to a deadlock",
+     "quote": "The shipping position now amounts almost to a deadlock and the ships of Messrs. Butterfield and Swire are ordered to Kowloon Bay immediately they discharge their cargo. Nine have so far been thus affected, their crews having come out almost to a man.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "ALL QUIET",
+     "cause": "crews deserting their ships",
+     "effect": "shipping brought to a deadlock",
+     "quote": "over twenty ships have been tied up owing to the desertion of the crews.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "OUTPORT NEWS",
+     "cause": "crews deserting their ships",
+     "effect": "Canton steamer sailings cancelled",
+     "quote": "The s, s. Paul Beau did not leave for Canton on Sunday as it was due, owing to the defection of the crew.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "seditious",
+   "target": "arrests",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Trespassers Convicted",
+     "cause": "possession of seditious literature",
+     "effect": "arrests and convictions of agitators",
+     "quote": "Four Chinese were charged at the Central Magistracy this morning for having in their possession seditious literature. Two of the men were sentenced to ten months' hard labour each",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "shameen",
+   "target": "students",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "DEMANDS",
+     "cause": "Shameen shooting casualties, June 23",
+     "effect": "student demonstrations against the Powers",
+     "quote": "A students' meeting yesterday decided to hold demonstration and parade tomorrow regarding the Shameen affair.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "shameen",
+   "target": "warships",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "OUTWARDLY QUIET",
+     "cause": "Shameen shooting casualties, June 23",
+     "effect": "foreign warships and troops sent to South China",
+     "quote": "A number of Indian soldiers have been sent to Shameen to protect the foreigners from further molestation.",
+     "asserted_by": "Colonial Secretary",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "shameen_chinese",
+   "target": "shameen",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "SHAMEEN SHOOTING",
+     "cause": "firing begun from the Chinese side",
+     "effect": "Shameen shooting casualties, June 23",
+     "quote": "he had been entirely satisfied from what he had gathered from eyewitnesses that the firing started from the Chinese side",
+     "asserted_by": "Dr. Alexander Baxter (retraction)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "shameen_troops",
+   "target": "shameen",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "SHAMEEN SHOOTING",
+     "cause": "Shameen troops firing on an unarmed parade",
+     "effect": "Shameen shooting casualties, June 23",
+     "quote": "The statement attributed to the Shameen troops the firing of the first shots and stated that the parade was proceeding in an orderly manner and was composed largely of students and workmen unarmed and defenceless.",
+     "asserted_by": "Canton Christian College American staff (later retracted)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "shanghai_reopen_push",
+   "target": "shanghai_reopen",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "ANTI-FOREIGN STRIKE ENDS",
+     "cause": "Chamber of Commerce request to reopen",
+     "effect": "Shanghai shops and banks reopen",
+     "quote": "The Chamber of Commerce last night formally requested the re-opening of the shops and banks of which 70 per cent. acquiesced.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "ANTI-FOREIGN STRIKE ENDS",
+     "cause": "official procession guaranteeing negotiations",
+     "effect": "Shanghai shops and banks reopen",
+     "quote": "\"Shops should be opened. The Government takes full responsibility for negotiations.\" After this the hesitators opened their doors.",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "soviet",
+   "target": "antiforeign",
+   "evidence": [
+    {
+     "date": "1925-06-30",
+     "page": "page_002_NPCM19250630_01_0002",
+     "headline": "SHANGHAI ARREST",
+     "cause": "Soviet money and agents",
+     "effect": "anti-imperialist agitation in China",
+     "quote": "Another cable \"acknowledged the receipt of sixty thousand gold roubles for the purpose of fighting imperialism.\"",
+     "asserted_by": "Shanghai police prosecution (Dosser case)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "soviet",
+   "target": "disturbances",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "SOVIET INTRIGUE",
+     "cause": "Soviet money and agents",
+     "effect": "Shanghai and Hankow disturbances",
+     "quote": "he had evidence that the disturbances in China had been fomented by the agents of another Government",
+     "asserted_by": "Austen Chamberlain, Foreign Secretary",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "soviet",
+   "target": "hk_strike",
+   "evidence": [
+    {
+     "date": "1925-06-27",
+     "page": "page_002_NPCM19250627_01_0002",
+     "headline": "STRIKE MALADY",
+     "cause": "anti-foreignism backed by Bolshevism",
+     "effect": "Hongkong general strike",
+     "quote": "All this but skims the cream of the present situation behind which the evil of anti-foreignism backed by the worst forces of Bolshevism lurk.",
+     "asserted_by": "China Mail editorial",
+     "kind": "implicit"
+    },
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "Shanghai Quieter",
+     "cause": "Third International agitation department",
+     "effect": "strike organised in South China",
+     "quote": "a certificate stating that the Agitation Department of the Third International was sending Dosser to South China to organise a strike committed",
+     "asserted_by": "Dosser trial documents (Soviet Consul denies)",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "soviet",
+   "target": "paris",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Paris Incident",
+     "cause": "Moscow and Chinese communists",
+     "effect": "raid on the Chinese Legation in Paris",
+     "quote": "The Legation suspects non-Chinese elements are behind the coup which, evidently, was most carefully planned and hinted at the possible hand of Moscow again working.",
+     "asserted_by": "Chinese Legation, Paris",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "standstill",
+   "target": "patrol",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Smaller Businesses",
+     "cause": "small businesses at a standstill",
+     "effect": "volunteers available for patrol duty",
+     "quote": "This has enabled Volunteer employees to turn out almost en masse to do the 24 hours' duty which will probably fall to the lot of most.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "students",
+   "target": "food_blocked",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "Peking Quiet",
+     "cause": "student pickets",
+     "effect": "food blocked from the Shanghai Settlement",
+     "quote": "Student pickets at some points are preventing foodstuffs from entering the Settlement",
+     "asserted_by": "Reuter",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "students",
+   "target": "schools",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Earlier News",
+     "cause": "students joining the strike movement",
+     "effect": "students strike and schools close",
+     "quote": "Several other schools have suspended studies owing to their scholars joining the strike movement.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "sympathy",
+   "target": "hk_strike",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "TWICE SHY",
+     "cause": "sympathy with rioters elsewhere in China",
+     "effect": "Hongkong general strike",
+     "quote": "Arguing that the \"walkouts\" are due to a sense of sympathy with those who have rioted and killed in another place",
+     "asserted_by": "China Mail editorial",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "sympathy",
+   "target": "seamen",
+   "evidence": [
+    {
+     "date": "1925-06-20",
+     "page": "page_001_NPCM19250620_01_0001",
+     "headline": "SEAMEN'S UNION'S DECISION",
+     "cause": "national sympathy with the Shanghai movement",
+     "effect": "Hongkong seamen's strike",
+     "quote": "He thought that the strike was ordered as part of a national movement in sympathy with the movement at Shanghai and other treaty ports.",
+     "asserted_by": "Chan Kim-fook, Hongkong Seamen's Union",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "trades",
+   "target": "exodus",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "FURTHER EXODUS",
+     "cause": "more workmen joining the strike",
+     "effect": "exodus of Chinese from Hongkong to Canton",
+     "quote": "With other workmen having gone out in the interval it is only natural that to-dry's Canton steamers have been crowded.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "trades",
+   "target": "food_up",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Smaller Businesses",
+     "cause": "absence of striking pork butchers",
+     "effect": "food prices rise in Hongkong",
+     "quote": "Profiteers have not been slow to take advantage of the situation. As the pork butchers are absent, prices of pork have risen several times over.",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "trades",
+   "target": "mail",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "POST OFFICE",
+     "cause": "Post Office delivery staff strike",
+     "effect": "public must collect their own mail",
+     "quote": "Pillar boxes are locked and the public is requested to post all letters at the Post Office General building also to collect their own letters.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "trades",
+   "target": "replace",
+   "evidence": [
+    {
+     "date": "1925-06-23",
+     "page": "page_001_NPCM19250623_01_0001",
+     "headline": "Hotels and Cafes",
+     "cause": "domestic and hotel servants' strike",
+     "effect": "foreign staff and volunteers replace strikers",
+     "quote": "The Hongkong Hotel has been compelled to supplement the emergency staff with foreign assistants who arrived this morning from Shanghai.",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    },
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "LIFE SERVICE LOST",
+     "cause": "government launch crews strike",
+     "effect": "foreign staff and volunteers replace strikers",
+     "quote": "Volunteers have come forward from the Mercantile Marine and a start is to be made with the H:D. 2 launch to-day",
+     "asserted_by": "China Mail",
+     "kind": "implicit"
+    }
+   ]
+  },
+  {
+   "source": "trades",
+   "target": "shipping",
+   "evidence": [
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "SHIPPING POSITION",
+     "cause": "stevedores and godown workers striking",
+     "effect": "shipping brought to a deadlock",
+     "quote": "since the stayedores and a number of the Godown employees have become affected it has been almost impossible for them to clear ships at all",
+     "asserted_by": "China Mail",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "tram",
+   "target": "hk_strike",
+   "evidence": [
+    {
+     "date": "1925-06-29",
+     "page": "page_002_NPCM19250629_01_0002",
+     "headline": "TWICE SHY",
+     "cause": "tramwaymen's walkout",
+     "effect": "Hongkong general strike",
+     "quote": "The example then given by men who have caused more loss and inconvenience to themselves and their own people, has been slowly but naif-heartedly followed by others upon whom it has been usual to depend.",
+     "asserted_by": "China Mail editorial",
+     "kind": "explicit"
+    }
+   ]
+  },
+  {
+   "source": "washington",
+   "target": "antiforeign_eased",
+   "evidence": [
+    {
+     "date": "1925-06-16",
+     "page": "page_001_NPCM19250616_01_0001",
+     "headline": "LABOUR CONDITIONS",
+     "cause": "Powers carrying out the Washington Conference decisions",
+     "effect": "anti-foreign feeling in China reduced",
+     "quote": "The surest remedy for the anti-foreign feeling in China would lie in an attempt by the Treaty Powers to carry out the decisions of the Washington Conference",
+     "asserted_by": "A. M. Samuel, British Government",
+     "kind": "counterfactual"
+    }
+   ]
+  },
+  {
+   "source": "withhold",
+   "target": "forfeit",
+   "evidence": [
+    {
+     "date": "1925-07-02",
+     "page": "page_002_NPCM19250702_01_0002",
+     "headline": "STRIKE PAY",
+     "cause": "employers' decision to withhold strikers' pay",
+     "effect": "strikers forfeit wages on return",
+     "quote": "If they desire to be reinstated they will have to forfeit their wages for June and \"sign on\" as any entirely new servant would.",
+     "asserted_by": "China Mail editorial (Hongkong Hotel policy)",
+     "kind": "explicit"
+    },
+    {
+     "date": "1925-07-03",
+     "page": "page_001_NPCM19250703_01_0001",
+     "headline": "Strike Items",
+     "cause": "employers' decision to withhold strikers' pay",
+     "effect": "strikers forfeit wages on return",
+     "quote": "no payment at all should be made to strikers for the period during which they have absent them.",
+     "asserted_by": "Hongkong and Shanghai Chambers of Commerce",
+     "kind": "explicit"
+    }
+   ]
+  }
+ ],
+ "stats": {
+  "pages": 8,
+  "relations": 105,
+  "phrases": 157,
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "hdbscan_clusters": 103,
+  "hdbscan_multi": 29,
+  "review_kept": 9,
+  "review_split": 20,
+  "review_merged_nodes": 20,
+  "nodes": 100,
+  "edges": 91
+ }
+}
