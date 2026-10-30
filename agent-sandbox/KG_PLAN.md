@@ -32,18 +32,24 @@ page images ─► VL OCR ─► articles ─► causal relations ─► event n
 
 ### 0a. Decide how many pages to transcribe
 
-VL OCR takes about 3 minutes per page. Pages with a score above the cutoff that haven't been transcribed yet
-(from `strike_pages_md/README.md`):
+VL OCR takes about 3 minutes per page. Counted from `strike_screen.csv` against the VL outputs on
+disk (64 pages have VL text: the 40 selected + 24 calibration pages of 06-01/02):
 
-| Score cutoff | Extra pages | VL time |
-| --- | --- | --- |
-| ≥ 12 | 74 | ~4 h |
-| ≥ 8 | 132 | ~7 h |
-| ≥ 5 | 209 | ~10.5 h |
+| Score cutoff | Pages in total | Already VL | Still to transcribe | VL time |
+| --- | --- | --- | --- | --- |
+| ≥ 12 | 76 | 42 | 34 | ~1.7 h |
+| ≥ 10 | 101 | 44 | 57 | ~2.9 h |
+| ≥ 8 | 137 | 45 | 92 | ~4.6 h |
+| ≥ 5 | 215 | 46 | 169 | ~8.4 h |
+| ≥ 2 (all flagged) | 328 | 53 | 275 | ~13.8 h |
+| all pages | 496 | 64 | 432 | ~21.6 h |
 
-Recommendation: run **≥ 8** overnight. That covers most pages with a core strike term, including
-the late-July pages where the strike is already established. Run it in the background with
-`ocr_vl.py @<list>` exactly as for the first 40.
+(The "pages left" counts in `strike_pages_md/README.md`, 74 / 97 / 132 / 209 / 315, include the 40
+already-transcribed pages; they only exclude the calibration pages.)
+
+217 pages have at least one CORE strike term, so even ≥ 5 doesn't cover all of them. The choice of
+cutoff is part of deciding the dataset population (see the dataset section). Run whatever is chosen
+in the background with `ocr_vl.py @<list>` exactly as for the first 40.
 
 ### 0b. Split pages into articles and drop ads
 
@@ -108,7 +114,7 @@ The pipeline adds `page`, `date`, `headline` and `article_id`. Optional new fiel
 ### Throughput estimate
 
 About 20 article blocks per page, of which perhaps a third are news. A 14B model should take roughly
-5–10 s per article on the 5080, so **40 pages ≈ 1–2 h, 170 pages ≈ 4–8 h**. Measure on 2 pages
+5–10 s per article on the 5080, so **40 pages ≈ 1–2 h, 137 pages (≥ 8) ≈ 3–6 h**. Measure on 2 pages
 before committing.
 
 ---
@@ -148,7 +154,7 @@ repelled"). Embeddings capture topic, not direction. The plan handles that expli
    produces `nodes.json` in the demo format, so `build_graph.py` runs unchanged.
 5. **Human spot check** of the 30 largest nodes. Those carry most of the edges.
 
-Expected size: with ~170 pages, perhaps 1,500–2,500 relations and 300–600 event nodes.
+Expected size: with ~140 pages (≥ 8), perhaps 1,500–2,500 relations and 300–600 event nodes.
 
 ---
 
@@ -189,7 +195,7 @@ Expected size: with ~170 pages, perhaps 1,500–2,500 relations and 300–600 ev
 | 3 | Extraction script with schema, prompt, quote check (`extract.py`) | 1 day | 1, 2 |
 | 4 | Hand-annotate gold set (~15 articles) | 1 day (human) | 2 |
 | 5 | Evaluate models and prompt, pick one | half a day | 3, 4 |
-| 6 | VL OCR of extra pages (score ≥ 8), overnight | ~7 h unattended | — (start now) |
+| 6 | VL OCR of extra pages (cutoff to be decided; ≥ 8 = 92 pages) | ~4.6 h unattended at ≥ 8 | — (start now) |
 | 7 | Full extraction run | a few hours unattended | 5, 6 |
 | 8 | Normalization + polarity-aware clustering + LLM review | 1 day | 7 |
 | 9 | Graph build, GraphML export, viewer upgrades | half a day | 8 |
@@ -199,7 +205,7 @@ Steps 2, 4 and 6 can run in parallel.
 
 ## Decisions needed
 
-1. **Corpus size:** stay at 40 pages, or transcribe up to score ≥ 8 (~170 pages total)?
+1. **Corpus size:** stay at 40 pages, or transcribe up to score ≥ 8 (137 pages total, 92 more, ~4.6 h)?
 2. **Gold set:** who annotates, and is ~15 articles enough for the professor's purposes?
 3. **Scope of "causal":** include government measures and their effects (bank limits, Emergency
    Regulations), or only causes and effects of the strike itself?
