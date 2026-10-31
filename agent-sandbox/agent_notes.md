@@ -1,8 +1,10 @@
 # Agent notes
 
-Running record of the causal-knowledge-graph work done with Claude (Opus 5.5) in `agent-sandbox/`:
-what was built, why, the numbers measured along the way, and what is still open.
-The forward-looking plan is in `KG_PLAN.md`; this file records what has actually been done.
+Log of data and decision-making for the causal-knowledge-graph project, kept so that everything needed
+for the **final writeup** is in one place: what was done, the numbers measured, the options considered,
+what was chosen and why, and what is still open. Work done with Claude (Opus 5.5) in `agent-sandbox/`.
+The forward-looking plan is in `KG_PLAN.md`. Purely technical setup details (section 3) are kept short;
+they matter only where they affected a methodological choice.
 
 Last updated: 2026-10-30.
 
@@ -140,6 +142,16 @@ itself instead of a local LLM.
   bundle on this machine. `truststore.inject_into_ssl()` (Windows certificate store) fixes it;
   `demo_kg/cluster.py` calls it.
 - Node.js is not installed (no local JS syntax check).
+- **Ollama 0.40.9** installed 2026-10-30 via `winget install --id Ollama.Ollama -e --source winget` (per-user,
+  `%LOCALAPPDATA%\Programs\Ollama`; models in `C:\Users\georg\.ollama\models`). The tray app failed to start
+  when launched from the agent session ("Unable to init instance"), so the server was run headless with
+  `ollama serve`; it detects the RTX 5080 via CUDA. After a reboot, start the Ollama app or `ollama serve`.
+- Model downloaded: **`qwen3.5:9b-q8_0`** (10 GB, id `a8ee95bc3592`), the first extraction candidate. Chosen
+  over `qwen3.8` (only a 27B / 18 GB version, which doesn't fit in 16 GB VRAM) and over the Qwen3.5 27B/35B
+  versions (17–22 GB). Other screen candidates: the same model with thinking on, `qwen3.5:35b-a3b`
+  (mixture-of-experts, partly in system RAM; 31 GB RAM available), `qwen3:14b`, and a non-Qwen model of similar size.
+- Don't run Ollama and PaddleOCR-VL on the GPU at the same time: VL OCR uses ~9 GB, the 9B q8 model ~10 GB
+  plus context.
 
 ## 4. Full-pipeline plan
 
@@ -239,6 +251,66 @@ add an LLM check for the ~80 cut-off articles: show the cut-off ending and the 2
 fragments nearby, ask which continues it (option 2). `KG_PLAN.md` Stage 0 still describes heading-based
 splitting and should be updated to use `articles_md/articles.jsonl`.
 
+## 5b. HKPL scrape: China Mail, August and September 1925
+
+- Dry run (`hkpl_dry_run.py`): the search URL from the user, with the date range 1925-08-01 to 1925-10-01,
+  returned 53 unique records. The end date is inclusive, so 1925-10-01 was in the results. The URL was
+  changed to end 1925-09-30, which returns 52 records (1925-08-01 to 1925-09-30). No October issue is included.
+- Environment: `selenium` was missing from `.venv-kg`, so it was installed (selenium 4.52.0, pillow 13.0.0).
+  Chrome is not installed; the scraper falls back to Edge, which works.
+- Batch command: `scrape_hkpl.py --search-url <URL ending 1925-09-30> -o ../data/raw/hkpl/china_mail_aug_sep_1925 --no-pdf`.
+  Log: `hkpl_aug_sep.log`. `--no-pdf` matches the June–July folder, which has no PDFs.
+- Output: `data/raw/hkpl/china_mail_aug_sep_1925/`, one folder per issue (`NPCM1925MMDD_The_China_Mail_1925-MM-DD`).
+- Queue (`hkpl_queue.py`, log `hkpl_queue.log`): runs after the Aug–Sep batch finishes. It covers 12 months,
+  Apr 1925 to Mar 1926. June–Sep 1925 are already done or queued, so the queue runs the other 8 months:
+  Apr, May, Oct, Nov, Dec 1925 and Jan, Feb, Mar 1926. Each month is one `scrape_search_results` call with
+  the date range set to that month, written to `data/raw/hkpl/china_mail_<mon>_<year>/`, with `--no-pdf`.
+  Pauses: 30 s between issues and 3 s between pages. `scrape_search_results` gained a
+  `delay_between_pages` parameter so the page pause can be set; the default is still 0.5 s.
+  Apr 1926 is not included, because the request was read as 12 months (Apr 1925 to Mar 1926).
+- Aug–Sep batch finished: 52 of 52 issues scraped, 0 failed. `hkpl_verify.py` checked every issue's page
+  images against `metadata.json` `totalPages`: 52 issues, 0 mismatches.
+- Queue recovery: the queue (`hkpl_queue.py`) had been waiting for the Aug–Sep batch but had written nothing to
+  its log for about 10 minutes, even though the completion line was present. The cause was not confirmed. I
+  stopped the waiting processes and relaunched the queue with the same command (appending to `hkpl_queue.log`).
+  It started with April 1925.
+- `pipeline_new_scrapes.py` (not written by this session) was running when this was checked. It OCRs new
+  pages as the scrape writes them and waits while `hkpl_queue.py` is running. It was left untouched.
+
+## 5c. Extending VL OCR: score ≥ 8 for June–July, then all newly scraped months
+
+**Decision (user, 2026-10-30): VL-transcribe every page scoring ≥ 8**, first for June–July, then for each
+newly scraped month, with the same scoring and cutoff.
+
+- **June–July:** 92 pages scored 8–14 and had no VL text (list: `vl_pages_score8.txt`, highest score
+  first). VL run started 2026-10-30 ~19:30, log `ocr_vl_score8.log`, ~3 min/page. With it, June–July has
+  VL text for all 137 pages scoring ≥ 8, plus the 24 calibration pages.
+- **Why the cutoff is 8:** a compromise between coverage and VL time (about 4.6 h for June–July). It is
+  well below the ≥ 15 used for the first 40 pages, so far fewer moderately relevant pages are missed.
+  Even so, 217 June–July pages have a CORE strike term, and ≥ 8 covers 137 pages in total. Pages that
+  mention a strike only once, on an otherwise unrelated page, are still excluded.
+- **Scoring new months the same way** (`strike_screen_batch.py` → `strike_screen_batch.csv`):
+  `strike_screen.py` decides which fuzzy matches are OCR errors by checking a "real word" vocabulary built
+  from *all VL text on disk when it runs*. That vocabulary grows as pages are transcribed (24 calibration
+  pages at the June–July scoring; 156+ now), so rerunning it would score new months under different
+  conditions. `strike_screen_batch.py` reuses the same matching code but **fixes the vocabulary to the 24
+  calibration pages** (06-01/02), scores every collection, and leaves `strike_screen.csv` untouched.
+  Check: rescoring the 496 June–July pages with it reproduces `strike_screen.csv` exactly (0 differences).
+  So a score of 8 means the same thing in every month.
+- **Unattended pipeline** (`pipeline_new_scrapes.py`, log `pipeline_new_scrapes.log`), started 2026-10-30
+  20:46 while the user was away. It waits for the June–July VL run, then cycles:
+  1. fast-OCR any edition the scraper has finished (no file written for 10 min);
+  2. rescore;
+  3. VL-OCR the next 20 pages with score ≥ 8, highest score first across all months;
+  4. repeat until the scraper (Aug–Sep, then the 8-month queue) has stopped and nothing is left.
+
+  Failure handling: a failing fast-OCR batch is retried page by page; a page that fails twice in either
+  step is skipped and listed in `pipeline_failed.txt`. Creating `pipeline.stop` ends it cleanly.
+  Separate logs per step: `ocr_fast_batch.log`, `strike_screen_batch.log`, `ocr_vl_batch.log`.
+- **Scope note:** the queue covers Apr 1925 – Mar 1926, so the VL backlog will grow over several days.
+  It is processed in score order across all months, not month by month. A month's VL coverage is
+  complete only when the pipeline log reports "done".
+
 ## 6. File index (all in `agent-sandbox/`)
 
 | Path | What |
@@ -247,6 +319,10 @@ splitting and should be updated to use `articles_md/articles.jsonl`.
 | `ocr_fast.py`, `ocr_fast_out/` | Fast PP-OCRv5 mobile OCR of all 496 pages (screening only) |
 | `strike_screen.py`, `strike_screen.csv`, `strike_eval.py` | Strike-relevance scoring and its calibration |
 | `vl_selected_pages.txt` | The 40 pages chosen for VL OCR (score ≥ 15) |
+| `vl_pages_score8.txt`, `ocr_vl_score8.log` | The 92 further June–July pages scoring 8–14, and their VL run |
+| `vl_cutoff_table.txt` | Pages per score cutoff for June–July (total / already VL / to do) |
+| `strike_screen_batch.py`, `strike_screen_batch.csv` | Scoring for all collections with the frozen June–July vocabulary |
+| `pipeline_new_scrapes.py`, `pipeline_new_scrapes.log`, `pipeline_failed.txt` | Unattended fast OCR → score → VL (≥ 8) for new scrapes |
 | `ocr_vl.py`, `ocr_vl_out/` | PaddleOCR-VL OCR (65 pages: 40 selected + 24 calibration + test) |
 | `strike_pages_md/` | The 40 VL `.md` files used as the corpus, with selection README |
 | `KG_PLAN.md` | Full pipeline plan |

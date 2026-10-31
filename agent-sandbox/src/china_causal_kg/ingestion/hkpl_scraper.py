@@ -439,6 +439,7 @@ def scrape_search_results(
     limit: int | None = None,
     delay_between_docs: float = 2.0,
     force: bool = False,
+    delay_between_pages: float = 0.5,
 ) -> list[Path]:
     """
     Scrapes every document listed on an HKPL search results page, reusing one browser session.
@@ -476,6 +477,7 @@ def scrape_search_results(
                         output_dir=output_dir,
                         create_pdf=create_pdf,
                         headless=headless,
+                        delay_between_pages=delay_between_pages,
                         driver=driver,
                     )
                 )
