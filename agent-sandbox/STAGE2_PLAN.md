@@ -73,8 +73,28 @@ reduction was used. Node labels are provisional. Review of mixed clusters and a 
 
 ## 5. Comparison pages
 
-`kg/build_viewers.py` builds `kg/viewer/event-030.html`, `event-035.html`, `topic-030.html` and `topic-035.html` from an adapted copy of
-the demo viewer, each linking to the others. Colours are rough keyword groups. Self-loop claims are listed on their node.
+`kg/build_viewers.py` builds `kg/viewer/event-030.html`, `event-035.html`, `topic-030.html` and `topic-035.html` in the user's simplified
+demo format (`demo_kg/causal_kg_demo_local.html`), each linking to the others. No filters or colours. Self-loop claims are listed on their node.
+
+## 6. Missing-edge analysis (user's goal, 2026-11-06)
+
+The goal is to find pairs of nodes where a connection is expected but absent. `kg/missing_edge_power.py` tests whether each version can
+support this statistically, with a simple null model: expected claims a → b = out(a) × in(b) / total claims.
+
+| Version | Nodes | Arrows present | Missing pairs, expected ≥ 1 | Expected ≥ 3 |
+| --- | --- | --- | --- | --- |
+| Event, 0.30 | 540 | 0.15% | 1 | 0 |
+| Event, 0.35 | 372 | 0.28% | 2 | 0 |
+| Topic, 0.30 | 435 | 0.21% | 1 | 0 |
+| Topic, 0.35 | 289 | 0.39% | 4 | 1 |
+
+None has enough claims per pair. Coarser nodes do help, but only slightly at these thresholds. An absent edge can also mean a pipeline miss,
+since extraction recall is unmeasured and the corpus is selected.
+
+**Shared neighbours (user's method).** If two causes share k or more effects, each effect only one of them has is a candidate missing edge.
+`kg/shared_neighbours.py`, cause pairs sharing k effects: Event 0.30: 2+ 0; Event 0.35: 2+ 6, 3+ 0; Topic 0.30: 2+ 8, 3+ 0; Topic 0.35: 2+ 17, 3+ 1.
+Most 2-shared pairs read as noise from vague catch-all nodes ("The city remains calm"); some are meaningful, such as Bolshevik influence and
+lack of a central government, both linked to discontent and Shanghai disturbances.
 
 ## Open decisions
 
