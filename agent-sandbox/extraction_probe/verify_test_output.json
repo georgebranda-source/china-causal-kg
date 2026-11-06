@@ -1,0 +1,786 @@
+{
+ "whole": [
+  {
+   "reasoning": "'due to' states that low wages and child employment are the cause of the trouble.",
+   "quote": "that the trouble in Shanghai was due to low wages and the employment of children",
+   "cause": "low wages and employment of children",
+   "effect": "trouble in Shanghai",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'was due to' to link the cause ('low wages and the employment of children') with the effect ('trouble in Shanghai'). This matches the rule for a stated reason or result, specifically covering causal connectors like 'due to'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'Had they succeeded... there undoubtedly would have been' presents a counterfactual causal claim about past events.",
+   "quote": "Had they succeeded and seized the arms at the police station there undoubtedly would have been greater bloodshed.",
+   "cause": "mob seizing arms at the police station",
+   "effect": "greater bloodshed",
+   "check": {
+    "reasoning": "The quote uses a counterfactual conditional structure ('Had they succeeded... there undoubtedly would have been') to describe a hypothetical past scenario. The user's instructions explicitly state to REJECT 'a prediction or conditional about the future: ...' and specifically include the pattern 'had X happened, Y would have followed'. Although this sentence discusses real past events (the attempt to seize arms), it frames the causal link as a hypothetical consequence ('would have been') rather than stating that the cause actually brought about the effect. Therefore, it falls under the rejection criteria for conditionals.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'would have been avoided' indicates that cooperation is the cause of avoiding loss of life in this counterfactual claim.",
+   "quote": "Had the Chinese authorities co-operated with the defence force, a deplorable loss of life would have been avoided.",
+   "cause": "Chinese authorities cooperating with the defence force",
+   "effect": "deplorable loss of life avoided",
+   "check": {
+    "reasoning": "The quote uses the conditional structure 'Had X happened, Y would have followed' to describe a specific past scenario (the lack of cooperation) and its hypothetical outcome (loss of life). The words linking the cause and effect are 'Had... co-operated' and 'would have been avoided'. This matches the rule for 'had X happened, Y would have followed about real past events', as it explicitly states that the non-cooperation was the reason the loss of life occurred.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'a symptom of' states that the disturbances are caused by deep unrest exploited by interested parties.",
+   "quote": "The disturbances in Hankow and Shanghai were a symptom of the deep and widespread unrest exploited by interested parties to stir up feeling against those Powers",
+   "cause": "deep and widespread unrest exploited by interested parties",
+   "effect": "disturbances in Hankow and Shanghai",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'were a symptom of' to link the two events. While 'symptom of' is not one of the specific causal words listed in the prompt's examples (like 'because' or 'due to'), it functions as a direct statement that Event A (disturbances) exists because of or is caused by Event B (unrest). The quote asserts a causal relationship where the unrest is the underlying cause and the disturbances are the resulting manifestation. This fits the criteria for stating a reason/result, even if the specific vocabulary differs slightly from the strict list, as it clearly identifies the cause behind the effect without merely describing sequence.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'would lie in' states that an attempt by Treaty Powers is the cause/remedy for anti-foreign feeling.",
+   "quote": "The surest remedy for the anti-foreign feeling in China would lie in an attempt by the Treaty Powers to carry out the decisions of the Washington Conference",
+   "cause": "Treaty Powers carrying out Washington Conference decisions",
+   "effect": "anti-foreign feeling in China remedied",
+   "check": {
+    "reasoning": "The quote uses the phrase 'would lie in' to connect the proposed action (Treaty Powers carrying out decisions) with the desired outcome (remedy for anti-foreign feeling). While this structure suggests a solution or a means to an end, it is framed as a hypothetical prediction ('would') rather than a statement of fact about events that have already occurred. The prompt instructions explicitly state to REJECT 'a prediction or conditional about the future'. Since the quote presents a theoretical remedy for a future or ongoing situation rather than stating a completed causal link between past events, it does not meet the criteria for KEEP.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'arising largely from' states that the absence of effective government is the cause of the difficulties.",
+   "quote": "overcoming the difficulties arising largely from the absence of an effective Government in China",
+   "cause": "absence of an effective Government in China",
+   "effect": "difficulties",
+   "check": {
+    "reasoning": "The quote explicitly links the 'absence of an effective Government' to the 'difficulties' using the phrase 'arising largely from'. The words 'arising from' function as a stated reason/result indicator, directly asserting that the absence of government is the cause of the difficulties. This fits the rule for 'a stated reason or result (because, due to, owing to...)' and specifically matches the pattern 'the cause of' via the prepositional phrase 'from'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'As a result' states that the anti-Japanese rioting caused the Municipal Council to declare a state of emergency.",
+   "quote": "Coincidently with the arrival of Prince George who is going to Weihaiwei to-morrow, the anti-Japanese rioting was resumed this morning. As a result the Municipal Council declared a state of emergency.",
+   "cause": "resumption of anti-Japanese rioting",
+   "effect": "Municipal Council declared a state of emergency",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'As a result' to connect the resumption of anti-Japanese rioting (cause) with the declaration of a state of emergency by the Municipal Council (effect). This matches the rule for 'a stated reason or result' using causal connectors like 'as a result'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'forced' is a causal verb indicating that the meeting caused the Chairman to sign the notice.",
+   "quote": "An excited meeting of 1,500 students and workers at the Chinese Chamber of Commerce yesterday evening forced, the Chairman of the Chamber to sign a notice calling a general strike to-day.",
+   "cause": "excited meeting of 1,500 students and workers",
+   "effect": "Chairman of the Chamber signed a notice calling a general strike",
+   "check": {
+    "reasoning": "The quote contains the phrase 'forced... to sign'. This matches the rule for 'a named cause with a causal verb (forced)'. The subject ('excited meeting') is explicitly named as the entity performing the action of forcing, and the object ('Chairman') is explicitly named as the one compelled to act. The causal link is direct and stated using the specific verb 'forced'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'depending on' (expressed as 'depends to some extent on') states that the calm situation relies on the backing the Reds intend to give.",
+   "quote": "The city is calm at present but the situation depends to some extent on the backing which the Reds intend to give the rioters.",
+   "cause": "backing which the Reds intend to give the rioters",
+   "effect": "city remaining calm",
+   "check": {
+    "reasoning": "The quote states that the 'city is calm' (effect) but immediately qualifies this by saying the situation 'depends... on the backing which the Reds intend to give the rioters' (cause). The phrase 'depends on' functions as a stated reason or condition linking the two events, indicating that the calmness is contingent upon the lack of external support. This fits the criteria for a stated reason/result relationship.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "The text states 'had no connection whatever with the strike', which explicitly denies a causal link between the deaths and the strike.",
+   "quote": "their deaths had no connection whatever with the strike",
+   "cause": "deaths of two people",
+   "effect": "connection to the strike",
+   "check": {
+    "reasoning": "The quote explicitly denies a causal link using the phrase 'no connection whatever'. This directly matches the REJECT criteria for 'the quote denies the link' (specifically phrases like 'no connection', 'nothing to do with', or 'not the cause of'). Since the speaker is stating that the deaths were NOT caused by the strike, it does not support a causal claim that the strike brought about the deaths.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "The phrase 'give the appearance that' indicates the placement of the body caused observers to believe intimidators were at work, even though it was a false appearance.",
+   "quote": "so placed as to give the appearance that intimidators had been at work",
+   "cause": "body carried into the street and placed there",
+   "effect": "appearance that intimidators had been at work",
+   "check": {
+    "reasoning": "The quote describes a specific action ('placed') and its immediate result ('give the appearance'). The phrase 'so placed as to give' explicitly links the cause (the placement) to the effect (the appearance of intimidators). This fits the criteria for a stated reason or result, where the structure 'as to [result]' functions similarly to 'in order to' or 'with the result that', clearly establishing that the action brought about the specific appearance.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'because' states that the heavy loading caused the delay in sailing.",
+   "quote": "her sister-ship, the On Lee, had to delay her sailing, because the ship was too heavily loaded.",
+   "cause": "ship being too heavily loaded",
+   "effect": "On Lee delayed her sailing",
+   "check": {
+    "reasoning": "The quote explicitly uses the word 'because' to link the cause ('the ship was too heavily loaded') with the effect ('had to delay her sailing'). This directly satisfies the rule for a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'due to' states that the attempt to exploit the strike caused the breakdown in delivery.",
+   "quote": "This was due to an attempt to exploit the local strike position to obtain 'squeeze.'",
+   "cause": "attempt to exploit the local strike position",
+   "effect": "breakdown in the delivery",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'due to' to link the event (implied as the 'breakdown in the delivery' from the context of the cause/effect pair) with the reason ('an attempt to exploit the local strike position'). The word 'due to' is a stated reason marker that directly asserts a causal relationship, fitting the rule for 'a stated reason or result'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'In consequence of this' states that the seamen's action caused the Kwong Sai to anchor.",
+   "quote": "After Saturday, according to the reports, no seamen will be allowed to man the river boats. In consequence of this and in order that the boat may not be stranded in Canton, the Kwong Sai, which returned to Hongkong, from Canton this morning, has gone to anchor and will not make the return trip.",
+   "cause": "no seamen allowed to man river boats",
+   "effect": "Kwong Sai anchored and did not return to Canton",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'In consequence of this' to link the lack of seamen ('this') to the action taken by the Kwong Sai. This matches the rule for a stated reason or result using causal connectors like 'in consequence of'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'In consequence of this' states that the seamen's action caused the Kwong Sai to anchor.",
+   "quote": "After Saturday, according to the reports, no seamen will be allowed to man the river boats. In consequence of this and in order that the boat may not be stranded in Canton, the Kwong Sai, which returned to Hongkong, from Canton this morning, has gone to anchor and will not make the return trip.",
+   "cause": "no seamen allowed to man river boats",
+   "effect": "Kwong Sai anchored and did not return to Canton",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'In consequence of this' to link the lack of seamen ('this') to the action taken by the Kwong Sai. This matches the rule for a stated reason or result using causal connectors like 'in consequence of'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'in view of' states that the danger to lives and property is the reason for the firing.",
+   "quote": "He says that the firing was most necessary in view of the danger to foreign lives and property in the Concession",
+   "cause": "danger to foreign lives and property in the Concession",
+   "effect": "firing was opened",
+   "check": {
+    "reasoning": "The quote contains the phrase 'in view of', which is explicitly listed as a valid causal connector (equivalent to 'due to' or 'because'). The speaker uses this phrase to justify the action ('firing was most necessary') by citing the specific cause ('danger to foreign lives and property'). This fits the rule for 'a stated reason or result' and 'a reason a speaker gives to justify an action'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'following' indicates that the damage and murder are the reasons for the necessity of the firing.",
+   "quote": "particularly following the serious damage already done by the rioters and the murder of a Japanese the same evening",
+   "cause": "serious damage done by rioters and murder of a Japanese",
+   "effect": "firing was considered most necessary",
+   "check": {
+    "reasoning": "The quote uses the phrase 'particularly following', which indicates a sequence of events (the damage/murder happened, then the consideration of firing occurred). It does not use any causal connectives like 'because', 'due to', or 'owing to'. Furthermore, it does not contain a named cause with a causal verb, nor does it express a protest, appeal, or justification. The link is purely temporal ('after this'), fitting the criteria for rejection.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'as a result of' (implied by 'regarding') links the firing on the mob to the Commissioner's protest.",
+   "quote": "The Commissioner for Foreign Affairs has protested to the British Consul regarding the firing on the mob",
+   "cause": "firing on the mob",
+   "effect": "Commissioner protested to the British Consul",
+   "check": {
+    "reasoning": "The quote explicitly mentions a 'protest' directed at the British Consul 'regarding the firing on the mob'. This fits the rule for 'a protest, reply, appeal or demand about the cause'. The text identifies the 'firing on the mob' as the specific subject matter of the protest, establishing it as the cause that prompted the action (the protest).",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'holds... responsible therefor' states that the firing makes the Consul and officer responsible.",
+   "quote": "He says the firing was unnecessary and holds the Consul personally and the officer who ordered the firing, to be responsible therefor",
+   "cause": "firing on the mob",
+   "effect": "Consul and officer held responsible",
+   "check": {
+    "reasoning": "The quote explicitly names the cause ('the firing') and uses a causal verb phrase ('holds... to be responsible'). The structure 'holds [person] responsible for [event]' directly asserts that the event is the reason for the person's liability, fitting the rule for 'a named cause with a causal verb' (specifically matching the pattern of holding someone responsible due to an action).",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'requests' is an action taken in response to the cause (the firing).",
+   "quote": "He requests the withdrawal of the Naval contingent and that orders should given to refrain from firing in future",
+   "cause": "firing on the mob",
+   "effect": "request for withdrawal of Naval contingent and order to refrain from firing",
+   "check": {
+    "reasoning": "The quote contains a direct 'protest, reply, appeal or demand about the cause'. The speaker is making a specific demand ('requests the withdrawal...') regarding the named threat/cause ('firing on the mob'). According to the instructions, when a quote is an appeal or protest about a specific event, it counts as stating that the event is the cause, even without explicit causal conjunctions like 'because'. The action taken against the named threat (the firing) justifies the request.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'due' states that the threatening letters are the reason the clerks left.",
+   "quote": "the clerks of the Bank Line have left almost en masse, due, it is said, to threatening letters",
+   "cause": "threatening letters placed under doors",
+   "effect": "clerks of the Bank Line left almost en masse",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'due... to' to link the effect (clerks leaving) with the cause (threatening letters). The word 'due' functions as a causal connector equivalent to 'because of' or 'as a result of'. Although the quote includes the hedge 'it is said', the instructions state that hedges are acceptable. Therefore, the quote directly states a reason for the event.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'After this' indicates that the procession and handbill distribution caused the hesitant shopkeepers to open their doors.",
+   "quote": "a delegation consisting of the Foreign Commissioner, the Prefect in Chief of the Shanghai-Woosung Constabulary, the Chinese City Magistrate, and representatives of the Chamber of Commerce and federated unions made a procession through the streets in motors bearing flags inscribed \"Shops should be opened. The Government takes full responsibility for negotiations.\" After this the hesitators opened their doors.",
+   "cause": "procession by officials and union reps with flags stating government responsibility",
+   "effect": "hesitant shopkeepers opened their doors",
+   "check": {
+    "reasoning": "The quote links the cause (the procession) to the effect (shopkeepers opening doors) using the temporal sequence marker 'After this'. It states that the event happened, and then the result followed. However, it does not use any explicit causal language like 'because', 'due to', or a causal verb connecting the specific named cause to the effect. The link is purely sequential, implying causation through timing rather than stating it directly.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'Following' indicates that the false reports caused the anti-foreign riot.",
+   "quote": "Following false reports in this morning's vernacular papers, an anti-foreign riot took place this evening.",
+   "cause": "false reports in vernacular papers",
+   "effect": "anti-foreign riot",
+   "check": {
+    "reasoning": "The quote uses the phrase 'Following false reports' to link the cause and effect. While 'following' indicates sequence, it functions here as a causal connector implying that the reports preceded and led to the riot. However, strictly adhering to the provided rules, 'following' is listed under 'sequence only' ('after this', 'then', 'when'). The quote does not use explicit causal markers like 'because', 'due to', or 'as a result of'. It also does not fit the protest/appeal/action against threat categories. Therefore, based on the strict definition provided in the instructions where 'following' falls under sequence only, this should be rejected.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'after which' links the fire brigade's ineffective action to the state of extreme emergency that led to machine gun fire.",
+   "quote": "The fire brigade ineffectually turned hoses on the mob after which, there being a state of extreme emergency, under orders of the Navy, the rioters were fired on with machine guns.",
+   "cause": "fire brigade turning hoses ineffectually",
+   "effect": "rioters fired on with machine guns",
+   "check": {
+    "reasoning": "The quote links the two events using the phrase 'after which', which indicates a sequence of events rather than a direct causal mechanism. While it mentions a 'state of extreme emergency' as a condition, the primary grammatical connector between the fire brigade's action and the rioters being fired upon is temporal ('after which'), not causal (e.g., 'because', 'due to'). The quote describes what happened next in time, but does not explicitly state that the ineffectual hoses *caused* the machine gun firing; rather, it implies a sequence of escalating events. This fits the rejection criteria for 'sequence only' where the link is established by 'after this' or similar temporal markers without a stated reason or causal verb connecting the specific named cause to the effect.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'after which' links the coolies attempting to resume work to them being mobbed and prevented from doing so.",
+   "quote": "this morning when the upper wharf coolies attempted to resume work they were mobbed and prevented from doing so.",
+   "cause": "coolies attempting to resume work",
+   "effect": "coolies mobbed and prevented from working",
+   "check": {
+    "reasoning": "The quote uses the temporal conjunction 'when' to link the two events ('coolies attempted to resume work' and 'they were mobbed'). This indicates a sequence of events (Event A happened, then Event B happened) but does not explicitly state that the attempt caused the mobbing or prevention. There are no causal markers like 'because,' 'due to,' or 'as a result of.' Therefore, it falls under the rejection criteria for 'sequence only.'",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'as a result of' states that the strike caused the widening in scope and the stoppage of domestic servants.",
+   "quote": "The anti-British shipping strike has widened in scope, as has the stoppage of domestic servants.",
+   "cause": "anti-British shipping strike",
+   "effect": "widening in scope and stoppage of domestic servants",
+   "check": {
+    "reasoning": "The quote uses the phrase 'as has' to connect the two events. This is a temporal or correlational conjunction indicating that one event happened at the same time as or alongside the other, but it does not explicitly state that the shipping strike *caused* the stoppage of domestic servants. It merely places them side by side in a sequence of observation without asserting a causal mechanism. Therefore, this falls under the 'sequence only' or 'placed side by side' rejection criteria.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'had a chance to settle down' implies that the time allowed for arrangements to settle caused the service to become more efficient.",
+   "quote": "The position at Hotels, Cafes, etc., is very much the same as yesterday except that the service is more efficient now that emergency arrangements have had a chance to settle down.",
+   "cause": "emergency arrangements having had a chance to settle down",
+   "effect": "service became more efficient",
+   "check": {
+    "reasoning": "The quote explicitly links the cause ('emergency arrangements have had a chance to settle down') to the effect ('service is more efficient now') using the phrase 'now that'. The structure 'X now that Y' functions as a causal connector indicating that Y is the reason X is happening. This fits the criteria for a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'compelled to' indicates that the strike situation forced the hotel to take action.",
+   "quote": "The Hongkong Hotel has been compelled to supplement the emergency staff with foreign assistants who arrived this morning from Shanghai.",
+   "cause": "strike situation (implied context of 'emergency staff')",
+   "effect": "Hongkong Hotel supplemented staff with foreign assistants",
+   "check": {
+    "reasoning": "The quote uses the causal verb 'compelled' to describe the action taken by the Hongkong Hotel. However, the specific cause (the strike situation) is not explicitly named within the text of the quote itself; it is only provided in the user's prompt as implied context. According to the rejection criteria, a causal verb with no cause named in the quote (such as 'were compelled') should be rejected because the link relies on external information rather than being directly stated in the source text.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'is due to' states that the Tung Wah Hospital's action caused the market stalls to be manned and meat to be available.",
+   "quote": "This, the Food Controller, Mr. N. L. Smith, told a China Mail representative, is due to the action of the Tung Wah Hospital in placing men at the disposal of the Government.",
+   "cause": "Tung Wah Hospital placing men at Government's disposal",
+   "effect": "Central Market stalls manned and meat available",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'is due to' to link the effect (implied by 'This') with the cause ('the action of the Tung Wah Hospital...'). The phrase 'due to' is a stated reason/result indicator found in the KEEP criteria. Therefore, the quote directly states that the hospital's action caused the situation described.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'owing to' states that the Tung Wah Hospital's cheap rice prices forced retailers to lower their prices.",
+   "quote": "owing to the action of the Tung Wah Hospital in selling rice cheaply the Chinese retailers had this morning been forced to bring their prices down",
+   "cause": "Tung Wah Hospital selling rice cheaply",
+   "effect": "Chinese retailers forced to bring prices down",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'owing to' to link the cause ('action of the Tung Wah Hospital in selling rice cheaply') with the effect ('Chinese retailers had this morning been forced to bring their prices down'). This matches the rule for a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'owing to' states that the Tung Wah Hospital's price charges caused shop notices regarding price reductions.",
+   "quote": "Notices were now up at the shops that owing to the price charged by the Tung Wah Hospital the price would be reduced to $7.00 a picul",
+   "cause": "price charged by the Tung Wah Hospital",
+   "effect": "shop notices stating price reduction to $7.00 a picul",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'owing to' to connect the high price charged by the Tung Wah Hospital (the cause) with the decision to reduce the price (the effect). The word 'owing to' is a stated reason/result marker that directly asserts a causal relationship, fitting the criteria for keeping the claim.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'owing to' states that the delay caused the dozen scoundrels to escape the new regulation.",
+   "quote": "although owing to delay in the issue of the regulation these would escape this provision",
+   "cause": "delay in issuing the regulation",
+   "effect": "dozen scoundrels escaped the new regulation",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'owing to' to link the event 'delay in the issue of the regulation' (cause) with the result 'these would escape this provision' (effect). This matches the rule for a stated reason or result using causal words like 'owing to'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'If these measures were adopted... intimidation would quickly cease' is a conditional claim about real past events (the proposed measures) and their expected result.",
+   "quote": "If these measures were adopted His Excellency was confident that intimidation would quickly cease",
+   "cause": "adoption of the proposed measures",
+   "effect": "intimidation would quickly cease",
+   "check": {
+    "reasoning": "The quote uses a conditional structure ('If these measures were adopted...') to describe a hypothetical future scenario. The speaker expresses confidence in a predicted outcome based on this condition, rather than stating that the adoption of measures actually caused the cessation of intimidation as a past or present fact. This matches the REJECT criteria for 'a prediction or conditional about the future' (specifically matching the pattern 'if these measures were adopted').",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'mainly due to' states that unsettled conditions caused the trouble.",
+   "quote": "the trouble was mainly due to unsettled conditions owing to the lack of a strong central government, the destructive wars and the irritation of the Chinese with petty local rulers resulting in discontent which had been skillfully directed by interested parties against the foreigners whose treaty rights they represent as inimical to the well-being of China.",
+   "cause": "unsettled conditions (lack of strong central government, destructive wars, irritation with petty rulers)",
+   "effect": "Shanghai trouble",
+   "check": {
+    "reasoning": "The quote explicitly links the cause ('unsettled conditions...') to the effect ('the trouble') using the phrase 'mainly due to'. It further reinforces this causal chain with 'owing to' and 'resulting in'. These are direct causal indicators matching the KEEP criteria for a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'resulting in' states that irritation caused discontent.",
+   "quote": "the irritation of the Chinese with petty local rulers resulting in discontent",
+   "cause": "irritation of Chinese with petty local rulers",
+   "effect": "discontent",
+   "check": {
+    "reasoning": "The quote uses the phrase 'resulting in', which explicitly states that the first event (irritation) caused the second event (discontent). This matches the rule for a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'had been skillfully directed by' states that interested parties caused the direction of the discontent.",
+   "quote": "discontent which had been skillfully directed by interested parties against the foreigners whose treaty rights they represent as inimical to the well-being of China.",
+   "cause": "interested parties",
+   "effect": "directing discontent against foreigners",
+   "check": {
+    "reasoning": "The quote explicitly states that the discontent 'had been skillfully directed by interested parties'. The phrase 'directed by' functions as a causal verb indicating agency, where 'interested parties' is the named cause performing the action of directing (the effect). This fits the rule for 'a named cause with a causal verb'.",
+    "keep": true
+   }
+  }
+ ],
+ "chunks": [
+  {
+   "reasoning": "The text states that 'Had they succeeded... there undoubtedly would have been greater bloodshed', which is a conditional claim about real past events regarding the mob seizing arms.",
+   "quote": "Had they succeeded and seized the arms at the police station there undoubtedly would have been greater bloodshed.",
+   "cause": "mob succeeding in seizing arms at the police station",
+   "effect": "greater bloodshed",
+   "check": {
+    "reasoning": "The quote uses a counterfactual conditional structure ('Had they succeeded... there undoubtedly would have been') to describe a hypothetical past scenario and its direct consequence. This matches the rule for 'had X happened, Y would have followed about real past events' (specifically, a hypothetical version of them). The words linking the cause and effect are 'Had' (condition) and 'would have been' (result), establishing a clear causal link between the mob seizing arms and the resulting bloodshed.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'Had... co-operated... a deplorable loss of life would have been avoided' states that cooperation would have prevented the casualties.",
+   "quote": "Had the Chinese authorities co-operated with the defence force, a deplorable loss of life would have been avoided.",
+   "cause": "Chinese authorities cooperating with the defence force",
+   "effect": "deplorable loss of life avoided",
+   "check": {
+    "reasoning": "The quote uses the conditional structure 'Had X happened, Y would have followed' to describe a specific past scenario (the lack of cooperation) and its hypothetical outcome (loss of life). The words linking the cause and effect are 'Had... co-operated' and 'would have been avoided'. This matches the rule for 'had X happened, Y would have followed about real past events', as it explicitly states that the non-cooperation was the reason the loss of life occurred.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'As a result' states that the resumption of rioting caused the Municipal Council to declare a state of emergency.",
+   "quote": "the anti-Japanese rioting was resumed this morning. As a result the Municipal Council declared a state of emergency.",
+   "cause": "resumption of anti-Japanese rioting",
+   "effect": "Municipal Council declared a state of emergency",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'As a result' to connect the resumption of rioting (cause) with the declaration of a state of emergency (effect). This matches the rule for 'a stated reason or result' using causal connectors like 'as a result'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'forced' indicates that the meeting caused the Chairman to sign the notice.",
+   "quote": "An excited meeting of 1,500 students and workers at the Chinese Chamber of Commerce yesterday evening forced, the Chairman of the Chamber to sign a notice calling a general strike to-day.",
+   "cause": "excited meeting of 1,500 students and workers",
+   "effect": "Chairman of the Chamber signed a notice calling a general strike",
+   "check": {
+    "reasoning": "The quote contains the phrase 'forced... to sign'. This matches the rule for 'a named cause with a causal verb (forced)'. The subject ('excited meeting') is explicitly named as the entity performing the action of forcing, and the object ('Chairman') is explicitly named as the one compelled to act. The causal link is direct and stated using the specific verb 'forced'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'after which' indicates that the police firing caused the crowd to disperse.",
+   "quote": "The police fired on the rioters seriously wounding five, after which the crowd dispersed.",
+   "cause": "police firing on rioters",
+   "effect": "crowd dispersed",
+   "check": {
+    "reasoning": "The quote links the two events using the phrase 'after which'. This indicates a sequence of events (the firing happened, then the dispersal happened) but does not explicitly state that the firing *caused* the dispersal. The crowd could have dispersed for other reasons (e.g., police arrival, exhaustion, or a pre-arranged signal). Therefore, this falls under the 'sequence only' rejection rule.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'depending on' states that the situation's state is determined by the backing the Reds intend to give.",
+   "quote": "The city is calm at present but the situation depends to some extent on the backing which the Reds intend to give the rioters.",
+   "cause": "backing the Reds intend to give the rioters",
+   "effect": "city situation (calmness/stability)",
+   "check": {
+    "reasoning": "The quote links the 'city situation' (effect) and the 'backing which the Reds intend to give' (cause) using the phrase 'depends to some extent on'. While this indicates a relationship of reliance or conditionality, it does not explicitly state that the backing *caused* the current calmness or will *definitely cause* a specific outcome in the way the prompt's criteria require. The phrase 'depends on' suggests uncertainty ('to some extent') rather than a direct causal mechanism like 'because', 'due to', or 'as a result of'. Furthermore, it does not fit the protest/appeal category, nor is it a named action taken against a threat. It describes a dependency/condition rather than a stated cause-and-effect event.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "The text explicitly states 'had no connection whatever with the strike', which is a denied causal link between the deaths and the strike.",
+   "quote": "their deaths had no connection whatever with the strike",
+   "cause": "deaths of two people",
+   "effect": "connection to the strike",
+   "check": {
+    "reasoning": "The quote explicitly denies a causal link using the phrase 'no connection whatever'. This directly matches the REJECT criteria for 'the quote denies the link' (specifically phrases like 'no connection', 'nothing to do with', or 'not the cause of'). Since the speaker is stating that the deaths were NOT caused by the strike, it does not support a causal claim that the strike brought about the deaths.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "The phrase 'beyond doubt was' establishes that apoplexy caused the death of the street character.",
+   "quote": "The cause of his death beyond doubt was apoplexy",
+   "cause": "apoplexy",
+   "effect": "death of the street character",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'The cause of his death', which directly names the causal relationship between 'apoplexy' and 'death'. This matches the rule for a stated reason or result using the specific connector 'the cause of'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "The text explicitly states 'This is explained by the fact that', linking the strike rumor to the vessel's behavior.",
+   "quote": "This is explained by the fact that the rumoured general strike in Canton and other parts of China was due to commence this morning.",
+   "cause": "rumoured general strike in Canton and other parts of China",
+   "effect": "s.s. Fatshan did not sail for Canton",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'This is explained by the fact that... was due to commence'. The word 'explained by' functions as a stated reason/result indicator, directly linking the non-sailing (the 'This') to the strike (the cause). This fits the rule for 'a stated reason or result'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "The text states 'He thought that the strike was ordered as part of a national movement', indicating the speaker believes the national movement caused the strike.",
+   "quote": "He thought that the strike was ordered as part of a national movement in sympathy with the movement at Shanghai and other treaty ports.",
+   "cause": "national movement in sympathy with movements at Shanghai and other treaty ports",
+   "effect": "strike ordered",
+   "check": {
+    "reasoning": "The quote contains the phrase 'as part of', which functions as a stated reason or justification for the action. The speaker explicitly links the 'strike' (effect) to the 'national movement' (cause) by stating the strike was ordered specifically because it was part of that broader movement. This fits the criteria for a stated reason/result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'yielded to persuasion' states that the men's reluctance was overcome by persuasion.",
+   "quote": "some of the men were reluctant to strike but that they 'yielded to persuasion'",
+   "cause": "persuasion",
+   "effect": "men who were reluctant to strike yielded",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'yielded to persuasion'. The preposition 'to' here functions as a causal link indicating that the action (yielding) was performed in response to or caused by the named factor (persuasion). This fits the criteria for a stated reason/result where the cause is clearly identified as the agent bringing about the effect.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'had a very good effect' states that statements by authorities caused a positive reaction in the community.",
+   "quote": "Statements by the authorities have had a very good effect on the Chinese community in general",
+   "cause": "statements by the authorities",
+   "effect": "very good effect on the Chinese community",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'have had a very good effect' to describe the outcome of the 'Statements by the authorities'. The structure 'X have had Y effect on Z' directly asserts that X is the cause and Y is the result. This fits the criteria for a stated reason or result, as it clearly links the specific action (statements) to the specific consequence (good effect).",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'because' states that the heavy loading of the ship is why the sister-ship had to delay its sailing.",
+   "quote": "her sister-ship, the On Lee, had to delay her sailing, because the ship was too heavily loaded.",
+   "cause": "the ship (Tai Lee) being too heavily loaded",
+   "effect": "sister-ship On Lee delayed sailing",
+   "check": {
+    "reasoning": "The quote explicitly uses the word 'because' to link the two events. The phrase 'because the ship was too heavily loaded' serves as a stated reason for the effect 'had to delay her sailing'. This matches the rule regarding a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'due to' states that the attempt to exploit the strike caused the breakdown in delivery.",
+   "quote": "This was due to an attempt to exploit the local strike position to obtain 'squeeze.'",
+   "cause": "attempt to exploit the local strike position",
+   "effect": "breakdown in the delivery",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'due to' to link the event (implied as the 'breakdown in the delivery' from the context of the cause/effect pair) with the reason ('an attempt to exploit the local strike position'). The word 'due to' is a stated reason marker that directly asserts a causal relationship, fitting the rule for 'a stated reason or result'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'In consequence of this' states that the seamen's action caused the boat to anchor.",
+   "quote": "After Saturday, according to the reports, no seamen will be allowed to man the river boats. In consequence of this and in order that the boat may not be stranded in Canton, the Kwong Sai, which returned to Hongkong, from Canton this morning, has gone to anchor",
+   "cause": "seamen refusing to man river boats",
+   "effect": "Kwong Sai went to anchor",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'In consequence of this' to link the situation (seamen not being allowed to man the boats) with the action taken (the boat going to anchor). This matches the rule for a stated reason or result using causal connectors like 'in consequence of'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'one that it is the Union's reply' states that the deportation order caused the seamen's action.",
+   "quote": "Two reasons are being put forward as to the motive behind such a decision—one that it is the Union's reply to the deportation order of the Government",
+   "cause": "Government deportation order",
+   "effect": "seamen's action (refusing to man boats)",
+   "check": {
+    "reasoning": "The quote explicitly identifies the 'Government deportation order' as the specific reason or motive ('one that it is the Union's reply') for the 'seamen's action'. The phrase 'reply to' functions as a stated causal link, indicating that the action was taken in response to (caused by) the order. This fits the criteria for a stated reason/result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'the other that they are merely acting in accordance with instructions' states that Canton's wishes caused the seamen's action.",
+   "quote": "Two reasons are being put forward as to the motive behind such a decision... and the other that they are merely acting in accordance with instructions from Canton who wish still further to prevent the return of workers to Hongkong",
+   "cause": "instructions from Canton",
+   "effect": "seamen's action (refusing to man boats)",
+   "check": {
+    "reasoning": "The quote explicitly states that the seamen are 'acting in accordance with' the 'instructions from Canton'. The phrase 'in accordance with' functions as a stated reason linking the cause (the instructions) directly to the effect (the action of refusing to man boats). This fits the criteria for a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'in view of' states that the danger to lives/property is the reason for the firing being considered necessary.",
+   "quote": "He says that the firing was most necessary in view of the danger to foreign lives and property in the Concession",
+   "cause": "danger to foreign lives and property in the Concession",
+   "effect": "firing was most necessary",
+   "check": {
+    "reasoning": "The quote contains the phrase 'in view of', which is explicitly listed as a valid causal connector (equivalent to 'due to' or 'because'). The speaker uses this phrase to justify the action ('firing was most necessary') by citing the specific reason ('danger to foreign lives and property'). This fits the rule for 'a stated reason or result' and 'a reason a speaker gives to justify an action'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'following' states that the damage and murder are the reasons for the specific danger mentioned.",
+   "quote": "particularly following the serious damage already done by the rioters and the murder of a Japanese the same evening",
+   "cause": "serious damage done by rioters and murder of a Japanese",
+   "effect": "danger to foreign lives and property",
+   "check": {
+    "reasoning": "The quote uses the phrase 'particularly following' to connect the events. This indicates a sequence of time (the damage happened, then the danger was noted or occurred), but it does not explicitly state that the damage *caused* the danger. The word 'following' can mean 'after' without implying causation. Therefore, this falls under the rejection criteria for 'sequence only' where the link is merely temporal.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'only as' indicates that the condition (last resort) caused the specific action (restricted fire).",
+   "quote": "fire was opened only as a last resort and even then was most restricted",
+   "cause": "firing being a last resort",
+   "effect": "fire was most restricted",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'only as a last resort' to explain why the action (opening fire) was taken. This functions as a stated reason justifying the action, fitting the rule for 'a reason a speaker gives to justify an action.' The structure 'X only as Y' directly links the condition of being a last resort (Cause) to the restriction on the action (Effect).",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'since' indicates that the stayores and Godown employees becoming affected caused the difficulty in clearing ships.",
+   "quote": "since the stayedores and a number of the Godown employees have become affected it has been almost impossible for them to clear ships at all",
+   "cause": "stayedores and Godown employees becoming affected",
+   "effect": "almost impossible to clear ships",
+   "check": {
+    "reasoning": "The quote explicitly uses the word 'since' to introduce the cause ('stayedores and a number of the Godown employees have become affected') and directly links it to the effect ('it has been almost impossible for them to clear ships at all'). The word 'since' functions as a causal conjunction here, indicating that the illness of the workers is the reason for the inability to clear ships. This matches the rule regarding 'a stated reason or result (because, due to, owing to, in view of, since...)'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'since' indicates that the commencement of the strike caused local shipping companies with Southern Chinese crews to be hardest-hit.",
+   "quote": "Local shipping companies with crews, consisting of Southern Chinese have been the hardest-hit of all since the commencement of the strike",
+   "cause": "commencement of the strike",
+   "effect": "local shipping companies with Southern Chinese crews hardest-hit",
+   "check": {
+    "reasoning": "The quote links the two events using the phrase 'since the commencement of the strike'. The word 'since' here indicates a temporal sequence (Event A happened, and then Event B happened), but it does not explicitly state that the strike *caused* the companies to be hit. It leaves open the possibility that they were hit for other reasons or simply coincidentally after the strike started. This fits the rejection criteria for 'sequence only' where the link is merely 'after this' or 'since' without a causal verb or explicit reason marker like 'because' or 'due to'.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'due' states that the threatening letters are the reason for the clerks leaving.",
+   "quote": "the clerks of the Bank Line have left almost en masse, due, it is said, to threatening letters",
+   "cause": "threatening letters placed under doors",
+   "effect": "clerks of the Bank Line left",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'due... to' to link the effect (clerks leaving) with the cause (threatening letters). The word 'due' functions as a causal connector equivalent to 'because of' or 'as a result of', directly stating that the threatening letters were the reason for the clerks' departure. This fits the criteria for a stated reason/result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'After this' indicates that the procession and handbill distribution caused the hesitant shopkeepers to open their doors.",
+   "quote": "a delegation consisting of the Foreign Commissioner, the Prefect in Chief of the Shanghai-Woosung Constabulary, the Chinese City Magistrate, and representatives of the Chamber of Commerce and federated unions made a procession through the streets in motors bearing flags inscribed \"Shops should be opened. The Government takes full responsibility for negotiations.\" After this the hesitators opened their doors.",
+   "cause": "procession by officials and union reps with flags stating government responsibility",
+   "effect": "hesitant shopkeepers opened their doors",
+   "check": {
+    "reasoning": "The quote links the cause (the procession) to the effect (shopkeepers opening doors) using the temporal sequence marker 'After this'. It states that the event happened, and then the result followed. However, it does not use any explicit causal language like 'because', 'due to', or a causal verb connecting the specific named cause to the effect. The link is purely sequential, implying causation through timing rather than stating it directly.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'Following' indicates that the false reports caused the anti-foreign riot.",
+   "quote": "Following false reports in this morning's vernacular papers, an anti-foreign riot took place this evening.",
+   "cause": "false reports in vernacular papers",
+   "effect": "anti-foreign riot",
+   "check": {
+    "reasoning": "The quote uses the phrase 'Following false reports' to link the cause and effect. While 'following' indicates sequence, it functions here as a causal connector implying that the reports preceded and led to the riot. However, strictly adhering to the provided rules, 'following' is listed under 'sequence only' ('after this', 'then', 'when'). The quote does not use explicit causal markers like 'because', 'due to', or 'as a result of'. It also does not fit the protest/appeal/action against threat categories. Therefore, based on the strict definition provided in the instructions where 'following' falls under sequence only, this should be rejected.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'after which' combined with 'there being a state of extreme emergency' implies the emergency (caused by the fire brigade's ineffectual action) led to the Navy ordering machine gun fire.",
+   "quote": "The fire brigade ineffectually turned hoses on the mob after which, there being a state of extreme emergency, under orders of the Navy, the rioters were fired on with machine guns.",
+   "cause": "state of extreme emergency",
+   "effect": "rioters fired on with machine guns",
+   "check": {
+    "reasoning": "The quote links the 'state of extreme emergency' to the action of firing on rioters using the phrase 'after which, there being a state of extreme emergency'. While 'after which' indicates sequence, the participial phrase 'there being a state of extreme emergency' functions as a stated reason or justification for the subsequent action ('under orders... the rioters were fired on'). The speaker is explicitly providing the rationale (the emergency) that necessitated the specific response (firing with machine guns), rather than merely stating two events happened in order. This fits the criteria for a 'stated reason' where the existence of the condition justifies the action.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'prevented from doing so' indicates that being mobbed caused the coolies to be unable to resume work.",
+   "quote": "when the upper wharf coolies attempted to resume work they were mobbed and prevented from doing so",
+   "cause": "coolies being mobbed",
+   "effect": "coolies prevented from resuming work",
+   "check": {
+    "reasoning": "The quote uses the temporal conjunction 'when' to link the two events ('coolies attempted to resume work' and 'they were mobbed and prevented'). This establishes a sequence of events (Event A happened, then Event B happened) but does not explicitly state that the mobbing *caused* the prevention. The structure fits the rejection criteria for 'sequence only,' where the link is merely temporal ('when', 'then') rather than causal.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'A strike was declared' is presented as the result of students haranguing the coolies.",
+   "quote": "the students haranguing the coolies.—Reuter. A strike was declared",
+   "cause": "students haranguing the coolies",
+   "effect": "strike declared",
+   "check": {
+    "reasoning": "The quote 'the students haranguing the coolies' is a noun phrase describing an event or action. It does not contain any causal verbs (like 'forced'), nor does it include causal conjunctions or prepositions (like 'because', 'due to', 'as a result of'). Furthermore, the text provides no protest, appeal, demand, or justification linking the haranguing to the strike; it merely lists the two events in sequence. The link between the cause and effect is implied by their placement next to each other, which constitutes a 'sequence only' relationship.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'now that' indicates that the settling down of emergency arrangements is the reason service is more efficient.",
+   "quote": "the service is more efficient now that emergency arrangements have had a chance to settle down",
+   "cause": "emergency arrangements having had a chance to settle down",
+   "effect": "service is more efficient",
+   "check": {
+    "reasoning": "The quote uses the phrase 'now that' to connect the two events. While 'now that' can sometimes imply causation, in this specific context, it functions primarily as a temporal marker indicating that the change in efficiency coincides with the time when arrangements have settled down. The quote describes a state of affairs ('more efficient now that...') rather than explicitly stating that the settling down *caused* the efficiency through a mechanism like 'because,' 'due to,' or 'as a result of.' It presents a sequence where one event has occurred and another is observed, but it does not directly assert a causal link in the manner required by the KEEP criteria (e.g., it lacks explicit causal verbs or reason/result markers). Therefore, it falls under the REJECT category for relying on sequence/temporal placement rather than a stated causal relationship.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'compelled to' states that the situation forced the hotel to take action.",
+   "quote": "The Hongkong Hotel has been compelled to supplement the emergency staff with foreign assistants who arrived this morning from Shanghai",
+   "cause": "situation requiring additional staff",
+   "effect": "Hongkong Hotel supplemented staff with foreign assistants",
+   "check": {
+    "reasoning": "The quote uses the phrase 'has been compelled', which is a causal verb indicating force or necessity. However, the specific cause ('situation requiring additional staff') is not explicitly named within the text of the quote itself; it is only provided in the external context labeled as 'Cause'. According to the rejection criteria, a causal verb with no cause named in the quote (such as 'were prevented', 'was compelled') should be rejected. Since the quote does not contain words like 'because', 'due to', or explicitly state what forced the hotel to act, it fails to directly and clearly state the causal link based solely on its own text.",
+    "keep": false
+   }
+  },
+  {
+   "reasoning": "'request of the management has been acceded to' states that the management's request caused others to exercise patience and cooperate.",
+   "quote": "the request of the management has been acceded to on all sides that patience should be exercised and customers co-operate wherever possible",
+   "cause": "management's request for patience and cooperation",
+   "effect": "patience exercised and customers cooperate",
+   "check": {
+    "reasoning": "The quote contains the phrase 'the request of the management has been acceded to'. The verb 'acceded to' functions as a causal verb indicating that the action (customers exercising patience) was compelled or brought about by the preceding event (the management's request). This fits the rule for 'a named cause with a causal verb (forced)', where 'acceded to' serves the same function as 'forced' in establishing that the cause directly resulted in the effect.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'is due to' states that the Tung Wah Hospital's action caused the stalls to be manned and meat to be available.",
+   "quote": "This, the Food Controller, Mr. N. L. Smith, told a China Mail representative, is due to the action of the Tung Wah Hospital in placing men at the disposal of the Government",
+   "cause": "Tung Wah Hospital placing men at the disposal of the Government",
+   "effect": "Central Market stalls manned and meat available",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'is due to' to link the effect (the situation being described, implied as the availability of men/meat) to the cause ('the action of the Tung Wah Hospital'). The phrase 'due to' is a stated reason/result indicator found in the KEEP criteria. Therefore, the quote directly states that the hospital's action caused the result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'if... they would' establishes a conditional causal link regarding the owners' promise.",
+   "quote": "The Government has promised the owners all along that if their men left they would see to the slaughtering and preparation of the animals also the delivering of meat to the market",
+   "cause": "owners' men leaving",
+   "effect": "Government seeing to slaughtering, preparation, and delivery of meat",
+   "check": {
+    "reasoning": "The quote contains a conditional structure ('if their men left they would see to...') describing a past promise regarding real events. This matches the rule for 'had X happened, Y would have followed' about real past events (specifically, a promise made in the past about what would happen if a specific condition were met). The words linking the cause and effect are 'if' and 'would see to', establishing that the Government's action was contingent upon the owners' men leaving.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'owing to' states that the hospital's action caused retailers to lower prices.",
+   "quote": "owing to the action of the Tung Wah Hospital in selling rice cheaply the Chinese retailers had this morning been forced to bring their prices down",
+   "cause": "Tung Wah Hospital selling rice cheaply",
+   "effect": "Chinese retailers forced to bring prices down",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'owing to' to link the cause ('action of the Tung Wah Hospital in selling rice cheaply') with the effect ('Chinese retailers had this morning been forced to bring their prices down'). This matches the rule for a stated reason or result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'owing to' states that the hospital's price caused shop notices announcing a reduction.",
+   "quote": "Notices were now up at the shops that owing to the price charged by the Tung Wah Hospital the price would be reduced to $7.00 a picul",
+   "cause": "price charged by the Tung Wah Hospital",
+   "effect": "shops posting notices of price reduction to $7.00",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'owing to' to connect the high price charged by the Tung Wah Hospital (the cause) with the decision to post notices about a price reduction (the effect). The word 'owing to' is a stated reason/result marker that directly asserts a causal relationship, fitting the criteria for keeping the claim.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'the main reason for' explicitly states that the cowardice and folly caused the spread of the strike.",
+   "quote": "that the main reason for the spread of the strike wa the cowardice and folly of the working classes who allowed themselves to be intimidated by the merest shadow of threats",
+   "cause": "cowardice and folly of the working classes allowing intimidation",
+   "effect": "spread of the strike",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'the main reason for' to link the cause ('cowardice and folly...') to the effect ('spread of the strike'). This directly satisfies the rule regarding a stated reason. The structure clearly asserts that the named cause brought about the named effect.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'when through gross cowardice' indicates that the laborers' refusal was caused by their cowardice.",
+   "quote": "It was difficult to deal with the situation when through gross cowardice, labourers, in spite of offers of handsome rewards, would not hand over to the police those who threaten them with violence",
+   "cause": "gross cowardice of labourers",
+   "effect": "labourers refusing to hand over intimidators to the police",
+   "check": {
+    "reasoning": "The quote explicitly links the cause ('gross cowardice') to the effect ('would not hand over... those who threaten them') using the phrase 'through gross cowardice'. The word 'through' functions as a causal connector (synonymous with 'due to' or 'as a result of'), directly stating that the cowardice was the reason for the refusal. This fits the criteria for a stated reason/result.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'owing to' states that the delay in issuing the regulation caused these scoundrels to escape the provision.",
+   "quote": "although owing to delay in the issue of the regulation these would escape this provision",
+   "cause": "delay in the issue of the regulation",
+   "effect": "scoundrels escape the provision",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'owing to' to link the event 'delay in the issue of the regulation' (cause) with the result 'these would escape this provision' (effect). This matches the rule for a stated reason or result using causal words like 'owing to'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'Thanks to' states that the activities of the police and public caused it to be possible to catch the scoundrels.",
+   "quote": "Thanks to the activities of the police and members of the public... it had been possible to catch some dozen of these scoundrels",
+   "cause": "activities of the police and members of the public",
+   "effect": "it was possible to catch some dozen scoundrels",
+   "check": {
+    "reasoning": "The quote uses the phrase 'Thanks to', which functions as a causal connector equivalent to 'due to' or 'owing to'. This explicitly states that the activities of the police and the public were the reason (cause) for making it possible to catch the scoundrels (effect). This fits the rule for 'a stated reason or result'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'mainly due to' and 'owing to' state that unsettled conditions caused by specific factors led to discontent.",
+   "quote": "the trouble was mainly due to unsettled conditions owing to the lack of a strong central government, the destructive wars and the irritation of the Chinese with petty local rulers resulting in discontent",
+   "cause": "lack of strong central government, destructive wars, and irritation with petty local rulers",
+   "effect": "discontent",
+   "check": {
+    "reasoning": "The quote explicitly uses causal connectors 'due to' and 'owing to' to link the listed factors (lack of a strong central government, destructive wars, irritation) as the reasons for the effect (unsettled conditions/discontent). It also uses 'resulting in' to show the consequence. This matches the rule for 'a stated reason or result'.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'resulting in' states that the discontent was caused by the lack of a strong central government, wars, and irritation.",
+   "quote": "owing to the lack of a strong central government, the destructive wars and the irritation of the Chinese with petty local rulers resulting in discontent",
+   "cause": "lack of strong central government, destructive wars, and irritation with petty local rulers",
+   "effect": "discontent",
+   "check": {
+    "reasoning": "The quote explicitly uses the phrase 'owing to' to link the cause ('lack of a strong central government') to the effect ('discontent'). This matches the rule for stated reasons or results.",
+    "keep": true
+   }
+  },
+  {
+   "reasoning": "'resulting in' states that the discontent was skillfully directed by interested parties.",
+   "quote": "resulting in discontent which had been skillfully directed by interested parties",
+   "cause": "discontent",
+   "effect": "interested parties directing it against foreigners",
+   "check": {
+    "reasoning": "The quote contains the phrase 'resulting in', which functions as a causal verb linking the preceding event (implied context of an action) to the effect 'discontent'. However, the user's prompt defines the 'Cause' as 'discontent' and the 'Effect' as 'interested parties directing it'. This reverses the logical flow of the sentence. In the text 'resulting in discontent...', 'discontent' is clearly the *effect* (the result), while the cause is whatever happened before that resulted in it. The clause 'which had been skillfully directed by interested parties' describes the nature of the discontent, not an effect caused by the discontent itself. Therefore, the quote does not state that 'discontent' caused 'interested parties to direct it'; rather, it states that some prior event caused 'discontent', which was then directed by parties. The mapping provided in the prompt is factually incorrect based on the text's syntax and semantics.",
+    "keep": false
+   }
+  }
+ ]
+}

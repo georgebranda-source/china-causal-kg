@@ -1,0 +1,27 @@
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "1c87384fa564",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 916,
+  "articles_done": 6,
+  "articles_with_claims": 4,
+  "claims": {
+    "dropped_by_check": 5,
+    "kept": 2,
+    "quote_not_found": 1
+  },
+  "seconds_total": 67
+}

@@ -1,4 +1,7 @@
-"""Queue HKPL scrapes of China Mail, one calendar month at a time, after the Aug–Sep batch finishes."""
+"""Queue HKPL scrapes of China Mail, one calendar month at a time, after the Aug–Sep batch finishes.
+
+Months can be given as arguments instead of the default list, e.g. `hkpl_queue.py 1926-04 1926-05`.
+"""
 import calendar
 import json
 import sys
@@ -52,7 +55,8 @@ def wait_for_previous_batch() -> None:
 
 def main() -> None:
     wait_for_previous_batch()
-    for year, month in MONTHS:
+    months = [tuple(map(int, a.split("-"))) for a in sys.argv[1:]] or MONTHS
+    for year, month in months:
         name = f"china_mail_{calendar.month_abbr[month].lower()}_{year}"
         print(f"\n########## {name} ##########", flush=True)
         try:

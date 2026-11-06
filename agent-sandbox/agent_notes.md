@@ -6,7 +6,7 @@ what was chosen and why, and what is still open. Work done with Claude (Opus 5.5
 The forward-looking plan is in `KG_PLAN.md`. Purely technical setup details (section 3) are kept short;
 they matter only where they affected a methodological choice.
 
-Last updated: 2026-10-30.
+Last updated: 2026-11-06.
 
 ---
 
@@ -310,6 +310,267 @@ newly scraped month, with the same scoring and cutoff.
 - **Scope note:** the queue covers Apr 1925 – Mar 1926, so the VL backlog will grow over several days.
   It is processed in score order across all months, not month by month. A month's VL coverage is
   complete only when the pipeline log reports "done".
+- **Memory stop and restart (2026-10-30 night → 2026-10-31 15:21).** Overnight, all background jobs were
+  killed because system RAM ran critically low: the June–July VL run (40 of 92 pages done, all saved), the
+  waiting pipeline, the idle Ollama server, and the scrape queue. The queue stopped after Oct 1925 issue
+  10-03. The likely cause: one `ocr_vl.py` process had been kept open for the whole 92-page list, and its
+  RAM grew to about 10 GB by page 28 and kept growing.
+  Changes before restarting:
+  - VL batches cut from 20 pages to **10**. Each batch is a fresh process, so its memory is released
+    every ~35 min.
+  - A **RAM guard** in the pipeline: a batch starts only with ≥ 4 GB free, and is ended early if free RAM
+    drops below 3 GB. Pages already finished are kept, and the stop does not count as a page failure.
+  The 52 remaining June–July pages need no separate run: they are in the pipeline's score-ordered backlog.
+  The queue was relaunched with `.venv-kg` (the root `.venv` lacks selenium). Already complete issues
+  are skipped. Ollama stays off until OCR is done.
+- **Model cache failure and June–July priority (2026-10-31 16:09–16:44).** The first VL batch failed with
+  "Permission denied" on PaddleOCR's model files. 7 of the 10 folders in `~/.paddlex/official_models`
+  (including both VL models) became unreadable. Files there reported "not found" yet refused to open,
+  which points to them being stuck pending deletion. Disabling Norton features did not help. The pipeline
+  was paused first so pages would not be wrongly marked as failed (none were).
+  Fix: the pipeline now sets `PADDLE_PDX_CACHE_HOME=~/.paddlex_cache2`, where the VL models
+  (PaddleOCR-VL-1.6 1.8 GB, PP-DocLayoutV3 126 MB) were re-downloaded. A one-page test (06-05 p.1) ran
+  normally. The re-downloaded models are PaddleX's official ones under the same names. Output was not
+  compared byte-for-byte with an earlier page.
+  **User priority: June–July VL first.** The VL backlog is now sorted June–July first, then by score.
+  The 52 remaining June–July pages run before any other month.
+- **Scrape queue finished (2026-10-31 ~18:00).** Apr 1925 – Mar 1926 are all scraped.
+
+  | Collection | Issues | Pages |
+  |---|---|---|
+  | Apr 1925 | 25 | 341 |
+  | May 1925 | 25 | 377 |
+  | June–July 1925 | 50 | 496 |
+  | Aug–Sep 1925 | 52 | 566 |
+  | Oct 1925 | 27 | 335 |
+  | Nov 1925 | 25 | 301 |
+  | Dec 1925 | 26 | 312 |
+  | Jan 1926 | 25 | 302 |
+  | Feb 1926 | 23 | 279 |
+  | Mar 1926 | 27 | 324 |
+  | **Total** | **305** | **3,633** |
+
+  `hkpl_verify.py` found one gap: page 3 of 1925-12-05, which had failed with a network error mid-run.
+  It was re-downloaded on its own (`scrape_document`, same 3 s page delay). After that, every collection
+  has 0 mismatches against `metadata.json` `totalPages`.
+- **VL pass complete (2026-11-01 13:46).** The pipeline exited normally: "done: scraper stopped, nothing
+  left". All **3,633** pages are fast-OCR'd and scored, and **568** score ≥ 8. Every one of the 568 now
+  has VL text, with **0 failed pages**. There are 587 VL pages on disk in total; the other 19 are the
+  calibration pages and earlier selections below the cutoff. June–July finished first, at
+  2026-10-31 20:38. The other months then ran at about 2 min/page, in 10-page batches. The RAM guard
+  never triggered: free RAM stayed at ~22 GB.
+- **Extension to Apr–May 1926 (user, 2026-11-01).** The study window is now **Apr 1925 – May 1926**
+  (14 months). Before, it ended at Mar 1926, read as 12 months from Apr 1925. Apr and May 1926 are
+  scraped and OCR'd exactly as the other months:
+  - `hkpl_queue.py 1926-04 1926-05`: the queue now accepts months as arguments. Same search URL and
+    filters, 30 s / 3 s delays.
+  - `pipeline_new_scrapes.py`: fast OCR, then scoring with the frozen vocabulary, then VL for score ≥ 8.
+  Started 14:02.
+
+  Results:
+  - Scrape done at ~15:15. Apr 1926: 25 issues, 300 pages. May 1926: 26 issues, 317 pages. 0 failed
+    downloads, 0 page-count mismatches.
+  - Pipeline done at 19:57, 0 failed pages. Apr 1926 has 44 pages scoring ≥ 8; May 1926 has 77. All have
+    VL text.
+  - **Full corpus: 356 issues, 4,250 pages, all fast-OCR'd and scored. 689 score ≥ 8, all VL-transcribed**
+    (708 VL pages on disk).
+  - May 1926 has the most ≥ 8 pages of any single month, and more than Apr 1926. This may reflect strike
+    or boycott news in that period, but it has not been checked.
+- **Extension to Jun–Nov 1926 (user, 2026-11-01 20:05).** The study window is now **Apr 1925 – Nov 1926**
+  (20 months). Same scrape command and standards (`hkpl_queue.py 1926-06 … 1926-11`), and the same
+  pipeline: fast OCR, frozen-vocabulary scoring, VL for score ≥ 8.
+  - Scrape done at ~23:40. 157 issues, 1,890 pages. 0 failed downloads, 0 page-count mismatches.
+  - Aug, Sep and Oct each have exactly 26 issues and 313 pages. This was checked: each folder holds only
+    its own month's dates, with no duplicate images. It is a coincidence; issues are mostly 12 pages.
+  - Early scoring (1,638 of 1,890 pages scored): **411 score ≥ 8 (25%)**. Compare 16% for Apr 1925 – May
+    1926 (689 of 4,250). The strike–boycott ran until Oct 1926, so this may be real coverage, but it has
+    not been checked. It roughly doubles the VL work to ~11 h.
+  - Pipeline done 2026-11-02 09:48, 0 failed pages. **Final for Jun–Nov 1926: 462 of 1,890 pages score
+    ≥ 8 (24%)**, all VL-transcribed. By month: Jun 81, Jul 78, Aug 77, Sep 79, Oct 83, Nov 64.
+  - The rate stays high in Nov 1926, after the boycott ended in Oct 1926. So the higher rate may not be
+    strike coverage alone; for example, other labour news could match BROAD terms. Check before treating
+    these months as comparable to 1925.
+  - **Full corpus, Apr 1925 – Nov 1926: 513 issues, 6,140 pages, all fast-OCR'd and scored. 1,151 score
+    ≥ 8, all with VL text** (1,170 VL pages on disk).
+- **VL below the cutoff (user, 2026-11-02 ~09:55): expand the score scope, in chronological order, until
+  the user says stop.** `pipeline_new_scrapes.py --tiers 5,2,1,0` works through one score band at a time,
+  highest band first. Within each band it goes in date order, then page order. If it is stopped at any
+  point, every higher band is complete and the current band is complete up to a known date. Pages still
+  without VL text:
+
+  | Score band | Pages | Est. time at ~2 min/page |
+  |---|---|---|
+  | 5–7 | 964 | ~32 h |
+  | 2–4 | 2,010 | ~67 h |
+  | 1 | 1,268 | ~42 h |
+  | 0 | 728 | ~24 h |
+  | **Total** | **4,970** | **~7 days** |
+
+  The bands are an ordering choice for interruptibility, not a new selection rule. The analysis can still
+  use any cutoff, since every page keeps its score.
+- **Replaced (user, 2026-11-02 ~15:25): VL every page of June–July 1925 instead.** The band run was
+  stopped after a few minutes, during its first batch, with no pages lost. The new run,
+  `pipeline_new_scrapes.py --only china_mail_june_july_1925 --tiers 0`, takes all **340 remaining
+  June–July pages** regardless of score, in date order. 156 of the 496 already had VL text. When done,
+  June–July 1925 will be **fully VL-transcribed (496/496)**. This makes it the core corpus that does not
+  depend on the score screen: no page is excluded by the keyword cutoff. Other months stay at score ≥ 8.
+- **Then full VL for every month (user, 2026-11-02 ~15:35).** `vl_full_queue.py` waits for the June–July
+  run, then VLs every page of each group in this order, each group in date order:
+
+  | Order | Group | Pages | Without VL |
+  |---|---|---|---|
+  | 1 | Aug–Sep 1925 | 566 | 411 |
+  | 2 | Apr–May 1925 | 718 | 671 |
+  | 3 | Oct–Nov 1925 | 636 | 559 |
+  | 4 | Dec 1925 – Jan 1926 | 614 | 546 |
+  | 5 | Feb–Mar 1926 | 603 | 518 |
+  | 6 | Apr–May 1926 | 617 | 496 |
+  | 7 | Jun–Jul 1926 | 639 | 480 |
+  | 8 | Aug–Sep 1926 | 626 | 470 |
+  | 9 | Oct–Nov 1926 | 625 | 478 |
+
+  That is 4,629 pages after June–July, about 6½–12 days at 2–3¾ min/page. The order works outward from
+  the strike's core months. If the run stops early, the corpus is complete VL for a contiguous span
+  around June 1925.
+- **Paused 2026-11-02 21:07 for a computer shutdown (user request).** June–July 1925 was at 277/496 VL
+  pages, through 06-16 p.2. All processes were stopped and `pipeline.stop` was left in place. To resume,
+  delete `pipeline.stop` and run `vl_full_queue.py` after restarting `pipeline_new_scrapes.py --only
+  china_mail_june_july_1925 --tiers 0`. Pages are skipped once they have `_blocks.json`, so a page cut off
+  mid-run is simply redone.
+
+## 5d. Planning local-LLM extraction for June–July 1925 (2026-11-06)
+
+User asked for a plan to extract causal relations from each June–July 1925 article with the installed
+Qwen. Plan: `EXTRACTION_PLAN.md`. It supersedes `KG_PLAN.md` Stage 0b and the Stage 1 model comparison and
+throughput estimate. Not yet approved; four decisions are open there.
+
+**State on disk:** 277 of 496 June–July pages have VL text; 219 are missing and `pipeline.stop` is in place.
+`articles_md/articles.jsonl` still covers only the first 40 pages.
+
+**Article builder on the 277 pages** (output to a temp folder, repo files unchanged): 275 pages processed,
+2 crashed in `find_columns` (06-02 p8, 06-03 p12; no ordinary text blocks). 8,002 units, 3,813 news, 622k
+news words, median 110, p90 344, max 3,025; 35 over 800 words; 610 news units have no headline; 951 (25%)
+contain a strike-related term. These pages aren't a random sample: they are all of 06-01 to 06-13 plus
+high-scoring pages after that.
+
+**Found while reading `build_articles.py`:** `plain_text()` leaves out `source` and `dateline` items, so
+`articles.jsonl` has no "(Reuter's Service.)" lines. This must change before extraction, as it would
+weaken `asserted_by`.
+
+**Possible date problem, unconfirmed:** the 06-26 issue has 24 pages against 2–8 for its neighbours, with
+"STRIKE EDITION" mastheads on at least pp. 1, 6 and 12, and the collection has no 06-15, 06-18 or 06-25
+issue. The file may bundle several editions under one date.
+
+**Qwen probe** (`extraction_probe/`; `qwen3.5:9b-q8_0`, temperature 0; 5 strike-dense demo articles, plus
+2 no-strike articles in the first run). "Demo found" is quote overlap with Claude's unverified relations,
+not a true recall figure.
+
+| Setup | Time/article | Relations | Verbatim | Demo found |
+|---|---|---|---|---|
+| No thinking, zero-shot, schema | ~4 s | 12 | 12 | 8/24 |
+| No thinking, 3-shot, schema | ~5 s | 12 | 12 | 9/24 |
+| Thinking, schema, 6k cap | 73 s | 0 | – | 6 of 7 calls hit the cap and gave no JSON |
+| Thinking, no schema, 14k cap (3 articles) | ~90 s, ~7,500 tokens | 16 | 14 | 9/18 (no-thinking: 6/18) |
+
+Zero-shot credited named speakers' claims to "China Mail"; few-shot corrected this. The few-shot run
+flipped one counterfactual (quote correct, "failing to co-operate → loss of life avoided"), which is why
+the plan adds a verifier pass. Both no-strike articles returned no relations (zero-shot). Thinking on all
+articles would take ~7 days, so it is held back as an option for strike-term articles only.
+
+## 5e. Extraction plan revised: score ≥ 8 pages, reasoning-first schema (user, 2026-11-06)
+
+**Decisions (user):**
+- Run extraction only on pages scoring ≥ 8, not every article. This replaces the every-article scope
+  proposed in 5d.
+- No thinking.
+- Model output is `reasoning`, `quote`, `cause`, `effect`, in that order. `reasoning` goes first because it
+  should improve the accuracy of the later fields. Rows wrap this as `extraction` beside `page`, `date` and
+  `headline`.
+- No attribution field. `kind` and `hedged` are also left out, since they aren't in the requested format.
+
+**Consequences:**
+- All 137 pages have VL text (61 June, 76 July), so extraction doesn't depend on the 219 missing pages. The
+  two pages that crashed `find_columns` score 0, so they are out of scope. Of the 06-26 issue only p2 scores
+  ≥ 8, and its fast OCR reads "JUNE 26", so the possible date problem in 5d barely touches this run.
+- Without `asserted_by`, the `source`/`dateline` fix from 5d is no longer needed for this run.
+- The score is per page, so all news items on those pages are in scope: 1,995 units, 343k words, median 120,
+  p90 366, max 2,755, 17 over 800 words, 198 without a headline. 732 (37%) contain a strike-related term.
+  Whether to narrow to those 732 is open.
+- `KG_PLAN.md` calls `asserted_by` mandatory, and `demo_kg/build_graph.py` and the viewer use it and `kind`.
+  Stage 3 needs adjusting; attribution could be added later in a separate pass over saved quotes.
+
+**Probe of the new format** (`extraction_probe/probe3.py`, same 5 demo articles, no examples): reasoning
+came first in all 8 outputs (Ollama's JSON schema keeps the order). ~4 s per article, 8 relations, 8 verbatim,
+6 of 24 demo quotes found, against 8 of 24 for the earlier schema with no examples. Nothing was returned for
+"LOCAL STRIKE:" (3 demo relations). Both counterfactuals came out the right way round, including the one
+the earlier few-shot run reversed, so the verifier pass was dropped from the plan and kept as a fallback if
+the gold set shows reversed arrows. Sample too small to judge the format's effect on recall.
+
+**Estimated run time:** 2–3 h for 1,995 articles at 4–5 s each, down from 8–12 h for every article.
+
+## 5f. v1 extraction target, prompt and tests (user, 2026-11-06)
+
+**Decisions (user):** extraction runs only on strike-term articles on the ≥ 8 pages. No gold set for now: this
+is v1, and speed matters. The demo relations are shaky, built for an illustrative graph, so prompt work must not
+aim to match them. The purpose is claims the paper made **directly and clearly**. The definition was settled
+through real examples in place of more rigorous prompt optimisation; the full table of rulings is in
+`EXTRACTION_PLAN.md`. Summary: a stated causal link with a clearly named cause and effect. Included:
+reported speech, hedged claims, counterfactuals about past events, actions against a named threat, protests or
+replies about something, justifications, "this" resolved from the previous sentence, causes unrelated to the
+strike. Excluded: sequence alone, side-by-side events, causal verbs with no clear cause, predictions and
+conditionals, denied links, readers' letters. Cause and effect are short cleaned-up phrases.
+
+**Term filter check:** the 732 figure in 5e came from an improvised regex. It keeps 48 of 59 demo articles (89
+of 104 quotes). With headlines 761 articles (91 quotes). CORE only 435 (66). CORE + BROAD 926 (94). Choice open.
+
+**Recall experiment** (`extraction_probe/recall_exp.py`, 56 demo articles, quote-span overlap with demo).
+Superseded as a target by the rulings, but kept as a record. Claims / verbatim / demo quotes found of 98 / s per
+article: V0 current prompt 45 / 42 / 14 / 3.3; V1 recall prompt 100 / 89 / 36 / 4.2; V2 + examples 157 / 135 /
+55 / 4.8; V3 + chunks 190 / 161 / 61 / 7.9; V4 + second extraction pass 197 / 170 / 60 / 7.7. At the time of the
+by-kind check, V0 found 9 of 78 "explicit" demo quotes, so its low score was not selectivity. 55 of those 78
+contain no cue word from a rough list, so the demo's "explicit" label is loose.
+
+**v1 prompt and rulings test** (`prompt_v1.py`, `rulings_test.py`, `verify_test.py`): 12 sentences to extract and
+8 to skip from the user's rulings, none used as prompt examples. The first harness counted any overlap with the
+sentence and gave false passes; scoring now requires the ruling's marker text in the quote. Whole article 9/12
+extract, 3/8 skip; chunks 9/12, 4/8. Most failures were claims that should have been skipped, so a per-claim
+check was added (3.4 s per claim): 8/8 skip for both, with extract unchanged. Each setup missed a different 3,
+so the plan runs both: 11/12 extract, 8/8 skip, 19/20. This is optimistic, since the prompts were written from
+these rulings and the check quotes some of their wording.
+
+**Check removed (user, 2026-11-06).** The user chose not to use the per-claim check for now, after noting it can
+only lower recall. v1 runs both extractions and merges them. On the rulings test that scores 11/12 extract and 3/8
+skip, 14/20. Claims the rulings exclude will appear in the output; in the test 5 of the 8 "skip" sentences were
+extracted (78 claims, 61 unique quotes, across the 15 articles). The check prompt is kept and could be run on the
+saved relations later. Estimated run time drops to ~3.3 h for 926 articles, ~2.6 h for 732.
+
+**Merge rule for combining runs** (`extraction_probe/merge_test.py`, 78 test claims, within one article only).
+Identical quote: 78 → 61, misses the same claim quoted with a different span. Overlapping quote: 78 → 50, but
+merges different links from one passage (four links in the "unsettled conditions" passage became one).
+Overlapping quote (`rapidfuzz` partial ratio ≥ 90) plus similar cause and effect (token-set ratio ≥ 60 on each):
+78 → 58, leaving a few reworded duplicates. Chosen: the third, because a leftover duplicate can be grouped at
+Stage 2 while a wrongly merged claim is lost. From a duplicate pair, keep the verbatim quote, then the full-article
+version. The 60 threshold is a first guess. Needed only if a chunked run is added.
+
+**Run decision (user, 2026-11-06): full article + check,** on strike-term articles on the ≥ 8 pages. This reverses
+the earlier removal of the check and leaves out the chunked run. Claude chose the CORE + BROAD term list, as
+recommended, since the user had not picked one. Pre-check claims are saved, so no-check results stay available.
+The continuation check for cut-off articles is not included in this run.
+
+**Corpus for the run** (`kg/build_corpus.py`): 137 pages, 1,995 news units, 926 with a CORE or BROAD term, 10 letters
+removed by headline, **916 articles** (192,693 words).
+
+**Check prompt error, corrected.** The first check prompt listed only "a protest or reply about the cause", leaving
+out demands, against the user's ruling. A smoke test showed it dropping "tax on roofs → people appeal to the
+Government". The run was stopped after 23 articles (kept in `kg/out/progress_superseded_check.jsonl`, not used). The
+check's KEEP list now names protests, replies, appeals and demands, states that no causal word is needed, and adds
+justifications, which were also missing. Rulings test after the fix: unchanged at 17/20 per setup, skip still 8/8.
+Five spot cases passed, including the tax appeal; one of them, the seamen's demand, was an invented sentence. The run
+was restarted from the beginning on the corrected prompt.
+
+**Continuation check deferred (user, 2026-11-06).** Decide from this run's results: add it only if split articles
+significantly affect the results; otherwise skip it for v1. Proposed test, not yet confirmed by the user: join a
+sample of ~30 flagged articles to their continuations, re-extract, and count claims that appear only after joining.
 
 ## 6. File index (all in `agent-sandbox/`)
 
@@ -326,6 +587,10 @@ newly scraped month, with the same scoring and cutoff.
 | `ocr_vl.py`, `ocr_vl_out/` | PaddleOCR-VL OCR (65 pages: 40 selected + 24 calibration + test) |
 | `strike_pages_md/` | The 40 VL `.md` files used as the corpus, with selection README |
 | `KG_PLAN.md` | Full pipeline plan |
+| `EXTRACTION_PLAN.md` | Plan for Qwen extraction over June–July 1925 (supersedes parts of `KG_PLAN.md`) |
+| `extraction_probe/` | 2026-11-06 article-builder and Qwen probe scripts, raw model output |
+| `annotation_study.md` | The user's rulings on what counts as a causal claim: quiz, responses, test results |
+| `extraction_prompts.md` | Exact extraction and check prompts, settings, worked examples, earlier versions |
 | `agent_notes.md` | This file |
 | `demo_kg/README.md` | How to rerun the demo |
 | `demo_kg/relations.jsonl` | 105 Claude-extracted relations (8 pages) |

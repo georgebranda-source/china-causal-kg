@@ -11,11 +11,22 @@ Keeps up with a scrape that is still running (scrape_hkpl.py / hkpl_queue.py), o
 Failures: a fast-OCR batch that fails is retried edition by edition; a page that fails twice (in either
 step) is listed in pipeline_failed.txt and skipped. Create agent-sandbox/pipeline.stop to stop cleanly.
 
+Memory guard: a VL batch starts only with at least MIN_FREE_START_GB of RAM free, and is ended early if free
+RAM falls below MIN_FREE_RUN_GB (finished pages are kept; the rest go to the next batch). Each batch is a
+fresh ocr_vl.py process, so memory the VL model accumulates is released every VL_CHUNK pages.
+
 Usage (from the repo root):
     agent-sandbox/.venv-kg/Scripts/python -u agent-sandbox/pipeline_new_scrapes.py
+    agent-sandbox/.venv-kg/Scripts/python -u agent-sandbox/pipeline_new_scrapes.py --tiers 5,2,1,0
+
+--tiers expands VL below the score-8 cutoff, one score band at a time (5-7, then 2-4, then 1, then 0),
+each band in date order, so that stopping at any point leaves whole bands done up to some date.
+--only <collection>[,<collection>...] limits VL to those collection folders, e.g. --only china_mail_june_july_1925 --tiers 0
+(every page of June–July 1925, in date order).
 """
 
 import csv
+import ctypes
 import glob
 import json
 import os
@@ -40,11 +51,20 @@ VL_LIST = SB / "vl_pages_batch_current.txt"
 
 CUTOFF = 8
 SETTLE_S = 600  # an edition folder untouched this long is complete
-VL_CHUNK = 20  # VL pages per cycle (~1 h), so fast OCR keeps up with the scraper in between
+VL_CHUNK = 10  # VL pages per cycle (~35 min), so fast OCR keeps up with the scraper in between
 FAST_BATCH = 25  # editions per fast-OCR run
 IDLE_SLEEP_S = 600
+MIN_FREE_START_GB = 4
+MIN_FREE_RUN_GB = 3
 
-ENV = {**os.environ, "PYTHONIOENCODING": "utf-8"}
+# PADDLE_PDX_CACHE_HOME: fresh model cache; most folders in ~/.paddlex/official_models became unreadable on
+# 2026-10-31 (Access denied, apparently stuck pending deletion), so the models were re-downloaded here.
+ENV = {**os.environ, "PYTHONIOENCODING": "utf-8", "PADDLE_PDX_CACHE_HOME": str(Path.home() / ".paddlex_cache2")}
+PRIORITY = "china_mail_june_july_1925"  # user priority: finish June–July VL before other months (score order)
+TIERS = [int(t) for t in sys.argv[sys.argv.index("--tiers") + 1].split(",")] if "--tiers" in sys.argv else None
+if TIERS:
+    CUTOFF = min(TIERS)
+ONLY = set(sys.argv[sys.argv.index("--only") + 1].split(",")) if "--only" in sys.argv else None
 fail_count = Counter()
 
 
@@ -81,6 +101,33 @@ def running(pattern):
 
 def scraper_running():
     return running("scrape_hkpl.py") or running("hkpl_queue.py")
+
+
+class _MemStatus(ctypes.Structure):
+    _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong)] + [
+        (n, ctypes.c_ulonglong) for n in ("total", "avail", "totalPage", "availPage", "totalVirt", "availVirt", "ext")]
+
+
+def free_ram_gb():
+    st = _MemStatus(dwLength=ctypes.sizeof(_MemStatus))
+    ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(st))
+    return st.avail / 2**30
+
+
+def run_guarded(args, logfile):
+    """Like run(), but kills the process if free RAM drops below MIN_FREE_RUN_GB. Returns (rc, killed_for_memory)."""
+    with open(SB / logfile, "a", encoding="utf-8") as fh:
+        fh.write(f"\n=== {time.strftime('%Y-%m-%d %H:%M:%S')} {' '.join(args)[:300]}\n")
+        fh.flush()
+        proc = subprocess.Popen(args, cwd=REPO, stdout=fh, stderr=subprocess.STDOUT, env=ENV)
+        while proc.poll() is None:
+            time.sleep(15)
+            if free_ram_gb() < MIN_FREE_RUN_GB:
+                log(f"free RAM {free_ram_gb():.1f} GB < {MIN_FREE_RUN_GB} GB; ending VL batch early")
+                proc.kill()
+                proc.wait()
+                return proc.returncode, True
+        return proc.returncode, False
 
 
 def run(args, logfile):
@@ -139,18 +186,27 @@ def vl_backlog():
     bad = failed_pages()
     rows = [r for r in csv.DictReader(open(SCORES, encoding="utf-8"))
             if int(r["score"]) >= CUTOFF and r["page"] in images and r["page"] not in bad
-            and not (VL_DIR / f"{r['page']}_blocks.json").exists()]
-    rows.sort(key=lambda r: (-int(r["score"]), r["page"]))
+            and not (VL_DIR / f"{r['page']}_blocks.json").exists()
+            and (ONLY is None or r["collection"] in ONLY)]
+    if TIERS:  # band (highest first), then date, then page number
+        band = lambda sc: next(i for i, t in enumerate(sorted(TIERS, reverse=True)) if sc >= t)
+        rows.sort(key=lambda r: (band(int(r["score"])), r["edition"], r["seq"].zfill(3)))
+    else:
+        rows.sort(key=lambda r: (PRIORITY not in images[r["page"]], -int(r["score"]), r["page"]))
     return [images[r["page"]] for r in rows]
 
 
 def vl_ocr(paths):
     chunk = paths[:VL_CHUNK]
     VL_LIST.write_text("\n".join(os.path.relpath(p, REPO).replace(os.sep, "/") for p in chunk) + "\n", encoding="utf-8")
-    log(f"VL OCR: {len(chunk)} pages (backlog {len(paths)})")
-    rc = run([PADDLE_PY, "-u", "agent-sandbox/ocr_vl.py", f"@{os.path.relpath(VL_LIST, REPO)}"], "ocr_vl_batch.log")
-    if rc == 0:
-        return
+    while free_ram_gb() < MIN_FREE_START_GB:
+        log(f"free RAM {free_ram_gb():.1f} GB < {MIN_FREE_START_GB} GB; waiting before VL batch")
+        time.sleep(120)
+    log(f"VL OCR: {len(chunk)} pages (backlog {len(paths)}; free RAM {free_ram_gb():.1f} GB)")
+    rc, oom = run_guarded([PADDLE_PY, "-u", "agent-sandbox/ocr_vl.py", f"@{os.path.relpath(VL_LIST, REPO)}"],
+                          "ocr_vl_batch.log")
+    if rc == 0 or oom:
+        return  # a memory stop is not the page's fault; the next cycle resumes after the finished pages
     # the first page without output is the one it died on
     stuck = next((Path(p).stem for p in chunk if not (VL_DIR / f"{Path(p).stem}_blocks.json").exists()), None)
     log(f"VL OCR exit {rc}; stopped at {stuck}")

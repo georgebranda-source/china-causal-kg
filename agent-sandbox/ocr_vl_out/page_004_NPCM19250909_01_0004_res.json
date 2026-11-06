@@ -1,0 +1,5000 @@
+{
+    "input_path": "data/raw/hkpl/china_mail_aug_sep_1925/NPCM19250909_The_China_Mail_1925-09-09/page_004_NPCM19250909_01_0004.png",
+    "page_index": null,
+    "page_count": null,
+    "width": 3593,
+    "height": 4667,
+    "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_layout_detection": true,
+        "use_chart_recognition": false,
+        "use_seal_recognition": false,
+        "use_ocr_for_image_block": false,
+        "format_block_content": false,
+        "merge_layout_blocks": true,
+        "markdown_ignore_labels": [
+            "number",
+            "footnote",
+            "header",
+            "header_image",
+            "footer",
+            "footer_image",
+            "aside_text"
+        ],
+        "return_layout_polygon_points": true
+    },
+    "parsing_res_list": [
+        {
+            "block_label": "header",
+            "block_content": "THE CHINA MAIL.",
+            "block_bbox": [
+                1428,
+                218,
+                2035,
+                280
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0,
+            "block_polygon_points": [
+                [
+                    1428.0,
+                    218.0
+                ],
+                [
+                    2035.0,
+                    218.0
+                ],
+                [
+                    2035.0,
+                    280.0
+                ],
+                [
+                    1428.0,
+                    280.0
+                ]
+            ]
+        },
+        {
+            "block_label": "header",
+            "block_content": "WEDNESDAY, SEPTEMBER 9 1925.",
+            "block_bbox": [
+                2573,
+                238,
+                3261,
+                285
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1,
+            "block_polygon_points": [
+                [
+                    2573.0,
+                    238.0
+                ],
+                [
+                    3261.0,
+                    238.0
+                ],
+                [
+                    3261.0,
+                    285.0
+                ],
+                [
+                    2573.0,
+                    285.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "AERATED WATERS.",
+            "block_bbox": [
+                397,
+                370,
+                1087,
+                460
+            ],
+            "block_id": 2,
+            "block_order": 1,
+            "group_id": 2,
+            "block_polygon_points": [
+                [
+                    397.0,
+                    370.0
+                ],
+                [
+                    1087.0,
+                    370.0
+                ],
+                [
+                    1087.0,
+                    460.0
+                ],
+                [
+                    397.0,
+                    460.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "All water used in the manufacture of our Aerated Waters is scientifically treated and tested.",
+            "block_bbox": [
+                398,
+                498,
+                1089,
+                622
+            ],
+            "block_id": 3,
+            "block_order": 2,
+            "group_id": 3,
+            "block_polygon_points": [
+                [
+                    398.0,
+                    498.0
+                ],
+                [
+                    1089.0,
+                    498.0
+                ],
+                [
+                    1089.0,
+                    622.0
+                ],
+                [
+                    398.0,
+                    622.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Our Machinery and plant embody all the very latest scientific improvements and the most bygienic methods and safeguards are employed in every detail of manufacture.",
+            "block_bbox": [
+                399,
+                636,
+                1094,
+                795
+            ],
+            "block_id": 4,
+            "block_order": 3,
+            "group_id": 4,
+            "block_polygon_points": [
+                [
+                    399.0,
+                    636.0
+                ],
+                [
+                    1094.0,
+                    636.0
+                ],
+                [
+                    1094.0,
+                    795.0
+                ],
+                [
+                    399.0,
+                    795.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "At no point during the entire process of manufacture is contamination possible.",
+            "block_bbox": [
+                403,
+                808,
+                1096,
+                894
+            ],
+            "block_id": 5,
+            "block_order": 4,
+            "group_id": 5,
+            "block_polygon_points": [
+                [
+                    403.0,
+                    808.0
+                ],
+                [
+                    1096.0,
+                    808.0
+                ],
+                [
+                    1096.0,
+                    894.0
+                ],
+                [
+                    403.0,
+                    894.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "We guarantees that all Aerated Waters as they leave our Factory are absolutely pure.",
+            "block_bbox": [
+                401,
+                907,
+                1095,
+                1006
+            ],
+            "block_id": 6,
+            "block_order": 5,
+            "group_id": 6,
+            "block_polygon_points": [
+                [
+                    401.0,
+                    907.0
+                ],
+                [
+                    1095.0,
+                    907.0
+                ],
+                [
+                    1095.0,
+                    1006.0
+                ],
+                [
+                    401.0,
+                    1006.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "A. S WATSON & CO., LTD.\nAerated Water Manufacturers.\nPhone 0.486.",
+            "block_bbox": [
+                399,
+                1033,
+                1103,
+                1195
+            ],
+            "block_id": 7,
+            "block_order": 6,
+            "group_id": 7,
+            "block_polygon_points": [
+                [
+                    399.0,
+                    1033.0
+                ],
+                [
+                    1103.0,
+                    1033.0
+                ],
+                [
+                    1103.0,
+                    1195.0
+                ],
+                [
+                    399.0,
+                    1195.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "圖",
+            "block_bbox": [
+                449,
+                1300,
+                1129,
+                1412
+            ],
+            "block_id": 8,
+            "block_order": 7,
+            "group_id": 8,
+            "block_polygon_points": [
+                [
+                    449.0,
+                    1300.0
+                ],
+                [
+                    1129.0,
+                    1300.0
+                ],
+                [
+                    1129.0,
+                    1412.0
+                ],
+                [
+                    449.0,
+                    1412.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "We study the art of producing good furniture, listen carefully to our clients' ideas, offer advice where necessary—hence our success.",
+            "block_bbox": [
+                519,
+                1467,
+                964,
+                1751
+            ],
+            "block_id": 9,
+            "block_order": 8,
+            "group_id": 9,
+            "block_polygon_points": [
+                [
+                    519.0,
+                    1467.0
+                ],
+                [
+                    964.0,
+                    1467.0
+                ],
+                [
+                    964.0,
+                    1751.0
+                ],
+                [
+                    519.0,
+                    1751.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "POWELL'S.",
+            "block_bbox": [
+                552,
+                1817,
+                927,
+                1893
+            ],
+            "block_id": 10,
+            "block_order": 9,
+            "group_id": 10,
+            "block_polygon_points": [
+                [
+                    552.0,
+                    1817.0
+                ],
+                [
+                    927.0,
+                    1817.0
+                ],
+                [
+                    927.0,
+                    1893.0
+                ],
+                [
+                    552.0,
+                    1893.0
+                ]
+            ]
+        },
+        {
+            "block_label": "doc_title",
+            "block_content": "DAIRY FARM NEWS.",
+            "block_bbox": [
+                390,
+                2343,
+                1087,
+                2420
+            ],
+            "block_id": 11,
+            "block_order": 10,
+            "group_id": 11,
+            "block_polygon_points": [
+                [
+                    390.0,
+                    2343.0
+                ],
+                [
+                    1087.0,
+                    2343.0
+                ],
+                [
+                    1087.0,
+                    2420.0
+                ],
+                [
+                    390.0,
+                    2420.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "As from tomorrow the 10th, Ice may be had on credit at our Ice Depot, Pottinger Street, and at our Kowloon and Peak Branches.",
+            "block_bbox": [
+                377,
+                2527,
+                1105,
+                2765
+            ],
+            "block_id": 12,
+            "block_order": 11,
+            "group_id": 12,
+            "block_polygon_points": [
+                [
+                    377.0,
+                    2527.0
+                ],
+                [
+                    1105.0,
+                    2527.0
+                ],
+                [
+                    1105.0,
+                    2765.0
+                ],
+                [
+                    377.0,
+                    2765.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Pass books on application.",
+            "block_bbox": [
+                377,
+                2781,
+                926,
+                2835
+            ],
+            "block_id": 13,
+            "block_order": 12,
+            "group_id": 13,
+            "block_polygon_points": [
+                [
+                    377.0,
+                    2781.0
+                ],
+                [
+                    926.0,
+                    2781.0
+                ],
+                [
+                    926.0,
+                    2835.0
+                ],
+                [
+                    377.0,
+                    2835.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "THE DAIRY FARM, IOE & COLD STOR / GE CO., LTD",
+            "block_bbox": [
+                328,
+                2908,
+                1147,
+                2965
+            ],
+            "block_id": 14,
+            "block_order": 13,
+            "group_id": 14,
+            "block_polygon_points": [
+                [
+                    328.0,
+                    2908.0
+                ],
+                [
+                    1147.0,
+                    2908.0
+                ],
+                [
+                    1147.0,
+                    2965.0
+                ],
+                [
+                    328.0,
+                    2965.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "We have pleasure in notifying the Public that arrangements have now been completed by this Bureau for carrying out the Registration of Servants. A fee of $1.00 per head will be charged, for which a certificate will be issued giving name, photograph and thumbprint. At the termination of the present situation we hope to be able to supply servants of all descriptions for a nominal fee.",
+            "block_bbox": [
+                345,
+                3125,
+                1123,
+                3330
+            ],
+            "block_id": 15,
+            "block_order": 14,
+            "group_id": 15,
+            "block_polygon_points": [
+                [
+                    345.0,
+                    3125.0
+                ],
+                [
+                    1123.0,
+                    3125.0
+                ],
+                [
+                    1123.0,
+                    3330.0
+                ],
+                [
+                    345.0,
+                    3330.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "EMPLOYMENT & REGISTRATION BUREAU.",
+            "block_bbox": [
+                648,
+                3327,
+                1116,
+                3387
+            ],
+            "block_id": 16,
+            "block_order": 15,
+            "group_id": 16,
+            "block_polygon_points": [
+                [
+                    648.0,
+                    3327.0
+                ],
+                [
+                    1116.0,
+                    3327.0
+                ],
+                [
+                    1116.0,
+                    3387.0
+                ],
+                [
+                    648.0,
+                    3387.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "譜",
+            "block_bbox": [
+                314,
+                3477,
+                1151,
+                3519
+            ],
+            "block_id": 17,
+            "block_order": 16,
+            "group_id": 17,
+            "block_polygon_points": [
+                [
+                    314.0,
+                    3477.0
+                ],
+                [
+                    1151.0,
+                    3477.0
+                ],
+                [
+                    1151.0,
+                    3519.0
+                ],
+                [
+                    314.0,
+                    3519.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "ROSS'S BINOCULARS and TELESCOPES, KELVIN'S NAUTICAL INSTRUMENTS,",
+            "block_bbox": [
+                349,
+                3730,
+                1037,
+                3847
+            ],
+            "block_id": 18,
+            "block_order": 17,
+            "group_id": 18,
+            "block_polygon_points": [
+                [
+                    349.0,
+                    3730.0
+                ],
+                [
+                    1037.0,
+                    3730.0
+                ],
+                [
+                    1037.0,
+                    3847.0
+                ],
+                [
+                    349.0,
+                    3847.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "ENGLISH SILVERWARE, direct from Manufacturers, High Class English Jewellery.",
+            "block_bbox": [
+                346,
+                3843,
+                1118,
+                3909
+            ],
+            "block_id": 19,
+            "block_order": 18,
+            "group_id": 19,
+            "block_polygon_points": [
+                [
+                    346.0,
+                    3843.0
+                ],
+                [
+                    1118.0,
+                    3843.0
+                ],
+                [
+                    1118.0,
+                    3909.0
+                ],
+                [
+                    346.0,
+                    3909.0
+                ]
+            ]
+        },
+        {
+            "block_label": "doc_title",
+            "block_content": "UNIFORMLY GOOD",
+            "block_bbox": [
+                1224,
+                362,
+                2002,
+                464
+            ],
+            "block_id": 20,
+            "block_order": 19,
+            "group_id": 20,
+            "block_polygon_points": [
+                [
+                    1224.0,
+                    362.0
+                ],
+                [
+                    2002.0,
+                    362.0
+                ],
+                [
+                    2002.0,
+                    464.0
+                ],
+                [
+                    1224.0,
+                    464.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Characterizes the quality of",
+            "block_bbox": [
+                1324,
+                479,
+                1901,
+                532
+            ],
+            "block_id": 21,
+            "block_order": 20,
+            "group_id": 21,
+            "block_polygon_points": [
+                [
+                    1324.0,
+                    479.0
+                ],
+                [
+                    1901.0,
+                    479.0
+                ],
+                [
+                    1901.0,
+                    532.0
+                ],
+                [
+                    1324.0,
+                    532.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "MOUTRIE PIANOS",
+            "block_bbox": [
+                1253,
+                549,
+                1987,
+                629
+            ],
+            "block_id": 22,
+            "block_order": 21,
+            "group_id": 22,
+            "block_polygon_points": [
+                [
+                    1253.0,
+                    549.0
+                ],
+                [
+                    1987.0,
+                    549.0
+                ],
+                [
+                    1987.0,
+                    629.0
+                ],
+                [
+                    1253.0,
+                    629.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Representing the ultimate in piano construction. uperb in tone, quality and satisfactory performance.",
+            "block_bbox": [
+                1265,
+                640,
+                1968,
+                775
+            ],
+            "block_id": 23,
+            "block_order": 22,
+            "group_id": 23,
+            "block_polygon_points": [
+                [
+                    1265.0,
+                    640.0
+                ],
+                [
+                    1968.0,
+                    640.0
+                ],
+                [
+                    1968.0,
+                    775.0
+                ],
+                [
+                    1265.0,
+                    775.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Illustrated catalogue mailed on request.",
+            "block_bbox": [
+                1270,
+                774,
+                1960,
+                861
+            ],
+            "block_id": 24,
+            "block_order": 23,
+            "group_id": 24,
+            "block_polygon_points": [
+                [
+                    1270.0,
+                    774.0
+                ],
+                [
+                    1960.0,
+                    774.0
+                ],
+                [
+                    1960.0,
+                    861.0
+                ],
+                [
+                    1270.0,
+                    861.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "S. MOUTRIE & CO., LTD.\nCHATER ROAD.",
+            "block_bbox": [
+                1284,
+                901,
+                1938,
+                1013
+            ],
+            "block_id": 25,
+            "block_order": 24,
+            "group_id": 25,
+            "block_polygon_points": [
+                [
+                    1284.0,
+                    901.0
+                ],
+                [
+                    1938.0,
+                    901.0
+                ],
+                [
+                    1938.0,
+                    1013.0
+                ],
+                [
+                    1284.0,
+                    1013.0
+                ]
+            ]
+        },
+        {
+            "block_label": "doc_title",
+            "block_content": "Morinaga's Ice Cream",
+            "block_bbox": [
+                1217,
+                1200,
+                2024,
+                1280
+            ],
+            "block_id": 26,
+            "block_order": 25,
+            "group_id": 26,
+            "block_polygon_points": [
+                [
+                    1217.0,
+                    1200.0
+                ],
+                [
+                    2024.0,
+                    1200.0
+                ],
+                [
+                    2024.0,
+                    1280.0
+                ],
+                [
+                    1217.0,
+                    1280.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "ARN",
+            "block_bbox": [
+                1573,
+                1490,
+                1665,
+                1536
+            ],
+            "block_id": 27,
+            "block_order": 26,
+            "group_id": 27,
+            "block_polygon_points": [
+                [
+                    1573.0,
+                    1490.0
+                ],
+                [
+                    1665.0,
+                    1490.0
+                ],
+                [
+                    1665.0,
+                    1536.0
+                ],
+                [
+                    1573.0,
+                    1536.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Exquisite",
+            "block_bbox": [
+                1438,
+                1569,
+                1798,
+                1649
+            ],
+            "block_id": 28,
+            "block_order": 27,
+            "group_id": 28,
+            "block_polygon_points": [
+                [
+                    1438.0,
+                    1569.0
+                ],
+                [
+                    1798.0,
+                    1569.0
+                ],
+                [
+                    1798.0,
+                    1649.0
+                ],
+                [
+                    1438.0,
+                    1649.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Nothing Superior.",
+            "block_bbox": [
+                1270,
+                1683,
+                1963,
+                1769
+            ],
+            "block_id": 29,
+            "block_order": 28,
+            "group_id": 29,
+            "block_polygon_points": [
+                [
+                    1270.0,
+                    1683.0
+                ],
+                [
+                    1963.0,
+                    1683.0
+                ],
+                [
+                    1963.0,
+                    1769.0
+                ],
+                [
+                    1270.0,
+                    1769.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "ASIA TIC BUILDING.",
+            "block_bbox": [
+                1359,
+                1899,
+                1865,
+                1955
+            ],
+            "block_id": 30,
+            "block_order": 29,
+            "group_id": 30,
+            "block_polygon_points": [
+                [
+                    1359.0,
+                    1899.0
+                ],
+                [
+                    1865.0,
+                    1899.0
+                ],
+                [
+                    1865.0,
+                    1955.0
+                ],
+                [
+                    1359.0,
+                    1955.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "The China Mail",
+            "block_bbox": [
+                1220,
+                2121,
+                1574,
+                2172
+            ],
+            "block_id": 31,
+            "block_order": 30,
+            "group_id": 31,
+            "block_polygon_points": [
+                [
+                    1220.0,
+                    2121.0
+                ],
+                [
+                    1574.0,
+                    2121.0
+                ],
+                [
+                    1574.0,
+                    2172.0
+                ],
+                [
+                    1220.0,
+                    2172.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "(Every evening except Sunday. Annual subscription, excluding postage abroad, H.K. $36, payable in advance. Local delivery free.)\n(Verland China Mail\n(The weekly edition of the \"China Mail,\" Annual subscription, H.K. $13 including postage $15, payable in advance.)",
+            "block_bbox": [
+                1204,
+                2177,
+                1593,
+                2422
+            ],
+            "block_id": 32,
+            "block_order": 31,
+            "group_id": 32,
+            "block_polygon_points": [
+                [
+                    1204.0,
+                    2177.0
+                ],
+                [
+                    1593.0,
+                    2177.0
+                ],
+                [
+                    1593.0,
+                    2422.0
+                ],
+                [
+                    1204.0,
+                    2422.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The Newspaper Enterprise, Ltd.\nPrinters & Publishers",
+            "block_bbox": [
+                1209,
+                2441,
+                1588,
+                2538
+            ],
+            "block_id": 33,
+            "block_order": 32,
+            "group_id": 33,
+            "block_polygon_points": [
+                [
+                    1209.0,
+                    2441.0
+                ],
+                [
+                    1588.0,
+                    2441.0
+                ],
+                [
+                    1588.0,
+                    2538.0
+                ],
+                [
+                    1209.0,
+                    2538.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Telephones Central 22 & 4641. Cable Address: Mail, Hongkong\nAll communications should be addressed to the Newspaper Enterprise, Ltd., to whom all remittances should be made payable.",
+            "block_bbox": [
+                1200,
+                2575,
+                1590,
+                2742
+            ],
+            "block_id": 34,
+            "block_order": 33,
+            "group_id": 34,
+            "block_polygon_points": [
+                [
+                    1200.0,
+                    2574.999755859375
+                ],
+                [
+                    1572.0,
+                    2574.999755859375
+                ],
+                [
+                    1572.0,
+                    2740.999755859375
+                ],
+                [
+                    1200.0,
+                    2740.999755859375
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "London Offices:---The Far Eastern Advertising Agency (London), Ltd., 24. Devonshire Street, Bloomsbury, W.C.1.",
+            "block_bbox": [
+                1199,
+                2748,
+                1589,
+                2843
+            ],
+            "block_id": 35,
+            "block_order": 34,
+            "group_id": 35,
+            "block_polygon_points": [
+                [
+                    1199.0,
+                    2748.0
+                ],
+                [
+                    1589.0,
+                    2748.0
+                ],
+                [
+                    1589.0,
+                    2843.0
+                ],
+                [
+                    1199.0,
+                    2843.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "THE PEKING PARLEY.",
+            "block_bbox": [
+                1208,
+                3045,
+                1558,
+                3081
+            ],
+            "block_id": 36,
+            "block_order": 35,
+            "group_id": 36,
+            "block_polygon_points": [
+                [
+                    1208.0,
+                    3045.0
+                ],
+                [
+                    1558.0,
+                    3045.0
+                ],
+                [
+                    1558.0,
+                    3081.0
+                ],
+                [
+                    1208.0,
+                    3081.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Neither the Earl of Oxford nor Lord Balfour will represent Britain at the Customs Tariff Revision Conference to be held on October 26, as had been rumoured. By sending men of this calibre, Britain, the gossip said, intended \"to make a bid for lost prestige.\" There should be satisfaction in the fact that prestige does not enter into the matter and that Britain has entrusted her side of the case to gentlemen who may well be described as experts in that they have full knowledge of the subjects to be discussed, and a practical knowledge of the temperament and mentality of those with whom they will meet in the conference room. The forthcoming conference will be among the most important that has ever taken place regarding China. It will be the first, probably, of several conferences that will be held under the terms of the historic Washington Agreement, and may will presage a new era for the Chinese and their much-major-troubled country, seeing that the question of finance must necessarily figure prominently in any decisions reached.",
+            "block_bbox": [
+                1169,
+                3113,
+                1602,
+                4291
+            ],
+            "block_id": 37,
+            "block_order": 36,
+            "group_id": 37,
+            "block_polygon_points": [
+                [
+                    1169.0,
+                    3113.0
+                ],
+                [
+                    1602.0,
+                    3113.0
+                ],
+                [
+                    1602.0,
+                    4291.0
+                ],
+                [
+                    1169.0,
+                    4291.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "to lay special emphasis have not been made known. Japan has not been slow to publish some of the points upon which she will make definite claim. Some of these points suggest matters of controversy. In all of them there is the insistence of the right of Japan to what may seem on the surface to be preferential treatment. But it can be said at once that these points or claims are secondary to the insistence that China must stabilise herself and make herself a nation to be respected and trusted. If the first of the Japanese claims does not state this in so many words, it leads to the conviction, for it reads: \"..... the increase of customs revenue shall be used to readjust China's financial condition and settle outstanding obligations to foreign countries.\" Chinese diplomacy will probably rise superior to the cruel facts of the present situation in China, pointing to the fact that \"the Peking government has seemingly no power to enforce its rule, nor the ability—we had almost said desire—to bring to an end the intolerable conditions at Shanghai and Canton. Whilst Delegates of all nationalities will probably come to the Conference with an open and sympathetic mind, they will come to it also armed with stubborn facts. It is inconceivable that any decisions will be reached which will not be qualified with some protective conditions having to do with a reasonably permanently settled China and the insistence of the policy of the open-door with the freedom and protection that term should connote. Increased trade will mean increased Customs duty: both will mean not merely prosperity for the foreign nations engaged in trade with China, but for China herself, with increased revenues to meet her many loan obligations and to assist her to put her affairs on a reasonably sound basis. Hongkong will take a keen interest in the progress of the work of the Commission, not merely in its general and possibly far-reaching aspects—but in the home that trade conditions in Canton for the future will find early settlement. It is impossible to imagine any decisions being reached that have",
+            "block_bbox": [
+                1601,
+                2097,
+                2047,
+                4352
+            ],
+            "block_id": 38,
+            "block_order": 37,
+            "group_id": 38,
+            "block_polygon_points": [
+                [
+                    1601.0,
+                    2097.0
+                ],
+                [
+                    2047.0,
+                    2097.0
+                ],
+                [
+                    2047.0,
+                    4352.0
+                ],
+                [
+                    1601.0,
+                    4352.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "With cheers the British House of Commons received an official statement that his Majesty's Government felt convinced that the time had come when the question of the French war debt should be brought to a conclusion. It was reported some time previously that a French financial mission had conferred with British Treasury officials and had returned home in a huff because Britain asked too much. It is said that the French offer represented the annual payment of one per cent on France's war debt of about £600,000,000 to Great Britain. With this offer is contrasted Great Britain's funding of her debt to the United States on the basis of 8½ per cent. \"The experts of Great Britain still visualise £20,000,000 from France annually. It should be shown that this amount is impossible,\" comments the Paris \"Matin.\" During the whole of the debt negotiations France has displayed a mentality curiously at variance with her chivalrous war attitude. To the average Briton money borrowed is a debt incurred, placing upon the borrower personal responsibility to repay. This elementary procedure does not accord with French post-war ideas. By some quiser method of reasoning, France places a war debt incurred by her in a category quite different from ordinary indebtedness. It is something which she can repay when she pleases, and is, indeed, more a matter of grace than anything else. Britain takes another view. She might readily have pleaded distress when the question of returning money borrowed from the United States was raised. Instead she undertook an immense annual repayment to the United States over a long term of years. With her it was purely a matter of honour. Such Quixotic notions are not shared by France, who would drive a hard bargain. Unfortunately the propriety of mentioning this when she borrowed the money escaped her.",
+            "block_bbox": [
+                2043,
+                332,
+                2485,
+                2015
+            ],
+            "block_id": 39,
+            "block_order": 38,
+            "group_id": 39,
+            "block_polygon_points": [
+                [
+                    2043.0,
+                    332.0
+                ],
+                [
+                    2485.0,
+                    332.0
+                ],
+                [
+                    2485.0,
+                    2015.0
+                ],
+                [
+                    2043.0,
+                    2015.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "THEY SAY THAT—",
+            "block_bbox": [
+                2122,
+                2051,
+                2412,
+                2090
+            ],
+            "block_id": 40,
+            "block_order": 39,
+            "group_id": 40,
+            "block_polygon_points": [
+                [
+                    2122.0,
+                    2051.0
+                ],
+                [
+                    2412.0,
+                    2051.0
+                ],
+                [
+                    2412.0,
+                    2090.0
+                ],
+                [
+                    2122.0,
+                    2090.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "We five in a most beautiful, mysterious universe. - Sir Oliver Lodge.",
+            "block_bbox": [
+                2059,
+                2110,
+                2478,
+                2197
+            ],
+            "block_id": 41,
+            "block_order": 40,
+            "group_id": 41,
+            "block_polygon_points": [
+                [
+                    2059.0,
+                    2110.0
+                ],
+                [
+                    2478.0,
+                    2110.0
+                ],
+                [
+                    2478.0,
+                    2197.0
+                ],
+                [
+                    2059.0,
+                    2197.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "We classers are not such tools as the politicians imagine.—Mr. Alfred Hopkinson.",
+            "block_bbox": [
+                2057,
+                2202,
+                2478,
+                2289
+            ],
+            "block_id": 42,
+            "block_order": 41,
+            "group_id": 42,
+            "block_polygon_points": [
+                [
+                    2057.0,
+                    2202.0
+                ],
+                [
+                    2478.0,
+                    2202.0
+                ],
+                [
+                    2478.0,
+                    2289.0
+                ],
+                [
+                    2057.0,
+                    2289.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The leading article in the \"Daily Mail\" is not evidence.—Mr. Justice Avory.",
+            "block_bbox": [
+                2059,
+                2297,
+                2480,
+                2383
+            ],
+            "block_id": 43,
+            "block_order": 42,
+            "group_id": 43,
+            "block_polygon_points": [
+                [
+                    2059.0,
+                    2297.0
+                ],
+                [
+                    2480.0,
+                    2297.0
+                ],
+                [
+                    2480.0,
+                    2383.0
+                ],
+                [
+                    2059.0,
+                    2383.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "'The voice of the people is not the voice of God, and never has been since a famous occasion when the voice of the people cried, 'Crucify Him!'\"—Dein Inge.",
+            "block_bbox": [
+                2061,
+                2393,
+                2480,
+                2532
+            ],
+            "block_id": 44,
+            "block_order": 43,
+            "group_id": 44,
+            "block_polygon_points": [
+                [
+                    2061.0,
+                    2393.0
+                ],
+                [
+                    2480.0,
+                    2393.0
+                ],
+                [
+                    2480.0,
+                    2532.0
+                ],
+                [
+                    2061.0,
+                    2532.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The man who believes in God does not need a Church.—Mr. J. Middleton Murry.",
+            "block_bbox": [
+                2055,
+                2538,
+                2477,
+                2624
+            ],
+            "block_id": 45,
+            "block_order": 44,
+            "group_id": 45,
+            "block_polygon_points": [
+                [
+                    2055.0,
+                    2538.0
+                ],
+                [
+                    2477.0,
+                    2538.0
+                ],
+                [
+                    2477.0,
+                    2624.0
+                ],
+                [
+                    2055.0,
+                    2624.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Sometimes my plays are ten miles long in the original. Mr. Bernard Shaw.",
+            "block_bbox": [
+                2052,
+                2632,
+                2477,
+                2716
+            ],
+            "block_id": 46,
+            "block_order": 45,
+            "group_id": 46,
+            "block_polygon_points": [
+                [
+                    2052.0,
+                    2632.0
+                ],
+                [
+                    2477.0,
+                    2632.0
+                ],
+                [
+                    2477.0,
+                    2716.0
+                ],
+                [
+                    2052.0,
+                    2716.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "long as one original — Mr. Bernard Shaw.\nI pass in England as a pro-Germany, and, as a matter of fact, rightly.—Lord Haldane.\nEther is the substantial reality; matter is merely a milky, cohwebby phenomenon. —Sir Oliver Lodge.\nI do not believe that the public knows what it wants. —Mr. Charles Chaudin",
+            "block_bbox": [
+                2053,
+                2650,
+                2482,
+                3000
+            ],
+            "block_id": 47,
+            "block_order": 46,
+            "group_id": 47,
+            "block_polygon_points": [
+                [
+                    2053.0,
+                    2674.0
+                ],
+                [
+                    2053.0,
+                    2976.0
+                ],
+                [
+                    2481.0,
+                    2976.0
+                ],
+                [
+                    2481.0,
+                    2650.0
+                ],
+                [
+                    2429.0,
+                    2650.0
+                ],
+                [
+                    2392.0,
+                    2650.0
+                ],
+                [
+                    2375.0,
+                    2650.0
+                ],
+                [
+                    2161.0,
+                    2674.0
+                ],
+                [
+                    2106.0,
+                    2674.0
+                ],
+                [
+                    2088.0,
+                    2650.0
+                ],
+                [
+                    2071.0,
+                    2650.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "In suffering Regent-street to be destroyed we have lost the supreme example of good manners in architecture.—Mr. A. Prystun Edwards.\nAs for your telephone work, America has nothing to teach you. Mr. Eugene White (Assistant U.S. Postmaster-General).",
+            "block_bbox": [
+                2051,
+                3000,
+                2472,
+                3228
+            ],
+            "block_id": 48,
+            "block_order": 47,
+            "group_id": 48,
+            "block_polygon_points": [
+                [
+                    2051.0,
+                    3000.0
+                ],
+                [
+                    2472.0,
+                    3000.0
+                ],
+                [
+                    2472.0,
+                    3228.0
+                ],
+                [
+                    2051.0,
+                    3228.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "ORDERLY STRIKERS.",
+            "block_bbox": [
+                2054,
+                3283,
+                2456,
+                3327
+            ],
+            "block_id": 49,
+            "block_order": 48,
+            "group_id": 49,
+            "block_polygon_points": [
+                [
+                    2054.0,
+                    3283.0
+                ],
+                [
+                    2456.0,
+                    3283.0
+                ],
+                [
+                    2456.0,
+                    3327.0
+                ],
+                [
+                    2054.0,
+                    3327.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "Beira Sept 8",
+            "block_bbox": [
+                2239,
+                3602,
+                2440,
+                3632
+            ],
+            "block_id": 50,
+            "block_order": 49,
+            "group_id": 50,
+            "block_polygon_points": [
+                [
+                    2239.0,
+                    3602.0
+                ],
+                [
+                    2440.0,
+                    3602.0
+                ],
+                [
+                    2440.0,
+                    3632.0
+                ],
+                [
+                    2239.0,
+                    3632.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The strike of the Mozambique Company has ended. The company has conceded the principal demands of the strikers, whose orderly attitude and consideration for the public earned general sympathy.\nOVERNIGHT ON THE FERRY.\nthe bathroom window.",
+            "block_bbox": [
+                2039,
+                3631,
+                2466,
+                3847
+            ],
+            "block_id": 51,
+            "block_order": 50,
+            "group_id": 51,
+            "block_polygon_points": [
+                [
+                    2039.0,
+                    3631.0
+                ],
+                [
+                    2466.0,
+                    3631.0
+                ],
+                [
+                    2466.0,
+                    3847.0
+                ],
+                [
+                    2039.0,
+                    3847.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "",
+            "block_bbox": [
+                2486,
+                469,
+                2665,
+                623
+            ],
+            "block_id": 52,
+            "block_order": 51,
+            "group_id": 51,
+            "block_polygon_points": [
+                [
+                    2486.0,
+                    469.0
+                ],
+                [
+                    2665.0,
+                    469.0
+                ],
+                [
+                    2665.0,
+                    623.0
+                ],
+                [
+                    2486.0,
+                    623.0
+                ]
+            ]
+        },
+        {
+            "block_label": "doc_title",
+            "block_content": "SHREDS AND PATCHES.",
+            "block_bbox": [
+                2504,
+                339,
+                3291,
+                429
+            ],
+            "block_id": 53,
+            "block_order": 52,
+            "group_id": 53,
+            "block_polygon_points": [
+                [
+                    2504.0,
+                    339.0
+                ],
+                [
+                    3291.0,
+                    339.0
+                ],
+                [
+                    3291.0,
+                    429.0
+                ],
+                [
+                    2504.0,
+                    429.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "\"Had an accident up in your flat?\"\n\"Yes. I turned round suddenly in and slipped out the",
+            "block_bbox": [
+                2669,
+                464,
+                2918,
+                619
+            ],
+            "block_id": 54,
+            "block_order": 53,
+            "group_id": 54,
+            "block_polygon_points": [
+                [
+                    2669.0,
+                    464.0
+                ],
+                [
+                    2918.0,
+                    464.0
+                ],
+                [
+                    2918.0,
+                    619.0
+                ],
+                [
+                    2669.0,
+                    619.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "There is some biting sarcasm and not a little truth in the lines of \"free\" verse which follow:—",
+            "block_bbox": [
+                2493,
+                639,
+                2911,
+                729
+            ],
+            "block_id": 55,
+            "block_order": 54,
+            "group_id": 55,
+            "block_polygon_points": [
+                [
+                    2493.0,
+                    639.0
+                ],
+                [
+                    2911.0,
+                    639.0
+                ],
+                [
+                    2911.0,
+                    729.0
+                ],
+                [
+                    2493.0,
+                    729.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "\"Rain,\" said the Russian,\n\"Is a crime",
+            "block_bbox": [
+                2708,
+                741,
+                2909,
+                829
+            ],
+            "block_id": 56,
+            "block_order": 55,
+            "group_id": 56,
+            "block_polygon_points": [
+                [
+                    2708.0,
+                    741.0
+                ],
+                [
+                    2909.0,
+                    741.0
+                ],
+                [
+                    2909.0,
+                    829.0
+                ],
+                [
+                    2708.0,
+                    829.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The strike of employees of the Mozambique Company, for improved conditions affected the post office, customs and other services, and threatened to bring all commercial activity to a stand. Skies\n\nThat cannot keep themselves Blue and shining.\n\nAt all hours.\n\nFrom Christmas to Christmas, Must be taken down and replaced by me.",
+            "block_bbox": [
+                2034,
+                3868,
+                2463,
+                4023
+            ],
+            "block_id": 57,
+            "block_order": 56,
+            "group_id": 57,
+            "block_polygon_points": [
+                [
+                    2034.0,
+                    3868.0
+                ],
+                [
+                    2463.0,
+                    3868.0
+                ],
+                [
+                    2463.0,
+                    4023.0
+                ],
+                [
+                    2034.0,
+                    4023.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "",
+            "block_bbox": [
+                2492,
+                856,
+                2908,
+                1037
+            ],
+            "block_id": 58,
+            "block_order": 57,
+            "group_id": 57,
+            "block_polygon_points": [
+                [
+                    2492.0,
+                    856.0
+                ],
+                [
+                    2908.0,
+                    856.0
+                ],
+                [
+                    2908.0,
+                    1037.0
+                ],
+                [
+                    2492.0,
+                    1037.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "KNEW ALL ABOUT vellers are noted for the tales they tell ___ all true",
+            "block_bbox": [
+                2493,
+                1066,
+                2917,
+                1150
+            ],
+            "block_id": 59,
+            "block_order": 58,
+            "group_id": 59,
+            "block_polygon_points": [
+                [
+                    2493.0,
+                    1066.0
+                ],
+                [
+                    2917.0,
+                    1066.0
+                ],
+                [
+                    2917.0,
+                    1150.0
+                ],
+                [
+                    2493.0,
+                    1150.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The writer met one in the Hotel lounge the other day who proceeded to tall him of his early days as a book convassor. Travelling round a country district, he reached a small farm where he interviewed a tall, severe-looking woman in the garden.",
+            "block_bbox": [
+                2493,
+                1154,
+                2919,
+                1367
+            ],
+            "block_id": 60,
+            "block_order": 59,
+            "group_id": 60,
+            "block_polygon_points": [
+                [
+                    2493.0,
+                    1154.0
+                ],
+                [
+                    2919.0,
+                    1154.0
+                ],
+                [
+                    2919.0,
+                    1367.0
+                ],
+                [
+                    2493.0,
+                    1367.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "'Mudam,' he said, persuasively, 'I am sure you will be much interested in this book I am selling, named. The Habits of Savage Animals.' It is full of now and wonderful information.",
+            "block_bbox": [
+                2490,
+                1366,
+                2926,
+                1526
+            ],
+            "block_id": 61,
+            "block_order": 60,
+            "group_id": 61,
+            "block_polygon_points": [
+                [
+                    2490.0,
+                    1366.0
+                ],
+                [
+                    2926.0,
+                    1366.0
+                ],
+                [
+                    2926.0,
+                    1526.0
+                ],
+                [
+                    2490.0,
+                    1526.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "\"Not to me,\" said the lady, coldly. \"It is a subject with which I am far too well acquainted.\"",
+            "block_bbox": [
+                2491,
+                1528,
+                2917,
+                1605
+            ],
+            "block_id": 62,
+            "block_order": 61,
+            "group_id": 62,
+            "block_polygon_points": [
+                [
+                    2491.0,
+                    1528.0
+                ],
+                [
+                    2917.0,
+                    1528.0
+                ],
+                [
+                    2917.0,
+                    1605.0
+                ],
+                [
+                    2491.0,
+                    1605.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "\"Why,\" said the surprised can-\nvuser, \"have you ever kept any such\nanimals?\"",
+            "block_bbox": [
+                2492,
+                1605,
+                2917,
+                1683
+            ],
+            "block_id": 63,
+            "block_order": 62,
+            "group_id": 63,
+            "block_polygon_points": [
+                [
+                    2492.0,
+                    1605.0
+                ],
+                [
+                    2917.0,
+                    1605.0
+                ],
+                [
+                    2917.0,
+                    1683.0
+                ],
+                [
+                    2492.0,
+                    1683.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "\"No,\" was this reply, \"but I have been married twice!\"",
+            "block_bbox": [
+                2494,
+                1681,
+                2924,
+                1733
+            ],
+            "block_id": 64,
+            "block_order": 63,
+            "group_id": 64,
+            "block_polygon_points": [
+                [
+                    2494.0,
+                    1681.0
+                ],
+                [
+                    2924.0,
+                    1681.0
+                ],
+                [
+                    2924.0,
+                    1733.0
+                ],
+                [
+                    2494.0,
+                    1733.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "'This is something.akin to the reasons given by the late Marie Grelli as to why she never married. She had a cut, a eamory and a parrot - and that was sufficient. These sort of libols should be stopped by Act of Parliament.'",
+            "block_bbox": [
+                2493,
+                1710,
+                2924,
+                1924
+            ],
+            "block_id": 65,
+            "block_order": 64,
+            "group_id": 65,
+            "block_polygon_points": [
+                [
+                    2493.0,
+                    1710.0
+                ],
+                [
+                    2924.0,
+                    1710.0
+                ],
+                [
+                    2924.0,
+                    1924.0
+                ],
+                [
+                    2493.0,
+                    1924.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "HARD WORK.",
+            "block_bbox": [
+                2494,
+                1963,
+                2667,
+                2012
+            ],
+            "block_id": 66,
+            "block_order": 65,
+            "group_id": 66,
+            "block_polygon_points": [
+                [
+                    2494.0,
+                    1963.0
+                ],
+                [
+                    2667.0,
+                    1963.0
+                ],
+                [
+                    2667.0,
+                    2012.0
+                ],
+                [
+                    2494.0,
+                    2012.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "They tell us to \"go to the ant thou sluggard, consider",
+            "block_bbox": [
+                2683,
+                1936,
+                2918,
+                2029
+            ],
+            "block_id": 67,
+            "block_order": 66,
+            "group_id": 67,
+            "block_polygon_points": [
+                [
+                    2683.0,
+                    1936.0
+                ],
+                [
+                    2918.0,
+                    1936.0
+                ],
+                [
+                    2918.0,
+                    2029.0
+                ],
+                [
+                    2683.0,
+                    2029.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "her ways and be wise.\" Some of Hongkong's workers should be minded of Thomas. Dreier's sermon on a Bee. He tells us that a red clover blossom contains less than one-eighth of a grain of sugar and that seven thousand grains of sugar are required to make a pound of honey. Now a vagabond bee, seeking everywhere for sweetness, must get this material from fifty-six thousand clover heads. To do this he must insert his proboscis into each flower-tube—and there are about sixty of these to each head of clover. Sixty times fifty-six thousand is three million three hundred and sixty thousand. That means that the bee performs the operation that many times and gets only nectar for one pound of honey—and then some one else gets the honey!",
+            "block_bbox": [
+                2487,
+                2024,
+                2917,
+                2702
+            ],
+            "block_id": 68,
+            "block_order": 67,
+            "group_id": 68,
+            "block_polygon_points": [
+                [
+                    2487.0,
+                    2024.0
+                ],
+                [
+                    2917.0,
+                    2024.0
+                ],
+                [
+                    2917.0,
+                    2702.0
+                ],
+                [
+                    2487.0,
+                    2702.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "And then we talk about hard work!\nDr. William E. Bartor, GENEROUS, whose \"Life\" of Abraham Lincoln is one of the major biographies of this decade recently returned after a world tour. In London he met Lord Charwood, the British biographer of Lincoln, and had a delightful visit with him. It was when Lady Charwood entered the room that his host made this generous introduction:\n\"My dear, I present to you Dr. Barton, one of the very few men who know more than your husband about Abraham Lincoln.\"",
+            "block_bbox": [
+                2491,
+                2699,
+                2911,
+                2761
+            ],
+            "block_id": 69,
+            "block_order": 68,
+            "group_id": 69,
+            "block_polygon_points": [
+                [
+                    2491.0,
+                    2699.0
+                ],
+                [
+                    2911.0,
+                    2699.0
+                ],
+                [
+                    2911.0,
+                    2761.0
+                ],
+                [
+                    2491.0,
+                    2761.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "",
+            "block_bbox": [
+                2922,
+                458,
+                3360,
+                865
+            ],
+            "block_id": 70,
+            "block_order": 69,
+            "group_id": 69,
+            "block_polygon_points": [
+                [
+                    2922.0,
+                    458.0
+                ],
+                [
+                    3360.0,
+                    458.0
+                ],
+                [
+                    3360.0,
+                    865.0
+                ],
+                [
+                    2922.0,
+                    865.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "As a relief from the JEW STORIES: Scotch story, the following should be",
+            "block_bbox": [
+                2920,
+                895,
+                3357,
+                984
+            ],
+            "block_id": 71,
+            "block_order": 70,
+            "group_id": 71,
+            "block_polygon_points": [
+                [
+                    2920.0,
+                    895.0
+                ],
+                [
+                    3357.0,
+                    895.0
+                ],
+                [
+                    3357.0,
+                    984.0
+                ],
+                [
+                    2920.0,
+                    984.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "* * * *",
+            "block_bbox": [
+                3063,
+                1348,
+                3219,
+                1375
+            ],
+            "block_id": 72,
+            "block_order": 71,
+            "group_id": 72,
+            "block_polygon_points": [
+                [
+                    3063.0,
+                    1348.0
+                ],
+                [
+                    3219.0,
+                    1348.0
+                ],
+                [
+                    3219.0,
+                    1375.0
+                ],
+                [
+                    3063.0,
+                    1375.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "A small boy of Jewish persuasion playing at the end of a pier fell off and was finally rescued with great difficulty by an intrepid swimmer. Half an hour later, while leaving the pier, after resting from his exhausting effort, the rescuer was touched on the shoulder by a man. \"Aro you the man, vot saved my boy Ikey's life?\" he asked. \"Yes,\" said the still breathless hero. \"Voll,\" said the indignant Hebrew, \"vero's his cap?\"",
+            "block_bbox": [
+                2924,
+                1000,
+                3352,
+                1347
+            ],
+            "block_id": 73,
+            "block_order": 72,
+            "group_id": 73,
+            "block_polygon_points": [
+                [
+                    2924.0,
+                    1000.0
+                ],
+                [
+                    3352.0,
+                    1000.0
+                ],
+                [
+                    3352.0,
+                    1347.0
+                ],
+                [
+                    2924.0,
+                    1347.0
+                ]
+            ]
+        },
+        {
+            "block_label": "paragraph_title",
+            "block_content": "THE AUTHOR'S RIGHTS",
+            "block_bbox": [
+                2642,
+                2789,
+                3201,
+                2847
+            ],
+            "block_id": 74,
+            "block_order": 73,
+            "group_id": 74,
+            "block_polygon_points": [
+                [
+                    2642.0,
+                    2789.0
+                ],
+                [
+                    3201.0,
+                    2789.0
+                ],
+                [
+                    3201.0,
+                    2847.0
+                ],
+                [
+                    2642.0,
+                    2847.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Feldman was taking a walk in the country, and came upon a cummber nursery. He strolled in and was shown over the place by the courteous proprietor, who explained everything to him. He saw several fine specimens and inquired if they were for sale. The proprietor said he dealt only with wholesale jobbers, but as a favour would list him have one. \"That's a fine fellow deco,\" said Feldman, painting with his stick to a big cucumber. \"How much would that be?\" \"You can have that for a shilling,\" said the grower. Feldman missed a while and looked for a smuller one. Finally he spied it and said, \"How much is that little one?\" \"Let you have that one for sixpence,\" said the host. \"Well I'll have that one,\" he said, and promptly paid the sixpence. The nurseryman stooped to cut it off, when Feldman stopped him. \"No, no!\" he said, \"I won't take it now, I'll come along in about a fortnight for it.\"",
+            "block_bbox": [
+                2924,
+                1382,
+                3359,
+                2128
+            ],
+            "block_id": 75,
+            "block_order": 74,
+            "group_id": 75,
+            "block_polygon_points": [
+                [
+                    2924.0,
+                    1382.0
+                ],
+                [
+                    3359.0,
+                    1382.0
+                ],
+                [
+                    3359.0,
+                    2128.0
+                ],
+                [
+                    2924.0,
+                    2128.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "Dr. Jones was sleeping soundly after an ill-night case when his telephone rung. Drugging himself of the instrument, his answered impatiently. It was the voice of one Aaron Rimburg, who frantically implored the doctor to “Come at vince!” on a matter of life or death. Little Aaron had swallowed a shilling and the parents feared the worst.",
+            "block_bbox": [
+                2925,
+                2160,
+                3356,
+                2452
+            ],
+            "block_id": 76,
+            "block_order": 75,
+            "group_id": 76,
+            "block_polygon_points": [
+                [
+                    2925.0,
+                    2160.0
+                ],
+                [
+                    3356.0,
+                    2160.0
+                ],
+                [
+                    3356.0,
+                    2452.0
+                ],
+                [
+                    2925.0,
+                    2452.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The doctor dressed hurriedly called his ear and drove madly to the abode of the Bimburggs. On his arrival he found the parental Bimburggs calm and apparently much relieved. \"It's all right now, doctor,\" said Bimburgg, \"you needn't have come.\" The doctor was furious, and said, \"Did he get it up?\" \"No,\" said Bimburgg, \"but it was only a thruppany bit. Ve found it, shilling on the floor.\"",
+            "block_bbox": [
+                2922,
+                2450,
+                3353,
+                2769
+            ],
+            "block_id": 77,
+            "block_order": 76,
+            "group_id": 77,
+            "block_polygon_points": [
+                [
+                    2922.0,
+                    2450.0
+                ],
+                [
+                    3353.0,
+                    2450.0
+                ],
+                [
+                    3353.0,
+                    2769.0
+                ],
+                [
+                    2922.0,
+                    2769.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "The world is, we fear, but little interested in the rights of authors, or their wrongs. Your man of letters is not a sympathetic character, observes a Home paper. But even an author should have justice, and we hope that Parliament will not ignore the Bill which Sir William Bull has introduced to change two points in the law bearing hardly upon the profession of authorship. One is rather a matter of principle than of general importance. As present, when a book appears to someone in authority relations, blaspiemous or obscene the publisher is prosecuted, not the author, and the author has no right to be heard in his own defence. Such issues are very seldom fought by the publisher, who, very naturally, prefers to plead ignorance or inadvertence rather than defend the character of the book. It is hardly to be denied that this is inequitable. If the author has a defection to the right to be allowed to make it. On the other hand, if he is not he is probably quite as guilty as the publisher. Therefore we must support Sir William Bull's proposed reform that when such proceedings are taken in future, the author should be brought into court. Yet we confess that it is but a small point. Prosecutions of this sort are rare, and rather still the case in which there is much room for argument about the character of the book. The second reform is of much greater importance. Readers are becoming familiar with in an announcement following the title in a modern novel to the effect think all the persons in the story are imaginary. Many readers must have been moved to remark that this is most superfluous warning. But if fact it is a protective clause against a real danger. A few years ago a distinguished novelist was sired by a gentleman who has the same",
+            "block_bbox": [
+                2469,
+                2870,
+                2910,
+                4254
+            ],
+            "block_id": 78,
+            "block_order": 77,
+            "group_id": 78,
+            "block_polygon_points": [
+                [
+                    2469.0,
+                    2870.0
+                ],
+                [
+                    2910.0,
+                    2870.0
+                ],
+                [
+                    2910.0,
+                    4254.0
+                ],
+                [
+                    2469.0,
+                    4254.0
+                ]
+            ]
+        },
+        {
+            "block_label": "text",
+            "block_content": "him, and the novelist won the case; but he was nevertheless exposed to long and harassing legal proceedings. Juries, we may hope, would always, in such circumstances, find for the defendant, but no one who has watched juries and judges in their dealings with libel census can feel absolute confidence. Moreover, it is but little comfort to the successful defendant to know that all reasonable people are agreed the charge ought not to have been brought. We have also to consider that for every such case which comes into court there will certainly be several which, though, never going beyond threats, caused much worry and some expense. What Sir William Bull proposes—and his Bill is backed by members of all parties—is that no action for libel in respect of references in a work of fiction shall be maintainable unless it can be proved the author is aided to libel the complainant. If this becomes law it will no longer be possible for Mr. X. Y. Z. to threaten a novelist because a novel of his makes some X. Y. Z. the villain. On the other hand, if some misguided novelist does deliberately pillory a man or woman he will be just as liable to pay for it as now he is. This is, we submit, the rational way of dealing with the matter. Under such a law of libel, Leigh Hunt would have had a good chance of winning an action against Dickens for describing him as Harold Skimpole. On the other hand, the chance which at present exists of some unknown Mr. Heep arising to prosecute Dickens for living him as Irish would be eliminated. It is no doubt a source of pain to very sensitive people when they find their names used for church services which they don't have. There was some time ago, a post lady of the same name who committed suicide.",
+            "block_bbox": [
+                2903,
+                2890,
+                3353,
+                4248
+            ],
+            "block_id": 79,
+            "block_order": 78,
+            "group_id": 79,
+            "block_polygon_points": [
+                [
+                    2903.0,
+                    2890.0
+                ],
+                [
+                    3353.0,
+                    2890.0
+                ],
+                [
+                    3353.0,
+                    4248.0
+                ],
+                [
+                    2903.0,
+                    4248.0
+                ]
+            ]
+        }
+    ],
+    "layout_det_res": {
+        "input_path": null,
+        "page_index": null,
+        "boxes": [
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.5568819642066956,
+                "coordinate": [
+                    1428,
+                    218,
+                    2035,
+                    280
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        1428.0,
+                        218.0
+                    ],
+                    [
+                        2035.0,
+                        218.0
+                    ],
+                    [
+                        2035.0,
+                        280.0
+                    ],
+                    [
+                        1428.0,
+                        280.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 12,
+                "label": "header",
+                "score": 0.5129879117012024,
+                "coordinate": [
+                    2573,
+                    238,
+                    3261,
+                    285
+                ],
+                "order": null,
+                "polygon_points": [
+                    [
+                        2573.0,
+                        238.0
+                    ],
+                    [
+                        3261.0,
+                        238.0
+                    ],
+                    [
+                        3261.0,
+                        285.0
+                    ],
+                    [
+                        2573.0,
+                        285.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.5291637182235718,
+                "coordinate": [
+                    397,
+                    370,
+                    1087,
+                    460
+                ],
+                "order": 1,
+                "polygon_points": [
+                    [
+                        397.0,
+                        370.0
+                    ],
+                    [
+                        1087.0,
+                        370.0
+                    ],
+                    [
+                        1087.0,
+                        460.0
+                    ],
+                    [
+                        397.0,
+                        460.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8110096454620361,
+                "coordinate": [
+                    398,
+                    498,
+                    1089,
+                    622
+                ],
+                "order": 2,
+                "polygon_points": [
+                    [
+                        398.0,
+                        498.0
+                    ],
+                    [
+                        1089.0,
+                        498.0
+                    ],
+                    [
+                        1089.0,
+                        622.0
+                    ],
+                    [
+                        398.0,
+                        622.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8509654402732849,
+                "coordinate": [
+                    399,
+                    636,
+                    1094,
+                    795
+                ],
+                "order": 3,
+                "polygon_points": [
+                    [
+                        399.0,
+                        636.0
+                    ],
+                    [
+                        1094.0,
+                        636.0
+                    ],
+                    [
+                        1094.0,
+                        795.0
+                    ],
+                    [
+                        399.0,
+                        795.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7412933707237244,
+                "coordinate": [
+                    403,
+                    808,
+                    1096,
+                    894
+                ],
+                "order": 4,
+                "polygon_points": [
+                    [
+                        403.0,
+                        808.0
+                    ],
+                    [
+                        1096.0,
+                        808.0
+                    ],
+                    [
+                        1096.0,
+                        894.0
+                    ],
+                    [
+                        403.0,
+                        894.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7040743231773376,
+                "coordinate": [
+                    401,
+                    907,
+                    1095,
+                    1006
+                ],
+                "order": 5,
+                "polygon_points": [
+                    [
+                        401.0,
+                        907.0
+                    ],
+                    [
+                        1095.0,
+                        907.0
+                    ],
+                    [
+                        1095.0,
+                        1006.0
+                    ],
+                    [
+                        401.0,
+                        1006.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.4494265615940094,
+                "coordinate": [
+                    399,
+                    1033,
+                    1103,
+                    1195
+                ],
+                "order": 6,
+                "polygon_points": [
+                    [
+                        399.0,
+                        1033.0
+                    ],
+                    [
+                        1103.0,
+                        1033.0
+                    ],
+                    [
+                        1103.0,
+                        1195.0
+                    ],
+                    [
+                        399.0,
+                        1195.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.33479705452919006,
+                "coordinate": [
+                    449,
+                    1300,
+                    1129,
+                    1412
+                ],
+                "order": 7,
+                "polygon_points": [
+                    [
+                        449.0,
+                        1300.0
+                    ],
+                    [
+                        1129.0,
+                        1300.0
+                    ],
+                    [
+                        1129.0,
+                        1412.0
+                    ],
+                    [
+                        449.0,
+                        1412.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7667636871337891,
+                "coordinate": [
+                    519,
+                    1467,
+                    964,
+                    1751
+                ],
+                "order": 8,
+                "polygon_points": [
+                    [
+                        519.0,
+                        1467.0
+                    ],
+                    [
+                        964.0,
+                        1467.0
+                    ],
+                    [
+                        964.0,
+                        1751.0
+                    ],
+                    [
+                        519.0,
+                        1751.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.32202866673469543,
+                "coordinate": [
+                    552,
+                    1817,
+                    927,
+                    1893
+                ],
+                "order": 9,
+                "polygon_points": [
+                    [
+                        552.0,
+                        1817.0
+                    ],
+                    [
+                        927.0,
+                        1817.0
+                    ],
+                    [
+                        927.0,
+                        1893.0
+                    ],
+                    [
+                        552.0,
+                        1893.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 6,
+                "label": "doc_title",
+                "score": 0.51447594165802,
+                "coordinate": [
+                    390,
+                    2343,
+                    1087,
+                    2420
+                ],
+                "order": 10,
+                "polygon_points": [
+                    [
+                        390.0,
+                        2343.0
+                    ],
+                    [
+                        1087.0,
+                        2343.0
+                    ],
+                    [
+                        1087.0,
+                        2420.0
+                    ],
+                    [
+                        390.0,
+                        2420.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7254645228385925,
+                "coordinate": [
+                    377,
+                    2527,
+                    1105,
+                    2765
+                ],
+                "order": 11,
+                "polygon_points": [
+                    [
+                        377.0,
+                        2527.0
+                    ],
+                    [
+                        1105.0,
+                        2527.0
+                    ],
+                    [
+                        1105.0,
+                        2765.0
+                    ],
+                    [
+                        377.0,
+                        2765.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.414541095495224,
+                "coordinate": [
+                    377,
+                    2781,
+                    926,
+                    2835
+                ],
+                "order": 12,
+                "polygon_points": [
+                    [
+                        377.0,
+                        2781.0
+                    ],
+                    [
+                        926.0,
+                        2781.0
+                    ],
+                    [
+                        926.0,
+                        2835.0
+                    ],
+                    [
+                        377.0,
+                        2835.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.4046218991279602,
+                "coordinate": [
+                    328,
+                    2908,
+                    1147,
+                    2965
+                ],
+                "order": 13,
+                "polygon_points": [
+                    [
+                        328.0,
+                        2908.0
+                    ],
+                    [
+                        1147.0,
+                        2908.0
+                    ],
+                    [
+                        1147.0,
+                        2965.0
+                    ],
+                    [
+                        328.0,
+                        2965.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7307358980178833,
+                "coordinate": [
+                    345,
+                    3125,
+                    1123,
+                    3330
+                ],
+                "order": 14,
+                "polygon_points": [
+                    [
+                        345.0,
+                        3125.0
+                    ],
+                    [
+                        1123.0,
+                        3125.0
+                    ],
+                    [
+                        1123.0,
+                        3330.0
+                    ],
+                    [
+                        345.0,
+                        3330.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3841537833213806,
+                "coordinate": [
+                    648,
+                    3327,
+                    1116,
+                    3387
+                ],
+                "order": 15,
+                "polygon_points": [
+                    [
+                        648.0,
+                        3327.0
+                    ],
+                    [
+                        1116.0,
+                        3327.0
+                    ],
+                    [
+                        1116.0,
+                        3387.0
+                    ],
+                    [
+                        648.0,
+                        3387.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.31894537806510925,
+                "coordinate": [
+                    314,
+                    3477,
+                    1151,
+                    3519
+                ],
+                "order": 16,
+                "polygon_points": [
+                    [
+                        314.0,
+                        3477.0
+                    ],
+                    [
+                        1151.0,
+                        3477.0
+                    ],
+                    [
+                        1151.0,
+                        3519.0
+                    ],
+                    [
+                        314.0,
+                        3519.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3455018997192383,
+                "coordinate": [
+                    349,
+                    3730,
+                    1037,
+                    3847
+                ],
+                "order": 17,
+                "polygon_points": [
+                    [
+                        349.0,
+                        3730.0
+                    ],
+                    [
+                        1037.0,
+                        3730.0
+                    ],
+                    [
+                        1037.0,
+                        3847.0
+                    ],
+                    [
+                        349.0,
+                        3847.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3015902638435364,
+                "coordinate": [
+                    346,
+                    3843,
+                    1118,
+                    3909
+                ],
+                "order": 18,
+                "polygon_points": [
+                    [
+                        346.0,
+                        3843.0
+                    ],
+                    [
+                        1118.0,
+                        3843.0
+                    ],
+                    [
+                        1118.0,
+                        3909.0
+                    ],
+                    [
+                        346.0,
+                        3909.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 6,
+                "label": "doc_title",
+                "score": 0.37610703706741333,
+                "coordinate": [
+                    1224,
+                    362,
+                    2002,
+                    464
+                ],
+                "order": 19,
+                "polygon_points": [
+                    [
+                        1224.0,
+                        362.0
+                    ],
+                    [
+                        2002.0,
+                        362.0
+                    ],
+                    [
+                        2002.0,
+                        464.0
+                    ],
+                    [
+                        1224.0,
+                        464.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3315950036048889,
+                "coordinate": [
+                    1324,
+                    479,
+                    1901,
+                    532
+                ],
+                "order": 20,
+                "polygon_points": [
+                    [
+                        1324.0,
+                        479.0
+                    ],
+                    [
+                        1901.0,
+                        479.0
+                    ],
+                    [
+                        1901.0,
+                        532.0
+                    ],
+                    [
+                        1324.0,
+                        532.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.3939150273799896,
+                "coordinate": [
+                    1253,
+                    549,
+                    1987,
+                    629
+                ],
+                "order": 21,
+                "polygon_points": [
+                    [
+                        1253.0,
+                        549.0
+                    ],
+                    [
+                        1987.0,
+                        549.0
+                    ],
+                    [
+                        1987.0,
+                        629.0
+                    ],
+                    [
+                        1253.0,
+                        629.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5601949691772461,
+                "coordinate": [
+                    1265,
+                    640,
+                    1968,
+                    775
+                ],
+                "order": 22,
+                "polygon_points": [
+                    [
+                        1265.0,
+                        640.0
+                    ],
+                    [
+                        1968.0,
+                        640.0
+                    ],
+                    [
+                        1968.0,
+                        775.0
+                    ],
+                    [
+                        1265.0,
+                        775.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5445777177810669,
+                "coordinate": [
+                    1270,
+                    774,
+                    1960,
+                    861
+                ],
+                "order": 23,
+                "polygon_points": [
+                    [
+                        1270.0,
+                        774.0
+                    ],
+                    [
+                        1960.0,
+                        774.0
+                    ],
+                    [
+                        1960.0,
+                        861.0
+                    ],
+                    [
+                        1270.0,
+                        861.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6513785719871521,
+                "coordinate": [
+                    1284,
+                    901,
+                    1938,
+                    1013
+                ],
+                "order": 24,
+                "polygon_points": [
+                    [
+                        1284.0,
+                        901.0
+                    ],
+                    [
+                        1938.0,
+                        901.0
+                    ],
+                    [
+                        1938.0,
+                        1013.0
+                    ],
+                    [
+                        1284.0,
+                        1013.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 6,
+                "label": "doc_title",
+                "score": 0.3523675799369812,
+                "coordinate": [
+                    1217,
+                    1200,
+                    2024,
+                    1280
+                ],
+                "order": 25,
+                "polygon_points": [
+                    [
+                        1217.0,
+                        1200.0
+                    ],
+                    [
+                        2024.0,
+                        1200.0
+                    ],
+                    [
+                        2024.0,
+                        1280.0
+                    ],
+                    [
+                        1217.0,
+                        1280.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.34401369094848633,
+                "coordinate": [
+                    1573,
+                    1490,
+                    1665,
+                    1536
+                ],
+                "order": 26,
+                "polygon_points": [
+                    [
+                        1573.0,
+                        1490.0
+                    ],
+                    [
+                        1665.0,
+                        1490.0
+                    ],
+                    [
+                        1665.0,
+                        1536.0
+                    ],
+                    [
+                        1573.0,
+                        1536.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3165818452835083,
+                "coordinate": [
+                    1438,
+                    1569,
+                    1798,
+                    1649
+                ],
+                "order": 27,
+                "polygon_points": [
+                    [
+                        1438.0,
+                        1569.0
+                    ],
+                    [
+                        1798.0,
+                        1569.0
+                    ],
+                    [
+                        1798.0,
+                        1649.0
+                    ],
+                    [
+                        1438.0,
+                        1649.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5575702786445618,
+                "coordinate": [
+                    1270,
+                    1683,
+                    1963,
+                    1769
+                ],
+                "order": 28,
+                "polygon_points": [
+                    [
+                        1270.0,
+                        1683.0
+                    ],
+                    [
+                        1963.0,
+                        1683.0
+                    ],
+                    [
+                        1963.0,
+                        1769.0
+                    ],
+                    [
+                        1270.0,
+                        1769.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.533050537109375,
+                "coordinate": [
+                    1359,
+                    1899,
+                    1865,
+                    1955
+                ],
+                "order": 29,
+                "polygon_points": [
+                    [
+                        1359.0,
+                        1899.0
+                    ],
+                    [
+                        1865.0,
+                        1899.0
+                    ],
+                    [
+                        1865.0,
+                        1955.0
+                    ],
+                    [
+                        1359.0,
+                        1955.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.6925877928733826,
+                "coordinate": [
+                    1220,
+                    2121,
+                    1574,
+                    2172
+                ],
+                "order": 30,
+                "polygon_points": [
+                    [
+                        1220.0,
+                        2121.0
+                    ],
+                    [
+                        1574.0,
+                        2121.0
+                    ],
+                    [
+                        1574.0,
+                        2172.0
+                    ],
+                    [
+                        1220.0,
+                        2172.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7831213474273682,
+                "coordinate": [
+                    1204,
+                    2177,
+                    1593,
+                    2422
+                ],
+                "order": 31,
+                "polygon_points": [
+                    [
+                        1204.0,
+                        2177.0
+                    ],
+                    [
+                        1593.0,
+                        2177.0
+                    ],
+                    [
+                        1593.0,
+                        2422.0
+                    ],
+                    [
+                        1204.0,
+                        2422.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3648607134819031,
+                "coordinate": [
+                    1209,
+                    2441,
+                    1588,
+                    2538
+                ],
+                "order": 32,
+                "polygon_points": [
+                    [
+                        1209.0,
+                        2441.0
+                    ],
+                    [
+                        1588.0,
+                        2441.0
+                    ],
+                    [
+                        1588.0,
+                        2538.0
+                    ],
+                    [
+                        1209.0,
+                        2538.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.43784263730049133,
+                "coordinate": [
+                    1200,
+                    2575,
+                    1590,
+                    2742
+                ],
+                "order": 33,
+                "polygon_points": [
+                    [
+                        1200.0,
+                        2574.999755859375
+                    ],
+                    [
+                        1572.0,
+                        2574.999755859375
+                    ],
+                    [
+                        1572.0,
+                        2740.999755859375
+                    ],
+                    [
+                        1200.0,
+                        2740.999755859375
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6576717495918274,
+                "coordinate": [
+                    1199,
+                    2748,
+                    1589,
+                    2843
+                ],
+                "order": 34,
+                "polygon_points": [
+                    [
+                        1199.0,
+                        2748.0
+                    ],
+                    [
+                        1589.0,
+                        2748.0
+                    ],
+                    [
+                        1589.0,
+                        2843.0
+                    ],
+                    [
+                        1199.0,
+                        2843.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.3324235677719116,
+                "coordinate": [
+                    1208,
+                    3045,
+                    1558,
+                    3081
+                ],
+                "order": 35,
+                "polygon_points": [
+                    [
+                        1208.0,
+                        3045.0
+                    ],
+                    [
+                        1558.0,
+                        3045.0
+                    ],
+                    [
+                        1558.0,
+                        3081.0
+                    ],
+                    [
+                        1208.0,
+                        3081.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.642014741897583,
+                "coordinate": [
+                    1169,
+                    3113,
+                    1602,
+                    4291
+                ],
+                "order": 36,
+                "polygon_points": [
+                    [
+                        1169.0,
+                        3113.0
+                    ],
+                    [
+                        1602.0,
+                        3113.0
+                    ],
+                    [
+                        1602.0,
+                        4291.0
+                    ],
+                    [
+                        1169.0,
+                        4291.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.817257821559906,
+                "coordinate": [
+                    1601,
+                    2097,
+                    2047,
+                    4352
+                ],
+                "order": 37,
+                "polygon_points": [
+                    [
+                        1601.0,
+                        2097.0
+                    ],
+                    [
+                        2047.0,
+                        2097.0
+                    ],
+                    [
+                        2047.0,
+                        4352.0
+                    ],
+                    [
+                        1601.0,
+                        4352.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8359188437461853,
+                "coordinate": [
+                    2043,
+                    332,
+                    2485,
+                    2015
+                ],
+                "order": 38,
+                "polygon_points": [
+                    [
+                        2043.0,
+                        332.0
+                    ],
+                    [
+                        2485.0,
+                        332.0
+                    ],
+                    [
+                        2485.0,
+                        2015.0
+                    ],
+                    [
+                        2043.0,
+                        2015.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.583293616771698,
+                "coordinate": [
+                    2122,
+                    2051,
+                    2412,
+                    2090
+                ],
+                "order": 39,
+                "polygon_points": [
+                    [
+                        2122.0,
+                        2051.0
+                    ],
+                    [
+                        2412.0,
+                        2051.0
+                    ],
+                    [
+                        2412.0,
+                        2090.0
+                    ],
+                    [
+                        2122.0,
+                        2090.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6119833588600159,
+                "coordinate": [
+                    2059,
+                    2110,
+                    2478,
+                    2197
+                ],
+                "order": 40,
+                "polygon_points": [
+                    [
+                        2059.0,
+                        2110.0
+                    ],
+                    [
+                        2478.0,
+                        2110.0
+                    ],
+                    [
+                        2478.0,
+                        2197.0
+                    ],
+                    [
+                        2059.0,
+                        2197.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6864402294158936,
+                "coordinate": [
+                    2057,
+                    2202,
+                    2478,
+                    2289
+                ],
+                "order": 41,
+                "polygon_points": [
+                    [
+                        2057.0,
+                        2202.0
+                    ],
+                    [
+                        2478.0,
+                        2202.0
+                    ],
+                    [
+                        2478.0,
+                        2289.0
+                    ],
+                    [
+                        2057.0,
+                        2289.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.672675371170044,
+                "coordinate": [
+                    2059,
+                    2297,
+                    2480,
+                    2383
+                ],
+                "order": 42,
+                "polygon_points": [
+                    [
+                        2059.0,
+                        2297.0
+                    ],
+                    [
+                        2480.0,
+                        2297.0
+                    ],
+                    [
+                        2480.0,
+                        2383.0
+                    ],
+                    [
+                        2059.0,
+                        2383.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.707801342010498,
+                "coordinate": [
+                    2061,
+                    2393,
+                    2480,
+                    2532
+                ],
+                "order": 43,
+                "polygon_points": [
+                    [
+                        2061.0,
+                        2393.0
+                    ],
+                    [
+                        2480.0,
+                        2393.0
+                    ],
+                    [
+                        2480.0,
+                        2532.0
+                    ],
+                    [
+                        2061.0,
+                        2532.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7075273990631104,
+                "coordinate": [
+                    2055,
+                    2538,
+                    2477,
+                    2624
+                ],
+                "order": 44,
+                "polygon_points": [
+                    [
+                        2055.0,
+                        2538.0
+                    ],
+                    [
+                        2477.0,
+                        2538.0
+                    ],
+                    [
+                        2477.0,
+                        2624.0
+                    ],
+                    [
+                        2055.0,
+                        2624.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6465427279472351,
+                "coordinate": [
+                    2052,
+                    2632,
+                    2477,
+                    2716
+                ],
+                "order": 45,
+                "polygon_points": [
+                    [
+                        2052.0,
+                        2632.0
+                    ],
+                    [
+                        2477.0,
+                        2632.0
+                    ],
+                    [
+                        2477.0,
+                        2716.0
+                    ],
+                    [
+                        2052.0,
+                        2716.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3131580054759979,
+                "coordinate": [
+                    2053,
+                    2650,
+                    2482,
+                    3000
+                ],
+                "order": 46,
+                "polygon_points": [
+                    [
+                        2053.0,
+                        2674.0
+                    ],
+                    [
+                        2053.0,
+                        2976.0
+                    ],
+                    [
+                        2481.0,
+                        2976.0
+                    ],
+                    [
+                        2481.0,
+                        2650.0
+                    ],
+                    [
+                        2429.0,
+                        2650.0
+                    ],
+                    [
+                        2392.0,
+                        2650.0
+                    ],
+                    [
+                        2375.0,
+                        2650.0
+                    ],
+                    [
+                        2161.0,
+                        2674.0
+                    ],
+                    [
+                        2106.0,
+                        2674.0
+                    ],
+                    [
+                        2088.0,
+                        2650.0
+                    ],
+                    [
+                        2071.0,
+                        2650.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.396240234375,
+                "coordinate": [
+                    2059,
+                    2721,
+                    2476,
+                    2807
+                ],
+                "order": 47,
+                "polygon_points": [
+                    [
+                        2059.0,
+                        2721.0
+                    ],
+                    [
+                        2476.0,
+                        2721.0
+                    ],
+                    [
+                        2476.0,
+                        2807.0
+                    ],
+                    [
+                        2059.0,
+                        2807.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6994724273681641,
+                "coordinate": [
+                    2051,
+                    3000,
+                    2472,
+                    3228
+                ],
+                "order": 48,
+                "polygon_points": [
+                    [
+                        2051.0,
+                        3000.0
+                    ],
+                    [
+                        2472.0,
+                        3000.0
+                    ],
+                    [
+                        2472.0,
+                        3228.0
+                    ],
+                    [
+                        2051.0,
+                        3228.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.5244652032852173,
+                "coordinate": [
+                    2054,
+                    3283,
+                    2456,
+                    3327
+                ],
+                "order": 49,
+                "polygon_points": [
+                    [
+                        2054.0,
+                        3283.0
+                    ],
+                    [
+                        2456.0,
+                        3283.0
+                    ],
+                    [
+                        2456.0,
+                        3327.0
+                    ],
+                    [
+                        2054.0,
+                        3327.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.3076096177101135,
+                "coordinate": [
+                    2239,
+                    3602,
+                    2440,
+                    3632
+                ],
+                "order": 50,
+                "polygon_points": [
+                    [
+                        2239.0,
+                        3602.0
+                    ],
+                    [
+                        2440.0,
+                        3602.0
+                    ],
+                    [
+                        2440.0,
+                        3632.0
+                    ],
+                    [
+                        2239.0,
+                        3632.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.485623836517334,
+                "coordinate": [
+                    2039,
+                    3631,
+                    2466,
+                    3847
+                ],
+                "order": 51,
+                "polygon_points": [
+                    [
+                        2039.0,
+                        3631.0
+                    ],
+                    [
+                        2466.0,
+                        3631.0
+                    ],
+                    [
+                        2466.0,
+                        3847.0
+                    ],
+                    [
+                        2039.0,
+                        3847.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3677687346935272,
+                "coordinate": [
+                    2486,
+                    469,
+                    2665,
+                    623
+                ],
+                "order": 52,
+                "polygon_points": [
+                    [
+                        2486.0,
+                        469.0
+                    ],
+                    [
+                        2665.0,
+                        469.0
+                    ],
+                    [
+                        2665.0,
+                        623.0
+                    ],
+                    [
+                        2486.0,
+                        623.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 6,
+                "label": "doc_title",
+                "score": 0.48980459570884705,
+                "coordinate": [
+                    2504,
+                    339,
+                    3291,
+                    429
+                ],
+                "order": 53,
+                "polygon_points": [
+                    [
+                        2504.0,
+                        339.0
+                    ],
+                    [
+                        3291.0,
+                        339.0
+                    ],
+                    [
+                        3291.0,
+                        429.0
+                    ],
+                    [
+                        2504.0,
+                        429.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.38182881474494934,
+                "coordinate": [
+                    2669,
+                    464,
+                    2918,
+                    619
+                ],
+                "order": 54,
+                "polygon_points": [
+                    [
+                        2669.0,
+                        464.0
+                    ],
+                    [
+                        2918.0,
+                        464.0
+                    ],
+                    [
+                        2918.0,
+                        619.0
+                    ],
+                    [
+                        2669.0,
+                        619.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.49625539779663086,
+                "coordinate": [
+                    2493,
+                    639,
+                    2911,
+                    729
+                ],
+                "order": 55,
+                "polygon_points": [
+                    [
+                        2493.0,
+                        639.0
+                    ],
+                    [
+                        2911.0,
+                        639.0
+                    ],
+                    [
+                        2911.0,
+                        729.0
+                    ],
+                    [
+                        2493.0,
+                        729.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3039734661579132,
+                "coordinate": [
+                    2708,
+                    741,
+                    2909,
+                    829
+                ],
+                "order": 56,
+                "polygon_points": [
+                    [
+                        2708.0,
+                        741.0
+                    ],
+                    [
+                        2909.0,
+                        741.0
+                    ],
+                    [
+                        2909.0,
+                        829.0
+                    ],
+                    [
+                        2708.0,
+                        829.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.4084797501564026,
+                "coordinate": [
+                    2034,
+                    3868,
+                    2463,
+                    4023
+                ],
+                "order": 57,
+                "polygon_points": [
+                    [
+                        2034.0,
+                        3868.0
+                    ],
+                    [
+                        2463.0,
+                        3868.0
+                    ],
+                    [
+                        2463.0,
+                        4023.0
+                    ],
+                    [
+                        2034.0,
+                        4023.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5372490882873535,
+                "coordinate": [
+                    2492,
+                    856,
+                    2908,
+                    1037
+                ],
+                "order": 58,
+                "polygon_points": [
+                    [
+                        2492.0,
+                        856.0
+                    ],
+                    [
+                        2908.0,
+                        856.0
+                    ],
+                    [
+                        2908.0,
+                        1037.0
+                    ],
+                    [
+                        2492.0,
+                        1037.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.33725953102111816,
+                "coordinate": [
+                    2493,
+                    1066,
+                    2917,
+                    1150
+                ],
+                "order": 59,
+                "polygon_points": [
+                    [
+                        2493.0,
+                        1066.0
+                    ],
+                    [
+                        2917.0,
+                        1066.0
+                    ],
+                    [
+                        2917.0,
+                        1150.0
+                    ],
+                    [
+                        2493.0,
+                        1150.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5769442319869995,
+                "coordinate": [
+                    2493,
+                    1154,
+                    2919,
+                    1367
+                ],
+                "order": 60,
+                "polygon_points": [
+                    [
+                        2493.0,
+                        1154.0
+                    ],
+                    [
+                        2919.0,
+                        1154.0
+                    ],
+                    [
+                        2919.0,
+                        1367.0
+                    ],
+                    [
+                        2493.0,
+                        1367.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6887024641036987,
+                "coordinate": [
+                    2490,
+                    1366,
+                    2926,
+                    1526
+                ],
+                "order": 61,
+                "polygon_points": [
+                    [
+                        2490.0,
+                        1366.0
+                    ],
+                    [
+                        2926.0,
+                        1366.0
+                    ],
+                    [
+                        2926.0,
+                        1526.0
+                    ],
+                    [
+                        2490.0,
+                        1526.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.4863830804824829,
+                "coordinate": [
+                    2491,
+                    1528,
+                    2917,
+                    1605
+                ],
+                "order": 62,
+                "polygon_points": [
+                    [
+                        2491.0,
+                        1528.0
+                    ],
+                    [
+                        2917.0,
+                        1528.0
+                    ],
+                    [
+                        2917.0,
+                        1605.0
+                    ],
+                    [
+                        2491.0,
+                        1605.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.4551945924758911,
+                "coordinate": [
+                    2492,
+                    1605,
+                    2917,
+                    1683
+                ],
+                "order": 63,
+                "polygon_points": [
+                    [
+                        2492.0,
+                        1605.0
+                    ],
+                    [
+                        2917.0,
+                        1605.0
+                    ],
+                    [
+                        2917.0,
+                        1683.0
+                    ],
+                    [
+                        2492.0,
+                        1683.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.3491393029689789,
+                "coordinate": [
+                    2494,
+                    1681,
+                    2924,
+                    1733
+                ],
+                "order": 64,
+                "polygon_points": [
+                    [
+                        2494.0,
+                        1681.0
+                    ],
+                    [
+                        2924.0,
+                        1681.0
+                    ],
+                    [
+                        2924.0,
+                        1733.0
+                    ],
+                    [
+                        2494.0,
+                        1733.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.6404037475585938,
+                "coordinate": [
+                    2493,
+                    1710,
+                    2924,
+                    1924
+                ],
+                "order": 65,
+                "polygon_points": [
+                    [
+                        2493.0,
+                        1710.0
+                    ],
+                    [
+                        2924.0,
+                        1710.0
+                    ],
+                    [
+                        2924.0,
+                        1924.0
+                    ],
+                    [
+                        2493.0,
+                        1924.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.36005187034606934,
+                "coordinate": [
+                    2494,
+                    1963,
+                    2667,
+                    2012
+                ],
+                "order": 66,
+                "polygon_points": [
+                    [
+                        2494.0,
+                        1963.0
+                    ],
+                    [
+                        2667.0,
+                        1963.0
+                    ],
+                    [
+                        2667.0,
+                        2012.0
+                    ],
+                    [
+                        2494.0,
+                        2012.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.34000447392463684,
+                "coordinate": [
+                    2683,
+                    1936,
+                    2918,
+                    2029
+                ],
+                "order": 67,
+                "polygon_points": [
+                    [
+                        2683.0,
+                        1936.0
+                    ],
+                    [
+                        2918.0,
+                        1936.0
+                    ],
+                    [
+                        2918.0,
+                        2029.0
+                    ],
+                    [
+                        2683.0,
+                        2029.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7077639698982239,
+                "coordinate": [
+                    2487,
+                    2024,
+                    2917,
+                    2702
+                ],
+                "order": 68,
+                "polygon_points": [
+                    [
+                        2487.0,
+                        2024.0
+                    ],
+                    [
+                        2917.0,
+                        2024.0
+                    ],
+                    [
+                        2917.0,
+                        2702.0
+                    ],
+                    [
+                        2487.0,
+                        2702.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.5814192295074463,
+                "coordinate": [
+                    2491,
+                    2699,
+                    2911,
+                    2761
+                ],
+                "order": 69,
+                "polygon_points": [
+                    [
+                        2491.0,
+                        2699.0
+                    ],
+                    [
+                        2911.0,
+                        2699.0
+                    ],
+                    [
+                        2911.0,
+                        2761.0
+                    ],
+                    [
+                        2491.0,
+                        2761.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8342410922050476,
+                "coordinate": [
+                    2922,
+                    458,
+                    3360,
+                    865
+                ],
+                "order": 70,
+                "polygon_points": [
+                    [
+                        2922.0,
+                        458.0
+                    ],
+                    [
+                        3360.0,
+                        458.0
+                    ],
+                    [
+                        3360.0,
+                        865.0
+                    ],
+                    [
+                        2922.0,
+                        865.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.3714045286178589,
+                "coordinate": [
+                    2920,
+                    895,
+                    3357,
+                    984
+                ],
+                "order": 71,
+                "polygon_points": [
+                    [
+                        2920.0,
+                        895.0
+                    ],
+                    [
+                        3357.0,
+                        895.0
+                    ],
+                    [
+                        3357.0,
+                        984.0
+                    ],
+                    [
+                        2920.0,
+                        984.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.5237901210784912,
+                "coordinate": [
+                    3063,
+                    1348,
+                    3219,
+                    1375
+                ],
+                "order": 72,
+                "polygon_points": [
+                    [
+                        3063.0,
+                        1348.0
+                    ],
+                    [
+                        3219.0,
+                        1348.0
+                    ],
+                    [
+                        3219.0,
+                        1375.0
+                    ],
+                    [
+                        3063.0,
+                        1375.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8890905976295471,
+                "coordinate": [
+                    2924,
+                    1000,
+                    3352,
+                    1347
+                ],
+                "order": 73,
+                "polygon_points": [
+                    [
+                        2924.0,
+                        1000.0
+                    ],
+                    [
+                        3352.0,
+                        1000.0
+                    ],
+                    [
+                        3352.0,
+                        1347.0
+                    ],
+                    [
+                        2924.0,
+                        1347.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 17,
+                "label": "paragraph_title",
+                "score": 0.7493820190429688,
+                "coordinate": [
+                    2642,
+                    2789,
+                    3201,
+                    2847
+                ],
+                "order": 74,
+                "polygon_points": [
+                    [
+                        2642.0,
+                        2789.0
+                    ],
+                    [
+                        3201.0,
+                        2789.0
+                    ],
+                    [
+                        3201.0,
+                        2847.0
+                    ],
+                    [
+                        2642.0,
+                        2847.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.9034326672554016,
+                "coordinate": [
+                    2924,
+                    1382,
+                    3359,
+                    2128
+                ],
+                "order": 75,
+                "polygon_points": [
+                    [
+                        2924.0,
+                        1382.0
+                    ],
+                    [
+                        3359.0,
+                        1382.0
+                    ],
+                    [
+                        3359.0,
+                        2128.0
+                    ],
+                    [
+                        2924.0,
+                        2128.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.8772710561752319,
+                "coordinate": [
+                    2925,
+                    2160,
+                    3356,
+                    2452
+                ],
+                "order": 76,
+                "polygon_points": [
+                    [
+                        2925.0,
+                        2160.0
+                    ],
+                    [
+                        3356.0,
+                        2160.0
+                    ],
+                    [
+                        3356.0,
+                        2452.0
+                    ],
+                    [
+                        2925.0,
+                        2452.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.88022780418396,
+                "coordinate": [
+                    2922,
+                    2450,
+                    3353,
+                    2769
+                ],
+                "order": 77,
+                "polygon_points": [
+                    [
+                        2922.0,
+                        2450.0
+                    ],
+                    [
+                        3353.0,
+                        2450.0
+                    ],
+                    [
+                        3353.0,
+                        2769.0
+                    ],
+                    [
+                        2922.0,
+                        2769.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7053397297859192,
+                "coordinate": [
+                    2469,
+                    2870,
+                    2910,
+                    4254
+                ],
+                "order": 78,
+                "polygon_points": [
+                    [
+                        2469.0,
+                        2870.0
+                    ],
+                    [
+                        2910.0,
+                        2870.0
+                    ],
+                    [
+                        2910.0,
+                        4254.0
+                    ],
+                    [
+                        2469.0,
+                        4254.0
+                    ]
+                ]
+            },
+            {
+                "cls_id": 22,
+                "label": "text",
+                "score": 0.7335391640663147,
+                "coordinate": [
+                    2903,
+                    2890,
+                    3353,
+                    4248
+                ],
+                "order": 79,
+                "polygon_points": [
+                    [
+                        2903.0,
+                        2890.0
+                    ],
+                    [
+                        3353.0,
+                        2890.0
+                    ],
+                    [
+                        3353.0,
+                        4248.0
+                    ],
+                    [
+                        2903.0,
+                        4248.0
+                    ]
+                ]
+            }
+        ]
+    }
+}
