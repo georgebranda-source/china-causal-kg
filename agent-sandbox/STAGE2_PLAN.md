@@ -71,6 +71,11 @@ separation. 413 nodes (235 groups, 178 singletons). Output: `kg/out/nodes.json`,
 and replaced, since it left 40–80% of descriptions unclustered. Unmatched descriptions stay as their own nodes. No dimension
 reduction was used. Node labels are provisional. Review of mixed clusters and a spot check of the largest nodes are still to do.
 
+## 5. Comparison pages
+
+`kg/build_viewers.py` builds `kg/viewer/event-030.html`, `event-035.html`, `topic-030.html` and `topic-035.html` from an adapted copy of
+the demo viewer, each linking to the others. Colours are rough keyword groups. Self-loop claims are listed on their node.
+
 ## Open decisions
 
 1. What to do with self-loops: 144 of 590 claims have cause and effect in the same node.
