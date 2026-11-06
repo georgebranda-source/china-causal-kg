@@ -5,6 +5,8 @@ from pathlib import Path
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
 from prompt_v1 import SYSTEM, EXAMPLES
+sys.path.insert(0, str(HERE.parent / "kg"))
+import normalise_prompt as NP
 
 
 def const(path, name):
@@ -26,15 +28,15 @@ o = ["# Extraction prompts", "",
      "The rules come from the user's rulings in `annotation_study.md`. Recorded 2026-11-06.", "",
      "| Prompt | Status | Source |", "| --- | --- | --- |",
      "| Extraction v1 | Current | `extraction_probe/prompt_v1.py` |",
-     "| Check v1 | Not in use (user, 2026-11-06); kept for the record | `extraction_probe/verify_test.py` |",
+     "| Check v1 | Current | `extraction_probe/verify_test.py` |",
      "| V0 and recall prompts, second-pass message | Superseded, kept for the record | `extraction_probe/probe3.py`, `recall_exp.py` |", "",
      "## Settings", "",
      "| Setting | Extraction | Check |", "| --- | --- | --- |",
      "| Endpoint | Ollama `/api/chat` | Ollama `/api/chat` |", "| Model | `qwen3.5:9b-q8_0` (`a8ee95bc3592`) | same |",
      "| `think` | false | false |", "| `temperature` | 0 | 0 |", "| `seed` | 1 | 1 |",
      "| `num_ctx` | 12288 | 4096 |", "| `num_predict` | 3000 | 300 |", "",
-     "How the prompts run: extract from the full article, extract again from ~150-word chunks, then merge and remove",
-     "duplicates. The check prompt is not part of v1.", "",
+     "How the prompts run: extract from the full article, apply the automatic quote checks, then check each claim once.",
+     "This is the setup of the 2026-11-06 run. A chunked run is not included.", "",
      "## 1. Extraction prompt (current)", "", "System prompt:", "", fence(SYSTEM),
      "User message, for an article or chunk:", "", fence("Headline: <headline>\n\nText:\n<text>"),
      "JSON schema (`format`):", "", fence(json.dumps(EX_SCHEMA, indent=2), "json"),
@@ -43,7 +45,7 @@ o = ["# Extraction prompts", "",
      "assistant message. Articles are looked up by headline pattern in the rebuilt article data.", ""]
 for pat, ans in EXAMPLES:
     o += [f"**Headline pattern `{pat}`**", "", fence(json.dumps({"relations": ans}, ensure_ascii=False, indent=2), "json")]
-o += ["## 2. Check prompt (not in use)", "", "System prompt:", "", fence(const("verify_test.py", "VERIFY")),
+o += ["## 2. Check prompt (current)", "", "System prompt:", "", fence(const("verify_test.py", "VERIFY")),
       "User message, once per claim:", "", fence("Quote: <quote>\nCause: <cause>\nEffect: <effect>"),
       "JSON schema (`format`):", "", fence(json.dumps(const("verify_test.py", "SCHEMA"), indent=2), "json"),
       "## 3. Earlier prompts (superseded)", "",
@@ -53,5 +55,10 @@ o += ["## 2. Check prompt (not in use)", "", "System prompt:", "", fence(const("
       "V2–V4 added worked examples, in `extraction_probe/recall_exp.py`. One of them taught \"After this the",
       "hesitators opened their doors\", which the rulings later excluded.", "",
       "### V4: second-pass message", "", fence(const("recall_exp.py", "GLEAN"))]
+o += ["## 4. Normalisation prompt (not yet run)", "", "From `kg/normalise_prompt.py`. System prompt:", "", fence(NP.SYSTEM),
+      "User message, once per claim:", "", fence(NP.user_message("<headline>", "<source>", "<dateline>", "<article text>", "<quote>", "<cause>", "<effect>")),
+      "### Worked examples", "", "Hand-written answers. Claims are identified by article and quote words.", ""]
+for art, key, ans in NP.EXAMPLES:
+    o += [f"**{art}**, claim containing \"{key}\"", "", fence(json.dumps(ans, ensure_ascii=False, indent=2), "json")]
 (HERE.parent / "extraction_prompts.md").write_text("\n".join(o), encoding="utf-8", newline="\n")
 print("written", len("\n".join(o)))

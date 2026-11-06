@@ -1,7 +1,7 @@
 {
   "model": "qwen3.5:9b-q8_0",
   "digest": "a8ee95bc3592",
-  "prompt_hash": "1c87384fa564",
+  "prompt_hash": "7d2d2e20792f",
   "extract_options": {
     "temperature": 0,
     "seed": 1,
@@ -16,12 +16,13 @@
   },
   "setup": "full article + check",
   "articles_selected": 916,
-  "articles_done": 6,
-  "articles_with_claims": 4,
+  "articles_done": 915,
+  "articles_with_claims": 348,
   "claims": {
-    "dropped_by_check": 5,
-    "kept": 2,
-    "quote_not_found": 1
+    "kept": 590,
+    "quote_not_found": 40,
+    "dropped_by_check": 123,
+    "duplicate": 4
   },
-  "seconds_total": 67
+  "seconds_total": 7614
 }

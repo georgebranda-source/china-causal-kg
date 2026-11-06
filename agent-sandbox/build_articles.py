@@ -419,6 +419,8 @@ def process(page):
         "headline": " / ".join(one_line(h.text) for h in a.headline) or None,
         "parent": a.parent.n if a.parent is not None else None,
         "parent_headline": " / ".join(one_line(h.text) for h in a.parent.headline) if a.parent is not None else None,
+        "source": " ".join(one_line(b.text) for k, b in a.items if k == "source") or None,
+        "dateline": " ".join(one_line(b.text) for k, b in a.items if k == "dateline") or None,
         "blocks": [b.id for b in a.blocks], "columns": sorted({c for b in a.blocks for c in b.cols}),
         "text": a.plain_text(),
     } for a in articles]

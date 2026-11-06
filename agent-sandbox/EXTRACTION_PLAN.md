@@ -1,6 +1,8 @@
 # Plan: causal relation extraction with local Qwen, June–July 1925 (v1)
 
-Status: draft, revised 2026-11-06 after user changes. Nothing here has run at scale yet.
+Status: revised 2026-11-06. **The run used full article + check** (`kg/extract.py`, 916 articles, CORE + BROAD term
+list), by the user's later instruction. That replaces the "extract twice, no check" design below. Pipeline steps 3–5
+and the second-pass paragraph are kept as a record of that decision.
 
 **Goal:** a quick first version. Run `qwen3.5:9b-q8_0` (Ollama, no thinking) over the strike-term news
 articles on the **137 June–July 1925 pages scoring ≥ 8**, and produce `relations.jsonl`: one row per causal
@@ -86,7 +88,7 @@ records that it was processed. `headline` falls back to the parent headline, the
 | **Both, merged (plan)** | **11 of 12** | **3 of 8** | **14 of 20** |
 | Both + check (not used) | 11 of 12 | 8 of 8 | 19 of 20 |
 
-**Second-pass check removed (user, 2026-11-06).** It can only lower recall, and it sees the quote without the
+**Second-pass check removed (user, 2026-11-06), then restored for the run.** It can only lower recall, and it sees the quote without the
 article, so v1 runs without it. The cost is that v1 output will include claims the rulings exclude. In the test,
 5 of the 8 "skip" sentences were still extracted: sequence ("hesitators opened"), causal verbs with no clear
 cause ("mobbed and prevented", "compelled to supplement"), a conditional ("If these measures were adopted"), and

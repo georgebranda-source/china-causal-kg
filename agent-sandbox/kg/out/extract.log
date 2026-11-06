@@ -1,0 +1,70 @@
+916 selected, 0 done, 916 to run, prompts 7d2d2e20792f
+12:34:13 25/916 articles, 18 claims kept
+12:36:57 50/916 articles, 24 claims kept
+12:40:54 75/916 articles, 42 claims kept
+12:44:49 100/916 articles, 60 claims kept
+12:48:13 125/916 articles, 77 claims kept
+12:51:44 150/916 articles, 90 claims kept
+12:55:34 175/916 articles, 109 claims kept
+12:58:52 200/916 articles, 120 claims kept
+13:02:03 225/916 articles, 131 claims kept
+13:05:31 250/916 articles, 144 claims kept
+13:08:24 275/916 articles, 159 claims kept
+13:11:45 300/916 articles, 175 claims kept
+13:13:51 325/916 articles, 182 claims kept
+FAILED page_001_NPCM19250725_01_0001#18: model call failed: Unterminated string starting at: line 2 column 16 (char 17)
+13:17:05 349/916 articles, 191 claims kept
+13:21:19 374/916 articles, 219 claims kept
+13:24:52 399/916 articles, 236 claims kept
+13:27:30 424/916 articles, 249 claims kept
+13:32:00 449/916 articles, 275 claims kept
+13:35:57 474/916 articles, 294 claims kept
+13:38:18 499/916 articles, 304 claims kept
+13:40:29 524/916 articles, 311 claims kept
+13:44:32 549/916 articles, 333 claims kept
+13:46:47 574/916 articles, 339 claims kept
+13:50:31 599/916 articles, 358 claims kept
+13:53:40 624/916 articles, 373 claims kept
+13:57:17 649/916 articles, 388 claims kept
+14:00:52 674/916 articles, 402 claims kept
+14:04:46 699/916 articles, 425 claims kept
+14:07:13 724/916 articles, 435 claims kept
+14:11:33 749/916 articles, 458 claims kept
+14:14:39 774/916 articles, 470 claims kept
+14:19:12 799/916 articles, 491 claims kept
+14:22:24 824/916 articles, 508 claims kept
+14:27:21 849/916 articles, 538 claims kept
+FAILED page_009_NPCM19250608_01_0009#7: model call failed: Unterminated string starting at: line 2 column 16 (char 17)
+14:31:37 873/916 articles, 555 claims kept
+14:35:39 898/916 articles, 574 claims kept
+14:38:25 914/916 articles, 589 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 916,
+  "articles_done": 914,
+  "articles_with_claims": 347,
+  "claims": {
+    "kept": 589,
+    "quote_not_found": 40,
+    "dropped_by_check": 122,
+    "duplicate": 4
+  },
+  "seconds_total": 7597
+}
+failed articles: ['page_001_NPCM19250725_01_0001#18', 'page_009_NPCM19250608_01_0009#7']
+NOT COMPLETE: rerun to continue

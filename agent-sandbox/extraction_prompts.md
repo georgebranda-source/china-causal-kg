@@ -7,7 +7,7 @@ The rules come from the user's rulings in `annotation_study.md`. Recorded 2026-1
 | Prompt | Status | Source |
 | --- | --- | --- |
 | Extraction v1 | Current | `extraction_probe/prompt_v1.py` |
-| Check v1 | Not in use (user, 2026-11-06); kept for the record | `extraction_probe/verify_test.py` |
+| Check v1 | Current | `extraction_probe/verify_test.py` |
 | V0 and recall prompts, second-pass message | Superseded, kept for the record | `extraction_probe/probe3.py`, `recall_exp.py` |
 
 ## Settings
@@ -22,8 +22,8 @@ The rules come from the user's rulings in `annotation_study.md`. Recorded 2026-1
 | `num_ctx` | 12288 | 4096 |
 | `num_predict` | 3000 | 300 |
 
-How the prompts run: extract from the full article, extract again from ~150-word chunks, then merge and remove
-duplicates. The check prompt is not part of v1.
+How the prompts run: extract from the full article, apply the automatic quote checks, then check each claim once.
+This is the setup of the 2026-11-06 run. A chunked run is not included.
 
 ## 1. Extraction prompt (current)
 
@@ -178,7 +178,7 @@ assistant message. Articles are looked up by headline pattern in the rebuilt art
 }
 ```
 
-## 2. Check prompt (not in use)
+## 2. Check prompt (current)
 
 System prompt:
 
@@ -279,4 +279,114 @@ hesitators opened their doors", which the rulings later excluded.
 
 ```text
 Some causal claims in the text may still be missing. Go through it sentence by sentence again and list only claims not already listed. If none are missing return an empty list.
+```
+
+## 4. Normalisation prompt (not yet run)
+
+From `kg/normalise_prompt.py`. System prompt:
+
+```text
+You describe events from a 1925 China Mail (Hongkong) newspaper article, so that the same event can be recognised across different reports. OCR errors are expected.
+
+You are given an article and one causal claim from it. Write one sentence for the cause and one for the effect.
+
+Each sentence must:
+- say who did what, and where, so it can be understood without the article. If it is a condition, not an event, such as low wages or financial depression, describe the condition and do not invent an actor
+- describe only that one event: the cause sentence must not mention the effect, and the effect sentence must not mention the cause
+- keep named people, ships and organisations, then end with a short general phrase of up to 4 words saying what kind of event it is, as in "The President McKinley and the Oostkerk skip their usual call at Hongkong, a shipping disruption."
+- state the event plainly, leaving out hedges and speakers such as "it is reported" or "he said"
+- cover both parts in the one sentence if the cause or effect has two parts
+- use the paper's 1925 names, such as Canton and Shameen, and correct obvious OCR errors
+- use plain present tense, with no dates
+- be about 8 to 25 words
+
+Describe what really happened, never a hypothetical. If the claim is a counterfactual ("had X happened, Y would have followed"), reverse both sides into the real events: the cause is that X did not happen, and the effect is that Y did not happen. The other form works the opposite way: in "had it not been for X, Y would have followed", X did happen and Y did not.
+
+Use only what the article says. Do not use outside knowledge. If the article doesn't say who or where, leave that detail out and do not guess. If "the strike" is not identified, write "a strike".
+
+Return these fields in this order:
+reasoning: one or two sentences, before anything else. Say whether the claim is a counterfactual and what really happened, and what the article states about who and where.
+cause_place: where the cause happens, as one short name such as Hongkong, Canton, Shanghai or Hankow. Use "unknown" if the article doesn't make it clear.
+cause_description: the sentence for the cause.
+effect_place: where the effect happens, in the same form.
+effect_description: the sentence for the effect.
+```
+
+User message, once per claim:
+
+```text
+Headline: <headline>
+Source: <source>
+Dateline: <dateline>
+
+Article:
+<article text>
+
+Quote: <quote>
+Cause: <cause>
+Effect: <effect>
+```
+
+### Worked examples
+
+Hand-written answers. Claims are identified by article and quote words.
+
+**page_001_NPCM19250616_01_0001#5**, claim containing "Had the mob in Shanghai seized"
+
+```json
+{
+  "reasoning": "This is a counterfactual: the mob did not seize the arms, and the greater bloodshed did not occur. The text places it in Shanghai.",
+  "cause_place": "Shanghai",
+  "cause_description": "A mob in Shanghai does not seize the arms in the police station, an averted arms seizure.",
+  "effect_place": "Shanghai",
+  "effect_description": "Greater bloodshed does not occur in Shanghai, an averted escalation."
+}
+```
+
+**page_001_NPCM19250720_01_0001#20**, claim containing "Had it not been for the pickets"
+
+```json
+{
+  "reasoning": "This is a counterfactual of the 'had it not been for' form: the pickets and lack of transport were real, and the number of strikers in the camp did not fall further. The headline concerns Canton.",
+  "cause_place": "Canton",
+  "cause_description": "Pickets and the lack of direct transport to Canton are in place, a restriction on movement.",
+  "effect_place": "Canton",
+  "effect_description": "The number of strikers in the camp is not reduced further, a continuing strikers' camp."
+}
+```
+
+**page_001_NPCM19250623_01_0001#19**, claim containing "President McKinley and the Oostkerk"
+
+```json
+{
+  "reasoning": "Not a counterfactual. The article covers several places and doesn't identify this strike, so it stays 'a strike' with an unknown place. The ships' missed call is at Hongkong.",
+  "cause_place": "unknown",
+  "cause_description": "A strike is under way, a labour stoppage.",
+  "effect_place": "Hongkong",
+  "effect_description": "The President McKinley and the Oostkerk skip their usual call at Hongkong, a shipping disruption."
+}
+```
+
+**page_001_NPCM19250609_01_0001#10**, claim containing "Very little cargo is moving"
+
+```json
+{
+  "reasoning": "Not a counterfactual. The closure is a condition, so no actor is added. The article and headline place it in Shanghai.",
+  "cause_place": "Shanghai",
+  "cause_description": "Chinese banks and shipping hongs at Shanghai are closed down, a business shutdown.",
+  "effect_place": "Shanghai",
+  "effect_description": "Very little cargo moves at Shanghai, a shipping disruption."
+}
+```
+
+**page_001_NPCM19250620_01_0001#9**, claim containing "following a hint from Hsiao Yao-nan"
+
+```json
+{
+  "reasoning": "Not a counterfactual. 'It is reported' is a hedge and is left out. The article doesn't say where the Tupan gave the hint, so that place is unknown; the students go to Peking.",
+  "cause_place": "unknown",
+  "cause_description": "Tupan Hsiao Yao-nan gives a hint to the Peking student agitators, official pressure.",
+  "effect_place": "Peking",
+  "effect_description": "The Peking student agitators return to Peking, a student departure."
+}
 ```

@@ -572,6 +572,57 @@ was restarted from the beginning on the corrected prompt.
 significantly affect the results; otherwise skip it for v1. Proposed test, not yet confirmed by the user: join a
 sample of ~30 flagged articles to their continuations, re-extract, and count claims that appear only after joining.
 
+**Embedding model (user, 2026-11-06).** The user asked to try an instruction-based LLM embedder in place of
+`bge-small-en-v1.5`, which is a small encoder that takes no task instruction. `qwen3-embedding:8b` was pulled (id
+`64b933495768`, 7.6B parameters, Q4_K_M, 4.7 GB, 4,096 dimensions). The user confirmed 8B, with 4B as the fallback if it's
+too slow. Not yet tested; to be compared with `bge` by nearest neighbours after extraction.
+
+**Normalisation changed (user, 2026-11-06).** Because the embedder is LLM-backed, the user suggested more descriptive
+context. Agreed: Qwen writes a one-sentence, self-contained description of each cause and effect from the full
+article, and those are embedded. Raw quotes are not embedded, because a claim's cause and effect share them, which
+would pull the two together. This replaces canonical phrases. The direction split is now conditional on a test,
+since an instruction-based embedder may separate opposites without it. Plan and draft prompt: `STAGE2_PLAN.md`.
+
+**Counterfactuals in the graph (user, 2026-11-06).** Hypotheticals don't go in the graph. A counterfactual is kept, but
+normalisation rewrites it as what really happened. "Had the mob seized the arms… greater bloodshed" is about a mob
+that did not seize arms, not a hypothetical seizure. Both sides are reversed in the descriptions; the extracted
+`cause`, `effect` and `quote` stay as written. About 10 claims so far. A 9B model reversed only one side of such a
+claim in an early test, so these need checking by eye.
+
+**Other normalisation rulings (user, 2026-11-06, full table in `STAGE2_PLAN.md`).** Hedges dropped from descriptions;
+two-part causes kept in one sentence for v1; names kept plus a free general phrase of up to 4 words, chosen over
+generalising and over a fixed category list; only what the article states, so no default to Hongkong; one place per
+side; 1925 names with OCR errors corrected; conditions described as conditions. The `source` and `dateline` fields
+dropped by `plain_text()` must be restored for this step, since they are evidence of place.
+
+**Normalisation prompt v1 (user, 2026-11-06).** The user asked for few-shot examples and a `reasoning` field, placed
+first. Prompt and 5 hand-written examples are in `kg/normalise_prompt.py`, covering both counterfactual forms, an
+unidentified strike, a condition and a hedged claim. Answers were hand-written because the extracted claims can be
+wrong: the pickets claim read "number of departing strikers", where the text means strikers left in the camp.
+`build_articles.py` rows now carry `source` and `dateline`; rebuilding changed no article IDs or text (150 of 916
+articles have a source, 122 a dateline). Not yet run.
+
+**Extraction run results (full article + check, 2026-11-06).** 915 of 916 articles, 2.1 h of model time. 757 claims
+extracted: **590 kept**, 123 dropped by the check (16%), 40 quote not found (5%), 4 duplicates. 348 articles (38%) gave
+at least one claim. Kept by month: June 280, July 310. Two articles failed with cut-off JSON; one succeeded on retry.
+`page_009_NPCM19250608_01_0009#7` ("Boycott Urged", 111 words) fails every time and has no claims; the cause wasn't
+investigated.
+
+Review, by keyword search and small random samples, not a full audit or a precision figure. Of the 123 dropped, 10
+contain a protest, demand or causal word; 7 of those are "Following X" (5) or conditionals (2), which fit the rulings as
+applied, though whether "Following X" counts as sequence is a question for the user. Excluded cases do get through: the
+denial "hardly operative at all as the cause" was kept, and a keyword search found 75 kept claims with future or
+conditional words, of which a sample of 7 included real predictions ("will destroy confidence", "will most undoubtedly
+stiffen"). Not all 75 are errors. The sample of articles with no claims has not been read yet.
+
+**"Following X, Y" ruling (user, 2026-11-06).** Asked about "Following false reports… an anti-foreign riot took place" and
+"Following the receipt of an appeal… the Council has requested…", the user ruled that these count as causal. The check's
+KEEP list now includes "Following X, Y" where Y comes from or responds to X. Full-article rulings test unchanged at 17/20
+(the chunked half of that test crashed on an over-long response and was not re-scored). Spot cases: three "Following"
+claims kept, and "After this", "after which" and a denial dropped, but an invented control ("Following a morning at the
+races, the Governor returned…") was wrongly kept, so some plain sequences will pass. `kg/recheck.py` re-runs the check on
+all saved claims under one prompt; the earlier decisions are kept in `kg/out/progress_before_recheck_7d2d2e20792f.jsonl`.
+
 ## 6. File index (all in `agent-sandbox/`)
 
 | Path | What |
@@ -591,6 +642,8 @@ sample of ~30 flagged articles to their continuations, re-extract, and count cla
 | `extraction_probe/` | 2026-11-06 article-builder and Qwen probe scripts, raw model output |
 | `annotation_study.md` | The user's rulings on what counts as a causal claim: quiz, responses, test results |
 | `extraction_prompts.md` | Exact extraction and check prompts, settings, worked examples, earlier versions |
+| `STAGE2_PLAN.md` | Plan for normalisation, embedding and clustering, with draft normalisation prompt |
+| `kg/build_corpus.py`, `kg/extract.py`, `kg/out/` | Article selection, extraction run and its output |
 | `agent_notes.md` | This file |
 | `demo_kg/README.md` | How to rerun the demo |
 | `demo_kg/relations.jsonl` | 105 Claude-extracted relations (8 pages) |
