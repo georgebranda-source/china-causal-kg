@@ -1,0 +1,17 @@
+China Mail, June-July 1925: pages per strike-score cutoff
+(source: strike_screen.csv, checked against VL outputs in ocr_vl_out/, 2026-10-30)
+
+Cutoff                     Pages in total   Already VL   Still to transcribe   VL time (~3 min/page)
+>= 15 (current selection)              41           41                     0   -
+>= 12                                  76           42                    34   ~1.7 h
+>= 10                                 101           44                    57   ~2.9 h
+>= 8                                  137           45                    92   ~4.6 h
+>= 5                                  215           46                   169   ~8.4 h
+>= 2 (all flagged pages)              328           53                   275   ~13.8 h
+all pages                             496           64                   432   ~21.6 h
+
+Notes:
+- score = 3 x (CORE strike concepts found) + (BROAD labour/unrest concepts found)
+- 64 pages have VL text: the 40 selected pages + 24 of the 28 calibration pages (1925-06-01/02).
+- One calibration page also scores >= 15, hence 41 in the first row.
+- 217 pages contain at least one CORE strike term.
