@@ -293,6 +293,9 @@ has requested…".
 
 **Ruling:** "Following X, Y" counts when X is a named event and Y comes from it or responds to it.
 
+This ruling was not applied to v1. The user chose to keep the existing check results, so claims of this form that the
+check dropped stay dropped.
+
 ---
 
 # Part 2: how normalisation should describe events

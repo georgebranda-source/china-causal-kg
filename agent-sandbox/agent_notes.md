@@ -620,8 +620,71 @@ stiffen"). Not all 75 are errors. The sample of articles with no claims has not 
 KEEP list now includes "Following X, Y" where Y comes from or responds to X. Full-article rulings test unchanged at 17/20
 (the chunked half of that test crashed on an over-long response and was not re-scored). Spot cases: three "Following"
 claims kept, and "After this", "after which" and a denial dropped, but an invented control ("Following a morning at the
-races, the Governor returned…") was wrongly kept, so some plain sequences will pass. `kg/recheck.py` re-runs the check on
-all saved claims under one prompt; the earlier decisions are kept in `kg/out/progress_before_recheck_7d2d2e20792f.jsonl`.
+races, the Governor returned…") was wrongly kept, so some plain sequences will pass.
+
+**Re-check cancelled (user, 2026-11-06).** Asked about dropping the check, the user decided to keep the results as they
+stood, since it was mostly right, and stop the re-run. So the "Following" wording was **not applied**. It was removed from
+the check prompt, so the recorded prompt matches the run (hash `7d2d2e20792f`). **v1 stands at 590 kept claims.** The ruling
+stands in `annotation_study.md`, but "Following X, Y" claims the check dropped remain dropped: at least 5 were found, and
+they can be read in `rejected.jsonl`. `kg/recheck.py` remains if this is revisited. No re-check decisions were saved.
+
+**Normalisation run started (user, 2026-11-06).** All 590 kept claims, from `kg/normalise.py`, without the 50-claim
+review first, at the user's instruction to run it. A 6-claim smoke test took 4.0 s per claim.
+
+**Embedding instruction (user, 2026-11-06).** "Represent this event from a 1925-1926 Hongkong newspaper so that events of
+the same topic are close, and different events or topics are far apart." This replaces Claude's draft, which asked for
+the same event to be close and different events to be far apart even if they share a topic. Claude pointed out that "different
+events… far apart" conflicts with "same topic… close" for two events on one topic. The user chose wording that tends more
+general, so the instruction now ends "and events of different topics are far apart", and nodes lean toward topics for now.
+The trade-off: fewer, larger nodes, less specific chains, and more risk of opposites merging, so the direction test matters more.
+
+**Normalisation results (2026-11-06).** All 590 claims, 0 failures, 3.3 s each. 1,157 unique descriptions of 1,180. Median 12
+words, range 6–23. 120 distinct place values; 357 of 1,180 (30%) unknown; values vary in level ("the Colony", "International
+Settlement", "China"). 893 distinct general phrases, most common "a labour stoppage" (37). Read by Claude, not hand-audited:
+10 counterfactual-like claims, 8 right. Errors: the "deflection" of the Communist Navy was reversed when it did happen, and
+"would have been trampled" refers to the police but was described as students. A random 14 others read well.
+
+**Embedding (2026-11-06).** `kg/embed.py`: all 1,157 descriptions with `qwen3-embedding:8b` (with and without the instruction)
+and `bge-small-en-v1.5`, for comparison. The `Instruct:`/`Query:` format was written from memory of the model's documentation,
+not confirmed. Neighbours from 9 phrases read sensibly for both models; Qwen looked somewhat better on topic. Real opposite pairs
+are rare in this output. Qwen speed: about 0.09 s per description (101 s for 1,157), so 8B is fast enough and 4B isn't needed. An earlier 0.026 s figure was too low, probably because it re-timed texts already embedded.
+
+**Direction test** (`kg/direction_test.py`, 6 opposite and 6 same-topic pairs picked by Claude, so small and not random). Mean
+cosine, opposites vs same-topic: Qwen with instruction 0.64 vs 0.75 (ranges 0.51–0.74 and 0.70–0.79); Qwen plain 0.53 vs 0.64
+(0.41–0.66, 0.57–0.74); `bge` 0.59 vs 0.65 (0.49–0.63, 0.54–0.76). Under the plan's table this is "slight overlap" for Qwen with the
+instruction: no direction split, with the review step looking for mixed clusters.
+
+**Clustering (user: no place separation, run it; 2026-11-06).** Method changed by Claude from the planned HDBSCAN. On the 1,157
+descriptions, HDBSCAN left 460 unclustered at `min_cluster_size=2` (273 clusters, median size 2) and 666 at size 3 (101 clusters),
+up to 910 at size 8, which suits neither topic nodes nor a connected graph. Average-link agglomerative clustering by cosine distance
+assigns everything by a threshold, and read as real topics (shipping, flooding, Bolshevik influence, shootings):
+
+| Threshold | Groups | Singletons | Largest | Self-loops |
+|---|---|---|---|---|
+| 0.25 | 244 | 427 | 36 | 91 |
+| 0.30 | 254 | 230 | 49 | 124 |
+| 0.35 | 205 | 122 | 100 | 185 |
+| 0.40 | 146 | 42 | 128 | 219 |
+
+Chosen: 0.30, as a balance. At 0.35 the largest groups were broad catch-alls and nearly a third of claims became self-loops. Result:
+484 nodes; 466 claims on 405 edges, 33 of those edges with 2+ claims; 124 self-loops (21% of claims), kept in `edges.json`, not
+deleted; 435 nodes in the graph. Largest node "strike in progress" (size 49, 61 claims). The two counterfactual errors from
+normalisation were not corrected, since the user hadn't answered that question. Strongest edge, strike → China Mail delivery (13), is
+probably inflated by a notice repeated across issues; not yet confirmed. Labels are each node's most central description, provisional.
+
+**Embedding instruction switched to event level (user, 2026-11-06).** New instruction: "Represent this event from a 1925 Hongkong
+newspaper so that descriptions of the same event are close, and different events are far apart, even if they share a topic." This
+supersedes the topic wording and the "nodes lean toward topics" decision. Topic results are kept as `nodes_topic.json`, `edges_topic.json`
+and `embed_qwen_topic.npy`. Direction test, 6 + 6 hand-picked pairs: opposites 0.59 (0.48–0.70), same-topic 0.73 (0.64–0.78), gap 0.14
+against 0.11 for the topic wording. Distances shifted, so thresholds were compared again:
+
+| Threshold | Nodes | Groups | Singletons | Largest | Edges | Edges with 2+ claims | Self-loops |
+|---|---|---|---|---|---|---|---|
+| 0.30 | 585 | 259 | 326 | 35 | 426 | 34 | 105 |
+| 0.35 | 413 | 235 | 178 | 54 | 380 | 35 | 144 |
+
+Saved: 0.35 (Claude's choice, not yet confirmed by the user). At that threshold the Hongkong and Shanghai strikes fall into separate groups with no
+place tags, and Bolshevik, intimidation and financial groups are clearer. Compared by reading the largest groups only.
 
 ## 6. File index (all in `agent-sandbox/`)
 
