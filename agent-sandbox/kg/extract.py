@@ -14,6 +14,7 @@ import argparse
 import ast
 import hashlib
 import json
+import os
 import re
 import sys
 import time
@@ -25,7 +26,9 @@ from rapidfuzz import fuzz
 
 KG = Path(__file__).resolve().parent
 PROBE = KG.parent / "extraction_probe"
-OUT = KG / "out"
+BASE = KG / "out"  # June-July, frozen; also holds the articles used as worked examples
+OUT = BASE / "batches" / os.environ["KG_BATCH"] if os.environ.get("KG_BATCH") else BASE
+STOP = BASE / "batches.stop"
 sys.path.insert(0, str(PROBE))
 from prompt_v1 import EXAMPLES, SYSTEM
 
@@ -53,8 +56,8 @@ def norm(s):
     return re.sub(r"\s+", " ", s).strip()
 
 
-def load(name):
-    return [json.loads(line) for line in open(OUT / name, encoding="utf-8")]
+def load(name, folder=None):
+    return [json.loads(line) for line in open((folder or OUT) / name, encoding="utf-8")]
 
 
 def user(headline, text):
@@ -163,7 +166,7 @@ def main():
     ap.add_argument("--limit", type=int, help="stop after N articles in this run")
     args = ap.parse_args()
     articles = load("articles_selected.jsonl")
-    shots = build_shots(load("articles_all.jsonl"))
+    shots = build_shots(load("articles_all.jsonl", BASE))
     path = OUT / "progress.jsonl"
     records = [r for r in (load("progress.jsonl") if path.exists() else []) if r["prompt_hash"] == PROMPT_HASH]
     done = {r["article_id"] for r in records}
@@ -172,6 +175,9 @@ def main():
     failed = []
     with open(path, "a", encoding="utf-8") as f:
         for n, a in enumerate(todo, 1):
+            if STOP.exists():
+                print("stop file found", flush=True)
+                break
             t0 = time.time()
             try:
                 claims = process(a, shots)

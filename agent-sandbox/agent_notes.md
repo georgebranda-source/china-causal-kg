@@ -686,6 +686,72 @@ against 0.11 for the topic wording. Distances shifted, so thresholds were compar
 Saved: 0.35 (Claude's choice, not yet confirmed by the user). At that threshold the Hongkong and Shanghai strikes fall into separate groups with no
 place tags, and Bolshevik, intimidation and financial groups are clearer. Compared by reading the largest groups only.
 
+## 5g. Further months: Aug-Sep 1925 result (2026-11-06)
+
+Same rules as June-July, run by `kg/run_batches.py`. 815 articles selected, 813 done, 301 with claims. 661 claims extracted:
+516 kept, 98 dropped by the check, 42 quote not found, 4 duplicates, 1 bad cause or effect. August 299, September 217.
+Two articles failed both passes with output cut off: `page_001_NPCM19250914_01_0001#14`, `page_005_NPCM19250818_01_0005#1`.
+
+Combined June-September (`kg/viewer_combined/`), 1,106 claims, 2,149 descriptions:
+
+| Version | Groups | Singletons | Arrows | Multi-claim arrows | Self-loops |
+| --- | --- | --- | --- | --- | --- |
+| Event 0.30 | 1,057 | 593 | 826 | 52 | 193 |
+| Event 0.35 | 741 | 314 | 738 | 67 | 259 |
+| Topic 0.30 | 866 | 405 | 763 | 60 | 244 |
+| Topic 0.35 | 559 | 185 | 662 | 65 | 320 |
+
+Apr-May 1925 finished at 20:17: 46 pages, 224 articles selected, 224 done, 69 with claims. Claims: {'quote_not_found': 13, 'kept': 100, 'dropped_by_check': 25, 'duplicate': 1}.
+
+Combined April-September, 1,206 claims, 2,349 descriptions:
+
+| Version | Groups | Singletons | Arrows | Multi-claim arrows | Self-loops |
+| --- | --- | --- | --- | --- | --- |
+| Event 0.30 | 1,162 | 652 | 905 | 56 | 210 |
+| Event 0.35 | 812 | 333 | 810 | 72 | 277 |
+| Topic 0.30 | 956 | 441 | 829 | 62 | 273 |
+| Topic 0.35 | 604 | 191 | 726 | 68 | 353 |
+
+Oct-Nov 1925: 77 pages, 378 articles selected, started 20:17.
+
+Oct-Nov 1925 finished at 21:34: 378 of 378 articles, 145 with claims. 349 claims extracted: 252 kept, 72 dropped by the check, 25 quote not found. October 186, November 66.
+
+Final combined April-November 1925 (`kg/viewer_combined/`): 2,330 of 2,333 articles done, 1,458 claims, 2,846 descriptions; 14 claims removed as re-filmed repeats, so 1,444 on the pages.
+Kept claims by month: Apr 58, May 42, Jun 280, Jul 310, Aug 299, Sep 217, Oct 186, Nov 66. All three batches ran to the end with no stop file.
+
+| Version | Groups | Singletons | Arrows | Multi-claim arrows | Self-loops |
+| --- | --- | --- | --- | --- | --- |
+| Event 0.30 | 1,391 | 760 | 1,091 | 62 | 252 |
+| Event 0.35 | 961 | 375 | 989 | 83 | 326 |
+| Topic 0.30 | 1,136 | 532 | 1,017 | 81 | 306 |
+| Topic 0.35 | 717 | 217 | 892 | 82 | 400 |
+
+Pages now have search, degree and date filters, and show/hide of causes and effects (`kg/build_viewers.py`). `kg/node_degree.py` ranks nodes by degree. Open: arrow weight by distinct
+articles (at April-September, about half of multi-claim arrows had two claims from one page), and adding the 3/4 September pair to `kg/refilmed.py`.
+
+Remaining months (user, 2026-11-06): all pages scoring >= 8 that were scraped. 736 pages, Dec 1925 to Nov 1926, already VL-OCRed, run in six two-month batches by `kg/run_batches.py`
+from 21:38, same rules and prompts. The log continues in `kg/out/batches.log`. New months still need the check for re-filmed pages. The event instruction still says "1925" for 1926 items, kept unchanged so the versions stay comparable.
+
+### Re-filmed pages (found by the user, 2026-11-06)
+
+Some printed pages were filmed twice, so one page appears as two different image files. File hashes differ, and later image numbers run one ahead of
+the printed page number. Confirmed from the page headers: 1925-07-27 images 5 and 6 (both printed page 5; image 7 is printed page 6), 1925-10-19 images 1
+and 2, 1925-10-15 images 6 and 7. Found by comparing text within each issue among the 553 built pages (ratio >= 65, first 8,000 characters), so pages
+not built and fainter repeats are unchecked. On 1925-07-27, 4 claims have the same quote on both images (8 and 10 claims on the images), so those are
+counted twice. The October claims are not yet counted.
+
+Fix (user approved, 2026-11-06): `kg/refilmed.py` compares only the images in these pairs, one-to-one, using the agreed merge rule, and keeps the
+clearer image's version. `kg/build_viewers.py` applies it, so `kg/viewer/` and `kg/viewer_combined/` both leave those claims out, while `normalised.jsonl`
+files stay unchanged. Removed claims are listed in `refilmed_removed.jsonl` beside each `normalised.jsonl`. Claims found on one image only stay.
+
+Comparing across dates as well (8-word runs shared between any two of the 553 built pages; the first check only compared pages within an issue):
+
+- 1925-09-04 image 1 is a second film of the 3 September front page: its header reads Thursday, September 3, No. 19,588. It sits in the 4 September
+  issue, whose images 2 and 3 do show 4 September; the 5 September front page is No. 19,590, so the real 4 September front page (No. 19,589) appears to be missing. 60% of runs shared; 2 and 3 claims, 2 repeated. Added to `kg/refilmed.py` (user, 2026-11-06), and the remaining claim is dated 3 September on the pages.
+- 1925-07-27 image 6 and 1925-07-28 page 5 (user's report) are different pages, with their own dates and layouts. They share 15% of runs; the two shared
+  claims look like text from the meeting's resolutions, printed on both days (not read in full). Treated as a genuine repeat, so not removed.
+- Other pairs at 10-36% were not read; many are page 3 of different issues, likely repeated advertisements.
+
 ## 6. File index (all in `agent-sandbox/`)
 
 | Path | What |

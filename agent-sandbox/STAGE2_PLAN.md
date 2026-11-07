@@ -96,6 +96,13 @@ since extraction recall is unmeasured and the corpus is selected.
 Most 2-shared pairs read as noise from vague catch-all nodes ("The city remains calm"); some are meaningful, such as Bolshevik influence and
 lack of a central government, both linked to discontent and Shanghai disturbances.
 
+## 7. Further months (user, 2026-11-06)
+
+`kg/run_batches.py` runs Aug–Sep, then Apr–May, then Oct–Nov 1925, on the same rules: pages scoring ≥ 8, CORE or BROAD term, letters removed,
+full article + check, then normalisation. Each batch has its own folder in `kg/out/batches/`, and June–July stays frozen. After each batch,
+`kg/combine.py` merges all finished sets and rebuilds `kg/viewer_combined/`. To stop: create `kg/out/batches.stop`. Log: `kg/out/batches.log`.
+New months use a dateline pattern covering all months; June–July keeps its original pattern so its article IDs don't change.
+
 ## Open decisions
 
 1. What to do with self-loops: 144 of 590 claims have cause and effect in the same node.

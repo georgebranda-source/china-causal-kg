@@ -50,7 +50,8 @@ def main():
     args = ap.parse_args()
     articles = {a["article_id"]: a for a in x.load("articles_selected.jsonl")}
     claims = x.load("raw_claims.jsonl")
-    shots, example_keys = build_shots(claims, articles)
+    base_articles = {a["article_id"]: a for a in x.load("articles_selected.jsonl", x.BASE)}
+    shots, example_keys = build_shots(x.load("raw_claims.jsonl", x.BASE), base_articles)
     todo = [c for c in claims if c["status"] == "kept"]
     name = "normalised.jsonl"
     if args.sample:
@@ -64,6 +65,9 @@ def main():
     t0, finished, failed = time.time(), 0, []
     with open(path, "a", encoding="utf-8") as f:
         for c in todo:
+            if x.STOP.exists():
+                print("stop file found", flush=True)
+                break
             key = claim_key(c)
             if key in done:
                 continue
