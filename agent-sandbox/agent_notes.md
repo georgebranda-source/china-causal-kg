@@ -752,6 +752,41 @@ Comparing across dates as well (8-word runs shared between any two of the 553 bu
   claims look like text from the meeting's resolutions, printed on both days (not read in full). Treated as a genuine repeat, so not removed.
 - Other pairs at 10-36% were not read; many are page 3 of different issues, likely repeated advertisements.
 
+
+## 5h. Analysis of graph_v1 (from 2026-11-06)
+
+**Working version (user, 2026-11-06): `event-035` by default, `event-030` as the check.** Claude had first suggested `event-035` by carrying over the earlier choice in these notes, without comparing versions; the user asked why, so the four were compared on the full April-November graph (1,442 claims):
+
+| Version | Nodes | Self-loop claims | Edges in 2+ articles | Nodes with >= 2 Hongkong and >= 2 Shanghai descriptions | Nodes holding Bolshevik mentions (106 keyword hits) | Largest share in one node |
+|---|---|---|---|---|---|---|
+| event-030 | 1,390 | 252 | 30 | 0 | 64 | 9% |
+| event-035 | 960 | 326 | 44 | 3 | 50 | 19% |
+| topic-030 | 1,135 | 306 | 43 | 4 | 54 | 11% |
+| topic-035 | 716 | 399 | 50 | 9 | 45 | 21% |
+
+Reasoning: event wording keeps separate happenings apart (topic-035's largest node, "A strike is under way", has 182 descriptions tagged across Hongkong, Shanghai and Canton), and topic wording gathers themes little better. 0.35 gives more recurring edges; 0.30 gives cleaner groups, so it is the stricter check. topic-035 was rejected as the check because it could create links by merging different strikes. Place counts undercount mixing, since many descriptions are tagged "unknown"; the keyword figures are rough.
+
+**Correction to section 5f.** The note that Hongkong and Shanghai strikes separate at event 0.35 was based on June-July. On the full corpus it is mostly but not fully true: "Intimidation is used against workers" has 4 Hongkong and 5 Shanghai descriptions, and "A strike affects Hongkong" has 27 Hongkong and 4 Shanghai.
+
+
+**`graph_v1` is not fixed (found 2026-11-06).** `run_batches.py` re-exports `kg/out/graph_v1/` after each batch. It was overwritten at 22:32 during this analysis (1,586 claims, to 1926-01-30) and will change again. The 1,442-claim graph is commit `c63a9cfa`, whose message says April-September although the data runs to 30 November. The table above was measured on that commit. Analysis uses a frozen copy, `kg/analysis/explanations/snapshot_v1_c63a9cfa/`; `snapshot_1586_to_1926-01/` is kept for a later extension. Claim ids are stable (all 1,442 survive in the newer export); node ids are not, so anything keyed on nodes must name its snapshot.
+
+**Competing explanations of the unrest: method.** Question: did the paper's explanation move from Shanghai events and labour grievances to Bolshevism and intimidation? 649 of the 1,442 claims were selected by a wide keyword filter on cause or effect and read by Claude (701 in the newer export, with December and January). A second keyword pass over the other 793 surfaced 100 for reading at cause-and-effect level, adding 2. The remaining 693 were not read. 122 claims explaining the unrest in China or Hongkong were coded by hand in `codes.txt`, after reading article context: frame, voice, stance, level (origin of the movement, or why people took part), place. Foreign strikes, incident-level chains and effects of the strike were excluded. Counting unit: one statement x one explanation family, 109 units from 88 statements, so repeated resolutions count once. Single coder, no reliability check, so all figures are indicative. Coding is at claim level and does not depend on the clustering, so the planned `event-030` check does not apply here. December and January claims are not coded.
+
+Families: ORCH (Bolshevik, Canton or unnamed agitators), INTIM, TRIGGER (Shanghai, police action), LABOUR, NAT, DISORDER (weak government, militarists), CN_AUTH, WEAK (foreign softness).
+
+| Period | ORCH | INTIM | TRIGGER | LABOUR | NAT | DISORDER | CN_AUTH | WEAK | Total |
+|---|---|---|---|---|---|---|---|---|---|
+| Before 30 May | 1 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 3 |
+| 30 May-21 Jun | 10 | 2 | 8 | 2 | 2 | 2 | 2 | 0 | 28 |
+| 22 Jun-31 Jul | 15 | 7 | 4 | 2 | 1 | 2 | 0 | 2 | 33 |
+| Aug-Sep | 14 | 12 | 3 | 1 | 3 | 2 | 1 | 0 | 36 |
+| Oct-Nov | 2 | 3 | 2 | 0 | 0 | 0 | 1 | 1 | 9 |
+
+**Results.** (1) Bolshevism was present from the start (leader of 2 June), so the hypothesis of a late turn to it is not supported. (2) What changed: TRIGGER fell from 8 of 28 to 3 of 36, INTIM rose from 2 of 28 to 12 of 36, and within ORCH Bolshevik naming rose relative to unnamed agitators. (3) Place may explain much of this. Origin explanations after 30 May: Hongkong ORCH 14, TRIGGER 3, asserted LABOUR 0; Shanghai TRIGGER 10, ORCH 8, LABOUR 2. (4) Voice: 34 of 109 units are in the paper's own voice, and only 5 of 32 statements with Bolshevik blame. Reprints, officials and meetings carry the rest. After 30 May the paper never gives LABOUR in its own voice; it comes from home critics, Chinese strikers and a reprint. LABOUR was explicitly rejected twice (McNeill, 12 June; Hongkong public meeting, 27-28 July).
+
+Limits: own voice is uncertain in both directions. Only 1 confirmed leader was found and 3 pieces are likely but unconfirmed; unattributed cables count as PAPER_NEWS. Choosing what to reprint is itself editorial, so reprints still show what the paper circulated. Claims show explicit causal statements only, as extracted, on pages selected by strike score.
+**Consequence for theme questions.** No version gathers an explanation theme into one node, so questions about explanations are coded at claim level and do not depend on the clustering version.
 ## 6. File index (all in `agent-sandbox/`)
 
 | Path | What |
@@ -783,3 +818,4 @@ Comparing across dates as well (8-word runs shared between any two of the 553 bu
 | `build_articles.py` | Article reconstruction from layout blocks |
 | `articles_md/` | Rebuilt per-page markdown, overlay images, `articles.jsonl` |
 | `.venv-kg/` | Python 3.13 venv for the above |
+| `kg/analysis/explanations/` | Competing-explanations study: frozen snapshots, `codes.txt` (hand coding), `analyse.py`, `coded_claims.csv` |
