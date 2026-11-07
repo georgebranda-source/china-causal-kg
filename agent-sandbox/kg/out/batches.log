@@ -516,3 +516,30 @@ NOT COMPLETE: rerun to continue
 23:27:39 50 done, 3.5 s each
 23:30:28 100 done, 3.4 s each
 23:33:17 150 done, 3.4 s each
+23:36:05 200 done, 3.4 s each
+finished 230, failed 0: [], 3.4 s each
+ALL DONE
+23:37:47 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+230 claims, 230 done, prompt bc6c8bd4eb72
+finished 0, failed 0: [], 0.0 s each
+ALL DONE
+23:37:47 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\combine.py
+6 sets, 1832 claims, 3589 descriptions
+event 309 s
+topic 304 s
+event-030 {'all_nodes': 1714, 'singletons': 944, 'nodes': 1577, 'edges': 1382, 'multi': 86, 'loops': 302}
+event-035 {'all_nodes': 1167, 'singletons': 466, 'nodes': 1063, 'edges': 1260, 'multi': 110, 'loops': 388}
+topic-030 {'all_nodes': 1406, 'singletons': 660, 'nodes': 1275, 'edges': 1301, 'multi': 95, 'loops': 369}
+topic-035 {'all_nodes': 881, 'singletons': 283, 'nodes': 782, 'edges': 1117, 'multi': 115, 'loops': 496}
+event-030 {'events': 1714, 'singletons': 944, 'arrows': 1382, 'multi_claim': 86, 'multi_article': 50, 'loop_claims': 302, 'claims': 1816, 'articles': 1011}
+event-035 {'events': 1167, 'singletons': 466, 'arrows': 1260, 'multi_claim': 110, 'multi_article': 66, 'loop_claims': 388, 'claims': 1816, 'articles': 1011}
+topic-030 {'events': 1406, 'singletons': 660, 'arrows': 1301, 'multi_claim': 95, 'multi_article': 52, 'loop_claims': 369, 'claims': 1816, 'articles': 1011}
+topic-035 {'events': 881, 'singletons': 283, 'arrows': 1117, 'multi_claim': 115, 'multi_article': 79, 'loop_claims': 496, 'claims': 1816, 'articles': 1011}
+23:48:05 BATCH DONE 1926-02-03
+23:48:05 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\build_batch.py 1926-04-05 192604 192605
+{"pages": 121, "failed": [], "news": 1697, "with_term": 687, "selected": 686, "words": 171385, "datelines": 100, "sources": 86}
+23:48:06 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+686 selected, 0 done, 686 to run, prompts 7d2d2e20792f
+23:51:20 25/686 articles, 9 claims kept
+23:54:45 50/686 articles, 22 claims kept
+23:57:27 75/686 articles, 34 claims kept
