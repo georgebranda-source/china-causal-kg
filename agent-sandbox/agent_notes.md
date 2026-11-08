@@ -732,6 +732,34 @@ articles (at April-September, about half of multi-claim arrows had two claims fr
 Remaining months (user, 2026-11-06): all pages scoring >= 8 that were scraped. 736 pages, Dec 1925 to Nov 1926, already VL-OCRed, run in six two-month batches by `kg/run_batches.py`
 from 21:38, same rules and prompts. The log continues in `kg/out/batches.log`. New months still need the check for re-filmed pages. The event instruction still says "1925" for 1926 items, kept unchanged so the versions stay comparable.
 
+Dec 1925-Nov 1926 finished at 08:57 on 2026-11-07, all six batches, no stop file. 3,811 articles done; failed: `page_011_NPCM19260309_01_0011#5`, `#7`,
+`page_001_NPCM19260806_01_0001#12`.
+
+| Batch | Articles | With claims | Kept | Dropped by check | Quote not found |
+| --- | --- | --- | --- | --- | --- |
+| Dec 1925-Jan 1926 | 318 | 103 | 144 | 39 | 16 |
+| Feb-Mar 1926 | 378 | 128 | 230 | 37 | 16 |
+| Apr-May 1926 | 686 | 211 | 351 | 73 | 31 |
+| Jun-Jul 1926 | 845 | 332 | 513 | 139 | 54 |
+| Aug-Sep 1926 | 822 | 262 | 428 | 96 | 59 |
+| Oct-Nov 1926 | 762 | 238 | 374 | 90 | 45 |
+
+Full graph v1, April 1925-November 1926: 3,498 claims, 19 removed as re-filmed, so 3,479 on the pages, from 1,964 articles. Kept claims by month (before
+removal): 1925 Apr 58, May 42, Jun 280, Jul 310, Aug 299, Sep 217, Oct 186, Nov 66, Dec 67; 1926 Jan 77, Feb 105, Mar 125, Apr 99, May 252, Jun 292,
+Jul 221, Aug 214, Sep 214, Oct 214, Nov 160. CSVs in `kg/out/graph_v1/<version>/` (refreshed by `kg/combine.py` and `kg/export_neo4j.py`).
+
+| Version | Groups | Singletons | Arrows | Multi-claim | Multi-article | Self-loop claims |
+| --- | --- | --- | --- | --- | --- | --- |
+| Event 0.30 | 3,092 | 1,630 | 2,711 | 145 | 85 | 559 |
+| Event 0.35 | 2,090 | 805 | 2,498 | 190 | 125 | 702 |
+| Topic 0.30 | 2,457 | 1,068 | 2,558 | 177 | 103 | 669 |
+| Topic 0.35 | 1,515 | 457 | 2,273 | 208 | 150 | 852 |
+
+Top degree at Event 0.35: "A strike is taken" 104 (75 out, 29 in), "A crisis exists in Hongkong" 47, "A boycott is under way" 44, "Recent
+disturbances occur in Shanghai" 43, "Trade is at a standstill" 37. 1926 brings in other strikes. "A coal strike exists" (25; 28 claims, 26 from
+1926) is mostly the British coal stoppage but also holds the American anthracite strike and the Ruhr. "A strike is taken" (190 claims, 88 from 1926) mixes
+strikes of every place: 109 have place unknown, 33 Hongkong, 7 London. Expected, since the instruction has no place separation.
+
 ### Re-filmed pages (found by the user, 2026-11-06)
 
 Some printed pages were filmed twice, so one page appears as two different image files. File hashes differ, and later image numbers run one ahead of
@@ -751,6 +779,11 @@ Comparing across dates as well (8-word runs shared between any two of the 553 bu
 - 1925-07-27 image 6 and 1925-07-28 page 5 (user's report) are different pages, with their own dates and layouts. They share 15% of runs; the two shared
   claims look like text from the meeting's resolutions, printed on both days (not read in full). Treated as a genuine repeat, so not removed.
 - Other pairs at 10-36% were not read; many are page 3 of different issues, likely repeated advertisements.
+
+Dec 1925-Nov 1926 (same comparison over all 1,289 built pages, 2026-11-07): two more pairs, both confirmed from the page headers and added to
+`kg/refilmed.py`: 1926-02-09 images 7 and 9 (both printed page 7, 76% of runs shared, 1 claim each, repeated) and 1926-06-30 images 1 and 3 (both the
+front page, 71%, 5 claims each, 2 repeated). Both images equally legible, so the image in page order is kept. All other pairs involving the new months were
+at 22% or below, mostly page 3 or page 8 of consecutive days (likely repeated advertisements and notices), and were not read.
 
 
 ## 5h. Analysis of graph_v1 (from 2026-11-06)

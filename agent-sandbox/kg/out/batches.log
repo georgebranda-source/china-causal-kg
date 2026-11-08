@@ -543,3 +543,505 @@ topic-035 {'events': 881, 'singletons': 283, 'arrows': 1117, 'multi_claim': 115,
 23:51:20 25/686 articles, 9 claims kept
 23:54:45 50/686 articles, 22 claims kept
 23:57:27 75/686 articles, 34 claims kept
+00:00:45 100/686 articles, 50 claims kept
+00:02:41 125/686 articles, 54 claims kept
+00:05:49 150/686 articles, 66 claims kept
+00:09:18 175/686 articles, 82 claims kept
+00:12:25 200/686 articles, 95 claims kept
+00:16:05 225/686 articles, 112 claims kept
+00:19:04 250/686 articles, 125 claims kept
+00:21:23 275/686 articles, 133 claims kept
+00:24:21 300/686 articles, 150 claims kept
+00:28:48 325/686 articles, 179 claims kept
+00:31:21 350/686 articles, 188 claims kept
+00:34:20 375/686 articles, 199 claims kept
+00:37:15 400/686 articles, 215 claims kept
+00:41:02 425/686 articles, 233 claims kept
+00:44:18 450/686 articles, 249 claims kept
+00:45:53 475/686 articles, 253 claims kept
+00:48:56 500/686 articles, 267 claims kept
+00:51:34 525/686 articles, 276 claims kept
+00:54:36 550/686 articles, 289 claims kept
+00:57:14 575/686 articles, 300 claims kept
+00:59:38 600/686 articles, 310 claims kept
+01:03:16 625/686 articles, 325 claims kept
+01:05:48 650/686 articles, 336 claims kept
+01:08:39 675/686 articles, 348 claims kept
+01:09:30 686/686 articles, 351 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 686,
+  "articles_done": 686,
+  "articles_with_claims": 211,
+  "claims": {
+    "kept": 351,
+    "dropped_by_check": 73,
+    "quote_not_found": 31,
+    "duplicate": 4
+  },
+  "seconds_total": 4884
+}
+failed articles: []
+ALL DONE
+01:09:30 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+686 selected, 686 done, 0 to run, prompts 7d2d2e20792f
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 686,
+  "articles_done": 686,
+  "articles_with_claims": 211,
+  "claims": {
+    "kept": 351,
+    "dropped_by_check": 73,
+    "quote_not_found": 31,
+    "duplicate": 4
+  },
+  "seconds_total": 4884
+}
+failed articles: []
+ALL DONE
+01:09:30 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+351 claims, 0 done, prompt bc6c8bd4eb72
+01:12:17 50 done, 3.3 s each
+01:15:01 100 done, 3.3 s each
+01:17:49 150 done, 3.3 s each
+01:20:36 200 done, 3.3 s each
+01:23:21 250 done, 3.3 s each
+01:26:05 300 done, 3.3 s each
+01:28:53 350 done, 3.3 s each
+finished 351, failed 0: [], 3.3 s each
+ALL DONE
+01:28:56 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+351 claims, 351 done, prompt bc6c8bd4eb72
+finished 0, failed 0: [], 0.0 s each
+ALL DONE
+01:28:56 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\combine.py
+7 sets, 2183 claims, 4278 descriptions
+event 362 s
+topic 358 s
+event-030 {'all_nodes': 2019, 'singletons': 1092, 'nodes': 1856, 'edges': 1655, 'multi': 105, 'loops': 354}
+event-035 {'all_nodes': 1381, 'singletons': 551, 'nodes': 1242, 'edges': 1526, 'multi': 130, 'loops': 439}
+topic-030 {'all_nodes': 1649, 'singletons': 752, 'nodes': 1485, 'edges': 1550, 'multi': 117, 'loops': 439}
+topic-035 {'all_nodes': 1017, 'singletons': 309, 'nodes': 896, 'edges': 1346, 'multi': 136, 'loops': 577}
+event-030 {'events': 2019, 'singletons': 1092, 'arrows': 1655, 'multi_claim': 105, 'multi_article': 62, 'loop_claims': 354, 'claims': 2167, 'articles': 1207}
+event-035 {'events': 1381, 'singletons': 551, 'arrows': 1526, 'multi_claim': 130, 'multi_article': 79, 'loop_claims': 439, 'claims': 2167, 'articles': 1207}
+topic-030 {'events': 1649, 'singletons': 752, 'arrows': 1550, 'multi_claim': 117, 'multi_article': 69, 'loop_claims': 439, 'claims': 2167, 'articles': 1207}
+topic-035 {'events': 1017, 'singletons': 309, 'arrows': 1346, 'multi_claim': 136, 'multi_article': 92, 'loop_claims': 577, 'claims': 2167, 'articles': 1207}
+01:41:01 BATCH DONE 1926-04-05
+01:41:01 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\build_batch.py 1926-06-07 192606 192607
+{"pages": 159, "failed": [], "news": 2346, "with_term": 850, "selected": 845, "words": 198963, "datelines": 119, "sources": 82}
+01:41:04 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+845 selected, 0 done, 845 to run, prompts 7d2d2e20792f
+01:45:10 25/845 articles, 17 claims kept
+01:49:19 50/845 articles, 37 claims kept
+01:53:27 75/845 articles, 58 claims kept
+01:56:18 100/845 articles, 68 claims kept
+01:59:16 125/845 articles, 83 claims kept
+02:03:24 150/845 articles, 98 claims kept
+02:06:19 175/845 articles, 107 claims kept
+02:10:55 200/845 articles, 130 claims kept
+02:13:47 225/845 articles, 140 claims kept
+02:16:13 250/845 articles, 148 claims kept
+02:18:51 275/845 articles, 158 claims kept
+02:22:37 300/845 articles, 175 claims kept
+02:25:19 325/845 articles, 185 claims kept
+02:29:35 350/845 articles, 209 claims kept
+02:34:17 375/845 articles, 232 claims kept
+02:37:24 400/845 articles, 246 claims kept
+02:40:59 425/845 articles, 262 claims kept
+02:44:31 450/845 articles, 272 claims kept
+02:47:53 475/845 articles, 285 claims kept
+02:52:16 500/845 articles, 309 claims kept
+02:56:02 525/845 articles, 327 claims kept
+02:59:16 550/845 articles, 341 claims kept
+03:04:02 575/845 articles, 358 claims kept
+03:07:13 600/845 articles, 369 claims kept
+03:11:02 625/845 articles, 392 claims kept
+03:15:26 650/845 articles, 416 claims kept
+03:19:57 675/845 articles, 440 claims kept
+03:22:53 700/845 articles, 450 claims kept
+03:25:36 725/845 articles, 461 claims kept
+03:27:18 750/845 articles, 463 claims kept
+03:30:43 775/845 articles, 478 claims kept
+03:34:11 800/845 articles, 495 claims kept
+03:37:27 825/845 articles, 505 claims kept
+03:39:32 845/845 articles, 513 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 845,
+  "articles_done": 845,
+  "articles_with_claims": 332,
+  "claims": {
+    "kept": 513,
+    "quote_not_found": 54,
+    "dropped_by_check": 139,
+    "duplicate": 3
+  },
+  "seconds_total": 7108
+}
+failed articles: []
+ALL DONE
+03:39:32 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+845 selected, 845 done, 0 to run, prompts 7d2d2e20792f
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 845,
+  "articles_done": 845,
+  "articles_with_claims": 332,
+  "claims": {
+    "kept": 513,
+    "quote_not_found": 54,
+    "dropped_by_check": 139,
+    "duplicate": 3
+  },
+  "seconds_total": 7108
+}
+failed articles: []
+ALL DONE
+03:39:32 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+513 claims, 0 done, prompt bc6c8bd4eb72
+03:42:22 50 done, 3.4 s each
+03:45:08 100 done, 3.4 s each
+03:47:54 150 done, 3.3 s each
+03:50:38 200 done, 3.3 s each
+03:53:30 250 done, 3.3 s each
+03:56:18 300 done, 3.4 s each
+03:59:05 350 done, 3.4 s each
+04:01:51 400 done, 3.3 s each
+04:04:38 450 done, 3.3 s each
+04:07:23 500 done, 3.3 s each
+finished 513, failed 0: [], 3.3 s each
+ALL DONE
+04:08:05 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+513 claims, 513 done, prompt bc6c8bd4eb72
+finished 0, failed 0: [], 0.0 s each
+ALL DONE
+04:08:06 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\combine.py
+8 sets, 2696 claims, 5293 descriptions
+event 446 s
+topic 444 s
+event-030 {'all_nodes': 2447, 'singletons': 1317, 'nodes': 2255, 'edges': 2075, 'multi': 113, 'loops': 436}
+event-035 {'all_nodes': 1678, 'singletons': 676, 'nodes': 1514, 'edges': 1908, 'multi': 145, 'loops': 548}
+topic-030 {'all_nodes': 1968, 'singletons': 888, 'nodes': 1783, 'edges': 1940, 'multi': 143, 'loops': 531}
+topic-035 {'all_nodes': 1227, 'singletons': 382, 'nodes': 1086, 'edges': 1719, 'multi': 166, 'loops': 677}
+event-030 {'events': 2447, 'singletons': 1317, 'arrows': 2075, 'multi_claim': 113, 'multi_article': 70, 'loop_claims': 436, 'claims': 2680, 'articles': 1508}
+event-035 {'events': 1678, 'singletons': 676, 'arrows': 1908, 'multi_claim': 145, 'multi_article': 97, 'loop_claims': 548, 'claims': 2680, 'articles': 1508}
+topic-030 {'events': 1968, 'singletons': 888, 'arrows': 1940, 'multi_claim': 143, 'multi_article': 88, 'loop_claims': 531, 'claims': 2680, 'articles': 1508}
+topic-035 {'events': 1227, 'singletons': 382, 'arrows': 1719, 'multi_claim': 166, 'multi_article': 120, 'loop_claims': 677, 'claims': 2680, 'articles': 1508}
+04:23:03 BATCH DONE 1926-06-07
+04:23:03 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\build_batch.py 1926-08-09 192608 192609
+{"pages": 156, "failed": [], "news": 2233, "with_term": 829, "selected": 823, "words": 190683, "datelines": 84, "sources": 0}
+04:23:05 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+823 selected, 0 done, 823 to run, prompts 7d2d2e20792f
+04:25:28 25/823 articles, 9 claims kept
+FAILED page_001_NPCM19260806_01_0001#12: model call failed: Unterminated string starting at: line 2 column 16 (char 17)
+04:29:57 49/823 articles, 26 claims kept
+04:34:15 74/823 articles, 43 claims kept
+04:37:01 99/823 articles, 55 claims kept
+04:39:53 124/823 articles, 65 claims kept
+04:42:40 149/823 articles, 71 claims kept
+04:46:49 174/823 articles, 87 claims kept
+04:50:20 199/823 articles, 102 claims kept
+04:51:43 224/823 articles, 105 claims kept
+04:54:15 249/823 articles, 115 claims kept
+04:57:55 274/823 articles, 133 claims kept
+05:00:18 299/823 articles, 142 claims kept
+05:02:18 324/823 articles, 147 claims kept
+05:04:54 349/823 articles, 157 claims kept
+05:07:43 374/823 articles, 168 claims kept
+05:11:14 399/823 articles, 184 claims kept
+05:12:54 424/823 articles, 189 claims kept
+05:16:24 449/823 articles, 205 claims kept
+05:20:38 474/823 articles, 226 claims kept
+05:22:45 499/823 articles, 234 claims kept
+05:25:53 524/823 articles, 248 claims kept
+05:28:37 549/823 articles, 260 claims kept
+05:31:02 574/823 articles, 267 claims kept
+05:35:07 599/823 articles, 289 claims kept
+05:38:55 624/823 articles, 309 claims kept
+05:42:53 649/823 articles, 330 claims kept
+05:46:07 674/823 articles, 348 claims kept
+05:48:39 699/823 articles, 358 claims kept
+05:51:55 724/823 articles, 374 claims kept
+05:54:22 749/823 articles, 385 claims kept
+05:58:17 774/823 articles, 403 claims kept
+06:00:58 799/823 articles, 413 claims kept
+06:03:54 822/823 articles, 428 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 823,
+  "articles_done": 822,
+  "articles_with_claims": 262,
+  "claims": {
+    "kept": 428,
+    "quote_not_found": 59,
+    "dropped_by_check": 96,
+    "duplicate": 2
+  },
+  "seconds_total": 5998
+}
+failed articles: ['page_001_NPCM19260806_01_0001#12']
+NOT COMPLETE: rerun to continue
+06:03:54 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+823 selected, 822 done, 1 to run, prompts 7d2d2e20792f
+FAILED page_001_NPCM19260806_01_0001#12: model call failed: Unterminated string starting at: line 2 column 16 (char 17)
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 823,
+  "articles_done": 822,
+  "articles_with_claims": 262,
+  "claims": {
+    "kept": 428,
+    "quote_not_found": 59,
+    "dropped_by_check": 96,
+    "duplicate": 2
+  },
+  "seconds_total": 5998
+}
+failed articles: ['page_001_NPCM19260806_01_0001#12']
+NOT COMPLETE: rerun to continue
+06:04:46 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+428 claims, 0 done, prompt bc6c8bd4eb72
+06:07:35 50 done, 3.4 s each
+06:10:22 100 done, 3.4 s each
+06:13:06 150 done, 3.3 s each
+06:15:52 200 done, 3.3 s each
+06:18:39 250 done, 3.3 s each
+06:21:26 300 done, 3.3 s each
+06:24:12 350 done, 3.3 s each
+06:27:00 400 done, 3.3 s each
+finished 428, failed 0: [], 3.3 s each
+ALL DONE
+06:28:33 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+428 claims, 428 done, prompt bc6c8bd4eb72
+finished 0, failed 0: [], 0.0 s each
+ALL DONE
+06:28:33 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\combine.py
+9 sets, 3124 claims, 6145 descriptions
+event 517 s
+topic 516 s
+event-030 {'all_nodes': 2830, 'singletons': 1516, 'nodes': 2609, 'edges': 2417, 'multi': 126, 'loops': 506}
+event-035 {'all_nodes': 1932, 'singletons': 767, 'nodes': 1723, 'edges': 2206, 'multi': 168, 'loops': 647}
+topic-030 {'all_nodes': 2260, 'singletons': 994, 'nodes': 2035, 'edges': 2249, 'multi': 167, 'loops': 626}
+topic-035 {'all_nodes': 1411, 'singletons': 439, 'nodes': 1233, 'edges': 1982, 'multi': 191, 'loops': 791}
+event-030 {'events': 2830, 'singletons': 1516, 'arrows': 2417, 'multi_claim': 126, 'multi_article': 75, 'loop_claims': 506, 'claims': 3108, 'articles': 1749}
+event-035 {'events': 1932, 'singletons': 767, 'arrows': 2206, 'multi_claim': 168, 'multi_article': 114, 'loop_claims': 647, 'claims': 3108, 'articles': 1749}
+topic-030 {'events': 2260, 'singletons': 994, 'arrows': 2249, 'multi_claim': 167, 'multi_article': 104, 'loop_claims': 626, 'claims': 3108, 'articles': 1749}
+topic-035 {'events': 1411, 'singletons': 439, 'arrows': 1982, 'multi_claim': 191, 'multi_article': 138, 'loop_claims': 791, 'claims': 3108, 'articles': 1749}
+06:45:56 BATCH DONE 1926-08-09
+06:45:56 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\build_batch.py 1926-10-11 192610 192611
+{"pages": 147, "failed": [], "news": 2156, "with_term": 771, "selected": 762, "words": 172189, "datelines": 83, "sources": 1}
+06:45:58 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+762 selected, 0 done, 762 to run, prompts 7d2d2e20792f
+06:48:47 25/762 articles, 8 claims kept
+06:51:15 50/762 articles, 16 claims kept
+06:54:53 75/762 articles, 29 claims kept
+06:57:10 100/762 articles, 39 claims kept
+07:01:59 125/762 articles, 64 claims kept
+07:05:46 150/762 articles, 85 claims kept
+07:09:28 175/762 articles, 102 claims kept
+07:12:56 200/762 articles, 116 claims kept
+07:16:07 225/762 articles, 128 claims kept
+07:19:01 250/762 articles, 139 claims kept
+07:21:05 275/762 articles, 146 claims kept
+07:23:57 300/762 articles, 158 claims kept
+07:27:49 325/762 articles, 176 claims kept
+07:29:58 350/762 articles, 184 claims kept
+07:32:22 375/762 articles, 193 claims kept
+07:35:08 400/762 articles, 205 claims kept
+07:37:28 425/762 articles, 215 claims kept
+07:40:46 450/762 articles, 230 claims kept
+07:43:32 475/762 articles, 240 claims kept
+07:46:48 500/762 articles, 254 claims kept
+07:50:25 525/762 articles, 271 claims kept
+07:53:07 550/762 articles, 282 claims kept
+07:56:07 575/762 articles, 293 claims kept
+07:58:43 600/762 articles, 303 claims kept
+08:01:17 625/762 articles, 312 claims kept
+08:03:51 650/762 articles, 322 claims kept
+08:06:55 675/762 articles, 339 claims kept
+08:09:04 700/762 articles, 347 claims kept
+08:11:40 725/762 articles, 353 claims kept
+08:15:07 750/762 articles, 368 claims kept
+08:16:42 762/762 articles, 374 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 762,
+  "articles_done": 762,
+  "articles_with_claims": 238,
+  "claims": {
+    "kept": 374,
+    "dropped_by_check": 90,
+    "quote_not_found": 45,
+    "duplicate": 1
+  },
+  "seconds_total": 5442
+}
+failed articles: []
+ALL DONE
+08:16:42 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\extract.py
+762 selected, 762 done, 0 to run, prompts 7d2d2e20792f
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 762,
+  "articles_done": 762,
+  "articles_with_claims": 238,
+  "claims": {
+    "kept": 374,
+    "dropped_by_check": 90,
+    "quote_not_found": 45,
+    "duplicate": 1
+  },
+  "seconds_total": 5442
+}
+failed articles: []
+ALL DONE
+08:16:42 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+374 claims, 0 done, prompt bc6c8bd4eb72
+08:19:35 50 done, 3.4 s each
+08:22:21 100 done, 3.4 s each
+08:25:07 150 done, 3.4 s each
+08:27:52 200 done, 3.4 s each
+08:30:42 250 done, 3.4 s each
+08:33:29 300 done, 3.4 s each
+08:36:16 350 done, 3.4 s each
+finished 374, failed 0: [], 3.4 s each
+ALL DONE
+08:37:36 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\normalise.py
+374 claims, 374 done, prompt bc6c8bd4eb72
+finished 0, failed 0: [], 0.0 s each
+ALL DONE
+08:37:36 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\combine.py
+10 sets, 3498 claims, 6884 descriptions
+event 580 s
+topic 577 s
+event-030 {'all_nodes': 3093, 'singletons': 1629, 'nodes': 2851, 'edges': 2710, 'multi': 148, 'loops': 559}
+event-035 {'all_nodes': 2089, 'singletons': 805, 'nodes': 1865, 'edges': 2491, 'multi': 194, 'loops': 702}
+topic-030 {'all_nodes': 2457, 'singletons': 1069, 'nodes': 2219, 'edges': 2558, 'multi': 179, 'loops': 669}
+topic-035 {'all_nodes': 1512, 'singletons': 455, 'nodes': 1332, 'edges': 2266, 'multi': 212, 'loops': 855}
+event-030 {'events': 3093, 'singletons': 1629, 'arrows': 2710, 'multi_claim': 148, 'multi_article': 89, 'loop_claims': 559, 'claims': 3482, 'articles': 1965}
+event-035 {'events': 2089, 'singletons': 805, 'arrows': 2491, 'multi_claim': 194, 'multi_article': 130, 'loop_claims': 702, 'claims': 3482, 'articles': 1965}
+topic-030 {'events': 2457, 'singletons': 1069, 'arrows': 2558, 'multi_claim': 179, 'multi_article': 106, 'loop_claims': 669, 'claims': 3482, 'articles': 1965}
+topic-035 {'events': 1512, 'singletons': 455, 'arrows': 2266, 'multi_claim': 212, 'multi_article': 154, 'loop_claims': 855, 'claims': 3482, 'articles': 1965}
+08:57:06 BATCH DONE 1926-10-11
+08:57:06 ALL BATCHES DONE

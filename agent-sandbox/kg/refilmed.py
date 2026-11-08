@@ -9,7 +9,9 @@ from rapidfuzz import fuzz
 PAIRS = [("page_006_NPCM19250727_01_0006", "page_005_NPCM19250727_01_0005"),  # (clearer image, fainter image), both printed page 5
          ("page_001_NPCM19251019_01_0001", "page_002_NPCM19251019_01_0002"),  # both printed page 1
          ("page_006_NPCM19251015_01_0006", "page_007_NPCM19251015_01_0007"),  # both printed page 6
-         ("page_001_NPCM19250903_01_0001", "page_001_NPCM19250904_01_0001")]  # 3 September front page, second film filed under 4 September
+         ("page_001_NPCM19250903_01_0001", "page_001_NPCM19250904_01_0001"),  # 3 September front page, second film filed under 4 September
+         ("page_007_NPCM19260209_01_0007", "page_009_NPCM19260209_01_0009"),  # both printed page 7; equally legible, the image in page order kept
+         ("page_001_NPCM19260630_01_0001", "page_003_NPCM19260630_01_0003")]  # both the front page; equally legible, the image in page order kept
 REDATE = {"page_001_NPCM19250904_01_0001": "1925-09-03"}  # claims left on a misfiled image take the date printed on the page
 
 
