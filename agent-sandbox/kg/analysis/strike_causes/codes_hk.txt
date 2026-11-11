@@ -1,0 +1,72 @@
+# Hongkong-Canton strike and boycott: claims explaining why it started (O), why it lasted (P),
+# and why it weakened, ended or individuals went back to work (E). Coded by Claude on 2026-11-11 from
+# claim text plus article context (context.py). Snapshot: temporal/snapshot_v1_ceb6e08a, event-035.
+# Joining or leaving in 1925 (participation) and 1925 origins are already coded in
+# ../explanations/codes.txt and are merged in by analyse.py, not repeated here.
+# stmt: same statement relayed in several claims -> counted once.
+# id|q|families|voice|stance|stmt|note
+157f870|E|DISSENT|PAPER_NEWS|ASSERT||unrest among strikers, preferential treatment
+06be0aa|E|DISSENT|PAPER_NEWS|ASSERT||tension among strike leaders, mismanagement
+bfa7d5f|E|HK_FORCE|PAPER_NEWS|ASSERT||ringleader back to work on threat of deportation
+60ef346|P|PICKET_COERCION|PAPER_NEWS|ASSERT||pickets keep strikers from leaving Canton
+cb8ce44|P|PICKET_COERCION|PAPER_NEWS|ASSERT||leaders stop rank and file getting away
+6d27443|E|HARDSHIP|PAPER_NEWS|ASSERT||strikers leave Canton to escape Labourers' Corps
+6d144aa|E|DISSENT|PAPER_NEWS|ASSERT||lukewarmness in strikers' ranks
+9a747ce|E|HK_FORCE|PAPER_NEWS|PRESCRIBE||only a display of force can end it
+005af1c|E|DISSENT|PAPER_NEWS|ASSERT||discord, Canton authorities vs strikers over merchant tax
+fb1c2af|E|CN_ANTI_RED|PAPER_NEWS|ASSERT||Chinese officer condemning Communists, 300 return
+dcd52ef|P|CANTON_INTEREST|PAPER_NEWS|ASSERT||Canton keeps 180,000 strikers in reserve against Yunnanese
+9dd837b|E|HK_FORCE|PAPER_NEWS|ASSERT||police raids on idlers' dens bring men back
+adf7ce7|E|HK_INDUCE|PAPER_NEWS|ASSERT||2,000 return taking up an offer
+5250996|P|ORGANISATION|PAPER_NEWS|ASSERT||strike organisation strengthened
+8def420|P|CANTON_WEAK|PAPER_NEWS|ASSERT||executive powerful for lack of troops on East River
+a46ad83|E|REVENUE|PAPER_NEWS|ASSERT||Canton needs revenue, change of front
+ac3ba76|O|MASSACRE|PAPER_NEWS|ASSERT||Shanghai riot provoked boycott of British
+071d04d|P|POLITICAL_TERMS|PAPER_NEWS|ASSERT||Canton would not help unless political terms discussed
+368ce1b|P|CANTON_WEAK|PAPER_LEADER|OPEN|ldr_0129|pickets tie Canton's hands, or Canton could settle: left open
+f973ddd|E|HARDSHIP|CANTON|ASSERT|wu_0201|Canton wants early settlement to end losses
+1da965a|E|AIM_ACHIEVED+HARDSHIP|CANTON|ASSERT|wu_0201|C.C. Wu: protest achieved, Chinese suffering
+f3236da|P|PICKET_COERCION|PAPER_LEADER|ASSERT|ldr_0202|people suffer the boycott only from fear
+368b3ad|P|CANTON_CONNIVE|PAPER_LEADER|ASSERT|ldr_0202|Canton should end picket tyranny
+245cca0|P|CANTON_CONNIVE|HK_OFFICIAL|ASSERT|clementi_0204|Canton left Strike Committee unchecked
+4e31390|P|PICKET_COERCION|HK_OFFICIAL|ASSERT|clementi_0204|boycott would not last a day without Committee's tyranny
+6f4c1d5|P|PICKET_COERCION+BOL|HK_OFFICIAL|ASSERT|clementi_0204b|Committee instigated by Bolshevik intrigue
+fd67fc0|P|PICKET_COERCION+BOL|OTHER_PRESS|ASSERT|clementi_0204b|Shanghai Times relaying Clementi
+3bf8d38|P|CANTON_CONNIVE|PAPER_LEADER|ASSERT|ldr_0205|sole bar to peace is picket terrorism, Canton accessory
+c974a0e|P|PROFIT|OTHER_PRESS|ASSERT||Shanghai Times: men making fortunes prolong it
+a25160f|P|CANTON_CONNIVE|BRIT_OFFICIAL|ASSERT|amery_0323|Amery: Canton a principal, no steps against intimidation
+499f745|P|CANTON_CONNIVE|BRIT_OFFICIAL|ASSERT|amery_0323|same
+69fad3f|O|BOL|UNATTRIBUTED|ASSERT||Bolsheviks used Shanghai and Shameen to start campaign
+3811b8d|P|CANTON_WEAK|UNATTRIBUTED|ASSERT||Canton unable or unwilling to suppress pickets
+bbee9b0|P|CANTON_CONNIVE+PROFIT|UNATTRIBUTED|ASSERT||continues because Canton won't compel pickets, pickets profit
+1d5ae70|E|NORTH_WAR+REVENUE|PAPER_NEWS|ASSERT||threat of Wu Pei-fu: Canton needs revenue for war
+5194472|P|CANTON_SUPPORT|CANTON|ASSERT||Canton: restraining pickets "most unjust"
+3a6c9e4|E|NORTH_WAR|PAPER_NEWS|ASSERT||strikers recruited as special constables, troops gone north
+32541fb|E|NORTH_WAR|PAPER_NEWS|ASSERT|coolies_0702|strikers must furnish coolies for expedition
+f4b12a7|E|NORTH_WAR|PAPER_NEWS|ASSERT|coolies_0702|same
+5b51527|E|NORTH_WAR|PAPER_NEWS|ASSERT||Chiang wants settlement because of Northern Expedition
+310987d|P|ORGANISATION|PAPER_NEWS|ASSERT||Strike Executive has its own way, Government yields
+01b1e01|P|ORGANISATION|PAPER_NEWS|ASSERT||settlement delayed by need to demobilise strikers
+8d29175|O|MASSACRE|CANTON|ASSERT|cn_0724|Chinese delegation: June 23 direct cause
+11d067a|O|MASSACRE|CANTON|ASSERT|cn_0724|same statement
+f54e78f|P|HK_BLOCKADE|CANTON|ASSERT|cn_0724b|Hongkong's embargo predisposing and continuing factor
+8a51aaf|P|HK_BLOCKADE|CANTON|ASSERT|cn_0724b|same
+8fba0e9|P|NAT_DEFENCE|CANTON|ASSERT||boycott seen as defence against British attempt to starve Canton
+525cee0|P|PICKET_COERCION|HK_OFFICIAL|ASSERT||British delegation: imposed on unwilling people by armed organisation
+3ece50e|O|MASSACRE|CANTON|ASSERT||Canton reply: Shameen shooting the causa causans
+a59a66e|E|BRIT_FORCE|PAPER_LIKELY|PRESCRIBE||sterner British policy should deter pickets
+a536dfe|P|CANTON_WEAK|PAPER_LEADER|ASSERT|ldr_0907|Canton overawed by pickets
+0b76f02|P|CANTON_WEAK|PAPER_LEADER|ASSERT|ldr_0907|Canton dallied and yielded
+3fb8413|P|CANTON_SUPPORT|PAPER_LEADER|ASSERT||Canton openly commends boycott as weapon
+7d91ac1|P|CHIANG_SUPPORT|PAPER_LEADER|ASSERT|ldr_0913|Chiang a staunch supporter of boycott
+ca9df67|P|CHIANG_SUPPORT|PAPER_LEADER|ASSERT|ldr_0913|same
+0c7be3d|P|CHIANG_SUPPORT|PAPER_LEADER|ASSERT|ldr_0913|same
+f40b193|P|PROFIT+CHIANG_SUPPORT|OTHER_PRESS|ASSERT||cable: vested interest, Chiang controls strikers
+56f66f6|P|NAT_DEFENCE|CANTON|ASSERT||Chinese press: British insincere, support strikers
+1b8f264|E|BRIT_FORCE|PAPER_NEWS|ASSERT||pickets-as-pirates policy a deciding factor (one view)
+c6d5b07|O|MASSACRE|CANTON|ASSERT||Canton Gazette: strike started because of May 30 and June 23
+7939be4|O|MASSACRE+NAT_DEFENCE|CANTON|ASSERT||Strike Committee and KMT declarations
+9dfe6b5|O|BOL|HK_OFFICIAL|ASSERT||Clementi: boycott instigated by Bolshevik intrigues
+a113343|P|PICKET_STRENGTH|PAPER_LEADER|ASSERT|ldr_1116|Canton sincerely tried; pickets too strong
+a2a17db|E|WAITING_GAME|PAPER_LEADER|ASSERT|ldr_1116|Canton's waiting game ended shipping boycott
+ff0e327|E|HARDSHIP|PAPER_NEWS|ASSERT||cargo-boatmen want work: new boycott partly called off

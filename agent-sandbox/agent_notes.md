@@ -820,6 +820,36 @@ Families: ORCH (Bolshevik, Canton or unnamed agitators), INTIM, TRIGGER (Shangha
 
 Limits: own voice is uncertain in both directions. Only 1 confirmed leader was found and 3 pieces are likely but unconfirmed; unattributed cables count as PAPER_NEWS. Choosing what to reprint is itself editorial, so reprints still show what the paper circulated. Claims show explicit causal statements only, as extracted, on pages selected by strike score.
 **Consequence for theme questions.** No version gathers an explanation theme into one node, so questions about explanations are coded at claim level and do not depend on the clustering version.
+## 5i. Temporal buckets of graph_v1 (2026-11-11)
+
+**Question (user).** Can the graph be cut into time buckets for quantitative comparison? Analyses run at the user's request: node share per bucket (as cause and as effect), in- and out-degree of top nodes, similarity between buckets, all four versions, at one-month, two-month and calendar-quarter sizes.
+
+**Data.** Frozen snapshot `kg/analysis/temporal/snapshot_v1_ceb6e08a/`, copied from `kg/out/graph_v1` as committed in `ceb6e08a` (3,479 claims, 1 April 1925 to 30 November 1926). A claim's date is the issue date; the edge takes the claim's date. Monthly graphs are rebuilt from claims (`has_cause`, `has_effect`), not from `causes.csv`, which pools all dates. Two-month buckets follow the batch pairs (Apr-May 1925 ... Oct-Nov 1926).
+
+**Method.** Share = claims with the node as cause or effect / claims in the bucket (a self-loop counts once). 95% intervals come from 1,000 resamples of articles within each bucket. Degree counts claims and leaves self-loops out (reported separately). Similarity: node-set Jaccard, size-matched by subsampling every bucket to the smallest bucket's claim count (42 per month, 100 per two months, 306 per quarter; 200 draws), plus raw Jaccard, claim-weighted cosine and edge Jaccard. Cross-version check: each top event-035 node is matched to the node in each other version holding most of its (claim, role) slots, then the monthly share series are correlated.
+
+**Results (event-035 unless stated).**
+- Coverage: pages per month range from 16 to 75 (thin: Apr-May 1925, Nov 1925-Apr 1926), and claims follow pages. Compare shares only.
+- Clear moves (intervals don't overlap): "Recent disturbances occur in Shanghai" is 8% of Q2 1925 claims and 1% or less in each later quarter. China Mail delivery appears only Jun-Sep 1925. "A strike is taken" falls from 8% (Q3 1925) to 2% (Q3 1926). The boycott (about 1% in 1925 quarters, 1-3% in 1926, 6% in Nov 1926) is suggestive only.
+- **May 1926 strike spike (12%) mixes in the British General Strike** (London printers, coal, government spending). The strike node does not keep strikes in different places apart, so place has to be checked before reading strike trends.
+- The strike is mostly a cause in every period (about 3-5 cause claims per effect claim). As an effect it peaks in Jun-Jul 1925 (39 cause / 11 effect) and Jun-Jul 1926 (15 / 7). It never shifts from effect to cause.
+- Size-matched monthly Jaccard is 0.03-0.07. Lag 1 averages 0.049, against about 0.041 at lags 2-16, so there is no gradual drift: a small recurring core of hubs plus one-off incidents. The drop at lags 17-19 only reflects Apr-May 1925 pairs. The lowest adjacent pair in every version is Nov to Dec 1925, and December 1925 is unlike all other months. Edge Jaccard is 0-0.017.
+- Robustness: across versions, monthly share series of the top 12 nodes correlate at Spearman 0.63-0.97 (weakest: "Trade is at a standstill" against event-030, 0.65; "parties have not come to any agreement" against topic-035, 0.63). Consecutive-similarity series correlate 0.78-0.95 monthly and 0.55-0.85 two-monthly. Quarterly similarity varies too little (0.135-0.151) to rank, and its cross-version correlations range from -0.37 to 0.83, so quarters are too coarse for similarity.
+
+Limits: claims come only from pages selected by strike score, so shares measure what the selected coverage said, not the whole paper. Matching across versions by claim slots is many-to-one (topic-035 matches are up to 2x larger).
+
+## 5j. Causes of the Hongkong-Canton strike (2026-11-11)
+
+**Why this was done.** The user asked what the graph shows about the causes of the strike, after agreeing that node-level monthly comparison (5i) taught little. It is coded at claim level, like the explanations study, on `temporal/snapshot_v1_ceb6e08a`. Full write-up: `kg/analysis/strike_causes/FINDINGS.md`.
+
+**Method.** All 356 claims with a strike-related effect were read, plus 254 claims from December 1925 onward that mention strike, boycott or pickets anywhere. Claims explaining the Hongkong-Canton strike or boycott were coded in `codes_hk.txt` under four questions: why it started (O), why people joined (J), why it lasted (P), why it weakened or ended (E). Each was also coded for explanation family and voice, with voice checked in article context. The 1925 Hongkong rows from `explanations/codes.txt` were merged in. This gives 93 statement units (repeats of one statement count once). Single coder, indicative only.
+
+**Results.**
+- Origin: 17 of 20 statements in Jun-Sep 1925 say it was engineered (Bolshevik, Canton, intimidation). No claim gives labour grievances for Hongkong. The shootings as cause come only from Chinese voices: the strikers' notice of 22 June 1925, and in 1926 the Chinese delegation, the Canton Gazette and the Strike Committee. The paper reports these but never adopts them.
+- Joining: 11 of 15 statements cite intimidation.
+- Why it lasted: in 1925, pickets holding strikers in Canton. In winter 1925-26, Canton connivance or weakness (8 of 15; leaders, Clementi and Amery agree). In September 1926, Chiang's support. On 16 November 1926 the leader reverses ("sincerely trying", pickets too strong). Canton's counter-explanation, Hongkong's food and silver embargo, is never answered.
+- Ending: 1925 returns are explained by dissent, police raids, deportation and inducements. 1926 explanations are the Northern Expedition (strikers drafted, Chiang wants a settlement), revenue, and British force. Canton's October manifesto also cites the advance to the Yangtze, so the war is the one ending explanation both sides share.
+
 ## 6. File index (all in `agent-sandbox/`)
 
 | Path | What |
@@ -852,3 +882,5 @@ Limits: own voice is uncertain in both directions. Only 1 confirmed leader was f
 | `articles_md/` | Rebuilt per-page markdown, overlay images, `articles.jsonl` |
 | `.venv-kg/` | Python 3.13 venv for the above |
 | `kg/analysis/explanations/` | Competing-explanations study: frozen snapshots, `codes.txt` (hand coding), `analyse.py`, `coded_claims.csv` |
+| `kg/analysis/temporal/` | Monthly, two-month and quarterly buckets: `snapshot_v1_ceb6e08a/`, `temporal.py` (writes `out/*.csv`), `make_report.py` (writes `report.html`) |
+| `kg/analysis/strike_causes/` | Causes of the Hongkong-Canton strike: `candidates.csv`, `wider_1926.txt`, `codes_hk.txt` (hand coding), `analyse.py`, `coded_claims.csv`, `FINDINGS.md`, `context.py` (article context for a claim id) |
