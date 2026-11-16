@@ -1,0 +1,388 @@
+
+=== 2026-11-16 01:42:31 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+829 selected, 5 done, 824 to run, prompts 7d2d2e20792f
+01:46:17 30/829 articles, 22 claims kept
+01:48:47 55/829 articles, 28 claims kept
+
+=== 2026-11-16 01:56:54 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+829 selected, 60 done, 769 to run, prompts 7d2d2e20792f
+02:01:04 85/829 articles, 55 claims kept
+02:04:42 110/829 articles, 70 claims kept
+02:09:15 135/829 articles, 88 claims kept
+02:12:42 160/829 articles, 102 claims kept
+02:16:22 185/829 articles, 116 claims kept
+02:20:10 210/829 articles, 129 claims kept
+02:23:48 235/829 articles, 147 claims kept
+02:25:46 260/829 articles, 155 claims kept
+02:28:22 285/829 articles, 164 claims kept
+02:32:48 310/829 articles, 191 claims kept
+02:36:46 335/829 articles, 210 claims kept
+02:40:18 360/829 articles, 227 claims kept
+02:44:58 385/829 articles, 254 claims kept
+02:48:13 410/829 articles, 268 claims kept
+02:52:16 435/829 articles, 283 claims kept
+02:55:25 460/829 articles, 295 claims kept
+02:58:37 485/829 articles, 314 claims kept
+03:03:07 510/829 articles, 335 claims kept
+03:07:47 535/829 articles, 358 claims kept
+03:11:44 560/829 articles, 376 claims kept
+03:14:57 585/829 articles, 393 claims kept
+03:17:57 610/829 articles, 405 claims kept
+03:21:33 635/829 articles, 420 claims kept
+03:28:05 660/829 articles, 450 claims kept
+03:32:03 685/829 articles, 469 claims kept
+03:36:16 710/829 articles, 490 claims kept
+FAILED page_009_NPCM19250608_01_0009#7: model call failed (invalid JSON): Unterminated string starting at: line 2 column 16 (char 17)
+03:40:44 734/829 articles, 508 claims kept
+03:45:44 759/829 articles, 534 claims kept
+03:48:24 784/829 articles, 544 claims kept
+03:52:11 809/829 articles, 561 claims kept
+03:54:09 828/829 articles, 569 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 829,
+  "articles_done": 828,
+  "articles_with_claims": 329,
+  "claims": {
+    "kept": 569,
+    "dropped_by_check": 118,
+    "duplicate": 8,
+    "quote_not_found": 56
+  },
+  "seconds_total": 7496
+}
+failed articles: ['page_009_NPCM19250608_01_0009#7']
+NOT COMPLETE: rerun to continue
+
+=== 2026-11-16 03:54:13 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+828 selected, 828 done, 0 to run, prompts 7d2d2e20792f
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 828,
+  "articles_done": 828,
+  "articles_with_claims": 329,
+  "claims": {
+    "kept": 569,
+    "dropped_by_check": 118,
+    "duplicate": 8,
+    "quote_not_found": 56
+  },
+  "seconds_total": 7496
+}
+failed articles: []
+ALL DONE
+
+=== 2026-11-16 07:31:51 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+994 selected, 828 done, 166 to run, prompts 7d2d2e20792f
+07:33:59 853/994 articles, 573 claims kept
+07:38:30 878/994 articles, 591 claims kept
+07:42:22 903/994 articles, 605 claims kept
+07:45:31 928/994 articles, 616 claims kept
+07:47:37 953/994 articles, 622 claims kept
+07:50:58 978/994 articles, 633 claims kept
+07:52:20 994/994 articles, 636 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 994,
+  "articles_done": 994,
+  "articles_with_claims": 379,
+  "claims": {
+    "kept": 636,
+    "dropped_by_check": 127,
+    "duplicate": 8,
+    "quote_not_found": 64
+  },
+  "seconds_total": 8725
+}
+failed articles: []
+ALL DONE
+
+=== 2026-11-16 09:11:32 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+1328 selected, 994 done, 334 to run, prompts 7d2d2e20792f
+09:14:42 1019/1328 articles, 647 claims kept
+09:19:47 1044/1328 articles, 666 claims kept
+09:25:08 1069/1328 articles, 689 claims kept
+09:30:39 1094/1328 articles, 712 claims kept
+09:35:59 1119/1328 articles, 727 claims kept
+09:41:48 1144/1328 articles, 750 claims kept
+09:46:51 1169/1328 articles, 765 claims kept
+09:50:30 1194/1328 articles, 777 claims kept
+09:55:38 1219/1328 articles, 801 claims kept
+FAILED page_005_NPCM19250818_01_0005#1: model call failed (invalid JSON): Unterminated string starting at: line 2 column 16 (char 17)
+10:00:38 1243/1328 articles, 820 claims kept
+10:07:11 1268/1328 articles, 846 claims kept
+10:11:07 1293/1328 articles, 859 claims kept
+10:15:39 1318/1328 articles, 879 claims kept
+10:16:44 1327/1328 articles, 883 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 1328,
+  "articles_done": 1327,
+  "articles_with_claims": 521,
+  "claims": {
+    "kept": 883,
+    "dropped_by_check": 188,
+    "duplicate": 9,
+    "quote_not_found": 93
+  },
+  "seconds_total": 12607
+}
+failed articles: ['page_005_NPCM19250818_01_0005#1']
+NOT COMPLETE: rerun to continue
+
+=== 2026-11-16 10:43:21 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+1617 selected, 1327 done, 290 to run, prompts 7d2d2e20792f
+10:46:47 1352/1617 articles, 893 claims kept
+10:52:44 1377/1617 articles, 914 claims kept
+10:58:29 1402/1617 articles, 935 claims kept
+11:05:04 1427/1617 articles, 957 claims kept
+11:07:27 1452/1617 articles, 962 claims kept
+11:12:09 1477/1617 articles, 979 claims kept
+11:17:08 1502/1617 articles, 996 claims kept
+11:20:43 1527/1617 articles, 1006 claims kept
+11:24:50 1552/1617 articles, 1017 claims kept
+11:31:10 1577/1617 articles, 1041 claims kept
+11:34:35 1602/1617 articles, 1051 claims kept
+11:37:31 1617/1617 articles, 1063 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 1617,
+  "articles_done": 1617,
+  "articles_with_claims": 629,
+  "claims": {
+    "kept": 1063,
+    "dropped_by_check": 223,
+    "duplicate": 10,
+    "quote_not_found": 104
+  },
+  "seconds_total": 15856
+}
+failed articles: []
+ALL DONE
+
+=== 2026-11-16 11:58:24 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+1808 selected, 1617 done, 191 to run, prompts 7d2d2e20792f
+12:04:26 1642/1808 articles, 1082 claims kept
+12:10:30 1667/1808 articles, 1098 claims kept
+12:17:06 1692/1808 articles, 1121 claims kept
+12:23:15 1717/1808 articles, 1145 claims kept
+12:29:05 1742/1808 articles, 1166 claims kept
+12:34:44 1767/1808 articles, 1189 claims kept
+12:38:55 1792/1808 articles, 1201 claims kept
+12:40:42 1808/1808 articles, 1206 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 1808,
+  "articles_done": 1808,
+  "articles_with_claims": 708,
+  "claims": {
+    "kept": 1206,
+    "dropped_by_check": 262,
+    "duplicate": 10,
+    "quote_not_found": 114
+  },
+  "seconds_total": 18394
+}
+failed articles: []
+ALL DONE
+
+=== 2026-11-16 12:58:06 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+1894 selected, 1808 done, 86 to run, prompts 7d2d2e20792f
+13:04:20 1833/1894 articles, 1230 claims kept
+13:08:08 1858/1894 articles, 1239 claims kept
+13:12:06 1883/1894 articles, 1249 claims kept
+13:14:01 1894/1894 articles, 1253 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 1894,
+  "articles_done": 1894,
+  "articles_with_claims": 736,
+  "claims": {
+    "kept": 1253,
+    "dropped_by_check": 279,
+    "duplicate": 10,
+    "quote_not_found": 115
+  },
+  "seconds_total": 19348
+}
+failed articles: []
+ALL DONE
+
+=== 2026-11-16 13:22:28 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+1981 selected, 1894 done, 87 to run, prompts 7d2d2e20792f
+13:26:50 1919/1981 articles, 1264 claims kept
+13:30:23 1944/1981 articles, 1271 claims kept
+13:34:15 1969/1981 articles, 1284 claims kept
+13:36:31 1981/1981 articles, 1291 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 1981,
+  "articles_done": 1981,
+  "articles_with_claims": 764,
+  "claims": {
+    "kept": 1291,
+    "dropped_by_check": 285,
+    "duplicate": 10,
+    "quote_not_found": 121
+  },
+  "seconds_total": 20192
+}
+failed articles: []
+ALL DONE
+
+=== 2026-11-16 13:44:29 C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\.venv-kg\Scripts\python.exe -u C:\Users\georg\Documents\projects\china-causal-kg\agent-sandbox\kg\perception\stage.py extract
+2073 selected, 1981 done, 92 to run, prompts 7d2d2e20792f
+13:49:04 2006/2073 articles, 1302 claims kept
+13:53:18 2031/2073 articles, 1313 claims kept
+13:59:51 2056/2073 articles, 1336 claims kept
+14:03:29 2073/2073 articles, 1347 claims kept
+{
+  "model": "qwen3.5:9b-q8_0",
+  "digest": "a8ee95bc3592",
+  "prompt_hash": "7d2d2e20792f",
+  "extract_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 12288,
+    "num_predict": 3000
+  },
+  "check_options": {
+    "temperature": 0,
+    "seed": 1,
+    "num_ctx": 4096,
+    "num_predict": 300
+  },
+  "setup": "full article + check",
+  "articles_selected": 2073,
+  "articles_done": 2073,
+  "articles_with_claims": 799,
+  "claims": {
+    "kept": 1347,
+    "dropped_by_check": 303,
+    "duplicate": 10,
+    "quote_not_found": 129
+  },
+  "seconds_total": 21331
+}
+failed articles: []
+ALL DONE

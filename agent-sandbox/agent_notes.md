@@ -884,3 +884,46 @@ Limits: claims come only from pages selected by strike score, so shares measure 
 | `kg/analysis/explanations/` | Competing-explanations study: frozen snapshots, `codes.txt` (hand coding), `analyse.py`, `coded_claims.csv` |
 | `kg/analysis/temporal/` | Monthly, two-month and quarterly buckets: `snapshot_v1_ceb6e08a/`, `temporal.py` (writes `out/*.csv`), `make_report.py` (writes `report.html`) |
 | `kg/analysis/strike_causes/` | Causes of the Hongkong-Canton strike: `candidates.csv`, `wider_1926.txt`, `codes_hk.txt` (hand coding), `analyse.py`, `coded_claims.csv`, `FINDINGS.md`, `context.py` (article context for a claim id) |
+
+## 5k. Plan: British perceptions in the China Mail, May-July 1925 (2026-11-16, not started)
+
+**Question (user).** To what extent does the China Mail graph show the accuracies and inaccuracies in British perception that the literature describes: Communist conspiracy (agitators, accurate; strikers Red, inaccurate), Canton support (accurate), not nationalism (inaccurate)?
+
+**Decisions (user).** No labelling by Claude: measures come from a Qwen re-extraction (v1 prompt plus `speaker`/`speaker_type`; `is_letter` deterministic) and from embedding-anchor categories. Denials are inferred from absence, and ruling 2.3 stays. Scope is May-July 1925, causes of the strike only. Letters are included and tagged. Everything in scope is re-extracted, and v1 is untouched. Pages: the 301 with VL OCR plus un-OCRed pages with strike + perception score ≥ 7 (76 pages, about 3.8 h). Bare "canton" and "russian" were dropped from the dictionary as noise. The gold sample comes after the deadline. The run is autonomous overnight. The user approved the anchors, the schema and the 0.65/0.02 threshold, but asked not to start yet. Full plan: `kg/analysis/perception/PLAN.md`; scorer: `perception_screen.py` → `perception_screen.csv`.
+
+**Found.** `strike_screen_batch.frozen_vocab()` now fails its assert (28 calibration files, not 24), because pages 11-14 of 2 June 1925 were VL-OCRed on 2026-11-02. `perception_screen.py` excludes them to reproduce the original vocabulary. `strike_screen_batch.py` itself has not been fixed.
+**Graph and network design (user, 2026-11-16).** A layered property graph: evidence (articles, claims), events (v1-style clusters), concepts (anchors plus the HK Strike node; every event mapped) and speakers. Nationalism is split into 3T (shootings as trigger) and 3M (patriotic or anti-foreign motive). Analyses: discourse network (speakers × concepts), upstream paths to the strike within 3 hops, with asserted (within one article) and composed (across articles) paths labelled separately, voice-split graphs, and fortnightly snapshots. Not done: centrality or community detection on the event layer. The viewer is local HTML. By 11:00: data plus counts; viewer and network analysis afterwards. See PLAN.md §5.
+
+## 5l. Perception run: code and test (2026-11-16, 00:50-01:40)
+
+**Code** (`kg/perception/`, output `kg/out/perception/`, test output `kg/out/perception_test/`; v1 folders untouched):
+- `common.py`: paths, log, status. `cap_json_retries` ends v1's chat retry after 2 invalid-JSON replies instead of 4. A model looping to the token limit (the 664-word "TO-DAY'S MEETING." of 27 July in the test) cost about 70 s per try. Prompts and options are unchanged.
+- `build.py`: rebuilds articles for every May-July VL page. An article is selected if it has a strike CORE term or a perception term (as approved), and `is_letter` uses the v1 rule. On the 301 existing pages: 4,190 news articles, 828 selected (63 May / 403 Jun / 362 Jul), 8 letters. Two pages fail in the article builder (`page_008_NPCM19250602`, `page_012_NPCM19250603`: "no median for empty data").
+- `stage.py`: runs v1 `extract.py` and `normalise.py` unchanged (same prompt hashes), with output redirected.
+- `speaker.py`: a separate Qwen call per article with kept claims, returning speaker and speaker_type, prompt hash `e5d22b17bce5`. A separate pass was chosen, instead of new schema fields, so that the v1 extraction prompt stays byte-identical.
+- `graph.py`: embeddings (v1 event instruction), event clusters (0.35), anchor concepts (0.65 / 0.02, sensitivity 0.60 and 0.70), layered `graph.json` and CSVs, and `counts.md`.
+- `run.py`: orchestrator. Phase 1 covers the existing pages, from build and smoke gate to extract, speaker, normalise and graph. Phase 2 OCRs new pages (score ≥ 7) until `--ocr-until` (default 09:00), then rebuilds and extracts only new articles. The order was changed from the plan so that a complete graph exists before the OCR expansion.
+
+**Scope change found in the test.** The normaliser often gives `effect_place` "unknown" for a strike that is plainly Hongkong's ("A strike takes place", strike similarity 0.86). Under the plan's place rule (Hongkong or Canton named), 4 of 7 strike-cause claims were lost. `graph.py` now reports both a **strict** scope (as planned) and a **broad** scope (Hongkong, Canton or no place given; other named places still excluded). Broad is the default column in `claims.csv`. The user needs to choose which one leads.
+
+**Test** (6 pages with voices known from the earlier coding, 30 articles): 33 kept claims, 1 article failed (looping). Speaker pass 85 s for 16 articles, all types valid. Plausible: the Governor (Stubbs), public-meeting speakers, the Chinese Chamber of Commerce, a Christian Science Monitor reprint. Debatable: Holyoak (unofficial Legislative Council member, at a public meeting) as BRITISH_OFFICIAL; the 22 June tramway strike notice as CANTON_GOVT "the Strike Committee". Normalise 3.4 s per claim. Graph 12 s.
+**Launch (user approved, 2026-11-16 01:41).** `kg/perception/run.py --ocr-until 09:00` was started through WMI (`Win32_Process.Create`, PID 23516, Python PID 11416), so it doesn't depend on the Claude session. Phase 1 corpus: 302 pages (page 7 of 15 May was OCRed in the test), 829 articles, 8 letters. Smoke gate passed at 01:42 (5 articles, 3 claims, speaker types PAPER 2, CHINESE 1). Fix before launch: `stage.py` records articles that fail with invalid JSON in `extract_skip.txt` and leaves them out of later passes. The extraction prompt hash is `7d2d2e20792f`, the same as v1.
+**Restart (2026-11-16 ~01:50).** The user restarted the computer by accident, which ended the run at 55 of 829 articles. `progress.jsonl` (55 records) and `speakers.jsonl` were checked: every line is valid JSON. The run was relaunched at 01:54 with the same command (WMI, PID 16276). The orchestrator started Ollama itself, and extraction resumed from article 56, passing the smoke gate again on the next 5 articles. Rate before the restart: about 6.5 s per article.
+
+### 5m. Perception run finished (2026-11-16 08:01)
+- Phase 1 graph at 04:47. OCR of all 76 new pages finished at 07:31, with no OCR failures. Phase 2 graph at 08:01. Status: ALL DONE.
+- Corpus: 377 pages; 995 articles selected (171 May / 430 Jun / 394 Jul); 12 letters. 994 extracted; 1 skipped for looping JSON (page_009_NPCM19250608_01_0009#7).
+- Graph: 636 claims, 1,238 descriptions, 468 events. In-scope strike causes at 0.65: 29 claims (broad scope) and 15 (strict). At 0.60: 46; at 0.70: 18. In the broad scope at 0.65, "other" holds 17 of the 29.
+- The counts are small and unvalidated. They are in kg/out/perception/graph/counts.md.
+- v1 cross-check (kg/perception/v1_months.py, written to kg/out/perception/v1_months.md): the same anchors and broad scope applied to all 3,479 v1 claims (Apr 1925 – Nov 1926), with no speaker split.
+  - Threshold 0.65: 134 claims in scope; 50 of them get a named category. By category: Canton support 19, intimidation 10, labour 8, 1a 4, 3T 4, 3M 4, 1b 1. The rest fall into "other".
+  - May–July 1925 gives 24 claims in scope in v1, against 29 in the perception run. Outside May–July, v1 adds about 110 claims in scope but only about 38 categorised.
+
+### 5n. Month-by-month extension, Aug 1925 – Apr 1926 (launched 2026-11-16 09:11)
+- User decision: option A, pages with existing VL OCR only (429 pages, no new OCR); end at April 1926 with no article-level place filter. The cut-off avoids the British General Strike (May 1926) but leaves out the strike's last six months.
+- The new months are sampled more thinly than May–July, which had 76 extra OCRed pages, so monthly counts are not strictly comparable.
+- `kg/perception/months.py` runs each month in turn: build → extract → speaker → normalise → graph. It saves a snapshot to `kg/out/perception/snapshots/through_YYYY-MM/`, and the May–July graph is frozen at `snapshots/1925-05_07`.
+- `common.py` reads extra months from `PERCEPTION_EXTRA_MONTHS`.
+- Verified that rebuilding with August added leaves the 995 May–July articles identical. August adds 334 articles.
+- `counts.md` gains tables by month for British and Chinese voices.
+- Estimated about 6 h for the full run.

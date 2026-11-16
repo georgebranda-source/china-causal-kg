@@ -1,0 +1,371 @@
+
+=== 2026-11-16 04:47:59 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 04:48:05.109117  3436 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_may_1925/NPCM19250526_The_China_Mail_1925-05-26/page_001_NPCM19250526_01_0001.png: 91 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250526_01_0001_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250619_The_China_Mail_1925-06-19/page_001_NPCM19250619_01_0001.png: 91 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250619_01_0001_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250711_The_China_Mail_1925-07-11/page_004_NPCM19250711_01_0004.png: 116 blocks -> agent-sandbox\ocr_vl_out\page_004_NPCM19250711_01_0004_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250501_The_China_Mail_1925-05-01/page_007_NPCM19250501_01_0007.png: 153 blocks -> agent-sandbox\ocr_vl_out\page_007_NPCM19250501_01_0007_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250502_The_China_Mail_1925-05-02/page_009_NPCM19250502_01_0009.png: 161 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250502_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250516_The_China_Mail_1925-05-16/page_009_NPCM19250516_01_0009.png: 128 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250516_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250525_The_China_Mail_1925-05-25/page_009_NPCM19250525_01_0009.png: 98 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250525_01_0009_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250620_The_China_Mail_1925-06-20/page_009_NPCM19250620_01_0009.png: 109 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250620_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250506_The_China_Mail_1925-05-06/page_010_NPCM19250506_01_0010.png: 83 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250506_01_0010_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250516_The_China_Mail_1925-05-16/page_012_NPCM19250516_01_0012.png: 84 blocks -> agent-sandbox\ocr_vl_out\page_012_NPCM19250516_01_0012_blocks.json
+
+=== 2026-11-16 05:08:29 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 05:08:32.227712  8240 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_may_1925/NPCM19250522_The_China_Mail_1925-05-22/page_001_NPCM19250522_01_0001.png: 102 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250522_01_0001_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250525_The_China_Mail_1925-05-25/page_001_NPCM19250525_01_0001.png: 127 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250525_01_0001_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250530_The_China_Mail_1925-05-30/page_001_NPCM19250530_01_0001.png: 97 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250530_01_0001_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250718_The_China_Mail_1925-07-18/page_004_NPCM19250718_01_0004.png: 124 blocks -> agent-sandbox\ocr_vl_out\page_004_NPCM19250718_01_0004_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250725_The_China_Mail_1925-07-25/page_004_NPCM19250725_01_0004.png: 98 blocks -> agent-sandbox\ocr_vl_out\page_004_NPCM19250725_01_0004_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250518_The_China_Mail_1925-05-18/page_006_NPCM19250518_01_0006.png: 90 blocks -> agent-sandbox\ocr_vl_out\page_006_NPCM19250518_01_0006_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250617_The_China_Mail_1925-06-17/page_007_NPCM19250617_01_0007.png: 150 blocks -> agent-sandbox\ocr_vl_out\page_007_NPCM19250617_01_0007_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250502_The_China_Mail_1925-05-02/page_008_NPCM19250502_01_0008.png: 90 blocks -> agent-sandbox\ocr_vl_out\page_008_NPCM19250502_01_0008_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250720_The_China_Mail_1925-07-20/page_008_NPCM19250720_01_0008.png: 158 blocks -> agent-sandbox\ocr_vl_out\page_008_NPCM19250720_01_0008_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250528_The_China_Mail_1925-05-28/page_009_NPCM19250528_01_0009.png: 126 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250528_01_0009_blocks.json
+
+=== 2026-11-16 05:29:44 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 05:29:47.250239  5104 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_may_1925/NPCM19250501_The_China_Mail_1925-05-01/page_010_NPCM19250501_01_0010.png: 108 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250501_01_0010_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250512_The_China_Mail_1925-05-12/page_011_NPCM19250512_01_0011.png: 103 blocks -> agent-sandbox\ocr_vl_out\page_011_NPCM19250512_01_0011_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250513_The_China_Mail_1925-05-13/page_011_NPCM19250513_01_0011.png: 137 blocks -> agent-sandbox\ocr_vl_out\page_011_NPCM19250513_01_0011_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250502_The_China_Mail_1925-05-02/page_001_NPCM19250502_01_0001.png: 136 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250502_01_0001_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250515_The_China_Mail_1925-05-15/page_001_NPCM19250515_01_0001.png: 102 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250515_01_0001_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250508_The_China_Mail_1925-05-08/page_002_NPCM19250508_01_0002.png: 201 blocks -> agent-sandbox\ocr_vl_out\page_002_NPCM19250508_01_0002_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250725_The_China_Mail_1925-07-25/page_003_NPCM19250725_01_0003.png: 140 blocks -> agent-sandbox\ocr_vl_out\page_003_NPCM19250725_01_0003_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250723_The_China_Mail_1925-07-23/page_004_NPCM19250723_01_0004.png: 125 blocks -> agent-sandbox\ocr_vl_out\page_004_NPCM19250723_01_0004_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250722_The_China_Mail_1925-07-22/page_005_NPCM19250722_01_0005.png: 178 blocks -> agent-sandbox\ocr_vl_out\page_005_NPCM19250722_01_0005_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250725_The_China_Mail_1925-07-25/page_005_NPCM19250725_01_0005.png: 156 blocks -> agent-sandbox\ocr_vl_out\page_005_NPCM19250725_01_0005_blocks.json
+
+=== 2026-11-16 05:53:14 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 05:53:17.348477  6016 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250730_The_China_Mail_1925-07-30/page_005_NPCM19250730_01_0005.png: 146 blocks -> agent-sandbox\ocr_vl_out\page_005_NPCM19250730_01_0005_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250521_The_China_Mail_1925-05-21/page_006_NPCM19250521_01_0006.png: 57 blocks -> agent-sandbox\ocr_vl_out\page_006_NPCM19250521_01_0006_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250527_The_China_Mail_1925-05-27/page_006_NPCM19250527_01_0006.png: 80 blocks -> agent-sandbox\ocr_vl_out\page_006_NPCM19250527_01_0006_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250619_The_China_Mail_1925-06-19/page_006_NPCM19250619_01_0006.png: 86 blocks -> agent-sandbox\ocr_vl_out\page_006_NPCM19250619_01_0006_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250505_The_China_Mail_1925-05-05/page_007_NPCM19250505_01_0007.png: 154 blocks -> agent-sandbox\ocr_vl_out\page_007_NPCM19250505_01_0007_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250711_The_China_Mail_1925-07-11/page_007_NPCM19250711_01_0007.png: 121 blocks -> agent-sandbox\ocr_vl_out\page_007_NPCM19250711_01_0007_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250509_The_China_Mail_1925-05-09/page_008_NPCM19250509_01_0008.png: 88 blocks -> agent-sandbox\ocr_vl_out\page_008_NPCM19250509_01_0008_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250516_The_China_Mail_1925-05-16/page_008_NPCM19250516_01_0008.png: 91 blocks -> agent-sandbox\ocr_vl_out\page_008_NPCM19250516_01_0008_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250521_The_China_Mail_1925-05-21/page_008_NPCM19250521_01_0008.png: 135 blocks -> agent-sandbox\ocr_vl_out\page_008_NPCM19250521_01_0008_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250731_The_China_Mail_1925-07-31/page_008_NPCM19250731_01_0008.png: 148 blocks -> agent-sandbox\ocr_vl_out\page_008_NPCM19250731_01_0008_blocks.json
+
+=== 2026-11-16 06:17:14 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 06:17:17.360220  1068 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_may_1925/NPCM19250501_The_China_Mail_1925-05-01/page_009_NPCM19250501_01_0009.png: 95 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250501_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250506_The_China_Mail_1925-05-06/page_009_NPCM19250506_01_0009.png: 121 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250506_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250513_The_China_Mail_1925-05-13/page_009_NPCM19250513_01_0009.png: 128 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250513_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250519_The_China_Mail_1925-05-19/page_009_NPCM19250519_01_0009.png: 121 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250519_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250526_The_China_Mail_1925-05-26/page_009_NPCM19250526_01_0009.png: 100 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250526_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250507_The_China_Mail_1925-05-07/page_010_NPCM19250507_01_0010.png: 90 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250507_01_0010_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250528_The_China_Mail_1925-05-28/page_010_NPCM19250528_01_0010.png: 71 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250528_01_0010_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250617_The_China_Mail_1925-06-17/page_010_NPCM19250617_01_0010.png: 92 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250617_01_0010_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250523_The_China_Mail_1925-05-23/page_016_NPCM19250523_01_0016.png: 131 blocks -> agent-sandbox\ocr_vl_out\page_016_NPCM19250523_01_0016_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250508_The_China_Mail_1925-05-08/page_001_NPCM19250508_01_0001.png: 141 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250508_01_0001_blocks.json
+
+=== 2026-11-16 06:34:44 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 06:34:47.373888 14748 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_may_1925/NPCM19250518_The_China_Mail_1925-05-18/page_001_NPCM19250518_01_0001.png: 106 blocks -> agent-sandbox\ocr_vl_out\page_001_NPCM19250518_01_0001_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250728_The_China_Mail_1925-07-28/page_002_NPCM19250728_01_0002.png: 174 blocks -> agent-sandbox\ocr_vl_out\page_002_NPCM19250728_01_0002_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250620_The_China_Mail_1925-06-20/page_003_NPCM19250620_01_0003.png: 140 blocks -> agent-sandbox\ocr_vl_out\page_003_NPCM19250620_01_0003_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250703_The_China_Mail_1925-07-03/page_003_NPCM19250703_01_0003.png: 157 blocks -> agent-sandbox\ocr_vl_out\page_003_NPCM19250703_01_0003_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250729_The_China_Mail_1925-07-29/page_003_NPCM19250729_01_0003.png: 167 blocks -> agent-sandbox\ocr_vl_out\page_003_NPCM19250729_01_0003_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250616_The_China_Mail_1925-06-16/page_005_NPCM19250616_01_0005.png: 105 blocks -> agent-sandbox\ocr_vl_out\page_005_NPCM19250616_01_0005_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250707_The_China_Mail_1925-07-07/page_005_NPCM19250707_01_0005.png: 154 blocks -> agent-sandbox\ocr_vl_out\page_005_NPCM19250707_01_0005_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250504_The_China_Mail_1925-05-04/page_006_NPCM19250504_01_0006.png: 120 blocks -> agent-sandbox\ocr_vl_out\page_006_NPCM19250504_01_0006_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250522_The_China_Mail_1925-05-22/page_006_NPCM19250522_01_0006.png: 78 blocks -> agent-sandbox\ocr_vl_out\page_006_NPCM19250522_01_0006_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250523_The_China_Mail_1925-05-23/page_007_NPCM19250523_01_0007.png: 58 blocks -> agent-sandbox\ocr_vl_out\page_007_NPCM19250523_01_0007_blocks.json
+
+=== 2026-11-16 06:54:29 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 06:54:32.403285 18460 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_may_1925/NPCM19250512_The_China_Mail_1925-05-12/page_009_NPCM19250512_01_0009.png: 152 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250512_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250523_The_China_Mail_1925-05-23/page_009_NPCM19250523_01_0009.png: 86 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250523_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250530_The_China_Mail_1925-05-30/page_009_NPCM19250530_01_0009.png: 108 blocks -> agent-sandbox\ocr_vl_out\page_009_NPCM19250530_01_0009_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250519_The_China_Mail_1925-05-19/page_010_NPCM19250519_01_0010.png: 83 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250519_01_0010_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250616_The_China_Mail_1925-06-16/page_010_NPCM19250616_01_0010.png: 100 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250616_01_0010_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250619_The_China_Mail_1925-06-19/page_010_NPCM19250619_01_0010.png: 81 blocks -> agent-sandbox\ocr_vl_out\page_010_NPCM19250619_01_0010_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250509_The_China_Mail_1925-05-09/page_011_NPCM19250509_01_0011.png: 57 blocks -> agent-sandbox\ocr_vl_out\page_011_NPCM19250509_01_0011_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250522_The_China_Mail_1925-05-22/page_011_NPCM19250522_01_0011.png: 66 blocks -> agent-sandbox\ocr_vl_out\page_011_NPCM19250522_01_0011_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250616_The_China_Mail_1925-06-16/page_011_NPCM19250616_01_0011.png: 122 blocks -> agent-sandbox\ocr_vl_out\page_011_NPCM19250616_01_0011_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250502_The_China_Mail_1925-05-02/page_012_NPCM19250502_01_0012.png: 101 blocks -> agent-sandbox\ocr_vl_out\page_012_NPCM19250502_01_0012_blocks.json
+
+=== 2026-11-16 07:19:44 C:\Users\georg\Documents\projects\china-causal-kg\.venv\Scripts\python.exe -u agent-sandbox/ocr_vl.py @agent-sandbox\kg\out\perception\ocr_batch_current.txt
+[32mCreating model: ('PP-DocLayoutV3', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PP-DocLayoutV3`.[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W1116 07:19:47.222836 14840 gpu_resources.cc:116] Please NOTE: device: 0, GPU Compute Capability: 12.0, Driver API Version: 13.3, Runtime API Version: 12.9
+[32mCreating model: ('PaddleOCR-VL-1.6-0.9B', None, None)[0m
+[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6`.[0m
+[33mBucketed engine_config has no entry for resolved engine 'paddle_dynamic'; using an empty config for that engine.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\config.json[0m
+[32mLoading weights file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\model.safetensors[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32muse GQA - num_heads: 16- num_key_value_heads: 2[0m
+[32mLoaded weights file from disk, setting weights to model.[0m
+[32mAll model checkpoint weights were used when initializing PaddleOCRVLForConditionalGeneration.
+[0m
+[32mAll the weights of PaddleOCRVLForConditionalGeneration were initialized from the model checkpoint at C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use PaddleOCRVLForConditionalGeneration for predictions without further training.[0m
+[32mLoading configuration file C:\Users\georg\.paddlex_cache2\official_models\PaddleOCR-VL-1.6\generation_config.json[0m
+C:\Users\georg\Documents\projects\china-causal-kg\.venv\Lib\site-packages\paddle\tensor\creation.py:1181: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach(), rather than paddle.to_tensor(sourceTensor).
+  return tensor(
+data/raw/hkpl/china_mail_may_1925/NPCM19250513_The_China_Mail_1925-05-13/page_012_NPCM19250513_01_0012.png: 79 blocks -> agent-sandbox\ocr_vl_out\page_012_NPCM19250513_01_0012_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250507_The_China_Mail_1925-05-07/page_013_NPCM19250507_01_0013.png: 141 blocks -> agent-sandbox\ocr_vl_out\page_013_NPCM19250507_01_0013_blocks.json
+data/raw/hkpl/china_mail_june_july_1925/NPCM19250620_The_China_Mail_1925-06-20/page_013_NPCM19250620_01_0013.png: 168 blocks -> agent-sandbox\ocr_vl_out\page_013_NPCM19250620_01_0013_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250504_The_China_Mail_1925-05-04/page_014_NPCM19250504_01_0014.png: 159 blocks -> agent-sandbox\ocr_vl_out\page_014_NPCM19250504_01_0014_blocks.json
+data/raw/hkpl/china_mail_may_1925/NPCM19250509_The_China_Mail_1925-05-09/page_026_NPCM19250509_01_0026.png: 69 blocks -> agent-sandbox\ocr_vl_out\page_026_NPCM19250509_01_0026_blocks.json

@@ -1,0 +1,46 @@
+{
+ "pid": 15128,
+ "started": "2026-11-16 09:11:24",
+ "step": "normalise:1926-01",
+ "updated": "2026-11-16 14:05:57",
+ "phase": "months",
+ "attempt": 1,
+ "corpus": {
+  "pages": 377,
+  "failed": [
+   {
+    "page": "page_008_NPCM19250602_01_0008",
+    "error": "StatisticsError: no median for empty data"
+   },
+   {
+    "page": "page_012_NPCM19250603_01_0012",
+    "error": "StatisticsError: no median for empty data"
+   }
+  ],
+  "news": 5257,
+  "selected": 995,
+  "core_term_only": 314,
+  "perception_term_only": 460,
+  "letters": 12,
+  "words": 247566,
+  "by_month": {
+   "192505": 171,
+   "192506": 430,
+   "192507": 394
+  }
+ },
+ "phase1_graph": "built",
+ "phase1_done": "04:47",
+ "ocr_remaining": 0,
+ "phase2_graph": "built",
+ "phase2_done": "08:01",
+ "month": "1926-01",
+ "months_done": [
+  "1925-08",
+  "1925-09",
+  "1925-10",
+  "1925-11",
+  "1925-12"
+ ],
+ "last_month_done": "13:44"
+}
