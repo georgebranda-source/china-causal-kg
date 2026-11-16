@@ -947,3 +947,4 @@ Limits: claims come only from pages selected by strike score, so shares measure 
   - **Speakers × concepts**: the discourse network.
 - Filters: voice, month range, threshold (0.60/0.65/0.70), broad or strict scope, letters. Every arrow opens its quotes with speaker, type, date, headline and page.
 - Tested in headless Edge: all three views, clicks on edges and nodes, and the filter changes, with no JavaScript errors.
+- Viewer restyled to match `demo_kg/causal_kg_demo_local.html` (user request): Times New Roman, black on white, one blue for categories, black for the strike node, grey arrows, plain instructions. The fit zoom is capped at 1 so small graphs don't blow up. Retested all views in headless Edge with no errors.
