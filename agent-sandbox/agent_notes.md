@@ -927,3 +927,14 @@ Limits: claims come only from pages selected by strike score, so shares measure 
 - Verified that rebuilding with August added leaves the 995 May–July articles identical. August adds 334 articles.
 - `counts.md` gains tables by month for British and Chinese voices.
 - Estimated about 6 h for the full run.
+
+### 5o. Git history rewrite for the GitHub push (2026-11-16, user-approved)
+- Local `main` was 12 commits ahead of GitHub (nothing pushed since d6221836), about 7 GB. `kg/out/combined/embed_qwen_{event,topic}.npy` (113 MB each) exceed GitHub's 100 MB limit.
+- With the user's approval, these two files were removed from every unpushed commit with `git filter-branch`, run in a bare clone so the live run's working files were untouched. Verified that every rewritten commit differs from the original only by those two files.
+- The files stay on disk and are untracked, through a new `agent-sandbox/.gitignore` that also covers `ollama_serve.log`. They can be regenerated with `kg/combine.py`.
+- New commit ids: "april-september 1925 in v1" c63a9cfa → **c18feaf2**; init analysis → b2acd5ce; full v1 complete → c44424b9; office hours → 6653ac96; perception commit → 56c9b8ad. The old history is on branch `backup/pre-npy-rewrite`. References to `c63a9cfa` above, such as `snapshot_v1_c63a9cfa/`, mean the same data.
+- Pushed to GitHub one commit at a time.
+- Second rewrite (user-approved, 2026-11-16): the first commit alone was 5.9 GB, and GitHub's server returned HTTP 500.
+  - Removed from the unpushed commits: the new `ocr_vl_out/*_layout_det_res.png` (PaddleOCR layout debug images, 5.1 GB, read by no script) and `ocr_vl_out/imgs/*.jpg` (cropped figures, 0.7 GB, linked only from the page `.md` files). The 473 such images already on GitHub stay tracked.
+  - Verified that no other file changed in any commit. All images stay on disk and are ignored in `agent-sandbox/.gitignore`.
+  - Push size fell from about 7 GB to 615 MB. The pre-rewrite history is on branches `backup/pre-npy-rewrite` and `backup/pre-png-rewrite`. Commit ids changed again, so see `git log` for the current ones; "april-september 1925 in v1" is identified by its message.
