@@ -938,3 +938,12 @@ Limits: claims come only from pages selected by strike score, so shares measure 
   - Removed from the unpushed commits: the new `ocr_vl_out/*_layout_det_res.png` (PaddleOCR layout debug images, 5.1 GB, read by no script) and `ocr_vl_out/imgs/*.jpg` (cropped figures, 0.7 GB, linked only from the page `.md` files). The 473 such images already on GitHub stay tracked.
   - Verified that no other file changed in any commit. All images stay on disk and are ignored in `agent-sandbox/.gitignore`.
   - Push size fell from about 7 GB to 615 MB. The pre-rewrite history is on branches `backup/pre-npy-rewrite` and `backup/pre-png-rewrite`. Commit ids changed again, so see `git log` for the current ones; "april-september 1925 in v1" is identified by its message.
+
+### 5p. Perception viewer (2026-11-16)
+- `kg/perception/viewer.py` and `viewer_template.html` write a self-contained `viewer.html` into each graph folder (live graph and all snapshots: `viewer.py --all`). `graph.py` now writes it automatically, wrapped in try/except so it can never fail the graph stage.
+- Three views:
+  - **Concepts → HK strike**, optionally with links between concepts and an "other" node.
+  - **Event chains**: 1–3 steps upstream of strike-effect events. A chain is "asserted" when the upstream claim comes from the same article as the downstream link, and "composed" (dashed) otherwise.
+  - **Speakers × concepts**: the discourse network.
+- Filters: voice, month range, threshold (0.60/0.65/0.70), broad or strict scope, letters. Every arrow opens its quotes with speaker, type, date, headline and page.
+- Tested in headless Edge: all three views, clicks on edges and nodes, and the filter changes, with no JavaScript errors.

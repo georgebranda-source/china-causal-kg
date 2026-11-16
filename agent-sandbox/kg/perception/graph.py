@@ -229,6 +229,11 @@ def main():
     L.append(f"\nLetters: {sum(c['is_letter'] for c in claims)} claims. Time {time.time() - t0:.0f} s.")
     (G / "counts.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     print("\n".join(L))
+    try:  # the viewer is a convenience: never let it fail the graph stage
+        import viewer
+        viewer.build(G)
+    except Exception as e:
+        print(f"viewer not written: {e}")
 
 
 if __name__ == "__main__":
