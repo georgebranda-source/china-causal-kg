@@ -4,443 +4,298 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hongkong Strike Perception Graph</title>
+<!-- Style: black-and-white scientific figure (graph_style_guide/). Shape = node type, fill = voice, solid/dashed = asserted/composed,
+     edges carry short count codes, each view is a lettered panel with a math-style annotation block. -->
 <style>
-:root { --surface: #fff; --ink: #000; --muted: #666; --accent: #00c; --strike: #000; --other: #999;
-  --british: #00c; --chinese: #c00; --voice-other: #666; }
-body { margin: 16px; background: #fff; color: #000; font-family: "Times New Roman", Times, serif; }
-p { max-width: 80ch; }
-.ev blockquote { font-style: italic; margin: 0 0 4px; }
-.tabs { margin: 12px 0 8px; }
-.tabs button { font: inherit; background: #fff; border: 1px solid #ccc; padding: 3px 10px; cursor: pointer; }
-.tabs button[aria-selected="true"] { border-color: #000; font-weight: bold; }
-.controls { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; margin-bottom: 10px; font-size: 14px; }
-.controls select, .controls button { font: inherit; font-size: 14px; }
-.chip { background: #fff; border: 1px solid #ccc; padding: 1px 8px; margin-left: 4px; cursor: pointer; }
-.chip[aria-pressed="false"] { color: var(--muted); text-decoration: line-through; }
-.vonly { display: none; }
-body[data-view="events"] .v-events, body[data-view="concepts"] .v-concepts, body[data-view="speakers"] .v-speakers { display: inline; }
-.main { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 16px; }
-.canvas-box, aside.panel { border: 1px solid #ccc; height: 76vh; min-height: 460px; }
-.canvas-box { position: relative; }
+* { box-sizing: border-box; }
+body { margin: 16px; background: #fff; color: #000; font: 14px/1.45 Helvetica, Arial, sans-serif; }
+h1 { font-size: 20px; margin: 0 0 4px; }
+p { max-width: 90ch; margin: 0 0 8px; }
+.small { font-size: 12px; color: #555; }
+.bar { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin: 10px 0; font-size: 13px; }
+.bar select, .bar button { font: inherit; }
+.tab { background: #fff; border: 1px solid #999; padding: 2px 9px; cursor: pointer; }
+.tab[aria-selected="true"] { border-color: #000; font-weight: bold; }
+.only { display: none; }
+body[data-view="A"] .A, body[data-view="B"] .B, body[data-view="C"] .C { display: inline; }
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 14px; }
+.fig, .panel { border: 1px solid #888; height: 78vh; min-height: 460px; }
+.fig { position: relative; }
 #cy { position: absolute; inset: 0; }
-.canvas-tools { position: absolute; right: 8px; top: 8px; z-index: 2; }
-.canvas-tools button { font: inherit; font-size: 13px; background: #fff; border: 1px solid #ccc; cursor: pointer; }
-.key { position: absolute; left: 8px; bottom: 8px; right: 8px; z-index: 2; font-size: 12px; color: var(--muted); pointer-events: none; }
-.key span { margin-right: 12px; background: rgba(255, 255, 255, 0.85); }
-.key .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--c); margin-right: 4px; }
-.empty { position: absolute; inset: 0; display: none; place-items: center; color: var(--muted); }
-aside.panel { padding: 12px; overflow-y: auto; }
-.panel h2 { margin: 0 0 6px; font-size: 22px; }
-.sub, .meta, .norm, .via, .phrases, .tag { color: var(--muted); font-size: 13px; }
-.sub { margin: 0 0 6px; }
-.arrow-head { margin-bottom: 8px; }
-.arrow-head .from, .arrow-head .to { font-weight: bold; }
-.meta span { margin-right: 10px; }
-.meta .who { color: #000; }
-.ev { border-top: 1px solid #ccc; padding: 8px 0; }
-.sect { margin-top: 12px; font-weight: bold; }
-.links { list-style: none; margin: 0; padding: 0; }
-.links button { all: unset; cursor: pointer; display: block; padding: 3px 0; }
-.links button:hover { text-decoration: underline; }
-.links .n { display: inline-block; min-width: 2ch; margin-right: 8px; color: var(--muted); }
-.links .dir { margin-right: 6px; color: var(--muted); }
-.badge { color: var(--c, var(--muted)); }
-.tag .dot { display: none; }
-table.mini { border-collapse: collapse; font-size: 14px; margin: 6px 0; }
-table.mini th, table.mini td { text-align: right; padding: 2px 8px; border-bottom: 1px solid #ddd; }
-table.mini th:first-child, table.mini td:first-child { text-align: left; padding-left: 0; }
-table.mini th { font-weight: normal; color: var(--muted); }
-.notes { margin-top: 18px; }
-.notes h3 { margin: 14px 0 4px; font-size: 17px; }
-.notes p { font-size: 15px; margin: 0 0 6px; }
-code { font-size: 12px; }
-@media (max-width: 900px) {
-  .main { grid-template-columns: minmax(0, 1fr); }
-  .canvas-box, aside.panel { height: 60vh; }
-}
+.note { position: absolute; left: 10px; top: 8px; z-index: 2; font-size: 12px; line-height: 1.35; pointer-events: none; background: rgba(255,255,255,.85); }
+.note b { font-size: 22px; margin-right: 6px; }
+.key { position: absolute; left: 10px; bottom: 8px; z-index: 2; font-size: 12px; pointer-events: none; background: rgba(255,255,255,.85); }
+.key svg { vertical-align: -2px; margin: 0 3px 0 10px; }
+.tools { position: absolute; right: 8px; top: 8px; z-index: 2; }
+.tools button { font: 12px Helvetica, Arial, sans-serif; background: #fff; border: 1px solid #999; cursor: pointer; }
+.empty { position: absolute; inset: 0; display: none; place-items: center; color: #555; }
+.panel { padding: 12px; overflow-y: auto; font-size: 13px; }
+.panel h2 { font-size: 16px; margin: 0 0 6px; }
+.q { border-top: 1px solid #ccc; padding: 7px 0; }
+.q blockquote { margin: 0 0 3px; font: italic 14.5px/1.4 Georgia, "Times New Roman", serif; }
+.m { color: #555; font-size: 12px; }
+.sect { margin: 10px 0 2px; font-weight: bold; }
+ul.l { list-style: none; margin: 0; padding: 0; }
+ul.l button { all: unset; cursor: pointer; display: block; padding: 2px 0; }
+ul.l button:hover { text-decoration: underline; }
+table { border-collapse: collapse; margin: 4px 0; font-variant-numeric: tabular-nums; }
+td, th { padding: 1px 10px 1px 0; text-align: right; font-weight: normal; }
+td:first-child, th:first-child { text-align: left; }
+th { color: #555; border-bottom: 1px solid #000; }
+@media (max-width: 900px) { .main { grid-template-columns: 1fr; } .fig, .panel { height: 62vh; } }
 </style>
 </head>
-<body data-view="concepts">
+<body data-view="A">
 
-<div>
-  <h1>China Mail Causal Knowledge Graph: Causes of the Hongkong Strike</h1>
-  <p id="intro"></p>
-  <p>The graph is interactive so you can pan and zoom in/out with the mouse. <br>
-    Click a node to view a list of that item's causal relationships. <br> Click an item in that list, or an arrow, to view the exact quotes and who made them.</p>
-  <p class="sub" id="stats"></p>
+<h1>Causes of the Hongkong strike in the China Mail</h1>
+<p id="intro"></p>
+<p class="small">Pan and zoom with the mouse. Click a node for its links; click a link or an arrow for the quotes behind it.</p>
 
-  <div class="tabs" role="tablist" aria-label="Graph layer">
-    <button type="button" role="tab" data-view="concepts" aria-selected="true">Causes of the strike</button>
-    <button type="button" role="tab" data-view="events" aria-selected="false">Event chains</button>
-    <button type="button" role="tab" data-view="speakers" aria-selected="false">Who said what</button>
+<div class="bar">
+  <button class="tab" data-view="A" aria-selected="true">A. Causes → strike</button>
+  <button class="tab" data-view="B" aria-selected="false">B. Event chains</button>
+  <button class="tab" data-view="C" aria-selected="false">C. Speakers × causes</button>
+</div>
+<div class="bar">
+  <span>Voice <select id="voice"><option value="ALL">all</option><option value="BRITISH">British</option><option value="CHINESE">Chinese</option><option value="OTHER">other</option></select></span>
+  <span>t <select id="m-from"></select> – <select id="m-to"></select></span>
+  <span>θ <select id="th"><option value="60">0.60</option><option value="65" selected>0.65</option><option value="70">0.70</option></select></span>
+  <span>Scope <select id="scope"><option value="broad">broad</option><option value="strict">strict</option></select></span>
+  <label><input type="checkbox" id="letters" checked> letters</label>
+  <label class="only A"><input type="checkbox" id="a-other"> "other"</label>
+  <span class="only B">depth <select id="depth"><option>1</option><option selected>2</option><option>3</option></select></span>
+  <label class="only B"><input type="checkbox" id="b-asserted"> asserted only</label>
+  <label class="only C"><input type="checkbox" id="c-other"> "other"</label>
+</div>
+
+<div class="main">
+  <div class="fig">
+    <div id="cy"></div>
+    <div class="note" id="note"></div>
+    <div class="key" id="key"></div>
+    <div class="empty" id="empty">No claims match these filters.</div>
+    <div class="tools"><button id="fit">fit</button> <button id="relayout">re-arrange</button></div>
   </div>
+  <div class="panel" id="panel"></div>
+</div>
 
-  <div class="controls">
-    <span>Voice:<span id="voices"></span></span>
-    <span><label for="m-from">Months:</label> <select id="m-from"></select> to <select id="m-to"></select></span>
-    <span><label for="th">Threshold:</label> <select id="th"><option value="60">0.60</option><option value="65" selected>0.65</option><option value="70">0.70</option></select></span>
-    <span><label for="scope">Strike scope:</label> <select id="scope">
-      <option value="broad" selected>broad (Hongkong, Canton or no place)</option><option value="strict">strict (Hongkong or Canton named)</option></select></span>
-    <label><input type="checkbox" id="letters" checked> Include letters</label>
-    <label class="vonly v-concepts"><input type="checkbox" id="c-other"> Show "other"</label>
-    <label class="vonly v-concepts"><input type="checkbox" id="c-all"> Show links between concepts</label>
-    <span class="vonly v-events"><label for="depth">Steps upstream:</label> <select id="depth"><option>1</option><option selected>2</option><option>3</option></select></span>
-    <label class="vonly v-events"><input type="checkbox" id="asserted"> Asserted chains only</label>
-    <label class="vonly v-speakers"><input type="checkbox" id="s-other"> Include "other"</label>
-  </div>
-
-  <div class="main">
-    <div class="canvas-box">
-      <div id="cy" aria-label="Causal graph"></div>
-      <div class="empty" id="empty">No claims match these filters.</div>
-      <div class="canvas-tools"><button type="button" id="fit">Fit</button> <button type="button" id="relayout">Re-arrange</button></div>
-      <div class="key" id="key" aria-hidden="true"></div>
-    </div>
-    <aside class="panel" id="panel" aria-live="polite"></aside>
-  </div>
-
-  <div class="notes">
-    <h3>How it was built</h3>
-    <p id="n-pages"></p>
-    <p>A local model (Qwen 3.5 9B, temperature 0, frozen prompt) read each article and listed the cause/effect relationships stated explicitly, each with a word-for-word quote. Denied links were skipped. A second local pass recorded who makes each claim and what kind of speaker they are.</p>
-    <p>Each cause and effect was then compared with fixed anchor sentences for each category (embedding model <code>qwen3-embedding:8b</code>). A claim gets the nearest category if the similarity is at least the threshold and beats the runner-up by 0.02; otherwise it is "other". No category was assigned by hand. Similar descriptions were grouped into events (cosine distance 0.35), which make up the event chains.</p>
-    <h3>How to read it</h3>
-    <p>British voices are the paper itself, British officials and other British speakers. Chinese voices are Chinese individuals and bodies, and the Canton government or Strike Committee.</p>
-    <p>In the event chains, a solid arrow is asserted (the linked claims come from the same article) and a dashed arrow is composed (it joins claims from different articles). Composed chains can show a story nobody actually told.</p>
-    <p>A missing arrow means no explicit causal sentence was found. It does not mean the paper denied it.</p>
-    <h3>Limits</h3>
-    <p>Speakers and categories are machine-assigned and have not yet been checked against a hand-coded sample. Counts are small, so read them as presence or absence rather than proportions. "Red agitators" versus "the strikers are Red" is the least reliable distinction. Months after July 1925 cover only pages that were already OCRed, a thinner sample than May to July.</p>
-    <p class="sub" id="built"></p>
-  </div>
+<div style="max-width: 90ch; margin-top: 14px">
+  <p><b>Method.</b> A local model (Qwen 3.5 9B, temperature 0, frozen prompt) lists the cause → effect claims each article states explicitly, with a word-for-word quote, and a second pass records the speaker. Denied links are skipped. Each cause is matched to the nearest category anchor by cosine similarity (<i>qwen3-embedding:8b</i>). It is assigned if cos ≥ θ and beats the runner-up by 0.02, and is "other" otherwise. Events are clusters of descriptions at cosine distance 0.35. No category is assigned by hand.</p>
+  <p><b>Notation.</b> n = number of claims. B, C, O = British (the paper, British officials, other British), Chinese (including the Canton government and Strike Committee), other or unknown. Scope: <i>broad</i> = effect placed in Hongkong or Canton or unplaced; <i>strict</i> = Hongkong or Canton named. In B, an arrow is <i>asserted</i> (solid) when its claims share an article with the next link, and <i>composed</i> (dashed) when it joins different articles; composed chains are leads, not findings.</p>
+  <p class="small"><b>Limits.</b> Speakers and categories are machine-assigned and not yet checked against a hand-coded sample. Counts are small, so read them as presence or absence. "Red agitators" versus "strikers are Red" is the least reliable split. Months after July 1925 cover only pages already OCRed. <span id="built"></span></p>
 </div>
 
 <script id="graph-data" type="application/json">__GRAPH_JSON__</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
 <script>
-(function () {
-  const G = JSON.parse(document.getElementById("graph-data").textContent);
-  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const tok = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
-  const fmtMonth = m => new Date(m + "-01T00:00:00").toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+const G = JSON.parse(document.getElementById("graph-data").textContent);
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const month = m => new Date(m + "-01T00:00:00").toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+const day = d => new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
-  const CONCEPTS = {
-    "1a_red_agitators": { name: "Red agitators caused it", v: "--accent" },
-    "1b_strikers_red": { name: "The strikers are Red", v: "--accent" },
-    "2_canton_support": { name: "Canton government support", v: "--accent" },
-    "3T_shootings": { name: "Trigger: the shootings", v: "--accent" },
-    "3M_patriotic_motive": { name: "Motive: patriotic / anti-foreign", v: "--accent" },
-    "C_intimidation": { name: "Intimidation (contrast)", v: "--accent" },
-    "C_labour": { name: "Labour grievance (contrast)", v: "--accent" },
-    "other": { name: "Other cause", v: "--other" },
-    "HK_STRIKE": { name: "The Hongkong strike", v: "--strike" },
-    "STRIKE": { name: "A strike elsewhere", v: "--other" },
+const CAT = {
+  "1a_red_agitators": "Red agitators", "1b_strikers_red": "Strikers are Red", "2_canton_support": "Canton support",
+  "3T_shootings": "Shootings (trigger)", "3M_patriotic_motive": "Patriotism (motive)",
+  "C_intimidation": "Intimidation", "C_labour": "Labour grievance", "other": "other",
+};
+const CODE = { BRITISH: "B", CHINESE: "C", OTHER: "O" };
+const TYPE = { PAPER: "the paper", BRITISH_OFFICIAL: "British official", BRITISH_OTHER: "British, other", CHINESE: "Chinese",
+  CANTON_GOVT: "Canton govt / Strike Cttee", OTHER_FOREIGN: "other foreign", UNKNOWN: "unknown", MISSING: "no speaker record" };
+const VOICE_FILL = { BRITISH: "#000", CHINESE: "#fff", OTHER: "#999" };   // filled / open / grey, as in the style guide
+
+const claims = G.claims, events = Object.fromEntries(G.events.map(e => [e.event, e]));
+const months = [...new Set(claims.map(c => c.date.slice(0, 7)))].sort();
+for (const id of ["m-from", "m-to"]) $(id).innerHTML = months.map(m => `<option value="${m}">${month(m)}</option>`).join("");
+$("m-to").value = months.at(-1);
+$("intro").textContent = `Causal claims printed in the China Mail, ${month(months[0])} – ${month(months.at(-1))}. Each claim is coded by who made it, and its cause is matched to the explanations historians attribute to British observers (Red agitators, Red strikers, Canton government support, nationalism), with intimidation and labour grievance as contrasts.`;
+$("built").textContent = `Graph built ${G.meta.built}.`;
+
+// ---------- filters ----------
+const F = () => {
+  const th = $("th").value, strict = $("scope").value === "strict";
+  return { th, scope: $("scope").value, inScope: c => c[`in_scope_${strict ? "strict_" : ""}${th}`], cause: c => c[`cause_concept_${th}`] };
+};
+function filtered() {
+  const v = $("voice").value, lo = $("m-from").value, hi = $("m-to").value, letters = $("letters").checked;
+  return claims.filter(c => (v === "ALL" || c.voice_group === v) && c.date.slice(0, 7) >= lo && c.date.slice(0, 7) <= hi && (letters || !c.is_letter));
+}
+const tally = list => { const t = { BRITISH: 0, CHINESE: 0, OTHER: 0 }; list.forEach(c => t[c.voice_group]++); return t; };
+const codes = list => { const t = tally(list); return Object.keys(t).filter(k => t[k]).map(k => `${CODE[k]} ${t[k]}`).join(", "); };
+
+// ---------- graph ----------
+const cy = cytoscape({ container: $("cy"), minZoom: 0.15, maxZoom: 3, wheelSensitivity: 0.25, style: [
+  { selector: "node", style: {
+    "shape": "data(shape)", "width": "data(size)", "height": "data(size)", "background-color": "data(fill)",
+    "border-width": "data(bw)", "border-color": "#000", "border-style": "data(bs)",
+    "label": "data(label)", "font-family": "Helvetica, Arial, sans-serif", "font-style": "italic", "font-size": "data(fs)",
+    "text-valign": "bottom", "text-margin-y": 3, "text-wrap": "wrap", "text-max-width": 130,
+    "text-background-color": "#fff", "text-background-opacity": 0.8, "text-background-padding": 1 } },
+  { selector: "edge", style: {
+    "width": "data(w)", "line-color": "#333", "target-arrow-color": "#333", "target-arrow-shape": "data(arrow)", "arrow-scale": 0.8,
+    "curve-style": "bezier", "line-style": "data(ls)", "line-dash-pattern": [5, 3],
+    "label": "data(label)", "font-family": "Helvetica, Arial, sans-serif", "font-size": 9, "text-wrap": "wrap",
+    "text-background-color": "#fff", "text-background-opacity": 1, "text-background-padding": 1 } },
+  { selector: ":selected", style: { "border-width": 3, "line-color": "#000", "target-arrow-color": "#000" } },
+  { selector: ".faded", style: { "opacity": 0.15 } },
+] });
+let layout = {}, edgeClaims = {};
+const node = (id, label, shape, size, fill, extra = {}) =>
+  ({ group: "nodes", data: { id, label, shape, size, fill, bw: 1, bs: "solid", fs: 11, ...extra } });
+const edge = (id, s, t, list, label, extra = {}) => {
+  edgeClaims[id] = list;
+  return { group: "edges", data: { id, source: s, target: t, label, w: Math.min(0.8 + 0.9 * Math.sqrt(list.length), 6), ls: "solid", arrow: "triangle", ...extra } };
+};
+const groupBy = (list, key) => list.reduce((g, c) => ((g[key(c)] ||= []).push(c), g), {});
+
+// A. cause categories → the Hongkong strike
+function viewA(cs, f) {
+  const sc = cs.filter(f.inScope), showOther = $("a-other").checked;
+  const els = [node("STRIKE", `Hongkong strike\nn = ${sc.length}`, "rectangle", 54, "#fff", { bw: 2, fs: 12 })];
+  for (const [k, name] of Object.entries(CAT)) {
+    if (k === "other" && !showOther) continue;
+    const list = sc.filter(c => f.cause(c) === k);
+    els.push(node(k, `${name}\nn = ${list.length}`, "diamond", 22 + 7 * Math.sqrt(list.length), k === "other" ? "#eee" : "#ccc", { bs: k === "other" ? "dashed" : "solid" }));
+    if (list.length) els.push(edge("A:" + k, k, "STRIKE", list, codes(list)));
+  }
+  layout = { name: "concentric", concentric: n => n.id() === "STRIKE" ? 2 : 1, levelWidth: () => 1, minNodeSpacing: 110, padding: 40 };
+  return { els, note: `N = ${sc.length} claims about the strike`,
+    key: shapeKey([["rect", "Hongkong strike"], ["diamond", "cause category"]]) + `<span style="margin-left:10px">n = claims; on arrows, B, C, O = claims by voice</span>` };
+}
+
+// B. event chains upstream of the strike events
+function viewB(cs, f) {
+  const depth = +$("depth").value, assertedOnly = $("b-asserted").checked, byEffect = groupBy(cs, c => c.effect_event);
+  const level = {}, E = {};
+  let frontier = new Map(cs.filter(f.inScope).map(c => [c.effect_event, null]));
+  frontier.forEach((_, e) => level[e] = 0);
+  for (let hop = 1; hop <= depth && frontier.size; hop++) {
+    const next = new Map();
+    for (const [tgt, downArticles] of frontier) for (const c of byEffect[tgt] || []) {
+      if ((hop === 1 && !f.inScope(c)) || c.cause_event === tgt) continue;
+      const asserted = hop === 1 || downArticles.has(c.article_id);   // same article as the link it feeds
+      if (assertedOnly && !asserted) continue;
+      const e = (E[c.cause_event + ">" + tgt] ||= { s: c.cause_event, t: tgt, list: [], asserted: false });
+      e.list.push(c); e.asserted ||= asserted;
+      if (level[c.cause_event] === undefined) { level[c.cause_event] = hop; next.set(c.cause_event, new Set()); }
+      next.get(c.cause_event)?.add(c.article_id);
+    }
+    frontier = next;
+  }
+  const ids = new Set(Object.values(E).flatMap(e => [e.s, e.t]));
+  const els = [...ids].map(id => {
+    const ev = events[id], seed = level[id] === 0, cat = ev.concept !== "other" && ev.concept !== "STRIKE";
+    const label = ev.label.replace(/, an? [^,]*\.$|\.$/, "");
+    return seed ? node(id, label, "rectangle", 18 + 3 * Math.sqrt(ev.size), "#fff", { bw: 2, ev, level: 0 })
+                : node(id, label, "ellipse", 10 + 3 * Math.sqrt(ev.size), cat ? "#888" : "#fff", { fs: 9, ev, level: level[id] });
+  });
+  Object.entries(E).forEach(([k, e]) => els.push(edge("B:" + k, e.s, e.t, e.list, codes(e.list), { ls: e.asserted ? "solid" : "dashed", asserted: e.asserted })));
+  layout = { name: "cose", animate: false, nodeRepulsion: () => 12000, idealEdgeLength: () => 80, gravity: 0.3, numIter: 2500, padding: 30, randomize: true };
+  return { els, note: `events within ${depth} step${depth > 1 ? "s" : ""} upstream of the strike`,
+    key: shapeKey([["rect", "strike event"], ["grey", "matches a cause category"], ["open", "other event"]]) + lineKey() };
+}
+
+// C. speakers × cause categories (discourse network)
+function viewC(cs, f) {
+  const withOther = $("c-other").checked;
+  const sc = cs.filter(c => f.inScope(c) && (withOther || f.cause(c) !== "other"));
+  const bySpeaker = groupBy(sc, c => `${c.speaker || "(unnamed)"}|${c.speaker_type}`), els = [];
+  for (const [k, name] of Object.entries(CAT)) {
+    const n = sc.filter(c => f.cause(c) === k).length;
+    if (n) els.push(node(k, `${name}\nn = ${n}`, "diamond", 22 + 7 * Math.sqrt(n), k === "other" ? "#eee" : "#ccc", { bs: k === "other" ? "dashed" : "solid" }));
+  }
+  for (const [sid, list] of Object.entries(bySpeaker)) {
+    const c0 = list[0];
+    els.push(node("s:" + sid, c0.speaker || "(unnamed)", "ellipse", 12 + 5 * Math.sqrt(list.length), VOICE_FILL[c0.voice_group], { fs: 10, speaker: c0 }));
+    for (const [k, l] of Object.entries(groupBy(list, f.cause))) els.push(edge(`C:${sid}>${k}`, "s:" + sid, k, l, l.length > 1 ? `n = ${l.length}` : "", { arrow: "none" }));
+  }
+  layout = { name: "cose", animate: false, nodeRepulsion: () => 120000, idealEdgeLength: () => 110, nodeOverlap: 40, gravity: 0.25, numIter: 3000, padding: 30, randomize: true };
+  return { els, note: `${Object.keys(bySpeaker).length} speakers, N = ${sc.length} claims`,
+    key: shapeKey([["filled", "British"], ["open", "Chinese"], ["grey", "other"], ["diamond", "cause category"]]) };
+}
+
+// ---------- legend glyphs ----------
+function shapeKey(items) {
+  const g = { rect: '<rect x="1" y="1" width="10" height="10" fill="#fff" stroke="#000" stroke-width="1.5"/>',
+    diamond: '<path d="M6 0.5 L11.5 6 L6 11.5 L0.5 6Z" fill="#ccc" stroke="#000"/>',
+    filled: '<circle cx="6" cy="6" r="5" fill="#000"/>', open: '<circle cx="6" cy="6" r="5" fill="#fff" stroke="#000"/>',
+    grey: '<circle cx="6" cy="6" r="5" fill="#888" stroke="#000"/>' };
+  return items.map(([s, label]) => `<svg width="12" height="12">${g[s]}</svg>${esc(label)}`).join("");
+}
+const lineKey = () => `<svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke="#333"/></svg>asserted` +
+  `<svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke="#333" stroke-dasharray="5 3"/></svg>composed`;
+
+// ---------- panel ----------
+const panel = $("panel");
+function quote(c) {
+  const k = F().cause(c), cos = k !== "other" && c["sim_" + k] != null ? `, cos = ${c["sim_" + k].toFixed(2)}` : "";
+  return `<div class="q"><blockquote>“${esc(c.quote)}”</blockquote>
+    <div class="m"><b style="color:#000">${esc(c.speaker || "(no speaker)")}</b> [${CODE[c.voice_group]}: ${esc(TYPE[c.speaker_type] || c.speaker_type)}] · ${day(c.date)} · ${esc(c.headline)}${c.is_letter ? " · letter" : ""}</div>
+    <div class="m">${esc(c.cause_description)} → ${esc(c.effect_description)}</div>
+    <div class="m">cause = ${esc(CAT[k])}${cos} · effect place = ${esc(c.effect_place || "—")} · ${esc(c.page)}</div></div>`;
+}
+const voiceTable = list => { const t = tally(list);
+  return `<table><tr><th></th><th>B</th><th>C</th><th>O</th><th>n</th></tr><tr><td>claims</td><td>${t.BRITISH}</td><td>${t.CHINESE}</td><td>${t.OTHER}</td><td>${list.length}</td></tr></table>`; };
+const first = s => s.split("\n")[0];
+
+function showEdge(e) {
+  const list = [...edgeClaims[e.id()]].sort((a, b) => a.date.localeCompare(b.date));
+  const kind = e.data("asserted") === undefined ? "" : e.data("asserted") ? " · asserted" : " · composed across articles";
+  panel.innerHTML = `<h2>${esc(first(e.source().data("label")))} → ${esc(first(e.target().data("label")))}</h2>
+    <div class="m">n = ${list.length}${kind}</div>${voiceTable(list)}${list.map(quote).join("")}`;
+}
+function showNode(n) {
+  const d = n.data();
+  const links = (dir, title) => {
+    const es = (dir === "in" ? n.incomers("edge") : n.outgoers("edge")).sort((a, b) => edgeClaims[b.id()].length - edgeClaims[a.id()].length);
+    return es.length ? `<div class="sect">${title}</div><ul class="l">${es.map(e => `<li><button data-e="${esc(e.id())}">n = ${edgeClaims[e.id()].length} &nbsp;${esc(first((dir === "in" ? e.source() : e.target()).data("label")))}</button></li>`).join("")}</ul>` : "";
   };
-  const VOICES = { BRITISH: { name: "British", v: "--british" }, CHINESE: { name: "Chinese", v: "--chinese" }, OTHER: { name: "Other / unknown", v: "--voice-other" } };
-  const TYPE_NAMES = { PAPER: "the paper", BRITISH_OFFICIAL: "British official", BRITISH_OTHER: "British, other", CHINESE: "Chinese", CANTON_GOVT: "Canton govt / Strike Committee", OTHER_FOREIGN: "other foreign", UNKNOWN: "unknown", MISSING: "no speaker record" };
-  const cName = k => (CONCEPTS[k] || { name: k }).name;
+  let head = `<h2>${esc(first(d.label))}</h2>`;
+  if (CAT[d.id] || d.id === "STRIKE") {
+    const anchors = d.id === "STRIKE" ? G.anchors.strike : G.anchors.anchors[d.id];
+    head += voiceTable([...new Set(n.connectedEdges().map(e => edgeClaims[e.id()]).flat())]) +
+      (anchors ? `<div class="sect">Anchor sentences</div><ul class="m">${anchors.map(a => `<li>${esc(a)}</li>`).join("")}</ul>` : "");
+  } else if (d.ev) {
+    head += `<div class="m">event ${d.id} · category = ${esc(d.level === 0 ? "Hongkong strike" : CAT[d.ev.concept] || "strike elsewhere")} · ${d.level} step(s) upstream · ${d.ev.size} descriptions</div>
+      <div class="sect">Descriptions merged here</div><ul class="m">${d.ev.members.slice(0, 25).map(m => `<li>${esc(m)}</li>`).join("")}</ul>`;
+  } else if (d.speaker) head += `<div class="m">${CODE[d.speaker.voice_group]}: ${esc(TYPE[d.speaker.speaker_type])}</div>`;
+  const inC = document.body.dataset.view === "C";
+  panel.innerHTML = head + links("in", inC ? "Stated by" : "Caused by") + links("out", inC ? "States" : "Leads to");
+  panel.querySelectorAll("[data-e]").forEach(b => b.onclick = () => select(cy.getElementById(b.dataset.e)));
+}
+function select(ele) {
+  cy.elements().unselect().removeClass("faded");
+  ele.select();
+  cy.elements().not(ele.isNode() ? ele.closedNeighborhood() : ele.union(ele.connectedNodes())).addClass("faded");
+  ele.isNode() ? showNode(ele) : showEdge(ele);
+}
+cy.on("tap", "node, edge", e => select(e.target));
+cy.on("tap", e => { if (e.target === cy) cy.elements().unselect().removeClass("faded"); });
 
-  const claims = G.claims;
-  const eventById = Object.fromEntries(G.events.map(e => [e.event, e]));
-  const months = [...new Set(claims.map(c => c.date.slice(0, 7)))].sort();
-
-  // ---- header ----
-  document.getElementById("intro").textContent = `This graph is built from causal claims in the China Mail, published ${fmtMonth(months[0])} to ${fmtMonth(months[months.length - 1])}, covering the 1925–26 Canton–Hongkong strike. Arrows represent cause/effect relationships that were explicitly stated in the newspaper. Each claim is sorted by who made it, and its cause is matched to the explanations the literature attributes to British observers: Red agitators, Red strikers, Canton government support, and nationalism, with intimidation and labour grievances for contrast.`;
-  document.getElementById("n-pages").textContent = G.meta.basis === "selected"
-    ? `${G.meta.pages} pages of the China Mail with full OCR; ${G.meta.articles} articles selected because they mention the strike or a perception term (Bolshevik, Canton government, nationalism, Shakee, students…).`
-    : `Articles were selected because they mention the strike or a perception term (Bolshevik, Canton government, nationalism, Shakee, students…). In this snapshot, ${G.meta.articles} articles on ${G.meta.pages} pages yielded causal claims.`;
-  document.getElementById("built").textContent = `Graph built ${G.meta.built}.`;
-
-  // ---- controls ----
-  const state = { view: "concepts", voices: { BRITISH: true, CHINESE: true, OTHER: true } };
-  const voicesEl = document.getElementById("voices");
-  for (const [k, v] of Object.entries(VOICES)) {
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "chip"; b.setAttribute("aria-pressed", "true");
-    b.style.setProperty("--c", `var(${v.v})`);
-    b.textContent = v.name;
-    b.addEventListener("click", () => { state.voices[k] = !state.voices[k]; b.setAttribute("aria-pressed", state.voices[k]); render(); });
-    voicesEl.appendChild(b);
-  }
-  const $ = id => document.getElementById(id);
-  for (const id of ["m-from", "m-to"]) {
-    for (const m of months) $(id).insertAdjacentHTML("beforeend", `<option value="${m}">${fmtMonth(m)}</option>`);
-  }
-  $("m-from").value = months[0]; $("m-to").value = months[months.length - 1];
-  for (const id of ["m-from", "m-to", "th", "scope", "letters", "c-other", "c-all", "depth", "asserted", "s-other"]) $(id).addEventListener("change", render);
-  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
-    document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
-    state.view = b.dataset.view; document.body.dataset.view = state.view; render();
-  }));
-
-  // ---- claim filtering ----
-  function opts() {
-    const th = $("th").value, strict = $("scope").value === "strict";
-    return { th, inScope: c => c[`in_scope_${strict ? "strict_" : ""}${th}`], cause: c => c[`cause_concept_${th}`] };
-  }
-  function filtered() {
-    const lo = $("m-from").value, hi = $("m-to").value, letters = $("letters").checked;
-    return claims.filter(c => {
-      const m = c.date.slice(0, 7);
-      return m >= lo && m <= hi && state.voices[c.voice_group] && (letters || !c.is_letter);
-    });
-  }
-
-  // ---- cytoscape ----
-  const cy = cytoscape({ container: $("cy"), elements: [], wheelSensitivity: 0.25, minZoom: 0.15, maxZoom: 3 });
-  const edgeClaims = {};
-  function style() {
-    return [
-      { selector: "node", style: {
-        "background-color": ele => tok(ele.data("color")),
-        "width": ele => ele.data("size"), "height": ele => ele.data("size"),
-        "label": "data(label)", "font-family": "Times New Roman, Times, serif",
-        "font-size": ele => ele.data("big") ? 13 : 10.5, "font-weight": ele => ele.data("big") ? 600 : 400,
-        "color": tok("--ink"), "text-valign": "bottom", "text-margin-y": 4, "text-wrap": "wrap", "text-max-width": 140,
-        "text-background-color": tok("--surface"), "text-background-opacity": 0.82, "text-background-padding": 1.5,
-        "min-zoomed-font-size": 6, "border-width": ele => ele.data("ring") ? 3 : 0, "border-color": tok("--accent"),
-        "shape": ele => ele.data("shape") || "ellipse",
-      }},
-      { selector: "edge", style: {
-        "width": ele => Math.min(1.2 + 1.4 * Math.sqrt(ele.data("n")) * 1.6, 18),
-        "line-color": ele => tok(ele.data("color") || "--muted"), "target-arrow-color": ele => tok(ele.data("color") || "--muted"),
-        "target-arrow-shape": ele => ele.data("noarrow") ? "none" : "triangle", "arrow-scale": 0.9, "curve-style": "bezier", "opacity": 0.55,
-        "line-style": ele => ele.data("dashed") ? "dashed" : "solid", "line-dash-pattern": [6, 4],
-        "label": ele => ele.data("showN") ? String(ele.data("n")) : "", "font-size": 10.5, "font-family": "Times New Roman, Times, serif",
-        "color": tok("--muted"), "text-background-color": tok("--surface"), "text-background-opacity": 0.9, "text-background-padding": 1.5,
-      }},
-      { selector: "node:selected", style: { "border-width": 3, "border-color": tok("--accent") } },
-      { selector: "edge:selected", style: { "line-color": tok("--accent"), "target-arrow-color": tok("--accent"), "opacity": 1 } },
-      { selector: ".faded", style: { "opacity": 0.12, "text-opacity": 0.15 } },
-      { selector: "edge.hl", style: { "opacity": 0.95, "line-color": tok("--ink"), "target-arrow-color": tok("--ink") } },
-    ];
-  }
-  cy.style(style());
-  const restyle = () => cy.style(style());
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", restyle);
-  new MutationObserver(restyle).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-
-  let layoutOpts = {};
-  const fit = () => { cy.fit(cy.elements(), 30); if (cy.zoom() > 1) { cy.zoom(1); cy.center(); } };  // never blow small graphs up
-  const runLayout = () => { cy.layout(layoutOpts).run(); fit(); };
-  $("fit").addEventListener("click", fit);
-  $("relayout").addEventListener("click", runLayout);
-
-  function addEdge(els, id, source, target, list, extra = {}) {
-    edgeClaims[id] = list;
-    els.push({ group: "edges", data: { id, source, target, n: list.length, ...extra } });
-  }
-  const keyHtml = items => items.map(([label, v]) => `<span><span class="dot" style="--c: var(${v})"></span>${esc(label)}</span>`).join("");
-
-  // ---- view: concepts ----
-  function buildConcepts(cs) {
-    const o = opts(), showOther = $("c-other").checked, all = $("c-all").checked;
-    const groups = {};
-    for (const c of cs) {
-      const src = o.cause(c);
-      let tgt = o.inScope(c) ? "HK_STRIKE" : c.effect_concept;
-      if (!all && tgt !== "HK_STRIKE") continue;
-      if (!showOther && (src === "other" || tgt === "other")) continue;
-      if (tgt === "STRIKE" && !all) continue;
-      if (src === tgt) continue;
-      (groups[src + "→" + tgt] ||= []).push(c);
-    }
-    const els = [], deg = {};
-    for (const [k, list] of Object.entries(groups)) {
-      const [s, t] = k.split("→");
-      deg[s] = (deg[s] || 0) + list.length; deg[t] = (deg[t] || 0) + list.length;
-    }
-    const nodes = new Set(Object.keys(deg));
-    if (!all) { nodes.add("HK_STRIKE"); Object.keys(CONCEPTS).filter(k => !["HK_STRIKE", "STRIKE"].includes(k) && (showOther || k !== "other")).forEach(k => nodes.add(k)); }
-    for (const k of nodes) {
-      els.push({ group: "nodes", data: { id: k, label: cName(k) + (deg[k] ? ` (${deg[k]})` : " (0)"), color: CONCEPTS[k]?.v || "--other",
-        size: k === "HK_STRIKE" ? 56 : 20 + 6 * Math.sqrt(deg[k] || 0), big: true, kind: "concept", shape: k === "HK_STRIKE" ? "round-rectangle" : "ellipse" } });
-    }
-    for (const [k, list] of Object.entries(groups)) {
-      const [s, t] = k.split("→");
-      addEdge(els, "c:" + k, s, t, list, { showN: true });
-    }
-    layoutOpts = all ? { name: "cose", animate: false, nodeRepulsion: () => 40000, idealEdgeLength: () => 140, padding: 40, randomize: true }
-      : { name: "concentric", animate: false, concentric: n => n.id() === "HK_STRIKE" ? 2 : 1, levelWidth: () => 1, minNodeSpacing: 120, padding: 40 };
-    $("key").innerHTML = `<span>number on arrow = claims</span><span>thicker = more claims</span>`;
-    return els;
-  }
-
-  // ---- view: events (upstream chains from strike-effect events) ----
-  function buildEvents(cs) {
-    const o = opts(), depth = +$("depth").value, assertedOnly = $("asserted").checked;
-    const byEffect = {};
-    for (const c of cs) (byEffect[c.effect_event] ||= []).push(c);
-    const seeds = new Set(cs.filter(o.inScope).map(c => c.effect_event));
-    // edges keyed source→target, with hop level and assertedness
-    const E = {}, level = {};
-    let frontier = new Map([...seeds].map(e => [e, null]));   // event -> set of article ids of the downstream link (null at hop 0)
-    seeds.forEach(e => level[e] = 0);
-    for (let hop = 1; hop <= depth && frontier.size; hop++) {
-      const next = new Map();
-      for (const [tgt, downArts] of frontier) {
-        for (const c of byEffect[tgt] || []) {
-          if (hop === 1 && !o.inScope(c)) continue;
-          const src = c.cause_event;
-          if (src === tgt) continue;
-          const asserted = hop === 1 || (downArts && downArts.has(c.article_id));
-          if (assertedOnly && !asserted) continue;
-          const key = src + "→" + tgt;
-          const e = (E[key] ||= { src, tgt, hop, list: [], asserted: false });
-          if (!e.list.includes(c)) e.list.push(c);
-          e.asserted ||= asserted; e.hop = Math.min(e.hop, hop);
-          if (level[src] === undefined) {
-            level[src] = hop;
-            next.set(src, new Set());
-          }
-          if (next.has(src)) next.get(src).add(c.article_id);
-        }
-      }
-      frontier = next;
-    }
-    const els = [], nodes = new Set();
-    for (const e of Object.values(E)) { nodes.add(e.src); nodes.add(e.tgt); }
-    for (const id of nodes) {
-      const ev = eventById[id] || { label: id, size: 1, concept: "other" };
-      const isSeed = level[id] === 0;
-      const con = isSeed ? "HK_STRIKE" : ev.concept;
-      els.push({ group: "nodes", data: { id, label: ev.label.replace(/, an? [^,]*\.$|\.$/, ""), color: CONCEPTS[con]?.v || "--other",
-        size: isSeed ? 30 + 3 * Math.sqrt(ev.size) : 12 + 3 * Math.sqrt(ev.size), big: isSeed, kind: "event", level: level[id] } });
-    }
-    for (const [k, e] of Object.entries(E)) addEdge(els, "e:" + k, e.src, e.tgt, e.list, { dashed: !e.asserted, asserted: e.asserted, hop: e.hop });
-    layoutOpts = { name: "cose", animate: false, nodeRepulsion: () => 12000, idealEdgeLength: () => 80, gravity: 0.3, numIter: 2500, padding: 30, randomize: true };
-    $("key").innerHTML = `<span>black = Hongkong strike event</span><span>blue = matches a cause category</span><span>grey = other</span>` +
-      `<span>solid = asserted, dashed = composed across articles</span>`;
-    return els;
-  }
-
-  // ---- view: speakers × concepts (discourse network) ----
-  function buildSpeakers(cs) {
-    const o = opts(), incOther = $("s-other").checked;
-    const groups = {}, spk = {};
-    for (const c of cs) {
-      if (!o.inScope(c)) continue;
-      const k = o.cause(c);
-      if (k === "other" && !incOther) continue;
-      const sid = "s:" + (c.speaker || "(unnamed)") + "|" + c.speaker_type;
-      spk[sid] = { name: c.speaker || "(unnamed)", type: c.speaker_type, voice: c.voice_group };
-      (groups[sid + "→" + k] ||= []).push(c);
-    }
-    const els = [], deg = {};
-    for (const [k, list] of Object.entries(groups)) { const [s, t] = k.split("→"); deg[s] = (deg[s] || 0) + list.length; deg[t] = (deg[t] || 0) + list.length; }
-    for (const [sid, s] of Object.entries(spk)) {
-      els.push({ group: "nodes", data: { id: sid, label: s.name, color: VOICES[s.voice].v, size: 18 + 6 * Math.sqrt(deg[sid]), kind: "speaker", shape: "round-rectangle", spk: s } });
-    }
-    for (const k of new Set(Object.keys(groups).map(k => k.split("→")[1]))) {
-      els.push({ group: "nodes", data: { id: k, label: cName(k), color: CONCEPTS[k].v, size: 22 + 6 * Math.sqrt(deg[k]), big: true, kind: "concept" } });
-    }
-    for (const [k, list] of Object.entries(groups)) { const [s, t] = k.split("→"); addEdge(els, "s:" + k, s, t, list, { color: VOICES[spk[s].voice].v, noarrow: true, showN: list.length > 1 }); }
-    layoutOpts = { name: "cose", animate: false, nodeRepulsion: () => 120000, idealEdgeLength: () => 110, nodeOverlap: 40, gravity: 0.25, numIter: 3000, padding: 30, randomize: true };
-    $("key").innerHTML = `<span>squares = speakers (blue British, red Chinese, grey other)</span><span>circles = cause categories</span><span>strike-cause claims only</span>`;
-    return els;
-  }
-
-  // ---- panel ----
-  const panel = $("panel");
-  const vTag = c => `<span class="badge" style="--c: var(${VOICES[c.voice_group].v})">${esc(TYPE_NAMES[c.speaker_type] || c.speaker_type)}</span>`;
-  const evHtml = c => `
-    <div class="ev">
-      <blockquote>“${esc(c.quote)}”</blockquote>
-      <div class="meta"><span class="who">${esc(c.speaker || "(no speaker)")}</span>${vTag(c)}<span>${fmtDate(c.date)}</span><span>${esc(c.headline)}</span>${c.is_letter ? '<span class="badge">letter</span>' : ""}</div>
-      <div class="norm">${esc(c.cause_description)} → ${esc(c.effect_description)}</div>
-      <div class="norm">cause: <b>${esc(cName(opts().cause(c)))}</b> · effect place: ${esc(c.effect_place || "—")} · <code>${esc(c.page)}</code></div>
-    </div>`;
-  const sortClaims = list => [...list].sort((a, b) => a.date.localeCompare(b.date));
-  function voiceTable(list) {
-    const n = v => list.filter(c => c.voice_group === v).length;
-    return `<table class="mini"><tr><th></th><th>British</th><th>Chinese</th><th>Other</th></tr><tr><td>claims</td><td>${n("BRITISH")}</td><td>${n("CHINESE")}</td><td>${n("OTHER")}</td></tr></table>`;
-  }
-
-  function showEdge(e) {
-    const list = sortClaims(edgeClaims[e.id()]);
-    const s = e.source().data(), t = e.target().data();
-    const via = state.view === "events" ? (e.data("asserted") ? "asserted" : "composed: joins claims from different articles") : "";
-    panel.innerHTML = `
-      <div class="arrow-head">
-        <div class="from">${esc(s.kind === "speaker" ? s.label : s.label.replace(/ \(\d+\)$/, ""))}</div>
-        <div class="via">${state.view === "speakers" ? "— states, in" : "↓ caused, according to"} ${list.length} claim${list.length > 1 ? "s" : ""}${via ? " · " + via : ""}</div>
-        <div class="to">${esc(t.label.replace(/ \(\d+\)$/, ""))}</div>
-      </div>
-      ${voiceTable(list)}
-      ${list.map(evHtml).join("")}`;
-  }
-
-  function linkRows(n) {
-    const row = (e, dir) => {
-      const other = dir === "in" ? e.source() : e.target();
-      return `<li><button type="button" data-edge="${esc(e.id())}"><span class="n">${edgeClaims[e.id()].length}</span><span class="dir">${dir === "in" ? "←" : "→"}</span><span>${esc(other.data("label"))}</span></button></li>`;
-    };
-    const ins = n.incomers("edge").sort((a, b) => edgeClaims[b.id()].length - edgeClaims[a.id()].length);
-    const outs = n.outgoers("edge").sort((a, b) => edgeClaims[b.id()].length - edgeClaims[a.id()].length);
-    const inLabel = state.view === "speakers" ? "Stated by" : "Caused by", outLabel = state.view === "speakers" ? "States" : "Caused";
-    return (ins.length ? `<div class="sect">${inLabel}:</div><ul class="links">${ins.map(e => row(e, "in")).join("")}</ul>` : "") +
-           (outs.length ? `<div class="sect">${outLabel}:</div><ul class="links">${outs.map(e => row(e, "out")).join("")}</ul>` : "");
-  }
-
-  function showNode(n) {
-    const d = n.data();
-    let head = "";
-    if (d.kind === "concept") {
-      const anchors = G.anchors.anchors[d.id] || (d.id === "HK_STRIKE" ? G.anchors.strike : null);
-      const allList = n.connectedEdges().map(e => edgeClaims[e.id()]).flat();
-      head = `<div><span class="tag" style="--c: var(${CONCEPTS[d.id]?.v})"><span class="dot"></span>concept</span></div>
-        <h2>${esc(cName(d.id))}</h2>
-        ${allList.length ? voiceTable([...new Set(allList)]) : '<p class="sub">No claims under the current filters.</p>'}
-        ${anchors ? `<div class="sect">Anchor sentences</div><ul class="phrases">${anchors.map(a => `<li>${esc(a)}</li>`).join("")}</ul>` : ""}
-        ${d.id === "HK_STRIKE" ? `<p class="sub">Claims whose effect is closest to these anchors, with the effect placed in Hongkong or Canton (or, in broad scope, no place given).</p>` : ""}`;
-    } else if (d.kind === "event") {
-      const ev = eventById[d.id];
-      head = `<div><span class="tag" style="--c: var(${d.color})"><span class="dot"></span>event · ${esc(cName(d.level === 0 ? "HK_STRIKE" : ev.concept))} · ${d.level} step${d.level === 1 ? "" : "s"} upstream</span></div>
-        <h2>${esc(ev.label)}</h2><p class="sub">${ev.size} description${ev.size > 1 ? "s" : ""} merged into this event.</p>
-        <div class="sect">Descriptions merged here</div><ul class="phrases">${(ev.members || []).slice(0, 25).map(m => `<li>${esc(m)}</li>`).join("")}${(ev.members || []).length > 25 ? `<li>… ${ev.members.length - 25} more</li>` : ""}</ul>`;
-    } else {
-      const s = d.spk;
-      head = `<div><span class="tag" style="--c: var(${VOICES[s.voice].v})"><span class="dot"></span>${esc(TYPE_NAMES[s.type] || s.type)}</span></div><h2>${esc(s.name)}</h2>`;
-    }
-    panel.innerHTML = head + linkRows(n);
-    panel.querySelectorAll("[data-edge]").forEach(b => b.addEventListener("click", () => select(cy.getElementById(b.dataset.edge))));
-  }
-
-  function select(ele) {
-    cy.elements().unselect().removeClass("faded hl");
-    ele.select();
-    const hood = ele.isNode() ? ele.closedNeighborhood() : ele.union(ele.connectedNodes());
-    cy.elements().not(hood).addClass("faded");
-    if (ele.isNode()) { ele.connectedEdges().addClass("hl"); showNode(ele); } else showEdge(ele);
-  }
-  cy.on("tap", "node, edge", ev => select(ev.target));
-  cy.on("tap", ev => { if (ev.target === cy) cy.elements().unselect().removeClass("faded hl"); });
-
-  function overview(cs) {
-    const o = opts(), sc = cs.filter(o.inScope);
-    const rows = Object.keys(CONCEPTS).filter(k => !["HK_STRIKE", "STRIKE"].includes(k)).map(k => {
-      const n = v => sc.filter(c => o.cause(c) === k && c.voice_group === v).length;
-      return `<tr><td><span class="tag" style="--c: var(${CONCEPTS[k].v})"><span class="dot"></span>${esc(CONCEPTS[k].name)}</span></td><td>${n("BRITISH")}</td><td>${n("CHINESE")}</td><td>${n("OTHER")}</td></tr>`;
-    }).join("");
-    panel.innerHTML = `<h2>Causes of the Hongkong strike</h2>
-      <p class="sub">${sc.length} claims under the current filters (threshold 0.${o.th}, ${$("scope").value} scope). Click a node or arrow to read the quotes.</p>
-      <table class="mini"><tr><th>cause</th><th>British</th><th>Chinese</th><th>Other</th></tr>${rows}</table>`;
-  }
-
-  function render() {
-    const cs = filtered();
-    const o = opts(), nScope = cs.filter(o.inScope).length;
-    $("stats").textContent = `${claims.length} causal claims in total; ${cs.length} match the filters, ${nScope} of them about the Hongkong strike. ${G.events.length} events.`;
-    for (const k in edgeClaims) delete edgeClaims[k];
-    const els = state.view === "concepts" ? buildConcepts(cs) : state.view === "events" ? buildEvents(cs) : buildSpeakers(cs);
-    cy.elements().remove();
-    cy.add(els);
-    $("empty").style.display = cy.edges().length ? "none" : "grid";
-    runLayout();
-    overview(cs);
-  }
-  render();
-})();
+// ---------- render ----------
+const fit = () => { cy.fit(undefined, 40); if (cy.zoom() > 1) { cy.zoom(1); cy.center(); } };
+const run = () => { cy.layout(layout).run(); fit(); };
+function render() {
+  const view = document.body.dataset.view, f = F(), cs = filtered();
+  edgeClaims = {};
+  const out = { A: viewA, B: viewB, C: viewC }[view](cs, f);
+  cy.elements().remove(); cy.add(out.els); run();
+  $("empty").style.display = cy.edges().length ? "none" : "grid";
+  $("note").innerHTML = `<b>${view}</b>${{ A: "Causes → strike", B: "Event chains", C: "Speakers × causes" }[view]}<br>` +
+    `${out.note}<br>θ = 0.${f.th}, scope = ${f.scope}, voice = ${$("voice").value.toLowerCase()}<br>t = ${month($("m-from").value)} – ${month($("m-to").value)}`;
+  $("key").innerHTML = out.key;
+  const sc = cs.filter(f.inScope);
+  panel.innerHTML = `<h2>Causes of the strike, by voice</h2><div class="m">N = ${sc.length} claims about the strike (of ${cs.length} matching the filters)</div>
+    <table><tr><th>cause</th><th>B</th><th>C</th><th>O</th></tr>${Object.entries(CAT).map(([k, name]) => {
+      const t = tally(sc.filter(c => f.cause(c) === k)); return `<tr><td>${name}</td><td>${t.BRITISH}</td><td>${t.CHINESE}</td><td>${t.OTHER}</td></tr>`; }).join("")}</table>`;
+}
+document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.body.dataset.view = b.dataset.view; render();
+});
+document.querySelectorAll(".bar select, .bar input").forEach(el => el.onchange = render);
+$("fit").onclick = fit; $("relayout").onclick = run;
+render();
 </script>
 </body>
 </html>

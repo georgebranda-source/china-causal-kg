@@ -14,7 +14,9 @@ HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "out" / "perception"
 KEEP = ["id", "article_id", "page", "date", "headline", "is_letter", "speaker", "speaker_type", "voice_group", "quote",
         "cause_description", "effect_description", "effect_place", "cause_event", "effect_event", "effect_concept",
-        *[f"{p}_{t}" for t in ("60", "65", "70") for p in ("in_scope", "in_scope_strict", "cause_concept")]]
+        *[f"{p}_{t}" for t in ("60", "65", "70") for p in ("in_scope", "in_scope_strict", "cause_concept")],
+        *[f"sim_{k}" for k in ("1a_red_agitators", "1b_strikers_red", "2_canton_support", "3T_shootings", "3M_patriotic_motive",
+                               "C_intimidation", "C_labour")]]
 
 
 def build(gdir: Path):
