@@ -44,9 +44,19 @@ ANCHORS = {  # approved 2026-11-16; 3T second anchor added at the user's approva
     "3M_patriotic_motive": ["Chinese patriotic anger at the shooting of students in Shanghai, a nationalist protest.",
                             "Chinese resentment of foreign privilege and unequal treaties, an anti-foreign movement.",
                             "Workers strike in sympathy with their compatriots in Shanghai, a patriotic protest."],
-    "C_intimidation": ["Workers are forced to strike by threats and intimidation, coercion."],
-    "C_labour": ["Workers demand higher wages and better conditions, an economic grievance."],
+    # Anchors v2 (user, 2026-11-16 evening): item 4 from the user's draft (British denied that working conditions mattered;
+    # racial wage disparity, labour legislation and workplace discrimination did matter) replaces the single C_labour contrast
+    # anchor. No anchor says "strike" (the effect side is matched against every anchor) and none ends in a generic
+    # "a labour dispute". A second intimidation anchor (secret societies) was added. v1 results: snapshots/through_1926-04.
+    "4_working_conditions": ["Chinese workers are paid far less than foreigners for the same work, a racial wage disparity.",
+                             "Chinese employees suffer discrimination and ill-treatment by foreign employers, a workplace grievance.",
+                             "Workers demand labour laws to protect them from exploitation, a labour reform demand.",
+                             "Workers seek higher wages and shorter working hours, an economic grievance.",
+                             "Workers cannot afford rising rents and the price of rice, a cost-of-living grievance."],
+    "C_intimidation": ["Workers are forced to strike by threats and intimidation, coercion.",
+                       "Secret societies compel workers to stop work by threats, intimidation."],
 }
+ANCHOR_VERSION = "v2"
 BRITISH = {"PAPER", "BRITISH_OFFICIAL", "BRITISH_OTHER"}
 CHINESE = {"CHINESE", "CANTON_GOVT"}
 HK_CANTON = ("hongkong", "hong kong", "kowloon", "canton", "shameen", "kwangtung")
@@ -185,7 +195,8 @@ def main():
     dna = Counter((c["speaker"], c["speaker_type"], c["cause_concept"]) for c in claims if c["in_scope"] and c["cause_concept"] != "other")
     write("speaker_concept.csv", [{"speaker": s, "speaker_type": t, "concept": k, "claims": n} for (s, t, k), n in dna.most_common()])
     (G / "anchors.json").write_text(json.dumps({"instruction": INSTRUCTION, "threshold": THRESHOLD, "margin": MARGIN,
-                                                "event_threshold": EVENT_THRESHOLD, "strike": STRIKE, "anchors": ANCHORS}, indent=1), encoding="utf-8")
+                                                "event_threshold": EVENT_THRESHOLD, "version": ANCHOR_VERSION, "strike": STRIKE,
+                                                "anchors": ANCHORS}, indent=1), encoding="utf-8")
     graph = {"layers": ["article", "claim", "event", "concept", "speaker"],
              "concepts": ["HK_STRIKE", "STRIKE_ELSEWHERE", *ANCHORS, "other"],
              "events": events, "claims": claims,

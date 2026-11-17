@@ -94,11 +94,13 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "
 const month = m => new Date(m + "-01T00:00:00").toLocaleDateString("en-GB", { month: "short", year: "numeric" });
 const day = d => new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
-const CAT = {
+const NAMES = {
   "1a_red_agitators": "Red agitators", "1b_strikers_red": "Strikers are Red", "2_canton_support": "Canton support",
-  "3T_shootings": "Shootings (trigger)", "3M_patriotic_motive": "Patriotism (motive)",
-  "C_intimidation": "Intimidation", "C_labour": "Labour grievance", "other": "other",
+  "3T_shootings": "Shootings (trigger)", "3M_patriotic_motive": "Patriotism (motive)", "4_working_conditions": "Working conditions",
+  "C_intimidation": "Intimidation", "C_labour": "Labour grievance (v1)", "other": "other",
 };
+// categories come from this graph's own anchors.json, so older snapshots (anchors v1) still display correctly
+const CAT = Object.fromEntries([...Object.keys(G.anchors.anchors), "other"].map(k => [k, NAMES[k] || k]));
 const CODE = { BRITISH: "B", CHINESE: "C", OTHER: "O" };
 const TYPE = { PAPER: "the paper", BRITISH_OFFICIAL: "British official", BRITISH_OTHER: "British, other", CHINESE: "Chinese",
   CANTON_GOVT: "Canton govt / Strike Cttee", OTHER_FOREIGN: "other foreign", UNKNOWN: "unknown", MISSING: "no speaker record" };
@@ -108,7 +110,7 @@ const claims = G.claims, events = Object.fromEntries(G.events.map(e => [e.event,
 const months = [...new Set(claims.map(c => c.date.slice(0, 7)))].sort();
 for (const id of ["m-from", "m-to"]) $(id).innerHTML = months.map(m => `<option value="${m}">${month(m)}</option>`).join("");
 $("m-to").value = months.at(-1);
-$("intro").textContent = `Causal claims printed in the China Mail, ${month(months[0])} – ${month(months.at(-1))}. Each claim is coded by who made it, and its cause is matched to the explanations historians attribute to British observers (Red agitators, Red strikers, Canton government support, nationalism), with intimidation and labour grievance as contrasts.`;
+$("intro").textContent = `Causal claims printed in the China Mail, ${month(months[0])} – ${month(months.at(-1))}. Each claim is coded by who made it, and its cause is matched to the explanations historians attribute to British observers (Red agitators, Red strikers, Canton government support, nationalism${CAT["4_working_conditions"] ? ", working conditions" : ""}), with intimidation${CAT["C_labour"] ? " and labour grievance" : ""} as contrast${CAT["C_labour"] ? "s" : ""}. Anchors ${G.anchors.version || "v1"}.`;
 $("built").textContent = `Graph built ${G.meta.built}.`;
 
 // ---------- filters ----------

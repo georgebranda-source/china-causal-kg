@@ -111,3 +111,16 @@ A layered property graph. Every edge above the evidence layer links back to its 
 ## Open
 - Approve the new 3T anchor wording ("Police fire on Chinese students in Shanghai, a shooting.").
 - Start time not set; the user is still discussing ideas.
+
+## Update 2026-11-16 (evening): item 4 and anchors v2
+From the user's draft, the literature has a fourth item: **4. The British denied that working conditions caused the strike.** This is inaccurate: racial wage disparity, demands for labour legislation and workplace discrimination mattered (Cao & Seifert; Horrocks), although the strike was primarily political.
+- `C_labour` (one contrast anchor) is replaced by the substantive category **4_working_conditions**, with these anchors:
+  - "Chinese workers are paid far less than foreigners for the same work, a racial wage disparity."
+  - "Chinese employees suffer discrimination and ill-treatment by foreign employers, a workplace grievance."
+  - "Workers demand labour laws to protect them from exploitation, a labour reform demand."
+  - "Workers seek higher wages and shorter working hours, an economic grievance."
+  - "Workers cannot afford rising rents and the price of rice, a cost-of-living grievance."
+- `C_intimidation` gains "Secret societies compel workers to stop work by threats, intimidation."
+- An anchor for 1a organising ("Communist organisers fund and coordinate…") was considered and **rejected**, because it overlaps Canton support (2) and would blur the 1a/2 distinction.
+- Wording rules: no new anchor says "strike", because effects are matched against every anchor; none ends in a generic "a labour dispute".
+- Only `graph.py` reruns, with no re-extraction. v1 results stay in `snapshots/through_1926-04/` and v2 results are in `snapshots/through_1926-04_anchors_v2/` (also the live `graph/`).

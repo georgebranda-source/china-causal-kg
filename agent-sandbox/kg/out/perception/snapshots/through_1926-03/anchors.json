@@ -1,0 +1,42 @@
+{
+ "instruction": "Represent this event from a 1925 Hongkong newspaper so that descriptions of the same event are close, and different events are far apart, even if they share a topic.",
+ "threshold": 0.65,
+ "margin": 0.02,
+ "event_threshold": 0.35,
+ "strike": [
+  "Chinese workers in Hongkong go on strike, a general strike.",
+  "Workers leave Hongkong for Canton, an exodus of labour.",
+  "A boycott of British trade and shipping, a boycott."
+ ],
+ "anchors": {
+  "1a_red_agitators": [
+   "Bolshevik agitators instigate the strike, a Communist conspiracy.",
+   "Soviet agents and Communist propaganda stir up labour unrest, a Bolshevik plot."
+  ],
+  "1b_strikers_red": [
+   "The striking workers are Communists, a Bolshevik labour movement.",
+   "Hongkong workers adopt Bolshevism, a Red labour movement."
+  ],
+  "2_canton_support": [
+   "The Canton Government orders and directs the strike, a political intervention.",
+   "Canton authorities pay, feed and house strikers who leave Hongkong, strike support.",
+   "Canton provides transport for workers leaving Hongkong, an organised evacuation.",
+   "Canton pickets prevent strikers returning to Hongkong, picket enforcement."
+  ],
+  "3T_shootings": [
+   "The shooting of Chinese demonstrators at Shakee in Canton, a massacre.",
+   "Police fire on Chinese students in Shanghai, a shooting."
+  ],
+  "3M_patriotic_motive": [
+   "Chinese patriotic anger at the shooting of students in Shanghai, a nationalist protest.",
+   "Chinese resentment of foreign privilege and unequal treaties, an anti-foreign movement.",
+   "Workers strike in sympathy with their compatriots in Shanghai, a patriotic protest."
+  ],
+  "C_intimidation": [
+   "Workers are forced to strike by threats and intimidation, coercion."
+  ],
+  "C_labour": [
+   "Workers demand higher wages and better conditions, an economic grievance."
+  ]
+ }
+}
