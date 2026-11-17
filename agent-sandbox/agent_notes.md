@@ -963,3 +963,17 @@ Limits: claims come only from pages selected by strike score, so shares measure 
   - None of the other 25 British working-conditions claims is a colonial voice attributing the Hongkong strike to conditions (they concern Shanghai, Scotland, Burma, rents, shipbuilding).
   - The method infers denials from absence, so it cannot see explicit denials like this one, the kind item 4 concerns. This is a known recall gap. The quote is qualitative evidence for the paper.
 - Viewer: each cause category now has its own code and shape in all three views (1a ▲ triangle, 1b vee, 2 ◆ diamond, 3T ★ star, 3M hexagon, 4 pentagon, I octagon, other dashed ○, strike □). In view B, a categorised event node shows its category's shape and code instead of a plain grey fill. The legend and the overview table use the same glyphs. Tested on the v2 graph and the v1 snapshot with no errors.
+
+### 5r. Fig. 1 for the paper (2026-11-16)
+- `kg/perception/figure1.py` writes `kg/analysis/perception/figures/fig1.png` at 1950 × 2491 px, i.e. 6.5 × 8.3 in at 300 dpi: US Letter with 1 in margins, leaving 0.7 in for the caption. Labels are 6.75 pt.
+- Settings: view B, depth 1, θ = 0.65, broad scope, May 1925 – April 1926, all voices.
+- User decisions:
+  - The 23 strike-event nodes keep their cluster labels unchanged.
+  - Network layout, PNG only.
+  - Only the largest connected group is shown (41 of 65 nodes, 47 of 63 claims, 42 arrows). With all 65 full labels, text boxes would cover about 67% of the page, which cannot be legible. The 9 small groups are in `fig1_small_groups.csv`.
+  - Arrows may pass behind labels but never through a node, and all arrows are straight.
+- Layout:
+  - A deterministic force simulation (springs, rectangle collisions, page bounds), started hub-and-spokes from 12 rotations.
+  - A clean-up search per node over positions and label sides.
+  - The checker rejects overlapping boxes, boxes off the page, and arrows through nodes. Final result: 0 / 0 / 0, with 10 arrows passing behind labels.
+- Strike events are drawn as boxes with their text inside. Cause events use category shapes and codes. Each label sits on the side facing away from its arrows.
