@@ -977,3 +977,8 @@ Limits: claims come only from pages selected by strike score, so shares measure 
   - A clean-up search per node over positions and label sides.
   - The checker rejects overlapping boxes, boxes off the page, and arrows through nodes. Final result: 0 / 0 / 0, with 10 arrows passing behind labels.
 - Strike events are drawn as boxes with their text inside. Cause events use category shapes and codes. Each label sits on the side facing away from its arrows.
+- Fig. 1 restyled at the user's request to match the viewer's view B: shapes with italic labels beneath, strike events as heavy-outlined squares, voice codes on arrows, and the lettered "B" annotation block.
+  - Labels are 8.5 px = 6.4 pt, because text boxes cover 46% of the area.
+  - User: "most of the way there" is enough. The script reports leftover near-misses instead of failing.
+  - Bug fixed: the screenshot was recomputing the layout at 3.125× scale, which landed on a different layout from the one checked. Now the layout is computed once, its positions are saved, and the same positions are re-checked and printed.
+  - Final: 0 node/label overlaps, 0 off-page, 0 arrows through nodes. 9 voice-code tags touch neighbouring label boxes, and 25 arrows pass behind labels (allowed).

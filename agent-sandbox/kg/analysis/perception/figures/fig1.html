@@ -1,80 +1,80 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><title>Fig. 1</title>
+<!-- Same look as view B of the viewer (graph_style_guide): small shapes with italic labels beneath, strike events as white squares
+     with a heavy outline, category events grey with their code, voice codes on the arrows, lettered annotation block. -->
 <style>
 html, body { margin: 0; padding: 0; background: #fff; }
-#fig { width: 624px; height: 797px; position: relative; font-family: Arial, Helvetica, sans-serif; color: #000; }
+#fig { width: 624px; height: 797px; position: relative; font-family: Helvetica, Arial, sans-serif; color: #000; }
 #cy { position: absolute; left: 0; top: 0; width: 624px; height: 751px; }
-#legend { position: absolute; left: 0; bottom: 0; width: 624px; height: 46px; border-top: 0.75px solid #000;
+#note { position: absolute; left: 4px; top: 3px; z-index: 2; font-size: 9px; line-height: 1.35; }
+#note b { font-size: 18px; margin-right: 5px; }
+#legend { position: absolute; left: 0; bottom: 0; width: 624px; height: 46px; border-top: 0.75px solid #888;
   font-size: 8.5px; line-height: 13px; padding-top: 4px; box-sizing: border-box; }
 #legend span { white-space: nowrap; margin-right: 10px; display: inline-block; }
 #legend svg { vertical-align: -2px; margin-right: 3px; }
 </style></head><body>
-<div id="fig"><div id="cy"></div><div id="legend"></div></div>
-<script id="data" type="application/json">{"nodes": [{"id": "e0", "label": "Strikes are occurring", "kind": "strike"}, {"id": "e1", "label": "Troubles occur here and in China, social unrest", "kind": "strike"}, {"id": "e101", "label": "The Chinese people are put in fear of their lives", "kind": "strike"}, {"id": "e131", "label": "No clause is accepted by the Chinese Government or put into force", "kind": "other"}, {"id": "e133", "label": "Management refuses to guarantee not to penalise May Day absentees", "kind": "other"}, {"id": "e141", "label": "4 · Ten per cent decreases in wages of seamen occur", "kind": "cat", "shape": "pentagon", "cat": "4_working_conditions"}, {"id": "e15", "label": "2 · The same precautions are continued", "kind": "cat", "shape": "diamond", "cat": "2_canton_support"}, {"id": "e169", "label": "4 · The governed suffer under the selfish ends and brutal militarism of a few persons", "kind": "cat", "shape": "pentagon", "cat": "4_working_conditions"}, {"id": "e17", "label": "3M · Friction occurs between the Chinese and foreigners", "kind": "cat", "shape": "hexagon", "cat": "3M_patriotic_motive"}, {"id": "e18", "label": "Bolshevik influence exists in China", "kind": "other"}, {"id": "e181", "label": "Precautionary steps are agreed upon by the American Consul and Chinese officials in Hankow", "kind": "other"}, {"id": "e19", "label": "Many workers stop work and leave the Colony", "kind": "strike"}, {"id": "e194", "label": "Permanent unemployment increases and many mills close in Great Britain", "kind": "strike"}, {"id": "e20", "label": "An anti-British boycott is in progress", "kind": "strike"}, {"id": "e205", "label": "The Chairman of the Chamber signs a notice calling a general strike to-day", "kind": "strike"}, {"id": "e23", "label": "2 · Police make further efforts to suppress lawlessness", "kind": "cat", "shape": "diamond", "cat": "2_canton_support"}, {"id": "e24", "label": "Commercial interests suspend their operations", "kind": "strike"}, {"id": "e27", "label": "2 · An outbreak of fighting occurs in Canton", "kind": "cat", "shape": "diamond", "cat": "2_canton_support"}, {"id": "e270", "label": "The crew of the Demodocus is persuaded to join the strike", "kind": "other"}, {"id": "e3", "label": "3T · Recent disturbances occur in Shanghai", "kind": "cat", "shape": "star", "cat": "3T_shootings"}, {"id": "e305", "label": "Vessels held up in Durban and South Africa dwindle", "kind": "other"}, {"id": "e355", "label": "A demand of $5,000 each is made on junk owners", "kind": "other"}, {"id": "e37", "label": "1a · Bolshevik influence is directed against British interests", "kind": "cat", "shape": "triangle", "cat": "1a_red_agitators"}, {"id": "e381", "label": "A threatening letter is sent to the British Consul", "kind": "other"}, {"id": "e39", "label": "1a · Fabrications of disturbing rumours spread over the city", "kind": "cat", "shape": "triangle", "cat": "1a_red_agitators"}, {"id": "e42", "label": "Civil transport is interrupted by these moves", "kind": "strike"}, {"id": "e441", "label": "Employees of the Mozambique Company go on strike for improved conditions", "kind": "other"}, {"id": "e46", "label": "Volunteers in Hongkong remain minded to make the trip", "kind": "other"}, {"id": "e5", "label": "Bad business owing to present conditions exists", "kind": "strike"}, {"id": "e540", "label": "Subsidiary coins are unavailable at money changer establishments", "kind": "other"}, {"id": "e58", "label": "2 · Few sampun owners convey passengers to the ship at Canton", "kind": "cat", "shape": "diamond", "cat": "2_canton_support"}, {"id": "e6", "label": "I · Intimidation is used against workers", "kind": "cat", "shape": "octagon", "cat": "C_intimidation"}, {"id": "e62", "label": "The anthracite mines strike deadlock exists", "kind": "other"}, {"id": "e64", "label": "A lack of coordination exists between Hongkong and the Home Government", "kind": "other"}, {"id": "e73", "label": "4 · Decreasing funds exist among the strikers", "kind": "cat", "shape": "pentagon", "cat": "4_working_conditions"}, {"id": "e74", "label": "Regular labour becomes available in Hongkong", "kind": "strike"}, {"id": "e75", "label": "The Hongkong Volunteer Defence Corps undergoes partial demobilisation", "kind": "other"}, {"id": "e837", "label": "The Cabinet suggests appointing a board of enquiry in England to investigate the seamen's strike", "kind": "other"}, {"id": "e86", "label": "I · Sampun owners at Canton are threatened with severe measures if they convey anyone", "kind": "cat", "shape": "octagon", "cat": "C_intimidation"}, {"id": "e9", "label": "The settlement of the last strike occurred", "kind": "strike"}, {"id": "e90", "label": "1a · Deep and widespread unrest is exploited by interested parties to stir up feeling", "kind": "cat", "shape": "triangle", "cat": "1a_red_agitators"}], "edges": [{"source": "e0", "target": "e1", "n": 1}, {"source": "e0", "target": "e19", "n": 1}, {"source": "e0", "target": "e194", "n": 1}, {"source": "e101", "target": "e20", "n": 1}, {"source": "e131", "target": "e0", "n": 1}, {"source": "e133", "target": "e0", "n": 1}, {"source": "e141", "target": "e19", "n": 1}, {"source": "e15", "target": "e0", "n": 1}, {"source": "e169", "target": "e0", "n": 1}, {"source": "e17", "target": "e0", "n": 1}, {"source": "e17", "target": "e5", "n": 1}, {"source": "e18", "target": "e0", "n": 1}, {"source": "e181", "target": "e20", "n": 1}, {"source": "e19", "target": "e0", "n": 1}, {"source": "e20", "target": "e24", "n": 1}, {"source": "e23", "target": "e9", "n": 1}, {"source": "e27", "target": "e24", "n": 1}, {"source": "e27", "target": "e42", "n": 2}, {"source": "e270", "target": "e0", "n": 1}, {"source": "e3", "target": "e0", "n": 1}, {"source": "e3", "target": "e205", "n": 1}, {"source": "e305", "target": "e9", "n": 1}, {"source": "e355", "target": "e24", "n": 1}, {"source": "e37", "target": "e0", "n": 1}, {"source": "e381", "target": "e0", "n": 1}, {"source": "e39", "target": "e19", "n": 2}, {"source": "e441", "target": "e24", "n": 1}, {"source": "e46", "target": "e74", "n": 1}, {"source": "e540", "target": "e101", "n": 1}, {"source": "e58", "target": "e0", "n": 1}, {"source": "e6", "target": "e0", "n": 2}, {"source": "e6", "target": "e19", "n": 2}, {"source": "e62", "target": "e1", "n": 1}, {"source": "e64", "target": "e1", "n": 1}, {"source": "e73", "target": "e0", "n": 2}, {"source": "e74", "target": "e0", "n": 1}, {"source": "e75", "target": "e74", "n": 1}, {"source": "e837", "target": "e0", "n": 1}, {"source": "e86", "target": "e19", "n": 1}, {"source": "e9", "target": "e19", "n": 1}, {"source": "e90", "target": "e0", "n": 1}, {"source": "e90", "target": "e24", "n": 1}], "claims": 47, "claims_all": 63, "nodes_all": 65, "small": [{"group": 1, "cause": "Intolerable tyranny of strike pickets exists in Canton", "effect (strike event)": "Shipping is prevented from going to Canton", "claims": 1}, {"group": 1, "cause": "The telegraph line between Canton and Hongkong is blocked", "effect (strike event)": "Shipping is prevented from going to Canton", "claims": 1}, {"group": 1, "cause": "2 · The Canton Government leaves strike picket activities unchecked and unpunished", "effect (strike event)": "Intolerable tyranny of strike pickets exists in Canton", "claims": 2}, {"group": 1, "cause": "Ships' crews return to work while extraordinary conditions remain", "effect (strike event)": "Shipping is prevented from going to Canton", "claims": 1}, {"group": 2, "cause": "A disastrous earthquake occurs in Japan", "effect (strike event)": "Unsettled conditions prevail, causing ships to be laid up or diverted", "claims": 1}, {"group": 2, "cause": "A lack of adequate transportation exists in China", "effect (strike event)": "Unsettled conditions prevail, causing ships to be laid up or diverted", "claims": 1}, {"group": 2, "cause": "2 · Part of the cargo for Hongkong is overcarried to Kobe", "effect (strike event)": "Unsettled conditions prevail, causing ships to be laid up or diverted", "claims": 1}, {"group": 3, "cause": "Students take action in Hongkong", "effect (strike event)": "Scholars join the strike movement", "claims": 1}, {"group": 3, "cause": "Students elsewhere set an example for the Hongkong school boys", "effect (strike event)": "Students take action in Hongkong", "claims": 1}, {"group": 4, "cause": "Bad weather conditions exist in Hongkong", "effect (strike event)": "Trouble and Cantonese provocation do not occur", "claims": 1}, {"group": 5, "cause": "2 · General Li Chai-sum and merchants offer transport to strikers", "effect (strike event)": "At least 2,000 strikers return to Hongkong", "claims": 1}, {"group": 6, "cause": "I · The printer and his assistant are assaulted by intimidators at the Hongkong Observatory", "effect (strike event)": "Tram drivers and conductors fail to appear for work on Sunday morning", "claims": 1}, {"group": 7, "cause": "2 · Opportunities arise for alleviating the Canton boycott situation", "effect (strike event)": "Great Britain's benevolence and tendency to excuse Chinese authorities exist", "claims": 1}, {"group": 8, "cause": "3T · People are killed or wounded in the incident", "effect (strike event)": "A general strike is declared against the Reds by merchants at Fu Mun and Tai Ping", "claims": 1}, {"group": 9, "cause": "Agents of the Seamen's Union go to Japan and spread hair-raising stories", "effect (strike event)": "The Chinese crew are scared from the ship", "claims": 1}], "present": ["1a_red_agitators", "2_canton_support", "3T_shootings", "3M_patriotic_motive", "4_working_conditions", "C_intimidation"], "code": {"1a_red_agitators": "1a", "1b_strikers_red": "1b", "2_canton_support": "2", "3T_shootings": "3T", "3M_patriotic_motive": "3M", "4_working_conditions": "4", "C_intimidation": "I"}, "name": {"1a_red_agitators": "Red agitators", "1b_strikers_red": "Strikers are Red", "2_canton_support": "Canton support", "3T_shootings": "Shootings (trigger)", "3M_patriotic_motive": "Patriotism (motive)", "4_working_conditions": "Working conditions", "C_intimidation": "Intimidation"}, "shape": {"1a_red_agitators": "triangle", "1b_strikers_red": "vee", "2_canton_support": "diamond", "3T_shootings": "star", "3M_patriotic_motive": "hexagon", "4_working_conditions": "pentagon", "C_intimidation": "octagon"}}</script>
+<div id="fig"><div id="cy"></div><div id="note"></div><div id="legend"></div></div>
+<script id="data" type="application/json">{"nodes": [{"id": "e0", "label": "Strikes are occurring", "kind": "strike", "size": 110}, {"id": "e1", "label": "Troubles occur here and in China, social unrest", "kind": "strike", "size": 66}, {"id": "e101", "label": "The Chinese people are put in fear of their lives", "kind": "strike", "size": 6}, {"id": "e131", "label": "No clause is accepted by the Chinese Government or put into force", "kind": "other", "size": 5}, {"id": "e133", "label": "Management refuses to guarantee not to penalise May Day absentees", "kind": "other", "size": 5}, {"id": "e141", "label": "4 · Ten per cent decreases in wages of seamen occur", "kind": "cat", "shape": "pentagon", "cat": "4_working_conditions", "size": 5}, {"id": "e15", "label": "2 · The same precautions are continued", "kind": "cat", "shape": "diamond", "cat": "2_canton_support", "size": 17}, {"id": "e169", "label": "4 · The governed suffer under the selfish ends and brutal militarism of a few persons", "kind": "cat", "shape": "pentagon", "cat": "4_working_conditions", "size": 4}, {"id": "e17", "label": "3M · Friction occurs between the Chinese and foreigners", "kind": "cat", "shape": "hexagon", "cat": "3M_patriotic_motive", "size": 16}, {"id": "e18", "label": "Bolshevik influence exists in China", "kind": "other", "size": 16}, {"id": "e181", "label": "Precautionary steps are agreed upon by the American Consul and Chinese officials in Hankow", "kind": "other", "size": 4}, {"id": "e19", "label": "Many workers stop work and leave the Colony", "kind": "strike", "size": 16}, {"id": "e194", "label": "Permanent unemployment increases and many mills close in Great Britain", "kind": "strike", "size": 4}, {"id": "e20", "label": "An anti-British boycott is in progress", "kind": "strike", "size": 15}, {"id": "e205", "label": "The Chairman of the Chamber signs a notice calling a general strike to-day", "kind": "strike", "size": 4}, {"id": "e23", "label": "2 · Police make further efforts to suppress lawlessness", "kind": "cat", "shape": "diamond", "cat": "2_canton_support", "size": 15}, {"id": "e24", "label": "Commercial interests suspend their operations", "kind": "strike", "size": 14}, {"id": "e27", "label": "2 · An outbreak of fighting occurs in Canton", "kind": "cat", "shape": "diamond", "cat": "2_canton_support", "size": 13}, {"id": "e270", "label": "The crew of the Demodocus is persuaded to join the strike", "kind": "other", "size": 3}, {"id": "e3", "label": "3T · Recent disturbances occur in Shanghai", "kind": "cat", "shape": "star", "cat": "3T_shootings", "size": 41}, {"id": "e305", "label": "Vessels held up in Durban and South Africa dwindle", "kind": "other", "size": 3}, {"id": "e355", "label": "A demand of $5,000 each is made on junk owners", "kind": "other", "size": 2}, {"id": "e37", "label": "1a · Bolshevik influence is directed against British interests", "kind": "cat", "shape": "triangle", "cat": "1a_red_agitators", "size": 11}, {"id": "e381", "label": "A threatening letter is sent to the British Consul", "kind": "other", "size": 2}, {"id": "e39", "label": "1a · Fabrications of disturbing rumours spread over the city", "kind": "cat", "shape": "triangle", "cat": "1a_red_agitators", "size": 10}, {"id": "e42", "label": "Civil transport is interrupted by these moves", "kind": "strike", "size": 10}, {"id": "e441", "label": "Employees of the Mozambique Company go on strike for improved conditions", "kind": "other", "size": 2}, {"id": "e46", "label": "Volunteers in Hongkong remain minded to make the trip", "kind": "other", "size": 9}, {"id": "e5", "label": "Bad business owing to present conditions exists", "kind": "strike", "size": 29}, {"id": "e540", "label": "Subsidiary coins are unavailable at money changer establishments", "kind": "other", "size": 2}, {"id": "e58", "label": "2 · Few sampun owners convey passengers to the ship at Canton", "kind": "cat", "shape": "diamond", "cat": "2_canton_support", "size": 8}, {"id": "e6", "label": "I · Intimidation is used against workers", "kind": "cat", "shape": "octagon", "cat": "C_intimidation", "size": 24}, {"id": "e62", "label": "The anthracite mines strike deadlock exists", "kind": "other", "size": 7}, {"id": "e64", "label": "A lack of coordination exists between Hongkong and the Home Government", "kind": "other", "size": 7}, {"id": "e73", "label": "4 · Decreasing funds exist among the strikers", "kind": "cat", "shape": "pentagon", "cat": "4_working_conditions", "size": 7}, {"id": "e74", "label": "Regular labour becomes available in Hongkong", "kind": "strike", "size": 7}, {"id": "e75", "label": "The Hongkong Volunteer Defence Corps undergoes partial demobilisation", "kind": "other", "size": 7}, {"id": "e837", "label": "The Cabinet suggests appointing a board of enquiry in England to investigate the seamen's strike", "kind": "other", "size": 1}, {"id": "e86", "label": "I · Sampun owners at Canton are threatened with severe measures if they convey anyone", "kind": "cat", "shape": "octagon", "cat": "C_intimidation", "size": 6}, {"id": "e9", "label": "The settlement of the last strike occurred", "kind": "strike", "size": 21}, {"id": "e90", "label": "1a · Deep and widespread unrest is exploited by interested parties to stir up feeling", "kind": "cat", "shape": "triangle", "cat": "1a_red_agitators", "size": 6}], "edges": [{"source": "e0", "target": "e1", "n": 1, "label": "C 1"}, {"source": "e0", "target": "e19", "n": 1, "label": "C 1"}, {"source": "e0", "target": "e194", "n": 1, "label": "B 1"}, {"source": "e101", "target": "e20", "n": 1, "label": "O 1"}, {"source": "e131", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e133", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e141", "target": "e19", "n": 1, "label": "B 1"}, {"source": "e15", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e169", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e17", "target": "e0", "n": 1, "label": "O 1"}, {"source": "e17", "target": "e5", "n": 1, "label": "B 1"}, {"source": "e18", "target": "e0", "n": 1, "label": "O 1"}, {"source": "e181", "target": "e20", "n": 1, "label": "C 1"}, {"source": "e19", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e20", "target": "e24", "n": 1, "label": "B 1"}, {"source": "e23", "target": "e9", "n": 1, "label": "B 1"}, {"source": "e27", "target": "e24", "n": 1, "label": "B 1"}, {"source": "e27", "target": "e42", "n": 2, "label": "B 2"}, {"source": "e270", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e3", "target": "e0", "n": 1, "label": "C 1"}, {"source": "e3", "target": "e205", "n": 1, "label": "C 1"}, {"source": "e305", "target": "e9", "n": 1, "label": "B 1"}, {"source": "e355", "target": "e24", "n": 1, "label": "C 1"}, {"source": "e37", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e381", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e39", "target": "e19", "n": 2, "label": "B 2"}, {"source": "e441", "target": "e24", "n": 1, "label": "B 1"}, {"source": "e46", "target": "e74", "n": 1, "label": "B 1"}, {"source": "e540", "target": "e101", "n": 1, "label": "B 1"}, {"source": "e58", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e6", "target": "e0", "n": 2, "label": "C 2"}, {"source": "e6", "target": "e19", "n": 2, "label": "B 2"}, {"source": "e62", "target": "e1", "n": 1, "label": "B 1"}, {"source": "e64", "target": "e1", "n": 1, "label": "B 1"}, {"source": "e73", "target": "e0", "n": 2, "label": "B 2"}, {"source": "e74", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e75", "target": "e74", "n": 1, "label": "B 1"}, {"source": "e837", "target": "e0", "n": 1, "label": "O 1"}, {"source": "e86", "target": "e19", "n": 1, "label": "B 1"}, {"source": "e9", "target": "e19", "n": 1, "label": "B 1"}, {"source": "e90", "target": "e0", "n": 1, "label": "B 1"}, {"source": "e90", "target": "e24", "n": 1, "label": "B 1"}], "claims": 47, "claims_all": 63, "nodes_all": 65, "small": [{"group": 1, "cause": "Intolerable tyranny of strike pickets exists in Canton", "effect (strike event)": "Shipping is prevented from going to Canton", "claims": 1}, {"group": 1, "cause": "The telegraph line between Canton and Hongkong is blocked", "effect (strike event)": "Shipping is prevented from going to Canton", "claims": 1}, {"group": 1, "cause": "2 · The Canton Government leaves strike picket activities unchecked and unpunished", "effect (strike event)": "Intolerable tyranny of strike pickets exists in Canton", "claims": 2}, {"group": 1, "cause": "Ships' crews return to work while extraordinary conditions remain", "effect (strike event)": "Shipping is prevented from going to Canton", "claims": 1}, {"group": 2, "cause": "A disastrous earthquake occurs in Japan", "effect (strike event)": "Unsettled conditions prevail, causing ships to be laid up or diverted", "claims": 1}, {"group": 2, "cause": "A lack of adequate transportation exists in China", "effect (strike event)": "Unsettled conditions prevail, causing ships to be laid up or diverted", "claims": 1}, {"group": 2, "cause": "2 · Part of the cargo for Hongkong is overcarried to Kobe", "effect (strike event)": "Unsettled conditions prevail, causing ships to be laid up or diverted", "claims": 1}, {"group": 3, "cause": "Students take action in Hongkong", "effect (strike event)": "Scholars join the strike movement", "claims": 1}, {"group": 3, "cause": "Students elsewhere set an example for the Hongkong school boys", "effect (strike event)": "Students take action in Hongkong", "claims": 1}, {"group": 4, "cause": "Bad weather conditions exist in Hongkong", "effect (strike event)": "Trouble and Cantonese provocation do not occur", "claims": 1}, {"group": 5, "cause": "2 · General Li Chai-sum and merchants offer transport to strikers", "effect (strike event)": "At least 2,000 strikers return to Hongkong", "claims": 1}, {"group": 6, "cause": "I · The printer and his assistant are assaulted by intimidators at the Hongkong Observatory", "effect (strike event)": "Tram drivers and conductors fail to appear for work on Sunday morning", "claims": 1}, {"group": 7, "cause": "2 · Opportunities arise for alleviating the Canton boycott situation", "effect (strike event)": "Great Britain's benevolence and tendency to excuse Chinese authorities exist", "claims": 1}, {"group": 8, "cause": "3T · People are killed or wounded in the incident", "effect (strike event)": "A general strike is declared against the Reds by merchants at Fu Mun and Tai Ping", "claims": 1}, {"group": 9, "cause": "Agents of the Seamen's Union go to Japan and spread hair-raising stories", "effect (strike event)": "The Chinese crew are scared from the ship", "claims": 1}], "present": ["1a_red_agitators", "2_canton_support", "3T_shootings", "3M_patriotic_motive", "4_working_conditions", "C_intimidation"], "code": {"1a_red_agitators": "1a", "1b_strikers_red": "1b", "2_canton_support": "2", "3T_shootings": "3T", "3M_patriotic_motive": "3M", "4_working_conditions": "4", "C_intimidation": "I"}, "name": {"1a_red_agitators": "Red agitators", "1b_strikers_red": "Strikers are Red", "2_canton_support": "Canton support", "3T_shootings": "Shootings (trigger)", "3M_patriotic_motive": "Patriotism (motive)", "4_working_conditions": "Working conditions", "C_intimidation": "Intimidation"}, "shape": {"1a_red_agitators": "triangle", "1b_strikers_red": "vee", "2_canton_support": "diamond", "3T_shootings": "star", "3M_patriotic_motive": "hexagon", "4_working_conditions": "pentagon", "C_intimidation": "octagon"}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
 <script>
 const D = JSON.parse(document.getElementById("data").textContent);
-const W = 624, H = 751, PAD = 5, GAP = 4, FONT = 9, WRAP = 118, NODE = 9;
+const W = 624, H = 751, PAD = 4, GAP = 3, WRAP = 120, EFS = 7.5;
+const FONT = "Helvetica, Arial, sans-serif";
 
+document.getElementById("note").innerHTML = `<b>B</b>Event chains<br>events 1 step upstream of the Hongkong strike<br>` +
+  `θ = 0.65, scope = broad, voice = all<br>t = May 1925 – Apr 1926`;
+
+// ---- graph, styled as in the viewer (sizes scaled to print) ----
 const cy = cytoscape({ container: document.getElementById("cy"), zoomingEnabled: false, panningEnabled: false, autoungrabify: true,
   elements: [
-    ...D.nodes.map(n => ({ group: "nodes", position: { x: 0, y: 0 }, data: { ...n, w: NODE, h: NODE, tv: "bottom", th: "center",
-      shape: n.kind === "strike" ? "rectangle" : n.kind === "cat" ? n.shape : "ellipse", fill: n.kind === "cat" ? "#bbb" : "#fff" } })),
-    ...D.edges.map((e, i) => ({ group: "edges", data: { id: "arrow" + i, ...e, w: 0.55 + 0.5 * Math.sqrt(e.n) } })),
+    ...D.nodes.map(n => {
+      const strike = n.kind === "strike", base = 0.6 * (10 + 3 * Math.sqrt(n.size));
+      return { group: "nodes", position: { x: 0, y: 0 }, data: { ...n,
+        shape: strike ? "rectangle" : n.kind === "cat" ? n.shape : "ellipse",
+        sz: strike ? base + 8 : n.kind === "cat" ? base + 3 : base, fill: n.kind === "cat" ? "#ccc" : "#fff",
+        bw: strike ? 2 : 1, fs: 8.5 } };
+    }),
+    ...D.edges.map((e, i) => ({ group: "edges", data: { id: "arrow" + i, ...e, w: Math.min(0.7 + 0.6 * Math.sqrt(e.n), 4.5) } })),
   ],
   style: [
-    { selector: "node", style: { "shape": "data(shape)", "width": "data(w)", "height": "data(h)", "background-color": "data(fill)",
-      "border-width": 0.8, "border-color": "#000", "label": "data(label)", "font-family": "Arial, Helvetica, sans-serif",
-      "font-size": FONT, "font-style": "italic", "color": "#000", "text-valign": "data(tv)", "text-halign": "data(th)",
-      "text-margin-x": "data(mx)", "text-margin-y": "data(my)", "text-wrap": "wrap", "text-max-width": WRAP, "line-height": 1.15,
-      "text-background-color": "#fff", "text-background-opacity": 1, "text-background-padding": 0.5, "z-index": 2 } },
-    { selector: "node[kind = 'strike']", style: { "font-style": "normal", "font-weight": "bold", "text-valign": "center",
-      "text-halign": "center", "text-margin-x": 0, "text-margin-y": 0, "text-background-opacity": 0, "border-width": 1.3 } },
+    { selector: "node", style: { "shape": "data(shape)", "width": "data(sz)", "height": "data(sz)", "background-color": "data(fill)",
+      "border-width": "data(bw)", "border-color": "#000", "label": "data(label)", "font-family": FONT, "font-style": "italic",
+      "font-size": "data(fs)", "color": "#000", "text-valign": "bottom", "text-halign": "center", "text-margin-y": 3,
+      "text-wrap": "wrap", "text-max-width": WRAP, "text-background-color": "#fff", "text-background-opacity": 0.85,
+      "text-background-padding": 1 } },
     { selector: "edge", style: { "width": "data(w)", "line-color": "#333", "target-arrow-color": "#333", "target-arrow-shape": "triangle",
-      "arrow-scale": 0.55, "curve-style": "straight", "z-index": 1 } },
+      "arrow-scale": 0.8, "curve-style": "straight", "label": "data(label)", "font-family": FONT, "font-size": EFS, "color": "#000",
+      "text-background-color": "#fff", "text-background-opacity": 1, "text-background-padding": 1 } },
   ] });
-cy.nodes().forEach(n => n.data({ mx: 0, my: 2 }));
 
-// strike events: a box sized to its own text
-cy.nodes("[kind = 'strike']").forEach(n => {
-  const b = n.boundingBox({ includeNodes: false, includeEdges: false, includeLabels: true });
-  n.data({ w: Math.ceil(b.w) + 8, h: Math.ceil(b.h) + 6 });
-});
-
-const box = n => n.boundingBox({ includeLabels: true, includeOverlays: false });
-const hit = (a, b, g = GAP) => Math.min(a.x2, b.x2) + g > Math.max(a.x1, b.x1) && Math.min(a.y2, b.y2) + g > Math.max(a.y1, b.y1);
-
-// ---- label boxes: measured once per label side, then handled as plain rectangles relative to the node centre ----
-const SIDES = {
-  bottom: { tv: "bottom", th: "center", mx: 0, my: 2 }, top: { tv: "top", th: "center", mx: 0, my: -2 },
-  right: { tv: "center", th: "right", mx: 3, my: 0 }, left: { tv: "center", th: "left", mx: -3, my: 0 },
-};
+// ---- geometry: node+label boxes, node shapes, arrow-label boxes, the annotation block ----
 const ns = cy.nodes().toArray(), N = ns.length, idx = new Map(ns.map((n, i) => [n.id(), i]));
-const off = ns.map(n => {   // offsets of the node+label box from the node centre, for each side
-  const o = {};
-  for (const [side, st] of Object.entries(n.data("kind") === "strike" ? { bottom: SIDES.bottom } : SIDES)) {
-    n.data(st); n.position({ x: 0, y: 0 });
-    const b = box(n); o[side] = { x1: b.x1, y1: b.y1, x2: b.x2, y2: b.y2 };
-  }
-  return o;
-});
-const E = cy.edges().toArray().map(e => [idx.get(e.source().id()), idx.get(e.target().id())]);
+cy.style().update(); ns.forEach(n => { n.data("fs", n.data("fs")); n.position({ x: 0, y: 0 }); });   // apply the stylesheet before measuring
+const off = ns.map(n => { const b = n.boundingBox({ includeLabels: true }); return { x1: b.x1, y1: b.y1, x2: b.x2, y2: b.y2 }; });
+const half = ns.map(n => n.data("sz") / 2 + (n.data("bw") / 2));
+const es = cy.edges().toArray(), E = es.map(e => [idx.get(e.source().id()), idx.get(e.target().id())]);
+const ctx = document.createElement("canvas").getContext("2d"); ctx.font = `${EFS}px ${FONT}`;
+const elw = es.map(e => e.data("label") ? ctx.measureText(e.data("label")).width + 4 : 0), elh = EFS * 1.3 + 2;
+const nb = document.getElementById("note").getBoundingClientRect();
+const NOTE = { x1: 0, y1: 0, x2: nb.right + 6, y2: nb.bottom + 6 };
 const nbrs = ns.map(() => []); E.forEach(([a, b]) => { nbrs[a].push(b); nbrs[b].push(a); });
-const side = ns.map(() => "bottom");
 const X = new Float64Array(N), Y = new Float64Array(N);
-const B = i => { const o = off[i][side[i]]; return { x1: X[i] + o.x1, y1: Y[i] + o.y1, x2: X[i] + o.x2, y2: Y[i] + o.y2 }; };
-const density = ns.reduce((s, n, i) => { const o = off[i][side[i]]; return s + (o.x2 - o.x1) * (o.y2 - o.y1); }, 0) / (W * H);
-
-// label goes on the side facing away from the node's neighbours (so its own arrows never cross its text)
-function chooseSides() {
-  for (let i = 0; i < N; i++) {
-    if (ns[i].data("kind") === "strike" || !nbrs[i].length) continue;
-    let dx = 0, dy = 0; nbrs[i].forEach(j => { dx += X[j] - X[i]; dy += Y[j] - Y[i]; });
-    side[i] = Math.abs(dy) >= 0.6 * Math.abs(dx) ? (dy < 0 ? "bottom" : "top") : (dx < 0 ? "right" : "left");
-  }
+const B = i => ({ x1: X[i] + off[i].x1, y1: Y[i] + off[i].y1, x2: X[i] + off[i].x2, y2: Y[i] + off[i].y2 });
+const S = i => ({ x1: X[i] - half[i] - 2, y1: Y[i] - half[i] - 2, x2: X[i] + half[i] + 2, y2: Y[i] + half[i] + 2 });
+const hit = (a, b, g = GAP) => Math.min(a.x2, b.x2) + g > Math.max(a.x1, b.x1) && Math.min(a.y2, b.y2) + g > Math.max(a.y1, b.y1);
+// where cytoscape puts an arrow's label: the middle of the visible segment between the two node outlines
+const shift = new Float64Array(es.length);
+function EL(k) {
+  if (!elw[k]) return null;
+  const [a, b] = E[k], dx = X[b] - X[a], dy = Y[b] - Y[a], L = Math.hypot(dx, dy) || 1;
+  const ta = Math.min(half[a] / Math.max(Math.abs(dx), 1e-6), half[a] / Math.max(Math.abs(dy), 1e-6)) * 1;
+  const tb = Math.min(half[b] / Math.max(Math.abs(dx), 1e-6), half[b] / Math.max(Math.abs(dy), 1e-6)) * 1;
+  const f = (Math.min(ta, 0.5) + (1 - Math.min(tb, 0.5))) / 2 + shift[k], cx = X[a] + dx * f, cyy = Y[a] + dy * f;
+  return { x1: cx - elw[k] / 2, y1: cyy - elh / 2, x2: cx + elw[k] / 2, y2: cyy + elh / 2 };
 }
+const inPage = r => r.x1 >= PAD && r.y1 >= PAD && r.x2 <= W - PAD && r.y2 <= H - PAD;
+const density = ns.reduce((s, n, i) => s + (off[i].x2 - off[i].x1) * (off[i].y2 - off[i].y1), 0) / (W * H);
 
-// does segment p->q pass through rectangle r (shrunk by m)?
 function segHits(px, py, qx, qy, r, m = 0) {
   const x1 = r.x1 - m, x2 = r.x2 + m, y1 = r.y1 - m, y2 = r.y2 + m;
   let t0 = 0, t1 = 1; const dx = qx - px, dy = qy - py;
@@ -85,58 +85,32 @@ function segHits(px, py, qx, qy, r, m = 0) {
   return t1 - t0 > 0.02;
 }
 
-// initial positions: hub-and-spokes from the best-connected node (breadth-first), each node starting beside its parent
+// ---- starting positions: hub and spokes from the best-connected node ----
 function init(rot) {
   const hub = [...Array(N).keys()].sort((a, b) => nbrs[b].length - nbrs[a].length || ns[a].id().localeCompare(ns[b].id()))[0];
   const ang = new Float64Array(N), seen = new Set([hub]), queue = [hub];
-  X[hub] = W / 2; Y[hub] = H / 2;
+  X[hub] = W / 2; Y[hub] = H / 2 + 20;
   while (queue.length) {
     const u = queue.shift(), kids = nbrs[u].filter(v => !seen.has(v)).sort((a, b) => ns[a].id().localeCompare(ns[b].id()));
     const spread = u === hub ? 2 * Math.PI : Math.PI * 0.9;
     kids.forEach((v, k) => {
-      const a = (u === hub ? -Math.PI / 2 + rot : ang[u] - spread / 2) + spread * (k + 0.5) / kids.length, r = u === hub ? 150 : 90;
+      const a = (u === hub ? -Math.PI / 2 + rot : ang[u] - spread / 2) + spread * (k + 0.5) / kids.length, r = u === hub ? 160 : 95;
       ang[v] = a; X[v] = X[u] + r * Math.cos(a); Y[v] = Y[u] + 1.25 * r * Math.sin(a); seen.add(v); queue.push(v);
     });
   }
 }
 
-function step(t, T) {
-  const cool = 1 - t / T, FX = new Float64Array(N), FY = new Float64Array(N);
-  // springs along arrows
-  for (const [a, b] of E) {
-    const dx = X[b] - X[a], dy = Y[b] - Y[a], d = Math.hypot(dx, dy) || 1, L = 75;
-    const f = 0.09 * (d - L); FX[a] += f * dx / d; FY[a] += f * dy / d; FX[b] -= f * dx / d; FY[b] -= f * dy / d;
-  }
-  // weak long-range repulsion, and gentle pull toward the page centre
-  for (let i = 0; i < N; i++) {
-    for (let j = i + 1; j < N; j++) {
-      const dx = X[j] - X[i], dy = Y[j] - Y[i], d2 = dx * dx + dy * dy + 25, f = 900 / d2, d = Math.sqrt(d2);
-      FX[i] -= f * dx / d; FY[i] -= f * dy / d; FX[j] += f * dx / d; FY[j] += f * dy / d;
-    }
-    FX[i] += 0.004 * (W / 2 - X[i]); FY[i] += 0.004 * (H / 2 - Y[i]);
-  }
-  const lim = 6 * cool + 0.5;
-  for (let i = 0; i < N; i++) { X[i] += Math.max(-lim, Math.min(lim, FX[i])); Y[i] += Math.max(-lim, Math.min(lim, FY[i])); }
-  // arrows push away the boxes they pass through
-  for (const [a, b] of E) for (let i = 0; i < N; i++) {
-    if (i === a || i === b) continue;
-    const r = B(i);
-    if (!segHits(X[a], Y[a], X[b], Y[b], r, 1.5)) continue;
-    const cx = (r.x1 + r.x2) / 2, cyy = (r.y1 + r.y2) / 2, dx = X[b] - X[a], dy = Y[b] - Y[a], L = Math.hypot(dx, dy) || 1;
-    let nx = -dy / L, ny = dx / L; if ((cx - X[a]) * nx + (cyy - Y[a]) * ny < 0) { nx = -nx; ny = -ny; }
-    X[i] += 2 * nx; Y[i] += 2 * ny; X[a] -= 0.3 * nx; Y[a] -= 0.3 * ny; X[b] -= 0.3 * nx; Y[b] -= 0.3 * ny;
-  }
-  separate(); clamp();
-}
-
-// hard constraint: no two boxes within GAP of each other (move apart along the cheaper axis)
+// ---- force simulation: springs along arrows, weak repulsion, hard non-overlap, page bounds ----
 function separate() {
-  for (let pass = 0; pass < 3; pass++) for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
-    const a = B(i), b = B(j);
-    const ox = Math.min(a.x2, b.x2) - Math.max(a.x1, b.x1) + GAP, oy = Math.min(a.y2, b.y2) - Math.max(a.y1, b.y1) + GAP;
-    if (ox <= 0 || oy <= 0) continue;
-    if (ox < oy) { const s = (X[i] + (a.x1 + a.x2 - 2 * X[i]) / 2 < X[j] + (b.x1 + b.x2 - 2 * X[j]) / 2 ? -1 : 1) * ox / 2; X[i] += s; X[j] -= s; }
-    else { const s = ((a.y1 + a.y2) / 2 < (b.y1 + b.y2) / 2 ? -1 : 1) * oy / 2; Y[i] += s; Y[j] -= s; }
+  for (let pass = 0; pass < 3; pass++) {
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+      const a = B(i), b = B(j);
+      const ox = Math.min(a.x2, b.x2) - Math.max(a.x1, b.x1) + GAP, oy = Math.min(a.y2, b.y2) - Math.max(a.y1, b.y1) + GAP;
+      if (ox <= 0 || oy <= 0) continue;
+      if (ox < oy) { const s = ((a.x1 + a.x2) < (b.x1 + b.x2) ? -1 : 1) * ox / 2; X[i] += s; X[j] -= s; }
+      else { const s = ((a.y1 + a.y2) < (b.y1 + b.y2) ? -1 : 1) * oy / 2; Y[i] += s; Y[j] -= s; }
+    }
+    for (let i = 0; i < N; i++) { const a = B(i); if (hit(a, NOTE)) { if (NOTE.x2 - a.x1 < NOTE.y2 - a.y1) X[i] += NOTE.x2 - a.x1 + GAP; else Y[i] += NOTE.y2 - a.y1 + GAP; } }
   }
 }
 function clamp() {
@@ -146,104 +120,170 @@ function clamp() {
     if (r.y1 < PAD) Y[i] += PAD - r.y1; if (r.y2 > H - PAD) Y[i] -= r.y2 - (H - PAD);
   }
 }
+function simulate(T) {
+  for (let t = 0; t < T; t++) {
+    const cool = 1 - t / T, FX = new Float64Array(N), FY = new Float64Array(N);
+    for (const [a, b] of E) {
+      const dx = X[b] - X[a], dy = Y[b] - Y[a], d = Math.hypot(dx, dy) || 1, f = 0.09 * (d - 80);
+      FX[a] += f * dx / d; FY[a] += f * dy / d; FX[b] -= f * dx / d; FY[b] -= f * dy / d;
+    }
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = X[j] - X[i], dy = Y[j] - Y[i], d2 = dx * dx + dy * dy + 25, f = 900 / d2, d = Math.sqrt(d2);
+        FX[i] -= f * dx / d; FY[i] -= f * dy / d; FX[j] += f * dx / d; FY[j] += f * dy / d;
+      }
+      FX[i] += 0.004 * (W / 2 - X[i]); FY[i] += 0.004 * (H / 2 - Y[i]);
+    }
+    const lim = 6 * cool + 0.5;
+    for (let i = 0; i < N; i++) { X[i] += Math.max(-lim, Math.min(lim, FX[i])); Y[i] += Math.max(-lim, Math.min(lim, FY[i])); }
+    for (const [a, b] of E) for (let i = 0; i < N; i++) {   // arrows push away the nodes they would pass through
+      if (i === a || i === b || !segHits(X[a], Y[a], X[b], Y[b], S(i), 2)) continue;
+      const dx = X[b] - X[a], dy = Y[b] - Y[a], L = Math.hypot(dx, dy) || 1;
+      let nx = -dy / L, ny = dx / L; if ((X[i] - X[a]) * nx + (Y[i] - Y[a]) * ny < 0) { nx = -nx; ny = -ny; }
+      X[i] += 2 * nx; Y[i] += 2 * ny;
+    }
+    separate(); clamp();
+  }
+}
 
-// a node's own shape (the strike box, or the small symbol), slightly enlarged: arrows must never pass through one
-const S = i => { const w = ns[i].data("w") / 2 + 2, h = ns[i].data("h") / 2 + 2; return { x1: X[i] - w, y1: Y[i] - h, x2: X[i] + w, y2: Y[i] + h }; };
-function nodeCost(i) {
-  const r = B(i); let c = 0;
-  if (r.x1 < PAD || r.y1 < PAD || r.x2 > W - PAD || r.y2 > H - PAD) c += 1000;
-  for (let j = 0; j < N; j++) if (j !== i) {
-    const q = B(j);
-    if (Math.min(r.x2, q.x2) + GAP > Math.max(r.x1, q.x1) && Math.min(r.y2, q.y2) + GAP > Math.max(r.y1, q.y1)) c += 1000;
-  }
-  const through = (a, b, j) => segHits(X[a], Y[a], X[b], Y[b], S(j), 0) ? 500 : segHits(X[a], Y[a], X[b], Y[b], B(j), 1) ? 10 : 0;
-  for (const [a, b] of E) {
-    if (a !== i && b !== i) { c += through(a, b, i); continue; }
-    for (let j = 0; j < N; j++) if (j !== a && j !== b) c += through(a, b, j);
-  }
-  for (const [a, b] of E) if (a === i || b === i) c += 0.02 * Math.hypot(X[b] - X[a], Y[b] - Y[a]);   // prefer short arrows
+// ---- clean-up search: hard rules (no overlapping text or nodes, no arrow through a node, all inside the page)
+//      cost 500-1000 each; arrows behind labels cost 1 (allowed, mildly avoided); shorter arrows preferred ----
+function arrowCost(k, i) {   // problems between arrow k and node i (i not an end of k)
+  const [a, b] = E[k]; let c = 0;
+  if (segHits(X[a], Y[a], X[b], Y[b], S(i), 0)) c += 500; else if (segHits(X[a], Y[a], X[b], Y[b], B(i), 1)) c += 1;
+  const l = EL(k); if (l && hit(l, B(i), 4)) c += 1000;
   return c;
 }
-
-function layoutOnce() {
-const T = 2500;
-for (let t = 0; t < T; t++) { if (t % 50 === 0) chooseSides(); step(t, T); }
-chooseSides();
-for (let t = 0; t < 400; t++) { separate(); clamp(); }   // remove remaining overlaps without forces
-
-// clean-up search: each node tries nearby positions and all label sides, keeping whatever lowers
-// (overlaps, out-of-page boxes and arrows through nodes, weighted heavily) + (arrows behind labels, lightly). Deterministic.
-for (let pass = 0; pass < 30; pass++) {
-  let improved = 0;
-  for (let i = 0; i < N; i++) {
-    const sides = ns[i].data("kind") === "strike" ? ["bottom"] : Object.keys(SIDES);
-    let bestC = nodeCost(i), bx = X[i], by = Y[i], bs = side[i];
-    const x0 = X[i], y0 = Y[i], s0 = side[i];
-    for (const s of sides) for (let dx = -72; dx <= 72; dx += 6) for (let dy = -72; dy <= 72; dy += 6) {
-      X[i] = x0 + dx; Y[i] = y0 + dy; side[i] = s;
-      const c = nodeCost(i);
-      if (c < bestC - 1e-9) { bestC = c; bx = X[i]; by = Y[i]; bs = s; }
+function nodeCost(i) {
+  const r = B(i); let c = 0;
+  if (!inPage(r)) c += 1000;
+  if (hit(r, NOTE, 1)) c += 1000;
+  for (let j = 0; j < N; j++) if (j !== i && hit(r, B(j))) c += 1000;
+  for (let k = 0; k < E.length; k++) {
+    const [a, b] = E[k];
+    if (a !== i && b !== i) { c += arrowCost(k, i); continue; }
+    for (let j = 0; j < N; j++) if (j !== a && j !== b) c += arrowCost(k, j);
+    const l = EL(k);
+    if (l) {
+      if (!inPage(l) || hit(l, NOTE, 4)) c += 1000;
+      if (hit(l, B(a), 4) || hit(l, B(b), 4)) c += 1000;   // an arrow's label must not sit on its own end labels either
+      for (let m = 0; m < E.length; m++) if (m !== k) { const o = EL(m); if (o && hit(l, o, 4)) c += 1000; }
     }
-    if (bx !== x0 || by !== y0 || bs !== s0) improved++;
-    X[i] = bx; Y[i] = by; side[i] = bs;
+    c += 0.02 * Math.hypot(X[b] - X[a], Y[b] - Y[a]);
   }
-  if (!improved) break;
+  return c;
 }
+function search(passes) {
+  for (let pass = 0; pass < passes; pass++) {
+    let improved = 0;
+    for (let i = 0; i < N; i++) {
+      const x0 = X[i], y0 = Y[i]; let bestC = nodeCost(i), bx = x0, by = y0;
+      for (let dx = -64; dx <= 64; dx += 8) for (let dy = -64; dy <= 64; dy += 8) {
+        X[i] = x0 + dx; Y[i] = y0 + dy; const c = nodeCost(i);
+        if (c < bestC - 1e-9) { bestC = c; bx = X[i]; by = Y[i]; }
+      }
+      if (bx !== x0 || by !== y0) improved++;
+      X[i] = bx; Y[i] = by;
+      E.forEach(([a, b], k) => {
+        if ((a !== i && b !== i) || !elw[k]) return;
+        const s0 = shift[k]; let bc = nodeCost(i), bsft = s0;
+        for (const f of [0, -0.12, 0.12, -0.22, 0.22, -0.3, 0.3]) { shift[k] = f; const c = nodeCost(i); if (c < bc - 1e-9) { bc = c; bsft = f; } }
+        shift[k] = bsft; if (bsft !== s0) improved++;
+      });
+    }
+    if (!improved) break;
+  }
 }
 
-// several deterministic starting rotations; keep the cleanest result
-let bestScore = Infinity, best = null;
-for (let v = 0; v < 12; v++) {
-  init(v * Math.PI / 6); layoutOnce();
+// global move: a node that still breaks a hard rule may jump to the best spot anywhere on the page (coarse grid), then refine
+function relocate() {
+  let moved = 0;
+  for (let i = 0; i < N; i++) {
+    const c0 = nodeCost(i); if (c0 < 500) continue;
+    const x0 = X[i], y0 = Y[i]; let bestC = c0, bx = x0, by = y0;
+    for (let x = PAD; x <= W - PAD; x += 9) for (let y = PAD; y <= H - PAD; y += 9) {
+      X[i] = x; Y[i] = y; const c = nodeCost(i);
+      if (c < bestC - 1e-9) { bestC = c; bx = x; by = y; }
+    }
+    X[i] = bx; Y[i] = by; if (bx !== x0 || by !== y0) moved++;
+  }
+  return moved;
+}
+
+const FIXED = {"pos": {"e0": [319, 337], "e1": [359.9353799394527, 196.64453624207826], "e101": [67, 589], "e131": [413.15715341494104, 250.0182832479676], "e133": [487.5616832157733, 319.9021352401717], "e141": [524.4318048657555, 569.8918465504408], "e15": [67, 679], "e169": [229, 241.48233023025796], "e17": [544, 526], "e18": [385.6771665016935, 479.08801765110195], "e181": [93.44890793588705, 190.40727248959203], "e19": [386.4656942645224, 532.2793870811805], "e194": [553, 263], "e20": [124.08846555612104, 89.5252113217453], "e205": [196.0076864241919, 623.6109385232029], "e23": [300.9893142851268, 715.0143149884133], "e24": [301.08846555612104, 112.76156333171762], "e27": [253.0749969482422, 23.42886471554076], "e270": [285.6186932367305, 581.252092796391], "e3": [150.89465246959344, 540.5113526162277], "e305": [229.9893142851268, 673.9697842500149], "e355": [455.5064259439659, 75.36084761246929], "e37": [269.4656942645224, 527.0206002328845], "e381": [264.6771665016935, 479.99515307680474], "e39": [481.0076864241919, 620.2503576243422], "e42": [373.0749969482421, 23.84604989415154], "e441": [494.99852164787035, 141.67978513930984], "e46": [67, 310], "e5": [546.0778499643513, 434.48732200056185], "e540": [80.55633054328268, 257.156555364778], "e58": [124.46204633602818, 456.90177078111356], "e6": [476, 382], "e62": [553, 662], "e64": [512.588465556121, 194.87088941340753], "e73": [173.0778499643515, 362.5960074810122], "e74": [184.5, 311.06494020765956], "e75": [176.55633054328268, 133.8920725132901], "e837": [499.5749969482421, 13], "e86": [430.2191192362894, 693.4360512693365], "e9": [355.5076864241919, 647.1071923753714], "e90": [238.56168321577337, 182.9777894617531]}, "shift": [0, -0.22, -0.12, 0, 0.12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.22, 0, 0.22, 0, 0, 0.22, 0, 0, 0, 0, 0, -0.22, 0, 0, 0, 0, 0.12, 0, 0.22, 0, 0.12, -0.22, 0.22, 0]};   // positions saved from the layout run, so the printed image is exactly the checked layout
+let best = null;
+if (FIXED) { ns.forEach((n, i) => { X[i] = FIXED.pos[n.id()][0]; Y[i] = FIXED.pos[n.id()][1]; }); shift.set(FIXED.shift); best = { v: "saved" }; }
+else {
+for (let v = 0; v < 8; v++) {
+  shift.fill(0); init(v * Math.PI / 4); simulate(2000); for (let t = 0; t < 300; t++) { separate(); clamp(); } search(20);
+  for (let round = 0; round < 14 && relocate(); round++) search(10);
   let sc = 0; for (let i = 0; i < N; i++) sc += nodeCost(i);
-  if (sc < bestScore) { bestScore = sc; best = { X: X.slice(), Y: Y.slice(), side: side.slice(), v }; }
+  if (!best || sc < best.sc) best = { sc, X: X.slice(), Y: Y.slice(), shift: shift.slice(), v };
 }
-X.set(best.X); Y.set(best.Y); best.side.forEach((x, i) => side[i] = x);
-cy.batch(() => ns.forEach((n, i) => { n.data(n.data("kind") === "strike" ? {} : SIDES[side[i]]); n.position({ x: X[i], y: Y[i] }); }));
+X.set(best.X); Y.set(best.Y); shift.set(best.shift);
+// polish the best layout: pull boxes inside the page, then alternate local search and global moves until nothing changes
+for (let round = 0; round < 12; round++) {
+  clamp(); search(15);
+  if (!relocate()) { search(15); break; }
+}
+for (let t = 0; t < 300; t++) { separate(); clamp(); }   // last word: text must not overlap or leave the page
+}
+cy.batch(() => { ns.forEach((n, i) => n.position({ x: X[i], y: Y[i] }));
+  es.forEach((e, k) => { const [a, b] = E[k], L = Math.hypot(X[b] - X[a], Y[b] - Y[a]) || 1;   // slide the label along the arrow
+    e.style({ "text-margin-x": shift[k] * (X[b] - X[a]), "text-margin-y": shift[k] * (Y[b] - Y[a]) }); }); });
 
-// does the straight arrow pass through rectangle b (other than its own two end nodes)?
-const arrowHits = (e, n, b, m = 0) => n !== e.source() && n !== e.target() &&
-  segHits(e.source().position().x, e.source().position().y, e.target().position().x, e.target().position().y, b, m);
-const choices = [{ density: +density.toFixed(3), start: best.v }];
-
+// ---- measured check on the rendered graph (cytoscape's own boxes) ----
 function report() {
-  const ns = cy.nodes().toArray(), B = ns.map(box);
-  const pairs = [];
-  for (let i = 0; i < ns.length; i++) for (let j = i + 1; j < ns.length; j++) if (hit(B[i], B[j], 0)) pairs.push([ns[i].id(), ns[j].id()]);
-  const pr = { ov: 0, cross: 0 };
-  for (let i = 0; i < ns.length; i++) for (let j = i + 1; j < ns.length; j++) if (hit(B[i], B[j])) pr.ov++;
-  const shape = n => { const p = n.position(), w = n.data("w") / 2, h = n.data("h") / 2; return { x1: p.x - w, y1: p.y - h, x2: p.x + w, y2: p.y + h }; };
-  const through = [], behind = [];
-  cy.edges().forEach(e => ns.forEach((n, k) => {
-    const what = [e.source().data("label").slice(0, 28), e.target().data("label").slice(0, 28), n.data("label").slice(0, 28)];
-    if (arrowHits(e, n, shape(n), 0.5)) through.push(what); else if (arrowHits(e, n, B[k], -0.5)) behind.push(what);
-  }));
-  return { nodes: ns.length, edges: cy.edges().length, overlaps: pairs.length, overlapPairs: pairs.slice(0, 10),
-    tooClose: pr.ov, arrowsThroughNodes: through.length, throughList: through, arrowsBehindLabels: behind.length, outOfBounds: B.filter(b => b.x1 < 0 || b.y1 < 0 || b.x2 > W || b.y2 > H).length,
-    layout: choices[0], fontPt: +(FONT * 72 / 96).toFixed(2) };
+  const boxes = ns.map(n => n.boundingBox({ includeLabels: true }));
+  const shape = n => { const p = n.position(), h = n.data("sz") / 2; return { x1: p.x - h, y1: p.y - h, x2: p.x + h, y2: p.y + h }; };
+  const elabel = e => { if (!e.data("label")) return null; const b = e.boundingBox({ includeNodes: false, includeEdges: false, includeLabels: true });
+    return b && b.w > 0 ? b : null; };
+  const labels = es.map(elabel);
+  const overlaps = [], through = [], behind = [], textClash = [];
+  for (let i = 0; i < N; i++) {
+    if (hit(boxes[i], NOTE, 0)) overlaps.push([ns[i].data("label").slice(0, 25), "annotation block"]);
+    for (let j = i + 1; j < N; j++) if (hit(boxes[i], boxes[j], 0)) overlaps.push([ns[i].data("label").slice(0, 25), ns[j].data("label").slice(0, 25)]);
+  }
+  es.forEach((e, k) => {
+    const s = e.source().position(), t = e.target().position();
+    ns.forEach((n, i) => {
+      if (n === e.source() || n === e.target()) return;
+      if (segHits(s.x, s.y, t.x, t.y, shape(n), 0.5)) through.push([e.source().data("label").slice(0, 25), e.target().data("label").slice(0, 25), n.data("label").slice(0, 25)]);
+      else if (segHits(s.x, s.y, t.x, t.y, boxes[i], -0.5)) behind.push(1);
+    });
+    const l = labels[k]; if (!l) return;
+    ns.forEach((n, i) => { if (hit(l, boxes[i], 0)) textClash.push([e.data("label"), n.data("label").slice(0, 25)]); });
+    labels.forEach((o, m) => { if (m > k && o && hit(l, o, 0)) textClash.push([e.data("label"), es[m].data("label")]); });
+    if (hit(l, NOTE, 0) || l.x1 < 0 || l.y1 < 0 || l.x2 > W || l.y2 > H) textClash.push([e.data("label"), "annotation block / page edge"]);
+  });
+  return { nodes: N, arrows: es.length, overlaps: overlaps.length, overlapList: overlaps.slice(0, 8),
+    arrowLabelClashes: textClash.length, clashList: textClash.slice(0, 8),
+    arrowsThroughNodes: through.length, throughList: through, arrowsBehindLabels: behind.length,
+    outOfBounds: boxes.filter(b => b.x1 < 0 || b.y1 < 0 || b.x2 > W || b.y2 > H).length,
+    boxMismatch: Math.max(...ns.map((n, i) => { const p = B(i), q = boxes[i]; return Math.max(Math.abs(p.x1 - q.x1), Math.abs(p.x2 - q.x2), Math.abs(p.y1 - q.y1), Math.abs(p.y2 - q.y2)); })).toFixed(1),
+    arrowLabelMismatch: Math.max(...es.map((e, k) => { const p = EL(k), q = labels[k]; if (!p || !q) return 0; return Math.max(Math.abs((p.x1 + p.x2) / 2 - (q.x1 + q.x2) / 2), Math.abs((p.y1 + p.y2) / 2 - (q.y1 + q.y2) / 2), Math.abs((p.x2 - p.x1) - q.w), Math.abs((p.y2 - p.y1) - q.h)); })).toFixed(1),
+    finalCost: +ns.reduce((s, n, i) => s + nodeCost(i), 0).toFixed(1),
+    arrowLabelsMeasured: labels.filter(Boolean).length, layout: { density: +density.toFixed(3), start: best.v },
+    positions: { pos: Object.fromEntries(ns.map((n, i) => [n.id(), [X[i], Y[i]]])), shift: Array.from(shift) } };
 }
 
-// legend: only the symbols that appear in this figure
+// ---- legend, in the viewer's key style ----
 const glyph = shape => {
   const ring = (n, r, rot = -90) => Array.from({ length: n }, (_, i) => { const a = (rot + 360 * i / n) * Math.PI / 180;
     return `${(6 + r * Math.cos(a)).toFixed(1)},${(6 + r * Math.sin(a)).toFixed(1)}`; }).join(" ");
-  const star = Array.from({ length: 10 }, (_, i) => { const a = (-90 + 36 * i) * Math.PI / 180, r = i % 2 ? 2.4 : 5.6;
+  const star = Array.from({ length: 10 }, (_, i) => { const a = (-90 + 36 * i) * Math.PI / 180, r = i % 2 ? 2.4 : 5.8;
     return `${(6 + r * Math.cos(a)).toFixed(1)},${(6 + r * Math.sin(a)).toFixed(1)}`; }).join(" ");
-  const p = { triangle: ring(3, 5.8), diamond: ring(4, 5.6), pentagon: ring(5, 5.6), hexagon: ring(6, 5.6, 0), octagon: ring(8, 5.6, 22.5),
+  const pts = { triangle: ring(3, 6), diamond: ring(4, 5.8), pentagon: ring(5, 5.8), hexagon: ring(6, 5.8, 0), octagon: ring(8, 5.8, 22.5),
     star, vee: "0.5,0.5 6,4.5 11.5,0.5 6,11.5" }[shape];
-  const inner = shape === "circle" ? '<circle cx="6" cy="6" r="4.5" fill="#fff" stroke="#000" stroke-width="0.8"/>'
-    : `<polygon points="${p}" fill="#bbb" stroke="#000" stroke-width="0.8"/>`;
-  return `<svg width="12" height="12">${inner}</svg>`;
+  return `<svg width="12" height="12"><polygon points="${pts}" fill="#ccc" stroke="#000"/></svg>`;
 };
 const item = (svg, text) => `<span>${svg}${text}</span>`;
 document.getElementById("legend").innerHTML =
-  item('<svg width="20" height="12"><rect x="1" y="1.5" width="18" height="9" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>',
-       "<b>Strike event</b>: the effect in a claim about the Hongkong strike") +
-  item(glyph("circle"), "Other cause event") +
-  item('<svg width="22" height="12"><line x1="1" y1="6" x2="16" y2="6" stroke="#333" stroke-width="1.1"/><polygon points="15,3.2 21,6 15,8.8" fill="#333"/></svg>',
-       "Causal claim (thicker = more claims)") + "<br>" +
-  D.present.map(k => item(glyph(D.shape[k]), `${D.code[k]} · ${D.name[k]}`)).join("") +
-  "<span>Cause events whose cluster matches a category (θ = 0.65)</span>";
+  item('<svg width="12" height="12"><rect x="1" y="1" width="10" height="10" fill="#fff" stroke="#000" stroke-width="1.5"/></svg>', "strike event") +
+  item('<svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#fff" stroke="#000"/></svg>', "other event") +
+  item('<svg width="24" height="8"><line x1="0" y1="4" x2="18" y2="4" stroke="#333" stroke-width="1.2"/><polygon points="17,1 23,4 17,7" fill="#333"/></svg>',
+       "causal claim (thicker = more claims); B, C, O = claims by British, Chinese, other voices") + "<br>" +
+  D.present.map(k => item(glyph(D.shape[k]), `${D.code[k]} · ${D.name[k]}`)).join("");
 
 document.body.setAttribute("data-report", JSON.stringify(report()));
 </script></body></html>
