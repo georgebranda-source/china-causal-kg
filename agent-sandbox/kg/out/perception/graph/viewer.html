@@ -101,6 +101,14 @@ const NAMES = {
 };
 // categories come from this graph's own anchors.json, so older snapshots (anchors v1) still display correctly
 const CAT = Object.fromEntries([...Object.keys(G.anchors.anchors), "other"].map(k => [k, NAMES[k] || k]));
+// every category has its own short code and node shape, used the same way in A, B and C (the style guide encodes type by shape)
+const CAT_CODE = { "1a_red_agitators": "1a", "1b_strikers_red": "1b", "2_canton_support": "2", "3T_shootings": "3T",
+  "3M_patriotic_motive": "3M", "4_working_conditions": "4", "C_intimidation": "I", "C_labour": "L", "other": "–" };
+const CAT_SHAPE = { "1a_red_agitators": "triangle", "1b_strikers_red": "vee", "2_canton_support": "diamond", "3T_shootings": "star",
+  "3M_patriotic_motive": "hexagon", "4_working_conditions": "pentagon", "C_intimidation": "octagon", "C_labour": "pentagon", "other": "ellipse" };
+const catLabel = k => `${CAT_CODE[k] || k} · ${CAT[k]}`;
+const catNode = (k, n) => node(k, `${catLabel(k)}\nn = ${n}`, CAT_SHAPE[k] || "ellipse", 22 + 7 * Math.sqrt(n),
+  k === "other" ? "#eee" : "#ccc", { bs: k === "other" ? "dashed" : "solid" });
 const CODE = { BRITISH: "B", CHINESE: "C", OTHER: "O" };
 const TYPE = { PAPER: "the paper", BRITISH_OFFICIAL: "British official", BRITISH_OTHER: "British, other", CHINESE: "Chinese",
   CANTON_GOVT: "Canton govt / Strike Cttee", OTHER_FOREIGN: "other foreign", UNKNOWN: "unknown", MISSING: "no speaker record" };
@@ -157,12 +165,12 @@ function viewA(cs, f) {
   for (const [k, name] of Object.entries(CAT)) {
     if (k === "other" && !showOther) continue;
     const list = sc.filter(c => f.cause(c) === k);
-    els.push(node(k, `${name}\nn = ${list.length}`, "diamond", 22 + 7 * Math.sqrt(list.length), k === "other" ? "#eee" : "#ccc", { bs: k === "other" ? "dashed" : "solid" }));
+    els.push(catNode(k, list.length));
     if (list.length) els.push(edge("A:" + k, k, "STRIKE", list, codes(list)));
   }
   layout = { name: "concentric", concentric: n => n.id() === "STRIKE" ? 2 : 1, levelWidth: () => 1, minNodeSpacing: 110, padding: 40 };
   return { els, note: `N = ${sc.length} claims about the strike`,
-    key: shapeKey([["rect", "Hongkong strike"], ["diamond", "cause category"]]) + `<span style="margin-left:10px">n = claims; on arrows, B, C, O = claims by voice</span>` };
+    key: shapeKey([["rect", "Hongkong strike"]]) + catKey() + `<br><span style="margin-left:10px">n = claims; on arrows, B, C, O = claims by voice</span>` };
 }
 
 // B. event chains upstream of the strike events
@@ -186,15 +194,16 @@ function viewB(cs, f) {
   }
   const ids = new Set(Object.values(E).flatMap(e => [e.s, e.t]));
   const els = [...ids].map(id => {
-    const ev = events[id], seed = level[id] === 0, cat = ev.concept !== "other" && ev.concept !== "STRIKE";
-    const label = ev.label.replace(/, an? [^,]*\.$|\.$/, "");
-    return seed ? node(id, label, "rectangle", 18 + 3 * Math.sqrt(ev.size), "#fff", { bw: 2, ev, level: 0 })
-                : node(id, label, "ellipse", 10 + 3 * Math.sqrt(ev.size), cat ? "#888" : "#fff", { fs: 9, ev, level: level[id] });
+    const ev = events[id], seed = level[id] === 0, cat = CAT_SHAPE[ev.concept] && ev.concept !== "other";
+    const label = ev.label.replace(/, an? [^,]*\.$|\.$/, ""), size = 10 + 3 * Math.sqrt(ev.size);
+    if (seed) return node(id, label, "rectangle", size + 8, "#fff", { bw: 2, ev, level: 0 });
+    return cat ? node(id, `${CAT_CODE[ev.concept]} · ${label}`, CAT_SHAPE[ev.concept], size + 4, "#ccc", { fs: 9, ev, level: level[id] })
+               : node(id, label, "ellipse", size, "#fff", { fs: 9, ev, level: level[id] });
   });
   Object.entries(E).forEach(([k, e]) => els.push(edge("B:" + k, e.s, e.t, e.list, codes(e.list), { ls: e.asserted ? "solid" : "dashed", asserted: e.asserted })));
   layout = { name: "cose", animate: false, nodeRepulsion: () => 12000, idealEdgeLength: () => 80, gravity: 0.3, numIter: 2500, padding: 30, randomize: true };
   return { els, note: `events within ${depth} step${depth > 1 ? "s" : ""} upstream of the strike`,
-    key: shapeKey([["rect", "strike event"], ["grey", "matches a cause category"], ["open", "other event"]]) + lineKey() };
+    key: shapeKey([["rect", "strike event"], ["open", "other event"]]) + lineKey() + "<br>" + catKey() };
 }
 
 // C. speakers × cause categories (discourse network)
@@ -204,7 +213,7 @@ function viewC(cs, f) {
   const bySpeaker = groupBy(sc, c => `${c.speaker || "(unnamed)"}|${c.speaker_type}`), els = [];
   for (const [k, name] of Object.entries(CAT)) {
     const n = sc.filter(c => f.cause(c) === k).length;
-    if (n) els.push(node(k, `${name}\nn = ${n}`, "diamond", 22 + 7 * Math.sqrt(n), k === "other" ? "#eee" : "#ccc", { bs: k === "other" ? "dashed" : "solid" }));
+    if (n) els.push(catNode(k, n));
   }
   for (const [sid, list] of Object.entries(bySpeaker)) {
     const c0 = list[0];
@@ -213,7 +222,7 @@ function viewC(cs, f) {
   }
   layout = { name: "cose", animate: false, nodeRepulsion: () => 120000, idealEdgeLength: () => 110, nodeOverlap: 40, gravity: 0.25, numIter: 3000, padding: 30, randomize: true };
   return { els, note: `${Object.keys(bySpeaker).length} speakers, N = ${sc.length} claims`,
-    key: shapeKey([["filled", "British"], ["open", "Chinese"], ["grey", "other"], ["diamond", "cause category"]]) };
+    key: shapeKey([["filled", "British"], ["open", "Chinese"], ["grey", "other"]]) + "<span> speakers</span><br>" + catKey() };
 }
 
 // ---------- legend glyphs ----------
@@ -222,8 +231,20 @@ function shapeKey(items) {
     diamond: '<path d="M6 0.5 L11.5 6 L6 11.5 L0.5 6Z" fill="#ccc" stroke="#000"/>',
     filled: '<circle cx="6" cy="6" r="5" fill="#000"/>', open: '<circle cx="6" cy="6" r="5" fill="#fff" stroke="#000"/>',
     grey: '<circle cx="6" cy="6" r="5" fill="#888" stroke="#000"/>' };
-  return items.map(([s, label]) => `<svg width="12" height="12">${g[s]}</svg>${esc(label)}`).join("");
+  return items.map(([s, label]) => keyItem(g[s], label)).join("");
 }
+const keyItem = (svg, label) => `<span style="white-space:nowrap"><svg width="12" height="12">${svg}</svg>${esc(label)}</span> `;
+// one glyph per category shape, drawn as a polygon on a 12 x 12 grid (points as x,y pairs around the centre 6,6)
+function polygon(shape) {
+  const ring = (n, r, rot = -90) => Array.from({ length: n }, (_, i) => {
+    const a = (rot + 360 * i / n) * Math.PI / 180; return `${(6 + r * Math.cos(a)).toFixed(1)},${(6 + r * Math.sin(a)).toFixed(1)}`; });
+  const star = Array.from({ length: 10 }, (_, i) => { const a = (-90 + 36 * i) * Math.PI / 180, r = i % 2 ? 2.4 : 5.8;
+    return `${(6 + r * Math.cos(a)).toFixed(1)},${(6 + r * Math.sin(a)).toFixed(1)}`; });
+  const pts = { triangle: ring(3, 6), diamond: ring(4, 5.8), pentagon: ring(5, 5.8), hexagon: ring(6, 5.8, 0), octagon: ring(8, 5.8, 22.5),
+    star, vee: ["0.5,0.5", "6,4.5", "11.5,0.5", "6,11.5"] }[shape];
+  return pts ? `<polygon points="${pts.join(" ")}" fill="#ccc" stroke="#000"/>` : '<circle cx="6" cy="6" r="5" fill="#eee" stroke="#000" stroke-dasharray="2 1.5"/>';
+}
+const catKey = () => Object.keys(CAT).map(k => keyItem(polygon(CAT_SHAPE[k]), catLabel(k))).join("");
 const lineKey = () => `<svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke="#333"/></svg>asserted` +
   `<svg width="24" height="6"><line x1="0" y1="3" x2="24" y2="3" stroke="#333" stroke-dasharray="5 3"/></svg>composed`;
 
@@ -234,7 +255,7 @@ function quote(c) {
   return `<div class="q"><blockquote>“${esc(c.quote)}”</blockquote>
     <div class="m"><b style="color:#000">${esc(c.speaker || "(no speaker)")}</b> [${CODE[c.voice_group]}: ${esc(TYPE[c.speaker_type] || c.speaker_type)}] · ${day(c.date)} · ${esc(c.headline)}${c.is_letter ? " · letter" : ""}</div>
     <div class="m">${esc(c.cause_description)} → ${esc(c.effect_description)}</div>
-    <div class="m">cause = ${esc(CAT[k])}${cos} · effect place = ${esc(c.effect_place || "—")} · ${esc(c.page)}</div></div>`;
+    <div class="m">cause = ${esc(catLabel(k))}${cos} · effect place = ${esc(c.effect_place || "—")} · ${esc(c.page)}</div></div>`;
 }
 const voiceTable = list => { const t = tally(list);
   return `<table><tr><th></th><th>B</th><th>C</th><th>O</th><th>n</th></tr><tr><td>claims</td><td>${t.BRITISH}</td><td>${t.CHINESE}</td><td>${t.OTHER}</td><td>${list.length}</td></tr></table>`; };
@@ -289,7 +310,7 @@ function render() {
   const sc = cs.filter(f.inScope);
   panel.innerHTML = `<h2>Causes of the strike, by voice</h2><div class="m">N = ${sc.length} claims about the strike (of ${cs.length} matching the filters)</div>
     <table><tr><th>cause</th><th>B</th><th>C</th><th>O</th></tr>${Object.entries(CAT).map(([k, name]) => {
-      const t = tally(sc.filter(c => f.cause(c) === k)); return `<tr><td>${name}</td><td>${t.BRITISH}</td><td>${t.CHINESE}</td><td>${t.OTHER}</td></tr>`; }).join("")}</table>`;
+      const t = tally(sc.filter(c => f.cause(c) === k)); return `<tr><td><svg width="12" height="12" style="vertical-align:-2px;margin-right:4px">${polygon(CAT_SHAPE[k])}</svg>${esc(catLabel(k))}</td><td>${t.BRITISH}</td><td>${t.CHINESE}</td><td>${t.OTHER}</td></tr>`; }).join("")}</table>`;
 }
 document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
   document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === b));
